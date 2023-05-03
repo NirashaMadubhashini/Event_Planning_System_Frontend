@@ -40,6 +40,7 @@ export default makeStyles((theme) => ({
         justifyContent: 'space-between',
         width: '400px',
         alignItems: 'center',
+        marginLeft: theme.spacing(10),
         [theme.breakpoints.down('sm')]: {
             width: 'auto',
             marginTop: 20,
