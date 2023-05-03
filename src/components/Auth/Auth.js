@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import useStyles from './styles';
 import Input from './Input';
+import IconButton from "@material-ui/core/IconButton";
+import {Facebook, Google} from "@mui/icons-material";
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
@@ -64,8 +66,13 @@ const SignUp = () => {
             </Button>
             <Grid container justify="center">
               <Grid item>
-                <Button onClick={switchMode}>
-                  { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }
+                <Typography>
+                  {isSignup ? 'Already have an account?' : "Don't have an account?"}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Button className={classes.button}onClick={switchMode}>
+                  {isSignup ? 'Sign in' : 'Sign Up'}
                 </Button>
               </Grid>
             </Grid>
