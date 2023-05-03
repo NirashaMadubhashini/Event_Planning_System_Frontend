@@ -1,0 +1,16 @@
+/*index.css*/
+body {
+    background-color: #f7f8fc;
+}
+
+* {
+    /* font-family: 'Noto Sans JP' !important; */
+    font-family: 'Heebo', sans-serif !important;
+}
+
+.makeStyles-appBar-10{
+    margin-left: 0px !important;
+    margin-top: 5px !important;
+    margin-bottom: 20px !important;
+    margin-right: 0px !important;
+}
