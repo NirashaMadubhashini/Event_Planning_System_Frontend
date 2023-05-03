@@ -10,7 +10,7 @@ export default makeStyles((theme) => ({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '10px 50px',
-        height: '60px', // Add this line to set the desired height
+        height: '70px', // Add this line to set the desired height
         [theme.breakpoints.down('sm')]: {
             flexDirection: 'column',
             height: 'auto', // Adjust the height for smaller screens if needed
