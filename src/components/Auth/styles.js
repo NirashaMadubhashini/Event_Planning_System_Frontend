@@ -15,7 +15,9 @@ export default makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
+    width: theme.spacing(6),
+    height: theme.spacing(6),
   },
   form: {
     width: '100%', // Fix IE 11 issue.
