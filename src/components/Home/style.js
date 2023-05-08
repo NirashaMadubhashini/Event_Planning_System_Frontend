@@ -39,7 +39,7 @@ export default makeStyles((theme) => ({
     },
 
     container: {
-        padding: 0,
+        padding: "5px",
     },
 
     cardMedia: {
