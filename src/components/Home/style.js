@@ -28,7 +28,7 @@ export default makeStyles((theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '50px',
+        minHeight: '100px',
         backgroundColor: theme.palette.primary.main, // Set background color to primary color
         color: '#ffffff', // Set text color to white
         transition: 'background-color 0.2s ease, color 0.2s ease', // Add transition for smooth color change
@@ -93,50 +93,17 @@ export default makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     titleSection: {
-        flex: "1 0 33%",
+        flex: "1 0 10%",
     },
 
-    bodySection: {
-        flex: "1 0 67%",
-        backgroundColor: () => getRandomWebSafeColor(),
-    },
-    // cardHeader: {
-    //     flexGrow: 1,
-    //     backgroundColor: 'white',
-    //     padding: theme.spacing(2),
-    //     height: '100px', // Add this line
-    // },
-    cardHeader: {
-        position: 'relative',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        color: 'white',
-        padding: theme.spacing(2),
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        minHeight: 200,
-        display: 'flex',
-        alignItems: 'flex-end',
-        justifyContent: 'center'
-    },
-    cardHeader2: {
-        position: 'relative',
-        color: 'white',
-        display: 'flex',
-        alignItems: 'flex-end',
-        justifyContent: 'center'
-    },
-
-    cardImage: {
-        position: 'absolute',
-        top: theme.spacing(2),
-        left: theme.spacing(2),
-        height: 80,
-    },
     button: {
         position: 'relative',
     },
-
+    blankCardTop: {
+        backgroundColor: '#FFFFFF',
+        height: '150px', // Adjust the height according to your desired size
+        marginBottom: theme.spacing(2),
+    },
 // Add additional styles for smaller screens
     [theme.breakpoints.down("xs")]: {
         appBar: {
