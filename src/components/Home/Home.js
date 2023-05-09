@@ -17,16 +17,6 @@ import {
 import useStyles from "./style";
 import { Search, ArrowDropDown } from "@mui/icons-material";
 
-function getRandomWebSafeColor() {
-    const webSafeColors = [
-        "00", "33", "66", "99", "CC", "FF"
-    ];
-
-    const getRandomColorCode = () =>
-        webSafeColors[Math.floor(Math.random() * webSafeColors.length)];
-
-    return `#${getRandomColorCode()}${getRandomColorCode()}${getRandomColorCode()}`;
-}
 
 //this is the home menu
 const Home = () => {
@@ -361,16 +351,21 @@ const [packages,setPackages] = useState([
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
+                <div className={classes.packagesSection}>
+                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>CHOOSE YOUR</Typography>
+                    <Typography variant="h4" gutterBottom>Events Packages</Typography>
+                </div>
                 <Grid container spacing={2}>
                     {packages.map((packages, index) => (
                         <Grid item xs={12} sm={6} md={4} lg={3} key={packages.id}>
                             <Card className={classes.card}>
                                 <CardContent className={classes.titleSection}>
-                                    <Typography variant="h5" gutterBottom>
+                                    <Typography variant="h5" gutterBottom className={classes.headerName}>
                                         {packages.name}
                                     </Typography>
-                                    <Typography variant="h8">From $ {packages.price}</Typography>
-                                </CardContent>
+                                    <Typography variant="h6" >
+                                        From <span style={{ color: '#F50057', fontSize: '1.5em', fontWeight:"bold", }}>${packages.price}</span>
+                                    </Typography>                                </CardContent>
                                 <CardContent className={classes.cardContent}>
                                     {/*<Typography variant="h5" style={{ marginBottom: '0.5rem' }}>{packages.name}</Typography>*/}
                                     <Typography variant="body1">{packages.hours} Hours</Typography>
@@ -394,7 +389,7 @@ const [packages,setPackages] = useState([
                                         onClick={() => handleButtonClick(packages.id)}
                                         className={classes.button}
                                     >
-                                        Add to Cart
+                                        More Deatils
                                     </Button>
                                 </CardContent>
                             </Card>
