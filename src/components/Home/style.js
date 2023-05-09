@@ -1,16 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
 //Home Style.js
-function getRandomWebSafeColor() {
-    const webSafeColors = [
-        "00", "33", "66", "99", "CC", "FF"
-    ];
-
-    const getRandomColorCode = () =>
-        webSafeColors[Math.floor(Math.random() * webSafeColors.length)];
-
-    return `#${getRandomColorCode()}${getRandomColorCode()}${getRandomColorCode()}`;
-}
 
 export default makeStyles((theme) => ({
     menuTitle: {
@@ -94,15 +84,18 @@ export default makeStyles((theme) => ({
     },
     titleSection: {
         flex: "1 0 10%",
+        // backgroundColor:"#D1DAD9"
     },
-
+headerName:{
+   fontWeight:"bold",
+},
     button: {
         position: 'relative',
     },
-    blankCardTop: {
-        backgroundColor: '#FFFFFF',
-        height: '150px', // Adjust the height according to your desired size
-        marginBottom: theme.spacing(2),
+    packagesSection: {
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(3),
+        textAlign: "center",
     },
 // Add additional styles for smaller screens
     [theme.breakpoints.down("xs")]: {
