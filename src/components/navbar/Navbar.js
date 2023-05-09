@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-import EventpPro from '../../images/logo.png';
+import EventPro from '../../images/logo.png';
 import useStyles from './style';
 
 //Nav bar
@@ -34,7 +34,7 @@ const Navbar = () => {
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
             <Link to="/" className={classes.brandContainer}>
-                <img component={Link} to="/" src={EventpPro} alt="icon" height="100px" />
+                <img component={Link} to="/" src={EventPro} alt="icon" height="100px" />
             </Link>
             <Toolbar className={classes.toolbar} style={{ height: '100%' }}>
                 {user?.result ? (
