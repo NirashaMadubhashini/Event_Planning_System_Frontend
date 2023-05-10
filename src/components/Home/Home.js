@@ -320,6 +320,15 @@ const [packages,setPackages] = useState([
                             </Button>
                             <Button
                                 className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Services")}
+                                style={{
+                                    color: clickedCategory === "Services" ? "#F50057" : "",
+                                }}
+                            >
+                                Services
+                            </Button>
+                            <Button
+                                className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Bookings")}
                                 style={{
                                     color: clickedCategory === "Bookings" ? "#F50057" : "",
