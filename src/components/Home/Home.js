@@ -358,8 +358,8 @@ const [packages,setPackages] = useState([
                                     </Typography>                                </CardContent>
                                 <CardContent className={classes.cardContent}>
                                     {/*<Typography variant="h5" style={{ marginBottom: '0.5rem' }}>{packages.name}</Typography>*/}
-                                    <Typography variant="body1">{packages.hours} Hours</Typography>
-                                    <Typography variant="body1">Up to {packages.guests} Persons</Typography>
+                                    <Typography variant="body1" style={{fontWeight:"bold"}}>{packages.hours} Hours</Typography>
+                                    <Typography variant="body1" style={{fontWeight:"bold"}}>Up to {packages.guests} Persons</Typography>
                                     {packages.services && (
                                         <div>
                                             <Typography variant="h6"></Typography>
