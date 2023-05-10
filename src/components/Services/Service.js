@@ -200,12 +200,11 @@ const Service = () => {
                             <Card className={classes.card}>
                                 <CardContent className={classes.cardContent}>
                                     <Box mb={3}>
-                                        {React.cloneElement(service.icon, { style: { fontSize: 100 } })}
+                                        {React.cloneElement(service.icon, { style: { fontSize: 100, color: '#3F51B5' } })}
                                     </Box>
-                                    <Typography variant="h5" gutterBottom style={{fontSize: '2.5 rem' }}>
+                                    <Typography variant="h5" gutterBottom style={{fontSize: '2.5 rem',fontWeight:'bold' }}>
                                         {service.name}
                                     </Typography>
-
                                 </CardContent>
                             </Card>
                         </Grid>
