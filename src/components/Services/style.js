@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#ffffff",
-        transition: 'background-color 0.2s ease, box-shadow 0.2s ease',
+        transition: 'background-color 0.2s ease, box-shadow 0.10s ease',
         '&:hover': {
             backgroundColor: "#3F51B5",
             boxShadow: `5px 4px 20px -4px #3F51B5, -5px -4px 20px -4px #3F51B5`,
@@ -31,7 +31,7 @@ export default makeStyles((theme) => ({
     },
 
     container: {
-        // padding: "3px",
+        padding: "1px",
     },
 
     cardMedia: {
