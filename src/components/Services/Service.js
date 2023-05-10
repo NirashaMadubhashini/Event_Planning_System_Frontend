@@ -15,7 +15,7 @@ import {
     TextField,
 } from "@material-ui/core";
 import useStyles from "./style";
-import { Search, ArrowDropDown } from "@mui/icons-material";
+import {Search, ArrowDropDown, Brush} from "@mui/icons-material";
 import { Event, LocationOn, Restaurant, MusicNote } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 
@@ -63,6 +63,26 @@ const Service = () => {
         },
         {
             id: 4,
+            name: "Entertainment",
+            icon: <MusicNote />,
+        },
+        {
+            id: 5,
+            name: "Saloon",
+            icon: <Brush />,
+        },
+        {
+            id: 6,
+            name: "Venue Selection",
+            icon: <LocationOn />,
+        },
+        {
+            id: 7,
+            name: "Catering",
+            icon: <Restaurant />,
+        },
+        {
+            id: 8,
             name: "Entertainment",
             icon: <MusicNote />,
         },
@@ -155,6 +175,15 @@ const Service = () => {
                                 }}
                             >
                                 Packages
+                            </Button>
+                            <Button
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Services")}
+                                style={{
+                                    color: clickedCategory === "Services" ? "#F50057" : "",
+                                }}
+                            >
+                                Services
                             </Button>
                             <Button
                                 className={classes.appBarButton}
