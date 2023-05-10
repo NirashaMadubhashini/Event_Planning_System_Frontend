@@ -21,7 +21,7 @@ export default makeStyles((theme) => ({
         minHeight: '100px',
         backgroundColor: theme.palette.primary.main, // Set background color to primary color
         color: '#ffffff', // Set text color to white
-        transition: 'background-color 0.2s ease, color 0.2s ease', // Add transition for smooth color change
+        transition: 'background-color 0.2s ease, box-shadow 0.10s ease', // Add transition for smooth color change
         '&:hover': {
             backgroundColor: '#ffffff', // Change background color to white on hover
             color: '#0000ff', // Change text color to blue on hover
@@ -29,7 +29,7 @@ export default makeStyles((theme) => ({
     },
 
     container: {
-        padding: "5px",
+        padding: "1px",
     },
 
     cardMedia: {
@@ -40,7 +40,6 @@ export default makeStyles((theme) => ({
     appBar: {
         borderRadius: 3,
         padding: "0px 20px",
-
         marginBottom: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
             padding: "0px 0px",
