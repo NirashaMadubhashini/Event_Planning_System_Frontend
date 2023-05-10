@@ -11,6 +11,12 @@ export default makeStyles((theme) => ({
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        backgroundColor: "#ffffff",
+        transition: 'background-color 0.2s ease, box-shadow 0.2s ease',
+        '&:hover': {
+            backgroundColor: "#3F51B5",
+            boxShadow: `5px 4px 20px -4px #3F51B5, -5px -4px 20px -4px #3F51B5`,
+        },
     },
     cardContent: {
         flexGrow: 1,
@@ -19,13 +25,9 @@ export default makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100px',
-        backgroundColor: theme.palette.primary.main, // Set background color to primary color
-        color: '#ffffff', // Set text color to white
-        transition: 'background-color 0.2s ease, color 0.2s ease', // Add transition for smooth color change
-        '&:hover': {
-            backgroundColor: '#ffffff', // Change background color to white on hover
-            color: '#0000ff', // Change text color to blue on hover
-        },
+        backgroundColor: '#ffffff',
+        color: 'black',
+        transition: 'background-color 0.2s ease, color 0.2s ease',
     },
 
     container: {
