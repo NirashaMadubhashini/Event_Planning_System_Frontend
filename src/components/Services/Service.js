@@ -15,7 +15,17 @@ import {
     TextField,
 } from "@material-ui/core";
 import useStyles from "./style";
-import {Search, ArrowDropDown, Brush} from "@mui/icons-material";
+import {
+    Search,
+    ArrowDropDown,
+    Brush,
+    MapsHomeWork,
+    Fastfood,
+    Celebration,
+    Cake,
+    CameraAlt,
+    LibraryMusic, EmojiTransportation, CardGiftcard, SurroundSound, Chair, AdminPanelSettings, CropOriginal, Store
+} from "@mui/icons-material";
 import { Event, LocationOn, Restaurant, MusicNote } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 
@@ -48,43 +58,73 @@ const Service = () => {
     const services = [
         {
             id: 1,
-            name: "Event Planning",
-            icon: <Event />,
+            name: "Venue rental",
+            icon: <MapsHomeWork />,
         },
         {
             id: 2,
-            name: "Venue Selection",
-            icon: <LocationOn />,
+            name: "Catering and Bar",
+            icon: <Fastfood />,
         },
         {
             id: 3,
-            name: "Catering",
-            icon: <Restaurant />,
+            name: "Decorations and floral arrangements",
+            icon: <Celebration />,
         },
         {
             id: 4,
-            name: "Entertainment",
-            icon: <MusicNote />,
+            name: "Cake and desserts",
+            icon: <Cake />,
         },
         {
             id: 5,
-            name: "Saloon",
-            icon: <Brush />,
+            name: "Photography and Videography",
+            icon: <CameraAlt />,
         },
         {
             id: 6,
-            name: "Venue Selection",
-            icon: <LocationOn />,
+            name: "Entertainment",
+            icon: <LibraryMusic/>,
         },
         {
             id: 7,
-            name: "Catering",
-            icon: <Restaurant />,
+            name: "Transportation",
+            icon: <EmojiTransportation />,
         },
         {
             id: 8,
-            name: "Entertainment",
-            icon: <MusicNote />,
+            name: "Invitations and stationery",
+            icon: <CardGiftcard />,
+        },
+        {
+            id: 9,
+            name: "Hair and Makeup services",
+            icon: <Brush />,
+        },
+        {
+            id: 10,
+            name: "Sound and lighting equipment",
+            icon: <SurroundSound />,
+        },
+        {
+            id: 11,
+            name: "Staging and seating",
+            icon: <Chair />,
+        },
+        {
+            id: 12,
+            name: "Security personnel",
+            icon: <AdminPanelSettings />,
+        },
+        {
+            id: 13,
+            name: "Marketing and promotion",
+            icon: <CropOriginal />,
+        },
+        {
+            id: 14,
+            name: "Merchandise sales",
+            icon: <Store />,
         },
     ];
 
