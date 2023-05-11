@@ -69,7 +69,31 @@ export default makeStyles((theme) => ({
         paddingBottom: theme.spacing(5),
         textAlign: "center",
     },
+    cover: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -1,
+    },
 
+    textGlowAnimation: {
+        animation: '$glow 2s ease-in-out infinite',
+        textShadow: '0 0 10px rgba(255, 255, 255, 0.7)',
+    },
+
+    '@keyframes glow': {
+        '0%': {
+            textShadow: '0 0 10px rgba(255, 255, 255, 0.7)',
+        },
+        '50%': {
+            textShadow: '0 0 20px rgba(255, 255, 255, 0.9)',
+        },
+        '100%': {
+            textShadow: '0 0 10px rgba(255, 255, 255, 0.7)',
+        },
+    },
 
 
 // Add additional styles for smaller screens
@@ -90,4 +114,5 @@ export default makeStyles((theme) => ({
             fontSize: "1.5rem",
         },
     },
+
 }));
