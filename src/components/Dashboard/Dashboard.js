@@ -17,11 +17,15 @@ import {
 import useStyles from "./style";
 import {
     Search,
-    ArrowDropDown,
+    ArrowDropDown, PlayArrow,
 } from "@mui/icons-material";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import backgroundImage from "../Dashboard/back6.jpg";
+import backgroundImage from "../Dashboard/back3.jpg";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import DatePicker from "@mui/lab/DatePicker";
 
 const Dashboard = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -70,11 +74,42 @@ const Dashboard = () => {
             maxWidth="xl"
             className={classes.container}
             style={{
-                backgroundImage: `url(${backgroundImage})`,
                 backgroundSize: 'cover',
-                filter: 'brightness(0.5)', // Add filter for brightness
             }}
         >
+            <div className={classes.cover} style={{ backgroundImage: `url(${backgroundImage})`, position: "relative" }}>
+                <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center", color: "white" }}>
+                    <Typography
+                        variant="h2"
+                        component="h1"
+                        className={classes.textGlowAnimation}
+                        style={{ fontWeight: "bold", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", marginBottom: "1rem" }}
+                    >
+                        <span style={{ color: '#3F51B5', fontWeight: "bold" }}>We create</span>
+                        <br />
+                        You celebrate
+                    </Typography>
+
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        endIcon={<PlayArrow />}
+                        style={{
+                            display: "block",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            width: "150px", // Adjust the width value as needed
+                            borderRadius: "10px", // Adjust the radius value as needed
+                            backgroundColor: "#F50057" // Set the desired color value
+                        }}
+                    >
+                        Online Request
+                    </Button>
+
+
+                </div>
+            </div>
+
             <AppBar className={classes.appBar} position={appBarPosition} color="primary">
                 <Toolbar >
                     <div className={classes.appBarContainer}>
@@ -183,10 +218,10 @@ const Dashboard = () => {
                                 Contact
                             </Button>
                         </div>
-
                     </div>
                 </Toolbar>
             </AppBar>
+
         </Container>
 
     );
