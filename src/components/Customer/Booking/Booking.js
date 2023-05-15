@@ -4,12 +4,9 @@ import {
     Button,
     Toolbar,
     Typography,
-    Card,
-    CardContent,
     IconButton,
     Menu,
     MenuItem,
-    Grid,
     Container,
     InputAdornment,
     TextField,
@@ -18,16 +15,7 @@ import useStyles from "./style";
 import {
     Search,
     ArrowDropDown,
-    Brush,
-    MapsHomeWork,
-    Fastfood,
-    Celebration,
-    Cake,
-    CameraAlt,
-    LibraryMusic, EmojiTransportation, CardGiftcard, SurroundSound, Chair, AdminPanelSettings, CropOriginal, Store
 } from "@mui/icons-material";
-import { Event, LocationOn, Restaurant, MusicNote } from "@mui/icons-material";
-import Box from "@mui/material/Box";
 
 const Booking = () => {
     const [anchorEl, setAnchorEl] = useState(null);
