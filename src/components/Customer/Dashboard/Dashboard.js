@@ -21,7 +21,7 @@ import {
 } from "@mui/icons-material";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import backgroundImage from "../Dashboard/back3.jpg";
+import backgroundImage from ".//back3.jpg";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";

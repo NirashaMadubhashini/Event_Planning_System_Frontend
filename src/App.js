@@ -5,9 +5,11 @@ import Navbar from "./components/navbar/Navbar";
 import SignUp from "./components/Auth/Auth";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import Auth from "./components/Auth/Auth";
-import Home from "./components/Home/Home";
-import Service from "./components/Services/Service";
-import Dashboard from "./components/Dashboard/Dashboard";
+import Home from "./components/Customer/Home/Home";
+import Service from "./components/Customer/Services/Service";
+import Dashboard from "./components/Customer/Dashboard/Dashboard";
+import EventRequest from "./components/Customer/EventRequest/EventRequest";
+import About from "./components/Customer/About/About";
 
 
 
@@ -21,6 +23,8 @@ const App = () => {
                     <Route path="/auth" exact component={SignUp} />
                     <Route path="/home" exact component={Home} />
                     <Route path="/service" exact component={Service} />
+                    <Route path="/eventRequest" exact component={EventRequest} />
+                    <Route path="/about" exact component={About} />
                     <Route path="/dashboard" exact component={Dashboard} />
                 </Switch>
             </Container>
