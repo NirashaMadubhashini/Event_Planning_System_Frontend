@@ -10,6 +10,7 @@ import Service from "./components/Customer/Services/Service";
 import Dashboard from "./components/Customer/Dashboard/Dashboard";
 import EventRequest from "./components/Customer/EventRequest/EventRequest";
 import About from "./components/Customer/About/About";
+import Booking from "./components/Customer/Booking/Booking";
 
 
 
@@ -26,6 +27,7 @@ const App = () => {
                     <Route path="/eventRequest" exact component={EventRequest} />
                     <Route path="/about" exact component={About} />
                     <Route path="/dashboard" exact component={Dashboard} />
+                    <Route path="/booking" exact component={Booking} />
                 </Switch>
             </Container>
         </BrowserRouter>
