@@ -10,7 +10,11 @@ export default makeStyles((theme) => ({
     container: {
         padding: "1px",
     },
-
+    serviceSection: {
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(5),
+        textAlign: "center",
+    },
     cardMedia: {
         height: 0,
         paddingTop: '56.25%', // 16:9 aspect ratio
