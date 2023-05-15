@@ -16,6 +16,10 @@ import {
     Search,
     ArrowDropDown,
 } from "@mui/icons-material";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import Card from "@mui/material/Card";
+import Grid from "@mui/material/Grid";
 
 const Gallery = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -59,6 +63,15 @@ const Gallery = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    const images = [
+        { id: 1, imageUrl: require("../Gallery/img/Engagement.jpeg")},
+        { id: 2, imageUrl: require("../Gallery/img/Anniversery.jpg")},
+        { id: 3, imageUrl: require("../Gallery/img/Birthday.webp")},
+        { id: 4, imageUrl: require("../Gallery/img/slider-events.jpg")},
+        { id: 5, imageUrl: require("../Gallery/img/version-events-thumb.jpg")},
+        { id: 6, imageUrl: require("../Gallery/img/Wedding.jpg")},
+    ];
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -174,6 +187,39 @@ const Gallery = () => {
                     </div>
                 </Toolbar>
             </AppBar>
+            <Container maxWidth="lg" className={classes.container}>
+                <div className={classes.serviceSection}>
+                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>OUR RECENT EVENTS</Typography>
+                    <Typography variant="h4" gutterBottom>Gallery</Typography>
+                    <Typography variant="body1" gutterBottom>See Our Best Events Gallery!</Typography>
+                </div>
+                <Grid container spacing={2}>
+                    {images.map((image) => (
+                        <Grid item xs={12} sm={6} md={4} key={image.id}>
+                            <Card>
+                                <CardMedia
+                                    component="img"
+                                    height="200"
+                                    image={image.imageUrl}
+                                    alt={`Image ${image.id}`}
+
+                                />
+                                {/*<CardContent>*/}
+                                {/*    /!* Add any additional content or caption for the image *!/*/}
+                                {/*</CardContent>*/}
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    style={{ margin: "20px auto", display: "block" }} // Center the button
+                >
+                    See More
+                </Button>
+            </Container>
         </Container>
     );
 };
