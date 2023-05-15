@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
-//Home Style.js
+//Packages Style.js
 
 export default makeStyles((theme) => ({
     menuTitle: {

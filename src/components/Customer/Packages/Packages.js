@@ -19,7 +19,7 @@ import { Search, ArrowDropDown } from "@mui/icons-material";
 
 
 //this is the home menu
-const Home = () => {
+const Packages = () => {
 const [packages,setPackages] = useState([
     {
         id: 1,
@@ -274,9 +274,9 @@ const [packages,setPackages] = useState([
                         <div className={classes.appBarRight}>
                             <Button
                                 className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Home")}
+                                onClick={() => handleCategoryClick("Packages")}
                                 style={{
-                                    color: clickedCategory === "Home" ? "#F50057" : "",
+                                    color: clickedCategory === "Packages" ? "#F50057" : "",
                                 }}
                             >
                                 Home
@@ -392,4 +392,4 @@ const [packages,setPackages] = useState([
     );
 }
 
-export default Home
+export default Packages
