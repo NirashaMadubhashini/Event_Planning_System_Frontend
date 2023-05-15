@@ -13,6 +13,7 @@ import About from "./components/Customer/About/About";
 import Booking from "./components/Customer/Booking/Booking";
 import Feedback from "./components/Customer/Feedback/Feedback";
 import Gallery from "./components/Customer/Gallery/Gallery";
+import Contact from "./components/Customer/Contact/Contact";
 
 
 
@@ -32,6 +33,7 @@ const App = () => {
                     <Route path="/booking" exact component={Booking} />
                     <Route path="/feedback" exact component={Feedback} />
                     <Route path="/gallery" exact component={Gallery} />
+                    <Route path="/contact" exact component={Contact} />
                 </Switch>
             </Container>
         </BrowserRouter>
