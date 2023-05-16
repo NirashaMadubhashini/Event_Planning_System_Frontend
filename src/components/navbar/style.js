@@ -3,8 +3,8 @@ import { deepPurple } from '@material-ui/core/colors';
 //Nav bar Style.js
 export default makeStyles((theme) => ({
     appBar: {
-        borderRadius: 5,
-        margin: '10px 0',
+        borderRadius: 1,
+        // margin: '10px 0',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',

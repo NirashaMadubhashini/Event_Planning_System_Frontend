@@ -28,8 +28,8 @@ import {
 } from "@mui/icons-material";
 import { Event, LocationOn, Restaurant, MusicNote } from "@mui/icons-material";
 import Box from "@mui/material/Box";
-import Image1 from "../../../components/Customer/Dashboard/back3.jpg";
-import Image2 from "../../../components/Customer/Dashboard/back4.jpg";
+import Image1 from "../../../components/Customer/Dashboard/I1.jpg";
+import Image2 from "../../../components/Customer/Dashboard/I2.webp";
 
 const About = () => {
     const [anchorEl, setAnchorEl] = useState(null);

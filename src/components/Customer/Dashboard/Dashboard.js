@@ -21,7 +21,7 @@ import {
 } from "@mui/icons-material";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import backgroundImage from ".//back3.jpg";
+import backgroundImage from "./shutterstock_538256848.jpg";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
@@ -74,33 +74,38 @@ const Dashboard = () => {
             maxWidth="xl"
             className={classes.container}
             style={{
-                backgroundSize: 'cover',
+                backgroundSize: "cover",
             }}
         >
-            <div className={classes.cover} style={{ backgroundImage: `url(${backgroundImage})`, position: "relative" }}>
+            <div
+                className={classes.cover}
+                style={{
+                    backgroundImage: `url(${backgroundImage})`,
+                    position: "relative",
+                     filter: "brightness(70%)", // Adjust the brightness value as needed
+                }}
+            >
                 <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center", color: "white" }}>
                     <Typography
                         variant="h2"
                         component="h1"
                         className={classes.textGlowAnimation}
-                        style={{ fontWeight: "bold", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", marginBottom: "1rem" }}
+                        style={{ fontWeight: "bold", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", marginBottom: "1rem",color:'black' }}
                     >
-                        <span style={{ color: '#3F51B5', fontWeight: "bold" }}>We create</span>
-                        <br />
-                        You celebrate
+                        We create You celebrate
                     </Typography>
 
                     <Button
                         variant="contained"
                         color="primary"
-                        endIcon={<PlayArrow />}
+                        // endIcon={<PlayArrow />}
                         style={{
                             display: "block",
                             marginLeft: "auto",
                             marginRight: "auto",
                             width: "150px", // Adjust the width value as needed
                             borderRadius: "10px", // Adjust the radius value as needed
-                            backgroundColor: "#F50057" // Set the desired color value
+                            backgroundColor: "#3F51B5" // Set the desired color value
                         }}
                     >
                         Online Request
