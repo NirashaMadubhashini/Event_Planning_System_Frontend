@@ -93,8 +93,8 @@ export default makeStyles((theme) => ({
         textAlign: "center",
     },
     image: {
-        width: "150px",
-        height: "150px",
+        width: "550px",
+        height: "350px",
         marginRight: theme.spacing(2),
         // borderRadius: "50%",
         objectFit: "cover",
