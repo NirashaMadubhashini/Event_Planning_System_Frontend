@@ -195,22 +195,29 @@ const About = () => {
                     <Typography variant="h4" gutterBottom>We Are an Event Planning Agency</Typography>
                     <Typography variant="body1" gutterBottom>As the event planning company in Sri Lanka, we know that it’s not “one size fits all”. Each event and client is unique and we believe our services should be as well. We know that it should be “Can I hire a planner?” not “Can I afford one?”.</Typography>
                 </div>
-                <Container maxWidth="lg">
-                    <Box
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="flex-start"
-                        className={classes.imageContainer}
-                    >
-                        <div className={`${classes.imageWrapper} ${flip ? classes.flip : ''}`}>
-                            <img src={Image1} alt="Image 1" className={classes.image} />
-                        </div>
-                        <div className={`${classes.imageWrapper} ${!flip ? classes.flip : ''}`} style={{ marginTop: "auto" }}>
-                            <img src={Image2} alt="Image 2" className={classes.image} />
-                        </div>
+                <Container maxWidth="xl" className={classes.container}>
+                    <Box display="flex" alignItems="center">
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}>
+                                <Box>
+                                    <img src={Image1} alt="Image 1" className={classes.image} />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <Card className={classes.card}>
+                                    <CardContent className={classes.cardContent}>
+                                        <Typography variant="h4" gutterBottom>
+                                            We will give a very special celebration for you
+                                        </Typography>
+                                        <Typography variant="body1" gutterBottom>
+                                            As the event planning company in Sri Lanka, we know that it’s not "one size fits all". Each event and client is unique, and we believe our services should be as well. We understand that it should be "Can I hire a planner?" not "Can I afford one?".
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        </Grid>
                     </Box>
                 </Container>
-
             </Container>
         </Container>
     );
