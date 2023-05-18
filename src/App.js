@@ -14,6 +14,7 @@ import Booking from "./components/Customer/Booking/Booking";
 import Feedback from "./components/Customer/Feedback/Feedback";
 import Gallery from "./components/Customer/Gallery/Gallery";
 import Contact from "./components/Customer/Contact/Contact";
+import ServicePackages from "./components/Customer/ServicePackages/ServicePackages";
 
 
 
@@ -27,6 +28,7 @@ const App = () => {
                     <Route path="/auth" exact component={SignUp} />
                     <Route path="/packages" exact component={Packages} />
                     <Route path="/service" exact component={Service} />
+                    <Route path="/servicePackages" exact component={ServicePackages} />
                     <Route path="/eventRequest" exact component={EventRequest} />
                     <Route path="/about" exact component={About} />
                     <Route path="/dashboard" exact component={Dashboard} />

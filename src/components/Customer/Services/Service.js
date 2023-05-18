@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
     AppBar,
     Button,
@@ -24,15 +24,20 @@ import {
     Celebration,
     Cake,
     CameraAlt,
-    LibraryMusic, EmojiTransportation, CardGiftcard, SurroundSound, Chair, AdminPanelSettings, CropOriginal, Store
+    LibraryMusic,
+    EmojiTransportation,
+    CardGiftcard,
+    SurroundSound,
+    Chair,
+    AdminPanelSettings,
+    CropOriginal,
+    Store,
 } from "@mui/icons-material";
-import { Event, LocationOn, Restaurant, MusicNote } from "@mui/icons-material";
 import Box from "@mui/material/Box";
+import { Dialog, DialogTitle, DialogContent, DialogActions } from "@material-ui/core";
+import Slider from "react-slick";
 
 const Service = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const classes = useStyles();
-
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -41,11 +46,30 @@ const Service = () => {
         setAnchorEl(null);
     };
 
+    const [anchorEl, setAnchorEl] = useState(null);
+    const classes = useStyles();
     const [appBarPosition, setAppBarPosition] = useState("relative");
     const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
+    const [selectedService, setSelectedService] = useState(null);
+    const [serviceVendors, setServiceVendors] = useState([]);
+    const [openModal, setOpenModal] = useState(false);
+    const [selectedPackages, setSelectedPackages] = useState([]);
 
     const handleButtonClick = (id) => {
+        const clickedService = services.find((service) => service.id === id);
+        setSelectedService(clickedService);
+        setServiceVendors([]);
+        if (clickedService) {
+            setTimeout(() => {
+                const mockServiceVendors = [
+                    { id: 1, name: "Service Vendor 1", packages: [{ id: 1, name: "Package 1" }, { id: 2, name: "Package 2" }] },
+                    { id: 2, name: "Service Vendor 2", packages: [{ id: 3, name: "Package 3" }, { id: 4, name: "Package 4" }] },
+                    { id: 3, name: "Service Vendor 3", packages: [{ id: 5, name: "Package 5" }, { id: 6, name: "Package 6" }] },
+                ];
+                setServiceVendors(mockServiceVendors);
+            }, 1000);
+        }
         setClickedButtons((prevState) => ({
             ...prevState,
             [id]: !prevState[id],
@@ -55,6 +79,32 @@ const Service = () => {
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) => (prevCategory === category ? "" : category));
     };
+
+    const handleOpenModal = () => {
+        setOpenModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setOpenModal(false);
+        setSelectedPackages([]);
+    };
+
+    const handlePackageSelect = (packageId) => {
+        const packageExists = selectedPackages.includes(packageId);
+
+        if (packageExists) {
+            setSelectedPackages((prevSelectedPackages) => prevSelectedPackages.filter((id) => id !== packageId));
+        } else {
+            setSelectedPackages((prevSelectedPackages) => [...prevSelectedPackages, packageId]);
+        }
+    };
+
+    const handleBook = () => {
+        // Handle booking logic here
+        console.log("Selected Packages:", selectedPackages);
+        handleCloseModal();
+    };
+
     const services = [
         {
             id: 1,
@@ -84,7 +134,7 @@ const Service = () => {
         {
             id: 6,
             name: "Entertainment",
-            icon: <LibraryMusic/>,
+            icon: <LibraryMusic />,
         },
         {
             id: 7,
@@ -143,10 +193,18 @@ const Service = () => {
         };
     }, []);
 
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+    };
+
     return (
         <Container maxWidth="xl" className={classes.container}>
             <AppBar className={classes.appBar} position={appBarPosition} color="primary">
-                <Toolbar >
+                <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
                             <IconButton
@@ -169,7 +227,9 @@ const Service = () => {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={handleClose} className={classes.menuItem} >Wedding Celebrations</MenuItem>
+                                <MenuItem onClick={handleClose} className={classes.menuItem}>
+                                    Wedding Celebrations
+                                </MenuItem>
                                 <MenuItem onClick={handleClose}>Engagement</MenuItem>
                                 <MenuItem onClick={handleClose}>Birthday Parties</MenuItem>
                                 <MenuItem onClick={handleClose}>Anniversary Celebrations</MenuItem>
@@ -253,36 +313,129 @@ const Service = () => {
                                 Contact
                             </Button>
                         </div>
-
                     </div>
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
-                <div className={classes.serviceSection}>
-                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>OUR SERVICES</Typography>
-                    <Typography variant="h4" gutterBottom>What We Offer</Typography>
-                    <Typography variant="body1" gutterBottom>Each event and client is unique, and we believe our services should be as well. We know what hiring a planner is all about!</Typography>
-                </div>
                 <Grid container spacing={3}>
-                    {services.map((service) => (
-                        <Grid item xs={12} sm={6} md={3} key={service.id}>
-                            <Card className={classes.card}>
-                                <CardContent className={classes.cardContent}>
-                                    <Box mb={3}>
-                                        {React.cloneElement(service.icon, { style: { fontSize: 100, color: '#3F51B5' } })}
-                                    </Box>
-                                    <Typography variant="h5" gutterBottom style={{fontSize: '2.5 rem',fontWeight:'bold' }}>
-                                        {service.name}
-                                    </Typography>
+                    <Grid item xs={12} sm={4}>
+                        <div className={classes.serviceSection}>
+                            <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>
+                                OUR SERVICES
+                            </Typography>
+                            <Typography variant="h4" gutterBottom>
+                                What We Offer
+                            </Typography>
+                            {services.map((service) => (
+                                <Card
+                                    key={service.id}
+                                    className={`${classes.card} ${
+                                        selectedService?.id === service.id ? classes.selectedCard : ""
+                                    }`}
+                                    onClick={() => handleButtonClick(service.id)}
+                                >
+                                    <CardContent className={classes.cardContent}>
+                                        <Box
+                                            sx={{
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                                flexDirection: "column",
+                                                height: "100%",
+                                            }}
+                                        >
+                                            <Box sx={{ display: "flex", alignItems: "center" }}>
+                                                {service.icon}
+                                            </Box>
+                                            <Typography variant="h6" sx={{ mt: 2 }}>
+                                                {service.name}
+                                            </Typography>
+                                        </Box>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} sm={8}>
+                        {selectedService && (
+                            <Card className={classes.vendorCard}>
+                                <CardContent>
+                                    <Typography variant="h5">{selectedService.name}</Typography>
+                                    <Typography variant="body1">Description of the service...</Typography>
+                                    <Button variant="contained" color="primary" onClick={handleOpenModal}>
+                                        Show Packages
+                                    </Button>
                                 </CardContent>
                             </Card>
-                        </Grid>
-                    ))}
+                        )}
+                        {serviceVendors.map((vendor) => (
+                            <Card key={vendor.id} className={classes.vendorCard}>
+                                <CardContent>
+                                    <Typography variant="h6">{vendor.name}</Typography>
+                                    <Typography variant="body1">Description of the vendor...</Typography>
+                                    <Button variant="contained" color="primary" onClick={handleOpenModal}>
+                                        Show Packages
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </Grid>
                 </Grid>
-
             </Container>
+            <Dialog open={openModal} onClose={handleCloseModal} maxWidth="md" fullWidth>
+                <DialogTitle>Select Packages</DialogTitle>
+                <DialogContent>
+                    {selectedService && (
+                        <Typography variant="h5" gutterBottom>
+                            {selectedService.name} Packages
+                        </Typography>
+                    )}
+                    {serviceVendors.map((vendor) => (
+                        <div key={vendor.id}>
+                            <Typography variant="h6" gutterBottom>
+                                {vendor.name} Packages
+                            </Typography>
+                            <Slider {...settings}>
+                                {vendor.packages.map((pkg) => (
+                                    <Card
+                                        key={pkg.id}
+                                        className={`${classes.packageCard} ${
+                                            selectedPackages.includes(pkg.id) ? classes.selectedCard : ""
+                                        }`}
+                                        onClick={() => handlePackageSelect(pkg.id)}
+                                    >
+                                        <CardContent className={classes.cardContent}>
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    flexDirection: "column",
+                                                    height: "100%",
+                                                }}
+                                            >
+                                                <Typography variant="h6" sx={{ mt: 2 }}>
+                                                    {pkg.name}
+                                                </Typography>
+                                            </Box>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </Slider>
+                        </div>
+                    ))}
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseModal} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleBook} color="primary">
+                        Book
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Container>
     );
 };
 
-export default Service
+export default Service;
