@@ -8,7 +8,7 @@ export default makeStyles((theme) => ({
     card: {
         height: "80%",
         backgroundColor: "#ffffff",
-        borderColor:"black",
+        borderColor: "black",
         transition: "background-color 0.2s ease, box-shadow 0.10s ease",
         "&:hover": {
             backgroundColor: "#3F51B5",
@@ -80,22 +80,25 @@ export default makeStyles((theme) => ({
         paddingBottom: theme.spacing(5),
         textAlign: "center",
     },
+    packageContainer: {
+        marginBottom: theme.spacing(4),
+    },
     packageCard: {
         height: "100%",
         backgroundColor: "#F5F5F5",
         color: "#333333",
         cursor: "pointer",
         transition: "background-color 0.2s ease",
-        "&:hover": {
-            backgroundColor: "#3F51B5",
-        },
+        // "&:hover": {
+        //     backgroundColor: "#3F51B5",
+        // },
     },
     selectedCard: {
-        backgroundColor: "#3F51B5",
+        // backgroundColor: "#3F51B5",
         boxShadow: `5px 4px 20px -4px #3F51B5, -5px -4px 20px -4px #3F51B5`,
     },
     vendorCard: {
-        marginBottom: theme.spacing(2),
+        marginBottom: theme.spacing(3),
         backgroundColor: "#F5F5F5",
         color: "#333333",
     },
