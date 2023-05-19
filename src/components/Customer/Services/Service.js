@@ -13,6 +13,10 @@ import {
     Container,
     InputAdornment,
     TextField,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
 } from "@material-ui/core";
 import useStyles from "./style";
 import {
@@ -34,8 +38,7 @@ import {
     Store,
 } from "@mui/icons-material";
 import Box from "@mui/material/Box";
-import { Dialog, DialogTitle, DialogContent, DialogActions } from "@material-ui/core";
-import Slider from "react-slick";
+
 
 const Service = () => {
     const handleClick = (event) => {
@@ -63,9 +66,38 @@ const Service = () => {
         if (clickedService) {
             setTimeout(() => {
                 const mockServiceVendors = [
-                    { id: 1, name: "Service Vendor 1", packages: [{ id: 1, name: "Package 1" }, { id: 2, name: "Package 2" }] },
-                    { id: 2, name: "Service Vendor 2", packages: [{ id: 3, name: "Package 3" }, { id: 4, name: "Package 4" }] },
-                    { id: 3, name: "Service Vendor 3", packages: [{ id: 5, name: "Package 5" }, { id: 6, name: "Package 6" }] },
+                    {
+                        id: 1,
+                        name: "Service Vendor 1",
+                        packages: [
+                            { id: 1, name: "Package 1" },
+                            { id: 2, name: "Package 2" },
+                        ],
+                    },
+                    {
+                        id: 2,
+                        name: "Service Vendor 2",
+                        packages: [
+                            { id: 3, name: "Package 3" },
+                            { id: 4, name: "Package 4" },
+                        ],
+                    },
+                    {
+                        id: 3,
+                        name: "Service Vendor 3",
+                        packages: [
+                            { id: 5, name: "Package 5" },
+                            { id: 6, name: "Package 6" },
+                        ],
+                    },
+                    {
+                        id: 4,
+                        name: "Service Vendor 4",
+                        packages: [
+                            { id: 5, name: "Package 7" },
+                            { id: 6, name: "Package 8" },
+                        ],
+                    },
                 ];
                 setServiceVendors(mockServiceVendors);
             }, 1000);
@@ -77,7 +109,9 @@ const Service = () => {
     };
 
     const handleCategoryClick = (category) => {
-        setClickedCategory((prevCategory) => (prevCategory === category ? "" : category));
+        setClickedCategory((prevCategory) =>
+            prevCategory === category ? "" : category
+        );
     };
 
     const handleOpenModal = () => {
@@ -93,16 +127,15 @@ const Service = () => {
         const packageExists = selectedPackages.includes(packageId);
 
         if (packageExists) {
-            setSelectedPackages((prevSelectedPackages) => prevSelectedPackages.filter((id) => id !== packageId));
+            setSelectedPackages((prevSelectedPackages) =>
+                prevSelectedPackages.filter((id) => id !== packageId)
+            );
         } else {
-            setSelectedPackages((prevSelectedPackages) => [...prevSelectedPackages, packageId]);
+            setSelectedPackages((prevSelectedPackages) => [
+                ...prevSelectedPackages,
+                packageId,
+            ]);
         }
-    };
-
-    const handleBook = () => {
-        // Handle booking logic here
-        console.log("Selected Packages:", selectedPackages);
-        handleCloseModal();
     };
 
     const services = [
@@ -203,7 +236,11 @@ const Service = () => {
 
     return (
         <Container maxWidth="xl" className={classes.container}>
-            <AppBar className={classes.appBar} position={appBarPosition} color="primary">
+            <AppBar
+                className={classes.appBar}
+                position={appBarPosition}
+                color="primary"
+            >
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
@@ -232,7 +269,9 @@ const Service = () => {
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>Engagement</MenuItem>
                                 <MenuItem onClick={handleClose}>Birthday Parties</MenuItem>
-                                <MenuItem onClick={handleClose}>Anniversary Celebrations</MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                    Anniversary Celebrations
+                                </MenuItem>
                                 <MenuItem onClick={handleClose}>Baby Shower</MenuItem>
                             </Menu>
                             <TextField
@@ -320,7 +359,11 @@ const Service = () => {
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={4}>
                         <div className={classes.serviceSection}>
-                            <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>
+                            <Typography
+                                variant="h6"
+                                gutterBottom
+                                style={{ color: "#3F51B5" }}
+                            >
                                 OUR SERVICES
                             </Typography>
                             <Typography variant="h4" gutterBottom>
@@ -357,24 +400,19 @@ const Service = () => {
                         </div>
                     </Grid>
                     <Grid item xs={12} sm={8}>
-                        {selectedService && (
-                            <Card className={classes.vendorCard}>
-                                <CardContent>
-                                    <Typography variant="h5">{selectedService.name}</Typography>
-                                    <Typography variant="body1">Description of the service...</Typography>
-                                    <Button variant="contained" color="primary" onClick={handleOpenModal}>
-                                        Show Packages
-                                    </Button>
-                                </CardContent>
-                            </Card>
-                        )}
                         {serviceVendors.map((vendor) => (
                             <Card key={vendor.id} className={classes.vendorCard}>
                                 <CardContent>
                                     <Typography variant="h6">{vendor.name}</Typography>
-                                    <Typography variant="body1">Description of the vendor...</Typography>
-                                    <Button variant="contained" color="primary" onClick={handleOpenModal}>
-                                        Show Packages
+                                    <Typography variant="body1">
+                                        Description of the vendor...
+                                    </Typography>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={handleOpenModal}
+                                    >
+                                        Show Vendors
                                     </Button>
                                 </CardContent>
                             </Card>
@@ -382,55 +420,46 @@ const Service = () => {
                     </Grid>
                 </Grid>
             </Container>
-            <Dialog open={openModal} onClose={handleCloseModal} maxWidth="md" fullWidth>
+            <Dialog
+                open={openModal}
+                onClose={handleCloseModal}
+                maxWidth="sm"
+                fullWidth
+            >
                 <DialogTitle>Select Packages</DialogTitle>
                 <DialogContent>
-                    {selectedService && (
-                        <Typography variant="h5" gutterBottom>
-                            {selectedService.name} Packages
-                        </Typography>
-                    )}
-                    {serviceVendors.map((vendor) => (
-                        <div key={vendor.id}>
-                            <Typography variant="h6" gutterBottom>
-                                {vendor.name} Packages
-                            </Typography>
-                            <Slider {...settings}>
-                                {vendor.packages.map((pkg) => (
-                                    <Card
-                                        key={pkg.id}
-                                        className={`${classes.packageCard} ${
-                                            selectedPackages.includes(pkg.id) ? classes.selectedCard : ""
-                                        }`}
-                                        onClick={() => handlePackageSelect(pkg.id)}
-                                    >
-                                        <CardContent className={classes.cardContent}>
-                                            <Box
-                                                sx={{
-                                                    display: "flex",
-                                                    alignItems: "center",
-                                                    justifyContent: "center",
-                                                    flexDirection: "column",
-                                                    height: "100%",
-                                                }}
-                                            >
-                                                <Typography variant="h6" sx={{ mt: 2 }}>
-                                                    {pkg.name}
-                                                </Typography>
-                                            </Box>
-                                        </CardContent>
-                                    </Card>
-                                ))}
-                            </Slider>
-                        </div>
-                    ))}
+                    <Grid container spacing={3}>
+                        {serviceVendors.map((vendor) => (
+                            <Grid
+                                item
+                                xs={12}
+                                sm={4}
+                                key={vendor.id}
+                                className={classes.packageContainer}
+                            >
+                                <Card className={classes.vendorCard}>
+                                    <CardContent>
+                                        <Typography variant="h6">{vendor.name}</Typography>
+                                        <Typography variant="body1">
+                                            Description of the vendor...
+                                        </Typography>
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={handleOpenModal}
+                                        >
+                                            Show Packages
+                                        </Button>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
                 </DialogContent>
+
                 <DialogActions>
                     <Button onClick={handleCloseModal} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={handleBook} color="primary">
-                        Book
+                        Close
                     </Button>
                 </DialogActions>
             </Dialog>
