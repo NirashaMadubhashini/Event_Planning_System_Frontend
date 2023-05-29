@@ -1,31 +1,21 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
     AppBar,
     Button,
     Toolbar,
     Typography,
-    Card,
-    CardContent,
     IconButton,
     Menu,
     MenuItem,
-    Grid,
     Container,
     InputAdornment,
     TextField,
+    Grid,
 } from "@material-ui/core";
+import {Search, ArrowDropDown, ExitToApp} from "@mui/icons-material";
 import useStyles from "./style";
-import {
-    Search,
-    ArrowDropDown, PlayArrow,
-} from "@mui/icons-material";
-
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import backgroundImage from "./shutterstock_538256848.jpg";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import DatePicker from "@mui/lab/DatePicker";
+import {Link} from "react-router-dom";
+import EventPro from "../../../assets/images/CorrectLogo.png";
 
 const Dashboard = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -40,18 +30,12 @@ const Dashboard = () => {
     };
 
     const [appBarPosition, setAppBarPosition] = useState("relative");
-    const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
 
-    const handleButtonClick = (id) => {
-        setClickedButtons((prevState) => ({
-            ...prevState,
-            [id]: !prevState[id],
-        }));
-    };
-
     const handleCategoryClick = (category) => {
-        setClickedCategory((prevCategory) => (prevCategory === category ? "" : category));
+        setClickedCategory((prevCategory) =>
+            prevCategory === category ? "" : category
+        );
     };
 
     useEffect(() => {
@@ -70,93 +54,15 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <Container
-            maxWidth="xl"
-            className={classes.container}
-            style={{
-                backgroundSize: "cover",
-            }}
-        >
-            <div
-                className={classes.cover}
-                style={{
-                    backgroundImage: `url(${backgroundImage})`,
-                    position: "relative",
-                     filter: "brightness(70%)", // Adjust the brightness value as needed
-                }}
-            >
-                <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", textAlign: "center", color: "white" }}>
-                    <Typography
-                        variant="h2"
-                        component="h1"
-                        className={classes.textGlowAnimation}
-                        style={{ fontWeight: "bold", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", marginBottom: "1rem",color:'black' }}
-                    >
-                        We create You celebrate
-                    </Typography>
-
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        // endIcon={<PlayArrow />}
-                        style={{
-                            display: "block",
-                            marginLeft: "auto",
-                            marginRight: "auto",
-                            width: "150px", // Adjust the width value as needed
-                            borderRadius: "10px", // Adjust the radius value as needed
-                            backgroundColor: "#3F51B5" // Set the desired color value
-                        }}
-                    >
-                        Online Request
-                    </Button>
-
-
-                </div>
-            </div>
-
+        <Container maxWidth="xl" className={classes.container}>
             <AppBar className={classes.appBar} position={appBarPosition} color="primary">
-                <Toolbar >
+                <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                aria-controls="simple-menu"
-                                aria-haspopup="true"
-                                onClick={handleClick}
-                            >
-                                <Typography variant="h6" className={classes.menuTitle}>
-                                    Event's
-                                </Typography>
-                                <ArrowDropDown />
-                            </IconButton>
-                            <Menu
-                                id="simple-menu"
-                                anchorEl={anchorEl}
-                                keepMounted
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleClose} className={classes.menuItem} >Wedding Celebrations</MenuItem>
-                                <MenuItem onClick={handleClose}>Engagement</MenuItem>
-                                <MenuItem onClick={handleClose}>Birthday Parties</MenuItem>
-                                <MenuItem onClick={handleClose}>Anniversary Celebrations</MenuItem>
-                                <MenuItem onClick={handleClose}>Baby Shower</MenuItem>
-                            </Menu>
-                            <TextField
-                                variant="outlined"
-                                color="inherit"
-                                size="small"
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <Search />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
+                            <img component={Link} to="/" src={EventPro} alt="icon" height="60px" />
+                            <Typography variant="h6" className={classes.menuTitle}>
+                                Event - Pro
+                            </Typography>
                         </div>
                         <div className={classes.appBarRight}>
                             <Button
@@ -176,15 +82,6 @@ const Dashboard = () => {
                                 }}
                             >
                                 About
-                            </Button>
-                            <Button
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Packages")}
-                                style={{
-                                    color: clickedCategory === "Packages" ? "#F50057" : "",
-                                }}
-                            >
-                                Packages
                             </Button>
                             <Button
                                 className={classes.appBarButton}
@@ -222,14 +119,45 @@ const Dashboard = () => {
                             >
                                 Contact
                             </Button>
+                            <IconButton
+                                className={classes.appBarButton}
+                                color="inherit"
+                                edge="end"
+                            >
+                                <ExitToApp />
+                            </IconButton>
                         </div>
                     </div>
                 </Toolbar>
             </AppBar>
-
+            <Grid container spacing={3} className={classes.cardContainer}>
+                <Grid item xs={3}>
+                    <div className={`${classes.card} ${classes.cardColor1}`}>
+                        <Typography variant="h6">Card Title 1</Typography>
+                        <Typography variant="h4">Count 1</Typography>
+                    </div>
+                </Grid>
+                <Grid item xs={3}>
+                    <div className={`${classes.card} ${classes.cardColor2}`}>
+                        <Typography variant="h6">Card Title 2</Typography>
+                        <Typography variant="h4">Count 2</Typography>
+                    </div>
+                </Grid>
+                <Grid item xs={3}>
+                    <div className={`${classes.card} ${classes.cardColor3}`}>
+                        <Typography variant="h6">Card Title 3</Typography>
+                        <Typography variant="h4">Count 3</Typography>
+                    </div>
+                </Grid>
+                <Grid item xs={3}>
+                    <div className={`${classes.card} ${classes.cardColor4}`}>
+                        <Typography variant="h6">Card Title 4</Typography>
+                        <Typography variant="h4">Count 4</Typography>
+                    </div>
+                </Grid>
+            </Grid>
         </Container>
-
     );
 };
 
-export default Dashboard
+export default Dashboard;

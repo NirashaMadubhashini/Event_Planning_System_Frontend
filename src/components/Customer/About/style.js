@@ -92,13 +92,7 @@ export default makeStyles((theme) => ({
         paddingBottom: theme.spacing(5),
         textAlign: "center",
     },
-    image: {
-        width: "550px",
-        height: "350px",
-        marginRight: theme.spacing(2),
-        // borderRadius: "50%",
-        objectFit: "cover",
-    },
+
     flip: {
         transform: 'rotateY(180deg)',
     },
@@ -117,6 +111,54 @@ export default makeStyles((theme) => ({
         transformStyle: 'preserve-3d',
         transition: 'transform 0.5s ease',
         marginTop: theme.spacing(2), // Add this line
+    },
+
+
+    heading: {
+        color: theme.palette.primary.main,
+        textDecoration: 'none',
+        fontSize: '2em',
+        fontWeight: 300,
+    },
+    image: {
+        marginLeft: '10px',
+        marginTop: '5px',
+    },
+    toolbar: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        width: '400px',
+        [theme.breakpoints.down('sm')]: {
+            width: 'auto',
+        },
+    },
+    profile: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '400px',
+        alignItems: 'center',
+        marginLeft: theme.spacing(10),
+        [theme.breakpoints.down('sm')]: {
+            width: 'auto',
+            marginTop: 20,
+            justifyContent: 'center',
+        },
+    },
+    logout: {
+        marginLeft: '20px',
+    },
+    userName: {
+        display: 'flex',
+        alignItems: 'center',
+        textAlign: 'center',
+    },
+    brandContainer: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    purple: {
+        color: theme.palette.getContrastText(deepPurple[500]),
+        backgroundColor: deepPurple[500],
     },
 // Add additional styles for smaller screens
     [theme.breakpoints.down("xs")]: {

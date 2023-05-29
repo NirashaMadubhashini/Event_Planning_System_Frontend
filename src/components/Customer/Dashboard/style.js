@@ -1,6 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
-//Dashboard Style.js
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
     menuTitle: {
@@ -8,11 +6,10 @@ export default makeStyles((theme) => ({
         marginRight: theme.spacing(1),
     },
     container: {
-        position: 'relative',
+        position: "relative",
         padding: "1px",
-        height: '100vh',
+        height: "100vh",
     },
-
     appBar: {
         borderRadius: 3,
         padding: "0px 20px",
@@ -20,18 +17,16 @@ export default makeStyles((theme) => ({
         [theme.breakpoints.down("sm")]: {
             padding: "0px 0px",
         },
-        position: 'absolute',
+        position: "absolute",
         top: 0,
         left: 0,
         zIndex: 1,
     },
-
     menuItem: {
         "&:hover": {
             textDecoration: "underline",
         },
     },
-
     appBarContainer: {
         display: "flex",
         justifyContent: "space-between",
@@ -62,57 +57,54 @@ export default makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     button: {
-        position: 'relative',
+        position: "relative",
     },
     serviceSection: {
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(5),
         textAlign: "center",
     },
-    cover: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: -1,
-    },
-
     textGlowAnimation: {
-        animation: '$glow 2s ease-in-out infinite',
-        textShadow: '0 0 10px rgba(255, 255, 255, 0.7)',
+        animation: "$glow 2s ease-in-out infinite",
+        textShadow: "0 0 10px rgba(255, 255, 255, 0.7)",
     },
-
-    '@keyframes glow': {
-        '0%': {
-            textShadow: '0 0 10px rgba(255, 255, 255, 0.7)',
+    "@keyframes glow": {
+        "0%": {
+            textShadow: "0 0 10px rgba(255, 255, 255, 0.7)",
         },
-        '50%': {
-            textShadow: '0 0 20px rgba(255, 255, 255, 0.9)',
+        "50%": {
+            textShadow: "0 0 20px rgba(255, 255, 255, 0.9)",
         },
-        '100%': {
-            textShadow: '0 0 10px rgba(255, 255, 255, 0.7)',
-        },
-    },
-
-
-// Add additional styles for smaller screens
-    [theme.breakpoints.down("xs")]: {
-        appBar: {
-            padding: "0px",
-        },
-        appBarLeft: {
-            flex: "1",
-        },
-        appBarRight: {
-            display: "none",
-        },
-        appBarTitle: {
-            display: "none",
-        },
-        menuTitle: {
-            fontSize: "1.5rem",
+        "100%": {
+            textShadow: "0 0 10px rgba(255, 255, 255, 0.7)",
         },
     },
-
+    cardContainer: {
+        display: "flex",
+        justifyContent: "space-around",
+        marginTop: "80px",
+    },
+    card: {
+        padding: "60px",
+        color: "white",
+        borderRadius: "5px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        boxShadow: "0 0 10px rgba(0,0,0,0.2)",
+    },
+    cardColor1: {
+        background: "#CC66FF",
+    },
+    cardColor2: {
+        background: "#FF6699",
+    },
+    cardColor3: {
+        background: "#CC6666",
+    },
+    cardColor4: {
+        background: "#FF6666",
+    },
 }));

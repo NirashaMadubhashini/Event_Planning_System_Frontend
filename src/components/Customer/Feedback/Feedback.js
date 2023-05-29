@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
     AppBar,
     Button,
@@ -8,14 +8,11 @@ import {
     Menu,
     MenuItem,
     Container,
-    InputAdornment,
-    TextField,
 } from "@material-ui/core";
 import useStyles from "./style";
-import {
-    Search,
-    ArrowDropDown,
-} from "@mui/icons-material";
+import { ArrowDropDown, ExitToApp } from "@mui/icons-material";
+import {Link} from "react-router-dom";
+import EventPro from "../../../assets/images/CorrectLogo.png";
 
 const Feedback = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -30,20 +27,13 @@ const Feedback = () => {
     };
 
     const [appBarPosition, setAppBarPosition] = useState("relative");
-    const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
 
-    const handleButtonClick = (id) => {
-        setClickedButtons((prevState) => ({
-            ...prevState,
-            [id]: !prevState[id],
-        }));
-    };
-
     const handleCategoryClick = (category) => {
-        setClickedCategory((prevCategory) => (prevCategory === category ? "" : category));
+        setClickedCategory((prevCategory) =>
+            prevCategory === category ? "" : category
+        );
     };
-
 
     useEffect(() => {
         const handleScroll = () => {
@@ -63,47 +53,13 @@ const Feedback = () => {
     return (
         <Container maxWidth="xl" className={classes.container}>
             <AppBar className={classes.appBar} position={appBarPosition} color="primary">
-                <Toolbar >
+                <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                aria-controls="simple-menu"
-                                aria-haspopup="true"
-                                onClick={handleClick}
-                            >
-                                <Typography variant="h6" className={classes.menuTitle}>
-                                    Event's
-                                </Typography>
-                                <ArrowDropDown />
-                            </IconButton>
-                            <Menu
-                                id="simple-menu"
-                                anchorEl={anchorEl}
-                                keepMounted
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleClose} className={classes.menuItem} >Wedding Celebrations</MenuItem>
-                                <MenuItem onClick={handleClose}>Engagement</MenuItem>
-                                <MenuItem onClick={handleClose}>Birthday Parties</MenuItem>
-                                <MenuItem onClick={handleClose}>Anniversary Celebrations</MenuItem>
-                                <MenuItem onClick={handleClose}>Baby Shower</MenuItem>
-                            </Menu>
-                            <TextField
-                                variant="outlined"
-                                color="inherit"
-                                size="small"
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <Search />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
+                            <img component={Link} to="/" src={EventPro} alt="icon" height="60px" />
+                            <Typography variant="h6" className={classes.menuTitle}>
+                                Event - Pro
+                            </Typography>
                         </div>
                         <div className={classes.appBarRight}>
                             <Button
@@ -123,15 +79,6 @@ const Feedback = () => {
                                 }}
                             >
                                 About
-                            </Button>
-                            <Button
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Packages")}
-                                style={{
-                                    color: clickedCategory === "Packages" ? "#F50057" : "",
-                                }}
-                            >
-                                Packages
                             </Button>
                             <Button
                                 className={classes.appBarButton}
@@ -169,8 +116,14 @@ const Feedback = () => {
                             >
                                 Contact
                             </Button>
+                            <IconButton
+                                className={classes.appBarButton}
+                                color="inherit"
+                                edge="end"
+                            >
+                                <ExitToApp />
+                            </IconButton>
                         </div>
-
                     </div>
                 </Toolbar>
             </AppBar>
@@ -178,4 +131,4 @@ const Feedback = () => {
     );
 };
 
-export default Feedback
+export default Feedback;

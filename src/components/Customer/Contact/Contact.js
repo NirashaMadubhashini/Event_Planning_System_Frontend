@@ -14,8 +14,10 @@ import {
 import useStyles from "./style";
 import {
     Search,
-    ArrowDropDown,
+    ArrowDropDown, ExitToApp,
 } from "@mui/icons-material";
+import {Link} from "react-router-dom";
+import EventPro from "../../../assets/images/CorrectLogo.png";
 
 const Contact = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -63,47 +65,13 @@ const Contact = () => {
     return (
         <Container maxWidth="xl" className={classes.container}>
             <AppBar className={classes.appBar} position={appBarPosition} color="primary">
-                <Toolbar >
+                <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                aria-controls="simple-menu"
-                                aria-haspopup="true"
-                                onClick={handleClick}
-                            >
-                                <Typography variant="h6" className={classes.menuTitle}>
-                                    Event's
-                                </Typography>
-                                <ArrowDropDown />
-                            </IconButton>
-                            <Menu
-                                id="simple-menu"
-                                anchorEl={anchorEl}
-                                keepMounted
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleClose} className={classes.menuItem} >Wedding Celebrations</MenuItem>
-                                <MenuItem onClick={handleClose}>Engagement</MenuItem>
-                                <MenuItem onClick={handleClose}>Birthday Parties</MenuItem>
-                                <MenuItem onClick={handleClose}>Anniversary Celebrations</MenuItem>
-                                <MenuItem onClick={handleClose}>Baby Shower</MenuItem>
-                            </Menu>
-                            <TextField
-                                variant="outlined"
-                                color="inherit"
-                                size="small"
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <Search />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
+                            <img component={Link} to="/" src={EventPro} alt="icon" height="60px" />
+                            <Typography variant="h6" className={classes.menuTitle}>
+                                Event - Pro
+                            </Typography>
                         </div>
                         <div className={classes.appBarRight}>
                             <Button
@@ -123,15 +91,6 @@ const Contact = () => {
                                 }}
                             >
                                 About
-                            </Button>
-                            <Button
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Packages")}
-                                style={{
-                                    color: clickedCategory === "Packages" ? "#F50057" : "",
-                                }}
-                            >
-                                Packages
                             </Button>
                             <Button
                                 className={classes.appBarButton}
@@ -169,8 +128,14 @@ const Contact = () => {
                             >
                                 Contact
                             </Button>
+                            <IconButton
+                                className={classes.appBarButton}
+                                color="inherit"
+                                edge="end"
+                            >
+                                <ExitToApp />
+                            </IconButton>
                         </div>
-
                     </div>
                 </Toolbar>
             </AppBar>
