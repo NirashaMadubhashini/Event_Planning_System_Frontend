@@ -3,6 +3,12 @@ import { deepPurple } from '@material-ui/core/colors';
 //EventRequest Style.js
 
 export default makeStyles((theme) => ({
+    menuTitle: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        textDecoration: "none",
+        color: "inherit",
+    },
     container: {
         padding: "1px",
     },
@@ -46,6 +52,7 @@ export default makeStyles((theme) => ({
     appBarButton: {
         color: "white",
         marginLeft: theme.spacing(2),
+        textDecoration: "none",
     },
     appBarSearch: {
         display: "flex",
