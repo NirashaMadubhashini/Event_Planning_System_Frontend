@@ -77,17 +77,35 @@ const Gallery = () => {
 
     return (
         <Container maxWidth="xl" className={classes.container}>
-            <AppBar className={classes.appBar} position={appBarPosition} color="primary">
+            <AppBar
+                className={classes.appBar}
+                position={appBarPosition}
+                color="primary"
+            >
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <img component={Link} to="/" src={EventPro} alt="icon" height="60px" />
-                            <Typography variant="h6" className={classes.menuTitle}>
+                            <IconButton
+                                component={Link}
+                                to="/"
+                                color="inherit"
+                                edge="start"
+                            >
+                                <img src={EventPro} alt="icon" height="60px" />
+                            </IconButton>
+                            <Typography
+                                component={Link}
+                                to="/"
+                                variant="h6"
+                                className={classes.menuTitle}
+                            >
                                 Event - Pro
                             </Typography>
                         </div>
                         <div className={classes.appBarRight}>
-                            <Button
+                            <Typography
+                                component={Link}
+                                to="/dashboard"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Home")}
                                 style={{
@@ -95,8 +113,10 @@ const Gallery = () => {
                                 }}
                             >
                                 Home
-                            </Button>
-                            <Button
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/about"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("About")}
                                 style={{
@@ -104,8 +124,10 @@ const Gallery = () => {
                                 }}
                             >
                                 About
-                            </Button>
-                            <Button
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/service"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Services")}
                                 style={{
@@ -113,8 +135,10 @@ const Gallery = () => {
                                 }}
                             >
                                 Services
-                            </Button>
-                            <Button
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/booking"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Bookings")}
                                 style={{
@@ -122,8 +146,10 @@ const Gallery = () => {
                                 }}
                             >
                                 Bookings
-                            </Button>
-                            <Button
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/gallery"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Gallery")}
                                 style={{
@@ -131,8 +157,10 @@ const Gallery = () => {
                                 }}
                             >
                                 Gallery
-                            </Button>
-                            <Button
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/contact"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Contact")}
                                 style={{
@@ -140,8 +168,10 @@ const Gallery = () => {
                                 }}
                             >
                                 Contact
-                            </Button>
+                            </Typography>
                             <IconButton
+                                component={Link}
+                                to="/auth"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("ExitToApp")}
                                 style={{
