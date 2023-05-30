@@ -130,6 +130,10 @@ const Contact = () => {
                             </Button>
                             <IconButton
                                 className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("ExitToApp")}
+                                style={{
+                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "",
+                                }}
                                 color="inherit"
                                 edge="end"
                             >

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
     AppBar,
     Button,
@@ -7,67 +7,25 @@ import {
     Card,
     CardContent,
     IconButton,
-    Menu,
-    MenuItem,
-    Grid,
     Container,
-    InputAdornment,
-    TextField,
+    Grid,
 } from "@material-ui/core";
-import useStyles from "./style";
-import {
-    Search,
-    ArrowDropDown,
-    Brush,
-    MapsHomeWork,
-    Fastfood,
-    Celebration,
-    Cake,
-    CameraAlt,
-    LibraryMusic,
-    EmojiTransportation,
-    CardGiftcard,
-    SurroundSound,
-    Chair,
-    AdminPanelSettings,
-    CropOriginal,
-    Store,
-    ExitToApp
-} from "@mui/icons-material";
-import { Event, LocationOn, Restaurant, MusicNote } from "@mui/icons-material";
+import { Link } from "react-router-dom";
+import { ExitToApp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import Image1 from "../../../components/Customer/Dashboard/I1.jpg";
-import Image2 from "../../../components/Customer/Dashboard/I2.webp";
-import {Link} from "react-router-dom";
+import useStyles from "./style";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 
 const About = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const classes = useStyles();
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
     const [appBarPosition, setAppBarPosition] = useState("relative");
-    const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
 
-    const handleButtonClick = (id) => {
-        setClickedButtons((prevState) => ({
-            ...prevState,
-            [id]: !prevState[id],
-        }));
-    };
-
     const handleCategoryClick = (category) => {
-        setClickedCategory((prevCategory) => (prevCategory === category ? "" : category));
+        setClickedCategory((prevCategory) =>
+            prevCategory === category ? "" : category
+        );
     };
-
 
     useEffect(() => {
         const handleScroll = () => {
@@ -83,15 +41,26 @@ const About = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
-    const [flip, setFlip] = useState(false);
+
+    const classes = useStyles();
 
     return (
         <Container maxWidth="xl" className={classes.container}>
-            <AppBar className={classes.appBar} position={appBarPosition} color="primary">
+            <AppBar
+                className={classes.appBar}
+                position={appBarPosition}
+                color="primary"
+            >
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <img component={Link} to="/" src={EventPro} alt="icon" height="60px" />
+                            <img
+                                component={Link}
+                                to="/"
+                                src={EventPro}
+                                alt="icon"
+                                height="60px"
+                            />
                             <Typography variant="h6" className={classes.menuTitle}>
                                 Event - Pro
                             </Typography>
@@ -153,6 +122,10 @@ const About = () => {
                             </Button>
                             <IconButton
                                 className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("ExitToApp")}
+                                style={{
+                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "",
+                                }}
                                 color="inherit"
                                 edge="end"
                             >
@@ -164,9 +137,18 @@ const About = () => {
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.serviceSection}>
-                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>HELLO!</Typography>
-                    <Typography variant="h4" gutterBottom>We Are an Event Planning Agency</Typography>
-                    <Typography variant="body1" gutterBottom>As the event planning company in Sri Lanka, we know that it’s not “one size fits all”. Each event and client is unique and we believe our services should be as well. We know that it should be “Can I hire a planner?” not “Can I afford one?”.</Typography>
+                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>
+                        HELLO!
+                    </Typography>
+                    <Typography variant="h4" gutterBottom>
+                        We Are an Event Planning Agency
+                    </Typography>
+                    {/*<Typography variant="body1" gutterBottom>*/}
+                    {/*    As the event planning company in Sri Lanka, we know that it’s not*/}
+                    {/*    “one size fits all”. Each event and client is unique and we believe*/}
+                    {/*    our services should be as well. We know that it should be “Can I*/}
+                    {/*    hire a planner?” not “Can I afford one?”.*/}
+                    {/*</Typography>*/}
                 </div>
                 <Container maxWidth="xl" className={classes.container}>
                     <Box display="flex" alignItems="center">
@@ -183,7 +165,11 @@ const About = () => {
                                             We will give a very special celebration for you
                                         </Typography>
                                         <Typography variant="body1" gutterBottom>
-                                            As the event planning company in Sri Lanka, we know that it’s not "one size fits all". Each event and client is unique, and we believe our services should be as well. We understand that it should be "Can I hire a planner?" not "Can I afford one?".
+                                            As the event planning company in Sri Lanka, we know that
+                                            it’s not "one size fits all". Each event and client is
+                                            unique, and we believe our services should be as well. We
+                                            understand that it should be "Can I hire a planner?" not
+                                            "Can I afford one?".
                                         </Typography>
                                     </CardContent>
                                 </Card>
@@ -196,4 +182,4 @@ const About = () => {
     );
 };
 
-export default About
+export default About;
