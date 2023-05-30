@@ -3,7 +3,7 @@ import { Container } from '@mui/material';
 import './index.css';
 import Navbar from "./components/navbar/Navbar";
 import SignUp from "./components/Auth/Auth";
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Auth from "./components/Auth/Auth";
 import Packages from "./components/Customer/Packages/Packages";
 import Service from "./components/Customer/Services/Service";
@@ -16,16 +16,16 @@ import Gallery from "./components/Customer/Gallery/Gallery";
 import Contact from "./components/Customer/Contact/Contact";
 import ServicePackages from "./components/Customer/ServicePackages/ServicePackages";
 
-
-
 const App = () => {
     return (
         <BrowserRouter>
             <Container maxWidth="xl">
-                <Navbar />
                 <Switch>
                     <Route path="/" exact component={() => <Redirect to="/auth" />} />
-                    <Route path="/auth" exact component={SignUp} />
+                    <Route path="/auth" exact>
+                        <Navbar />
+                        <SignUp />
+                    </Route>
                     <Route path="/packages" exact component={Packages} />
                     <Route path="/service" exact component={Service} />
                     <Route path="/servicePackages" exact component={ServicePackages} />
@@ -39,7 +39,6 @@ const App = () => {
                 </Switch>
             </Container>
         </BrowserRouter>
-
     );
 };
 
