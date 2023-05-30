@@ -4,6 +4,8 @@ export default makeStyles((theme) => ({
     menuTitle: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
+        textDecoration: "none",
+        color: "inherit",
     },
     card: {
         height: "100%",
@@ -55,10 +57,8 @@ export default makeStyles((theme) => ({
     },
     appBarButton: {
         color: "white",
-        marginLeft: theme.spacing(1),
-        [theme.breakpoints.down("xs")]: {
-            marginLeft: theme.spacing(0.5),
-        },
+        marginLeft: theme.spacing(2),
+        textDecoration: "none",
     },
     serviceSection: {
         paddingTop: theme.spacing(2),
