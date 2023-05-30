@@ -4,6 +4,8 @@ export default makeStyles((theme) => ({
     menuTitle: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
+        textDecoration: "none",
+        color: "inherit",
     },
     container: {
         padding: "1px",
@@ -13,12 +15,13 @@ export default makeStyles((theme) => ({
         padding: "0px 20px",
         marginBottom: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
-            padding: "0px 0px",
+            padding: "0px",
         },
     },
     appBarContainer: {
         display: "flex",
         justifyContent: "space-between",
+        alignItems: "center",
         width: "100%",
     },
     appBarLeft: {
@@ -34,6 +37,7 @@ export default makeStyles((theme) => ({
     appBarButton: {
         color: "white",
         marginLeft: theme.spacing(2),
+        textDecoration: "none",
     },
     [theme.breakpoints.down("xs")]: {
         appBar: {
