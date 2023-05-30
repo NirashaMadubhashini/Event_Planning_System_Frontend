@@ -13,7 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import { ExitToApp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
-import Image1 from "../../../components/Customer/Dashboard/I1.jpg";
+import Image1 from "../../../assets/images/I1.jpg";
 import useStyles from "./style";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 

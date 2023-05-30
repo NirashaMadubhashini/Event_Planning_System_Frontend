@@ -40,7 +40,7 @@ export default makeStyles((theme) => ({
     },
 
     appBar: {
-        borderRadius: 3,
+        borderRadius: 6,
         padding: "0px 20px",
         marginBottom: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
