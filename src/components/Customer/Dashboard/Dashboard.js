@@ -12,9 +12,9 @@ import {
     TextField,
     Grid,
 } from "@material-ui/core";
-import {Search, ArrowDropDown, ExitToApp} from "@mui/icons-material";
+import { Search, ArrowDropDown, ExitToApp, Event } from "@mui/icons-material";
 import useStyles from "./style";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 
 const Dashboard = () => {
@@ -63,12 +63,7 @@ const Dashboard = () => {
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton
-                                component={Link}
-                                to="/"
-                                color="inherit"
-                                edge="start"
-                            >
+                            <IconButton component={Link} to="/" color="inherit" edge="start">
                                 <img src={EventPro} alt="icon" height="60px" />
                             </IconButton>
                             <Typography
@@ -167,24 +162,28 @@ const Dashboard = () => {
             <Grid container spacing={3} className={classes.cardContainer}>
                 <Grid item xs={3}>
                     <div className={`${classes.card} ${classes.cardColor1}`}>
+                        <Event style={{ fontSize: 60 }} />
                         <Typography variant="h6">Card Title 1</Typography>
                         <Typography variant="h4">Count 1</Typography>
                     </div>
                 </Grid>
                 <Grid item xs={3}>
                     <div className={`${classes.card} ${classes.cardColor2}`}>
+                        <Event style={{ fontSize: 60 }} />
                         <Typography variant="h6">Card Title 2</Typography>
                         <Typography variant="h4">Count 2</Typography>
                     </div>
                 </Grid>
                 <Grid item xs={3}>
                     <div className={`${classes.card} ${classes.cardColor3}`}>
+                        <Event style={{ fontSize: 60 }} />
                         <Typography variant="h6">Card Title 3</Typography>
                         <Typography variant="h4">Count 3</Typography>
                     </div>
                 </Grid>
                 <Grid item xs={3}>
                     <div className={`${classes.card} ${classes.cardColor4}`}>
+                        <Event style={{ fontSize: 60 }} />
                         <Typography variant="h6">Card Title 4</Typography>
                         <Typography variant="h4">Count 4</Typography>
                     </div>
