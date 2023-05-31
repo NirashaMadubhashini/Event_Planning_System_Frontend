@@ -9,7 +9,7 @@ import {
 import useStyles from "./style";
 import { ExitToApp } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import EventPro from "../../../assets/images/CorrectLogo.png";
+import EventPro from "../../../assets/images/EPLogo.png";
 
 const Feedback = () => {
     const classes = useStyles();
@@ -43,17 +43,12 @@ const Feedback = () => {
             <AppBar
                 className={classes.appBar}
                 position={appBarPosition}
-                color="primary"
+                color="transparent"
             >
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton
-                                component={Link}
-                                to="/"
-                                color="inherit"
-                                edge="start"
-                            >
+                            <IconButton component={Link} to="/" color="inherit" edge="start">
                                 <img src={EventPro} alt="icon" height="60px" />
                             </IconButton>
                             <Typography
@@ -61,6 +56,9 @@ const Feedback = () => {
                                 to="/"
                                 variant="h6"
                                 className={classes.menuTitle}
+                                style={{
+                                    color: clickedCategory === "/" ? "#F50057" : "black",
+                                }}
                             >
                                 Event - Pro
                             </Typography>
@@ -72,7 +70,7 @@ const Feedback = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Home")}
                                 style={{
-                                    color: clickedCategory === "Home" ? "#F50057" : "",
+                                    color: clickedCategory === "Home" ? "#F50057" : "black",
                                 }}
                             >
                                 Home
@@ -83,7 +81,7 @@ const Feedback = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("About")}
                                 style={{
-                                    color: clickedCategory === "About" ? "#F50057" : "",
+                                    color: clickedCategory === "About" ? "#F50057" : "black",
                                 }}
                             >
                                 About
@@ -94,7 +92,7 @@ const Feedback = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Services")}
                                 style={{
-                                    color: clickedCategory === "Services" ? "#F50057" : "",
+                                    color: clickedCategory === "Services" ? "#F50057" : "black",
                                 }}
                             >
                                 Services
@@ -105,7 +103,7 @@ const Feedback = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Bookings")}
                                 style={{
-                                    color: clickedCategory === "Bookings" ? "#F50057" : "",
+                                    color: clickedCategory === "Bookings" ? "#F50057" : "black",
                                 }}
                             >
                                 Bookings
@@ -116,7 +114,7 @@ const Feedback = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Gallery")}
                                 style={{
-                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
+                                    color: clickedCategory === "Gallery" ? "#F50057" : "black",
                                 }}
                             >
                                 Gallery
@@ -127,7 +125,7 @@ const Feedback = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Contact")}
                                 style={{
-                                    color: clickedCategory === "Contact" ? "#F50057" : "",
+                                    color: clickedCategory === "Contact" ? "#F50057" : "black",
                                 }}
                             >
                                 Contact
@@ -138,9 +136,8 @@ const Feedback = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("ExitToApp")}
                                 style={{
-                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "",
+                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "black",
                                 }}
-                                color="inherit"
                                 edge="end"
                             >
                                 <ExitToApp />
