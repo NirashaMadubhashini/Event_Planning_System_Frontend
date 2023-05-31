@@ -85,7 +85,7 @@ export default makeStyles((theme) => ({
     cardContainer: {
         display: "flex",
         justifyContent: "space-around",
-        marginTop: "80px",
+        marginTop: "90px",
     },
     card: {
         padding: "60px",
@@ -109,5 +109,24 @@ export default makeStyles((theme) => ({
     },
     cardColor4: {
         background: "#FF6666",
+    },
+
+    // Add additional styles for smaller screens
+    [theme.breakpoints.down("xs")]: {
+        appBar: {
+            padding: "0px",
+        },
+        appBarLeft: {
+            flex: "1",
+        },
+        appBarRight: {
+            display: "none",
+        },
+        appBarTitle: {
+            display: "none",
+        },
+        menuTitle: {
+            fontSize: "1.5rem",
+        },
     },
 }));

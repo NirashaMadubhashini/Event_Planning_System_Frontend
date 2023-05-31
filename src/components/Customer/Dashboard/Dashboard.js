@@ -15,7 +15,11 @@ import {
 import { Search, ArrowDropDown, ExitToApp, Event } from "@mui/icons-material";
 import useStyles from "./style";
 import { Link } from "react-router-dom";
-import EventPro from "../../../assets/images/CorrectLogo.png";
+import EventPro from "../../../assets/images/EPLogo.png";
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import RoomServiceIcon from '@mui/icons-material/RoomService';
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import ThumbsUpDownIcon from '@mui/icons-material/ThumbsUpDown';
 
 const Dashboard = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -58,7 +62,7 @@ const Dashboard = () => {
             <AppBar
                 className={classes.appBar}
                 position={appBarPosition}
-                color="primary"
+                color="transparent"
             >
                 <Toolbar>
                     <div className={classes.appBarContainer}>
@@ -71,6 +75,9 @@ const Dashboard = () => {
                                 to="/"
                                 variant="h6"
                                 className={classes.menuTitle}
+                                style={{
+                                    color: clickedCategory === "Home" ? "#F50057" : "black",
+                                }}
                             >
                                 Event - Pro
                             </Typography>
@@ -82,7 +89,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Home")}
                                 style={{
-                                    color: clickedCategory === "Home" ? "#F50057" : "",
+                                    color: clickedCategory === "Home" ? "#F50057" : "black",
                                 }}
                             >
                                 Home
@@ -93,7 +100,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("About")}
                                 style={{
-                                    color: clickedCategory === "About" ? "#F50057" : "",
+                                    color: clickedCategory === "About" ? "#F50057" : "black",
                                 }}
                             >
                                 About
@@ -104,7 +111,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Services")}
                                 style={{
-                                    color: clickedCategory === "Services" ? "#F50057" : "",
+                                    color: clickedCategory === "Services" ? "#F50057" : "black",
                                 }}
                             >
                                 Services
@@ -115,7 +122,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Bookings")}
                                 style={{
-                                    color: clickedCategory === "Bookings" ? "#F50057" : "",
+                                    color: clickedCategory === "Bookings" ? "#F50057" : "black",
                                 }}
                             >
                                 Bookings
@@ -126,7 +133,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Gallery")}
                                 style={{
-                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
+                                    color: clickedCategory === "Gallery" ? "#F50057" : "black",
                                 }}
                             >
                                 Gallery
@@ -137,7 +144,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Contact")}
                                 style={{
-                                    color: clickedCategory === "Contact" ? "#F50057" : "",
+                                    color: clickedCategory === "Contact" ? "#F50057" : "black",
                                 }}
                             >
                                 Contact
@@ -148,9 +155,8 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("ExitToApp")}
                                 style={{
-                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "",
+                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "black",
                                 }}
-                                color="inherit"
                                 edge="end"
                             >
                                 <ExitToApp />
@@ -160,32 +166,32 @@ const Dashboard = () => {
                 </Toolbar>
             </AppBar>
             <Grid container spacing={3} className={classes.cardContainer}>
-                <Grid item xs={3}>
+                <Grid item xs={12} sm={6} md={3}>
                     <div className={`${classes.card} ${classes.cardColor1}`}>
-                        <Event style={{ fontSize: 60 }} />
-                        <Typography variant="h6">Card Title 1</Typography>
-                        <Typography variant="h4">Count 1</Typography>
+                        <EventAvailableIcon style={{ fontSize: 60 }} />
+                        <Typography variant="h6">Total Events</Typography>
+                        <Typography variant="h4">10</Typography>
                     </div>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={12} sm={6} md={3}>
                     <div className={`${classes.card} ${classes.cardColor2}`}>
-                        <Event style={{ fontSize: 60 }} />
-                        <Typography variant="h6">Card Title 2</Typography>
-                        <Typography variant="h4">Count 2</Typography>
+                        <RoomServiceIcon style={{ fontSize: 60 }} />
+                        <Typography variant="h6">Total Purchase Services</Typography>
+                        <Typography variant="h4">25</Typography>
                     </div>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={12} sm={6} md={3}>
                     <div className={`${classes.card} ${classes.cardColor3}`}>
-                        <Event style={{ fontSize: 60 }} />
-                        <Typography variant="h6">Card Title 3</Typography>
-                        <Typography variant="h4">Count 3</Typography>
+                        <RateReviewIcon style={{ fontSize: 60 }} />
+                        <Typography variant="h6">Number of Feedbacks</Typography>
+                        <Typography variant="h4">15</Typography>
                     </div>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={12} sm={6} md={3}>
                     <div className={`${classes.card} ${classes.cardColor4}`}>
-                        <Event style={{ fontSize: 60 }} />
-                        <Typography variant="h6">Card Title 4</Typography>
-                        <Typography variant="h4">Count 4</Typography>
+                        <ThumbsUpDownIcon style={{ fontSize: 60 }} />
+                        <Typography variant="h6">Number of Ratings</Typography>
+                        <Typography variant="h4">25</Typography>
                     </div>
                 </Grid>
             </Grid>
