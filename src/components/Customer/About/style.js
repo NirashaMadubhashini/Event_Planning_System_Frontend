@@ -7,6 +7,11 @@ export default makeStyles((theme) => ({
         textDecoration: "none",
         color: "inherit",
     },
+    menuItem: {
+        "&:hover": {
+            textDecoration: "underline",
+        },
+    },
     card: {
         height: "100%",
         display: "flex",
@@ -35,6 +40,7 @@ export default makeStyles((theme) => ({
     appBar: {
         borderRadius: 6,
         padding: "0px 20px",
+
         marginBottom: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
             padding: "0px 0px",
@@ -74,5 +80,24 @@ export default makeStyles((theme) => ({
         marginTop: "5px",
         maxWidth: "100%",
         maxHeight: "100%",
+    },
+
+    // Add additional styles for smaller screens
+    [theme.breakpoints.down("xs")]: {
+        appBar: {
+            padding: "0px",
+        },
+        appBarLeft: {
+            flex: "1",
+        },
+        appBarRight: {
+            display: "none",
+        },
+        appBarTitle: {
+            display: "none",
+        },
+        menuTitle: {
+            fontSize: "1.5rem",
+        },
     },
 }));
