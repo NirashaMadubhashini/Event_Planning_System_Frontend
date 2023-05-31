@@ -76,7 +76,7 @@ const Dashboard = () => {
                                 variant="h6"
                                 className={classes.menuTitle}
                                 style={{
-                                    color: clickedCategory === "Home" ? "#F50057" : "black",
+                                    color: clickedCategory === "/" ? "#F50057" : "black",
                                 }}
                             >
                                 Event - Pro
