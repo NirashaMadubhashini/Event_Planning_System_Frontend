@@ -15,7 +15,7 @@ import {
 import { Search, ArrowDropDown, ExitToApp, Event } from "@mui/icons-material";
 import useStyles from "./style";
 import { Link } from "react-router-dom";
-import EventPro from "../../../assets/images/EPLogo.png";
+import EventPro from "../../../assets/images/CorrectLogo.png";
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import RoomServiceIcon from '@mui/icons-material/RoomService';
 import RateReviewIcon from '@mui/icons-material/RateReview';
@@ -62,7 +62,7 @@ const Dashboard = () => {
             <AppBar
                 className={classes.appBar}
                 position={appBarPosition}
-                color="transparent"
+                color="primary"
             >
                 <Toolbar>
                     <div className={classes.appBarContainer}>
@@ -75,9 +75,6 @@ const Dashboard = () => {
                                 to="/"
                                 variant="h6"
                                 className={classes.menuTitle}
-                                style={{
-                                    color: clickedCategory === "/" ? "#F50057" : "black",
-                                }}
                             >
                                 Event - Pro
                             </Typography>
@@ -89,7 +86,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Home")}
                                 style={{
-                                    color: clickedCategory === "Home" ? "#F50057" : "black",
+                                    color: clickedCategory === "Home" ? "#F50057" : "",
                                 }}
                             >
                                 Home
@@ -100,7 +97,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("About")}
                                 style={{
-                                    color: clickedCategory === "About" ? "#F50057" : "black",
+                                    color: clickedCategory === "About" ? "#F50057" : "",
                                 }}
                             >
                                 About
@@ -111,7 +108,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Services")}
                                 style={{
-                                    color: clickedCategory === "Services" ? "#F50057" : "black",
+                                    color: clickedCategory === "Services" ? "#F50057" : "",
                                 }}
                             >
                                 Services
@@ -122,7 +119,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Bookings")}
                                 style={{
-                                    color: clickedCategory === "Bookings" ? "#F50057" : "black",
+                                    color: clickedCategory === "Bookings" ? "#F50057" : "",
                                 }}
                             >
                                 Bookings
@@ -133,7 +130,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Gallery")}
                                 style={{
-                                    color: clickedCategory === "Gallery" ? "#F50057" : "black",
+                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
                                 }}
                             >
                                 Gallery
@@ -144,7 +141,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Contact")}
                                 style={{
-                                    color: clickedCategory === "Contact" ? "#F50057" : "black",
+                                    color: clickedCategory === "Contact" ? "#F50057" : "",
                                 }}
                             >
                                 Contact
@@ -155,8 +152,9 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("ExitToApp")}
                                 style={{
-                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "black",
+                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "",
                                 }}
+                                color="inherit"
                                 edge="end"
                             >
                                 <ExitToApp />

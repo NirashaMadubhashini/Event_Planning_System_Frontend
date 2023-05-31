@@ -47,7 +47,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import DatePicker from "@mui/lab/DatePicker";
 import { format } from "date-fns";
 import {Link} from "react-router-dom";
-import EventPro from "../../../assets/images/EPLogo.png";
+import EventPro from "../../../assets/images/CorrectLogo.png";
 
 const EventRequest = () => {
 
@@ -128,12 +128,17 @@ const EventRequest = () => {
             <AppBar
                 className={classes.appBar}
                 position={appBarPosition}
-                color="transparent"
+                color="primary"
             >
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton component={Link} to="/" color="inherit" edge="start">
+                            <IconButton
+                                component={Link}
+                                to="/"
+                                color="inherit"
+                                edge="start"
+                            >
                                 <img src={EventPro} alt="icon" height="60px" />
                             </IconButton>
                             <Typography
@@ -141,9 +146,6 @@ const EventRequest = () => {
                                 to="/"
                                 variant="h6"
                                 className={classes.menuTitle}
-                                style={{
-                                    color: clickedCategory === "/" ? "#F50057" : "black",
-                                }}
                             >
                                 Event - Pro
                             </Typography>
@@ -155,7 +157,7 @@ const EventRequest = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Home")}
                                 style={{
-                                    color: clickedCategory === "Home" ? "#F50057" : "black",
+                                    color: clickedCategory === "Home" ? "#F50057" : "",
                                 }}
                             >
                                 Home
@@ -166,7 +168,7 @@ const EventRequest = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("About")}
                                 style={{
-                                    color: clickedCategory === "About" ? "#F50057" : "black",
+                                    color: clickedCategory === "About" ? "#F50057" : "",
                                 }}
                             >
                                 About
@@ -177,7 +179,7 @@ const EventRequest = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Services")}
                                 style={{
-                                    color: clickedCategory === "Services" ? "#F50057" : "black",
+                                    color: clickedCategory === "Services" ? "#F50057" : "",
                                 }}
                             >
                                 Services
@@ -188,7 +190,7 @@ const EventRequest = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Bookings")}
                                 style={{
-                                    color: clickedCategory === "Bookings" ? "#F50057" : "black",
+                                    color: clickedCategory === "Bookings" ? "#F50057" : "",
                                 }}
                             >
                                 Bookings
@@ -199,7 +201,7 @@ const EventRequest = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Gallery")}
                                 style={{
-                                    color: clickedCategory === "Gallery" ? "#F50057" : "black",
+                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
                                 }}
                             >
                                 Gallery
@@ -210,7 +212,7 @@ const EventRequest = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Contact")}
                                 style={{
-                                    color: clickedCategory === "Contact" ? "#F50057" : "black",
+                                    color: clickedCategory === "Contact" ? "#F50057" : "",
                                 }}
                             >
                                 Contact
@@ -221,8 +223,9 @@ const EventRequest = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("ExitToApp")}
                                 style={{
-                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "black",
+                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "",
                                 }}
+                                color="inherit"
                                 edge="end"
                             >
                                 <ExitToApp />
