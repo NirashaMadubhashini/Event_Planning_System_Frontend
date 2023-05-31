@@ -19,7 +19,7 @@ import EventPro from "../../../assets/images/CorrectLogo.png";
 
 const About = () => {
     const [appBarPosition, setAppBarPosition] = useState("relative");
-    
+
     const [clickedCategory, setClickedCategory] = useState("");
 
     const handleCategoryClick = (category) => {

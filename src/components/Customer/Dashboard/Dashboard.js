@@ -10,7 +10,7 @@ import {
     Container,
     InputAdornment,
     TextField,
-    Grid,
+    Grid, Paper,
 } from "@material-ui/core";
 import { Search, ArrowDropDown, ExitToApp, Event } from "@mui/icons-material";
 import useStyles from "./style";
@@ -20,6 +20,8 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import RoomServiceIcon from '@mui/icons-material/RoomService';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import ThumbsUpDownIcon from '@mui/icons-material/ThumbsUpDown';
+// import {Tooltip} from "@mui/material";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const Dashboard = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -57,6 +59,21 @@ const Dashboard = () => {
         };
     }, []);
 
+    const data = [
+        { name: 'Jan', events: 5 },
+        { name: 'Feb', events: 8 },
+        { name: 'Mar', events: 15 },
+        { name: 'Apr', events: 12 },
+        { name: 'May', events: 10 },
+        { name: 'Jun', events: 20 },
+        { name: 'Jul', events: 18 },
+        { name: 'Aug', events: 22 },
+        { name: 'Sep', events: 25 },
+        { name: 'Oct', events: 30 },
+        { name: 'Nov', events: 28 },
+        { name: 'Dec', events: 35 },
+    ];
+
     return (
         <Container maxWidth="xl" className={classes.container}>
             <AppBar
@@ -67,7 +84,12 @@ const Dashboard = () => {
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton component={Link} to="/" color="inherit" edge="start">
+                            <IconButton
+                                component={Link}
+                                to="/"
+                                color="inherit"
+                                edge="start"
+                            >
                                 <img src={EventPro} alt="icon" height="60px" />
                             </IconButton>
                             <Typography
@@ -126,17 +148,6 @@ const Dashboard = () => {
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/gallery"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Gallery")}
-                                style={{
-                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
-                                }}
-                            >
-                                Gallery
-                            </Typography>
-                            <Typography
-                                component={Link}
                                 to="/contact"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Contact")}
@@ -146,55 +157,79 @@ const Dashboard = () => {
                             >
                                 Contact
                             </Typography>
-                            <IconButton
-                                component={Link}
-                                to="/auth"
+                            <Button
                                 className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("ExitToApp")}
-                                style={{
-                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "",
-                                }}
-                                color="inherit"
-                                edge="end"
+                                onClick={handleClick}
+                                endIcon={<ArrowDropDown />}
                             >
-                                <ExitToApp />
-                            </IconButton>
+                                John Doe
+                            </Button>
+                            <Menu
+                                anchorEl={anchorEl}
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                                MenuListProps={{ className: classes.menuList }}
+                            >
+                                <MenuItem onClick={handleClose} component={Link} to="/profile">
+                                    Profile
+                                </MenuItem>
+                                <MenuItem onClick={handleClose} component={Link} to="/logout">
+                                    Logout
+                                </MenuItem>
+                            </Menu>
                         </div>
                     </div>
                 </Toolbar>
             </AppBar>
-            <Grid container spacing={3} className={classes.cardContainer}>
-                <Grid item xs={12} sm={6} md={3}>
-                    <div className={`${classes.card} ${classes.cardColor1}`}>
-                        <EventAvailableIcon style={{ fontSize: 60 }} />
-                        <Typography variant="h6">Total Events</Typography>
-                        <Typography variant="h4">10</Typography>
-                    </div>
+            <div className={classes.pageContent}>
+                <div className={classes.toolbar} />
+                <Grid container spacing={3}>
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                        <Paper className={classes.paper}>
+                            <EventAvailableIcon className={classes.icon} />
+                            <Typography variant="h6">Total Events</Typography>
+                            <Typography variant="h4">24</Typography>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                        <Paper className={classes.paper}>
+                            <RoomServiceIcon className={classes.icon} />
+                            <Typography variant="h6">Total Services</Typography>
+                            <Typography variant="h4">8</Typography>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                        <Paper className={classes.paper}>
+                            <RateReviewIcon className={classes.icon} />
+                            <Typography variant="h6">Total Reviews</Typography>
+                            <Typography variant="h4">12</Typography>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                        <Paper className={classes.paper}>
+                            <ThumbsUpDownIcon className={classes.icon} />
+                            <Typography variant="h6">Total Likes</Typography>
+                            <Typography variant="h4">36</Typography>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Paper className={classes.paper}>
+                            <Typography variant="h6">Monthly Events</Typography>
+                            <LineChart width={900} height={400} data={data}>
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <Tooltip />
+                                <Legend />
+                                <Line type="monotone" dataKey="events" stroke="#8884d8" />
+                            </LineChart>
+                        </Paper>
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                    <div className={`${classes.card} ${classes.cardColor2}`}>
-                        <RoomServiceIcon style={{ fontSize: 60 }} />
-                        <Typography variant="h6">Total Purchase Services</Typography>
-                        <Typography variant="h4">25</Typography>
-                    </div>
-                </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                    <div className={`${classes.card} ${classes.cardColor3}`}>
-                        <RateReviewIcon style={{ fontSize: 60 }} />
-                        <Typography variant="h6">Number of Feedbacks</Typography>
-                        <Typography variant="h4">15</Typography>
-                    </div>
-                </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                    <div className={`${classes.card} ${classes.cardColor4}`}>
-                        <ThumbsUpDownIcon style={{ fontSize: 60 }} />
-                        <Typography variant="h6">Number of Ratings</Typography>
-                        <Typography variant="h4">25</Typography>
-                    </div>
-                </Grid>
-            </Grid>
+            </div>
         </Container>
     );
 };
 
 export default Dashboard;
+
