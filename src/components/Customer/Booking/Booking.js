@@ -62,6 +62,7 @@ const Booking = () => {
         };
     }, []);
 
+
     return (
         <Container maxWidth="xl" className={classes.container}>
             <AppBar
@@ -136,17 +137,6 @@ const Booking = () => {
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/gallery"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Gallery")}
-                                style={{
-                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
-                                }}
-                            >
-                                Gallery
-                            </Typography>
-                            <Typography
-                                component={Link}
                                 to="/contact"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Contact")}
@@ -156,19 +146,23 @@ const Booking = () => {
                             >
                                 Contact
                             </Typography>
-                            <IconButton
-                                component={Link}
-                                to="/auth"
+                            <Button
                                 className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("ExitToApp")}
-                                style={{
-                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "",
-                                }}
-                                color="inherit"
-                                edge="end"
+                                onClick={handleClick}
+                                endIcon={<ArrowDropDown />}
                             >
-                                <ExitToApp />
-                            </IconButton>
+                                Nirasha Madubhashini
+                            </Button>
+                            <Menu
+                                anchorEl={anchorEl}
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                                MenuListProps={{ className: classes.menuList }}
+                            >
+                                <MenuItem onClick={handleClose} component={Link} to="/">
+                                    Logout
+                                </MenuItem>
+                            </Menu>
                         </div>
                     </div>
                 </Toolbar>
