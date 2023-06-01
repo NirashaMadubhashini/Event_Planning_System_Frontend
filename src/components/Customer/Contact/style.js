@@ -19,7 +19,7 @@ export default makeStyles((theme) => ({
     },
 
     appBar: {
-        borderRadius: 6,
+        borderRadius:0,
         padding: "0px 20px",
 
         marginBottom: theme.spacing(2),
