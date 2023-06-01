@@ -8,20 +8,32 @@ import {
     Menu,
     MenuItem,
     Container,
-    InputAdornment,
-    TextField,
-    Grid, Paper,
+    Grid,
+    Paper,
 } from "@material-ui/core";
-import { Search, ArrowDropDown, ExitToApp, Event } from "@mui/icons-material";
-import useStyles from "./style";
+import {
+    Search,
+    ArrowDropDown,
+    ExitToApp,
+    Event,
+} from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import RoomServiceIcon from '@mui/icons-material/RoomService';
-import RateReviewIcon from '@mui/icons-material/RateReview';
-import ThumbsUpDownIcon from '@mui/icons-material/ThumbsUpDown';
-// import {Tooltip} from "@mui/material";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import RoomServiceIcon from "@mui/icons-material/RoomService";
+import RateReviewIcon from "@mui/icons-material/RateReview";
+import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown";
+import {
+    LineChart,
+    Line,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend,
+    ResponsiveContainer,
+} from "recharts";
+import useStyles from "./style";
 
 const Dashboard = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -60,18 +72,18 @@ const Dashboard = () => {
     }, []);
 
     const data = [
-        { name: 'Jan', events: 5 },
-        { name: 'Feb', events: 8 },
-        { name: 'Mar', events: 15 },
-        { name: 'Apr', events: 12 },
-        { name: 'May', events: 10 },
-        { name: 'Jun', events: 20 },
-        { name: 'Jul', events: 18 },
-        { name: 'Aug', events: 22 },
-        { name: 'Sep', events: 25 },
-        { name: 'Oct', events: 30 },
-        { name: 'Nov', events: 28 },
-        { name: 'Dec', events: 35 },
+        { name: "Jan", events: 5 },
+        { name: "Feb", events: 8 },
+        { name: "Mar", events: 15 },
+        { name: "Apr", events: 12 },
+        { name: "May", events: 10 },
+        { name: "Jun", events: 20 },
+        { name: "Jul", events: 18 },
+        { name: "Aug", events: 22 },
+        { name: "Sep", events: 25 },
+        { name: "Oct", events: 30 },
+        { name: "Nov", events: 28 },
+        { name: "Dec", events: 35 },
     ];
 
     return (
@@ -162,7 +174,7 @@ const Dashboard = () => {
                                 onClick={handleClick}
                                 endIcon={<ArrowDropDown />}
                             >
-                                John Doe
+                               Nirasha Madubhashini
                             </Button>
                             <Menu
                                 anchorEl={anchorEl}
@@ -170,10 +182,7 @@ const Dashboard = () => {
                                 onClose={handleClose}
                                 MenuListProps={{ className: classes.menuList }}
                             >
-                                <MenuItem onClick={handleClose} component={Link} to="/profile">
-                                    Profile
-                                </MenuItem>
-                                <MenuItem onClick={handleClose} component={Link} to="/logout">
+                                <MenuItem onClick={handleClose} component={Link} to="/">
                                     Logout
                                 </MenuItem>
                             </Menu>
@@ -182,31 +191,30 @@ const Dashboard = () => {
                 </Toolbar>
             </AppBar>
             <div className={classes.pageContent}>
-                <div className={classes.toolbar} />
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Paper className={classes.paper}>
+                        <Paper className={classes.paper1}>
                             <EventAvailableIcon className={classes.icon} />
                             <Typography variant="h6">Total Events</Typography>
                             <Typography variant="h4">24</Typography>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Paper className={classes.paper}>
+                        <Paper className={classes.paper2}>
                             <RoomServiceIcon className={classes.icon} />
                             <Typography variant="h6">Total Services</Typography>
                             <Typography variant="h4">8</Typography>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Paper className={classes.paper}>
+                        <Paper className={classes.paper3}>
                             <RateReviewIcon className={classes.icon} />
                             <Typography variant="h6">Total Reviews</Typography>
                             <Typography variant="h4">12</Typography>
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Paper className={classes.paper}>
+                        <Paper className={classes.paper4}>
                             <ThumbsUpDownIcon className={classes.icon} />
                             <Typography variant="h6">Total Likes</Typography>
                             <Typography variant="h4">36</Typography>
@@ -215,14 +223,16 @@ const Dashboard = () => {
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
                             <Typography variant="h6">Monthly Events</Typography>
-                            <LineChart width={900} height={400} data={data}>
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <Tooltip />
-                                <Legend />
-                                <Line type="monotone" dataKey="events" stroke="#8884d8" />
-                            </LineChart>
+                            <ResponsiveContainer width="100%" height={400}>
+                                <LineChart data={data}>
+                                    <XAxis dataKey="name" />
+                                    <YAxis />
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <Tooltip />
+                                    <Legend />
+                                    <Line type="monotone" dataKey="events" stroke="#8884d8" />
+                                </LineChart>
+                            </ResponsiveContainer>
                         </Paper>
                     </Grid>
                 </Grid>
@@ -232,4 +242,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
