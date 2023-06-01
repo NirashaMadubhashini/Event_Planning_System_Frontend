@@ -76,10 +76,10 @@ export default makeStyles((theme) => ({
         color: "#fff",
         backgroundColor:"#3F51B5",
         textDecoration: "none",
-        cursor: "pointer",
-        "&:hover": {
-            backgroundColor:"#F50057",
-        },
+        // cursor: "pointer",
+        // "&:hover": {
+        //     backgroundColor:"#F50057",
+        // },
     },
 
     serviceSection: {

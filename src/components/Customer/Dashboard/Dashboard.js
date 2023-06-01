@@ -280,7 +280,7 @@ const Dashboard = () => {
                                     <TableCell align="right">1 Star</TableCell>
                                     <TableCell align="right">Best Service</TableCell>
                                     <TableCell align="right">
-                                        <Button variant="contained" color="primary">
+                                        <Button variant="contained" color="primary" >
                                             Update
                                         </Button>
                                     </TableCell>
