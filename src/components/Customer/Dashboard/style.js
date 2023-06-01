@@ -20,108 +20,69 @@ const useStyles = makeStyles((theme) => ({
     },
     appBarLeft: {
         display: "flex",
-        flexDirection: "row",
         alignItems: "center",
     },
     appBarRight: {
         display: "flex",
-        flexDirection: "row",
         alignItems: "center",
     },
     menuTitle: {
         marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
+        color: "#FFF",
         textDecoration: "none",
-        color: "inherit",
     },
     appBarButton: {
-        marginRight: theme.spacing(3),
-        color: "#fff",
+        marginLeft: theme.spacing(2),
+        color: "#FFF",
         textDecoration: "none",
-        cursor: "pointer",
         "&:hover": {
-            color: "#F50057",
-        },
-    },
-    menuList: {
-        minWidth: "150px",
-    },
-    pageContent: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-    },
-    toolbar: theme.mixins.toolbar,
-    paper: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: theme.spacing(3),
-        textAlign: "center",
-        color: "#3F51B5",
-        cursor: "pointer",
-        "&:hover": {
-            color: "#F50057",
-        },
-    },
-    paper1: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: theme.spacing(3),
-        textAlign: "center",
-        color: "#3F51B5",
-        cursor: "pointer",
-        "&:hover": {
-            color: "#F50057",
-        },
-    },
-    paper2: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: theme.spacing(3),
-        textAlign: "center",
-        color: "#3F51B5",
-        cursor: "pointer",
-        "&:hover": {
-            color: "#F50057",
-        },
-    },
-    paper3: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: theme.spacing(3),
-        textAlign: "center",
-        color: "#3F51B5",
-        cursor: "pointer",
-        "&:hover": {
-            color: "#F50057",
-        },
-    },
-    paper4: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: theme.spacing(3),
-        textAlign: "center",
-        color: "#3F51B5",
-        cursor: "pointer",
-        "&:hover": {
-            color: "#F50057",
+            color: theme.palette.secondary.main,
         },
     },
     icon: {
-        fontSize: "50px",
+        fontSize: "30px",
+        color: theme.palette.augmentColor.main,
         marginBottom: theme.spacing(1),
     },
+    pageContent: {
+        margin: theme.spacing(2),
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+    },
+    paper1: {
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+        background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+    },
+    paper2: {
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+        background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+    },
+    paper3: {
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+        background: "linear-gradient(45deg, #FF9800 30%, #FFEB3B 90%)",
+    },
+    paper4: {
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+        background: "linear-gradient(45deg, #4CAF50 30%, #8BC34A 90%)",
+    },
+    responsiveTable: {
+        "@media (max-width: 600px)": {
+            minWidth: 200,
+        },
+    },
 
-// Add additional styles for smaller screens
+    // responsive
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",

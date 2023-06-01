@@ -81,9 +81,7 @@ export default makeStyles((theme) => ({
             backgroundColor:"#F50057",
         },
     },
-    menuList: {
-        minWidth: "150px",
-    },
+
     serviceSection: {
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(3),

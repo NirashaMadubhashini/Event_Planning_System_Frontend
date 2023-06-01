@@ -10,6 +10,12 @@ import {
     Container,
     Grid,
     Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
 } from "@material-ui/core";
 import {
     Search,
@@ -85,6 +91,12 @@ const Dashboard = () => {
         { name: "Oct", events: 30 },
         { name: "Nov", events: 28 },
         { name: "Dec", events: 35 },
+    ];
+
+    const feedbackData = [
+        { id: 1, name: "John Doe", rating: 4, comment: "Great service!" },
+        { id: 2, name: "Jane Smith", rating: 5, comment: "Amazing experience!" },
+        { id: 3, name: "Mike Johnson", rating: 3, comment: "Could be better." },
     ];
 
     return (
@@ -186,7 +198,7 @@ const Dashboard = () => {
                                 onClick={handleClick}
                                 endIcon={<ArrowDropDown />}
                             >
-                               Nirasha Madubhashini
+                                Nirasha Madubhashini
                             </Button>
                             <Menu
                                 anchorEl={anchorEl}
@@ -248,6 +260,104 @@ const Dashboard = () => {
                         </Paper>
                     </Grid>
                 </Grid>
+                <div style={{marginTop: "20px"}}>
+                    <TableContainer component={Paper} style={{ overflowX: "auto" }}>
+                        <Table className={classes.responsiveTable}>
+                            <TableHead style={{backgroundColor:"#C8C9CB"}}>
+                                <TableRow>
+                                    <TableCell>Service Vendor Name</TableCell>
+                                    <TableCell >Event</TableCell>
+                                    <TableCell align="right">Rating</TableCell>
+                                    <TableCell align="right">Comment</TableCell>
+                                    <TableCell align="right">Update</TableCell>
+                                    <TableCell align="right">Delete</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell>Nirasha</TableCell>
+                                    <TableCell >Wedding</TableCell>
+                                    <TableCell align="right">1 Star</TableCell>
+                                    <TableCell align="right">Best Service</TableCell>
+                                    <TableCell align="right">
+                                        <Button variant="contained" color="primary">
+                                            Update
+                                        </Button>
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Button variant="contained" color="secondary">
+                                            Delete
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>Chamodi</TableCell>
+                                    <TableCell >Party</TableCell>
+                                    <TableCell align="right">2 Star</TableCell>
+                                    <TableCell align="right">Good Service</TableCell>
+                                    <TableCell align="right">
+                                        <Button variant="contained" color="primary">
+                                            Update
+                                        </Button>
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Button variant="contained" color="secondary">
+                                            Delete
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>Milasha</TableCell>
+                                    <TableCell >Birthday</TableCell>
+                                    <TableCell align="right">3 Star</TableCell>
+                                    <TableCell align="right">Best Service</TableCell>
+                                    <TableCell align="right">
+                                        <Button variant="contained" color="primary">
+                                            Update
+                                        </Button>
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Button variant="contained" color="secondary">
+                                            Delete
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>Hansi</TableCell>
+                                    <TableCell >Farewell</TableCell>
+                                    <TableCell align="right">4 Star</TableCell>
+                                    <TableCell align="right">Best Service</TableCell>
+                                    <TableCell align="right">
+                                        <Button variant="contained" color="primary">
+                                            Update
+                                        </Button>
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Button variant="contained" color="secondary">
+                                            Delete
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>Anupama</TableCell>
+                                    <TableCell >Musical Show</TableCell>
+                                    <TableCell align="right">5 Star</TableCell>
+                                    <TableCell align="right">Excellent Service</TableCell>
+                                    <TableCell align="right">
+                                        <Button variant="contained" color="primary">
+                                            Update
+                                        </Button>
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <Button variant="contained" color="secondary">
+                                            Delete
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </div>
             </div>
         </Container>
     );
