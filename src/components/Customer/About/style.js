@@ -38,7 +38,7 @@ export default makeStyles((theme) => ({
         padding: "1px",
     },
     appBar: {
-        borderRadius: 6,
+        // borderRadius: 6,
         padding: "0px 20px",
 
         marginBottom: theme.spacing(2),
@@ -62,9 +62,16 @@ export default makeStyles((theme) => ({
         alignItems: "center",
     },
     appBarButton: {
-        color: "white",
-        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(3),
+        color: "#fff",
         textDecoration: "none",
+        cursor: "pointer",
+        "&:hover": {
+            color: "#F50057",
+        },
+    },
+    menuList: {
+        minWidth: "150px",
     },
     serviceSection: {
         paddingTop: theme.spacing(2),

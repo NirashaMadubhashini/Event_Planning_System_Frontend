@@ -34,6 +34,7 @@ import {
     ResponsiveContainer,
 } from "recharts";
 import useStyles from "./style";
+import Gallery from "../Gallery/Gallery";
 
 const Dashboard = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -157,6 +158,17 @@ const Dashboard = () => {
                                 }}
                             >
                                 Bookings
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/gallery"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Gallery")}
+                                style={{
+                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
+                                }}
+                            >
+                                Gallery
                             </Typography>
                             <Typography
                                 component={Link}

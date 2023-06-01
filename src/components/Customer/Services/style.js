@@ -61,9 +61,13 @@ export default makeStyles((theme) => ({
         alignItems: "center",
     },
     appBarButton: {
-        color: "white",
-        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(3),
+        color: "#fff",
         textDecoration: "none",
+        cursor: "pointer",
+        "&:hover": {
+            color: "#F50057",
+        },
     },
     appBarSearch: {
         display: "flex",

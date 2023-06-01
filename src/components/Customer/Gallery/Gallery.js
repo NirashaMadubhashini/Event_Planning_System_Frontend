@@ -149,6 +149,17 @@ const Gallery = () => {
                             </Typography>
                             <Typography
                                 component={Link}
+                                to="/gallery"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Gallery")}
+                                style={{
+                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
+                                }}
+                            >
+                                Gallery
+                            </Typography>
+                            <Typography
+                                component={Link}
                                 to="/contact"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Contact")}
