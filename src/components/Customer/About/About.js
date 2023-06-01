@@ -8,10 +8,12 @@ import {
     CardContent,
     IconButton,
     Container,
-    Grid, Menu, MenuItem,
+    Grid,
+    Menu,
+    MenuItem,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import {ArrowDropDown, ExitToApp} from "@mui/icons-material";
+import { ArrowDropDown, ExitToApp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import Image1 from "../../../assets/images/I1.jpg";
 import useStyles from "./style";
@@ -65,12 +67,7 @@ const About = () => {
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton
-                                component={Link}
-                                to="/"
-                                color="inherit"
-                                edge="start"
-                            >
+                            <IconButton component={Link} to="/" color="inherit" edge="start">
                                 <img src={EventPro} alt="icon" height="60px" />
                             </IconButton>
                             <Typography
@@ -166,6 +163,15 @@ const About = () => {
                                     Logout
                                 </MenuItem>
                             </Menu>
+                            {/*<Button*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/eventRequest"*/}
+                            {/*    variant="contained"*/}
+                            {/*    color="secondary"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*>*/}
+                            {/*    Book AN EVENT*/}
+                            {/*</Button>*/}
                         </div>
                     </div>
                 </Toolbar>
@@ -206,6 +212,15 @@ const About = () => {
                                             understand that it should be "Can I hire a planner?" not
                                             "Can I afford one?".
                                         </Typography>
+                                        <Button
+                                            component={Link}
+                                            to="/eventRequest"
+                                            variant="contained"
+                                            color="secondary"
+                                            className={classes.contentButton}
+                                        >
+                                            Book AN EVENT
+                                        </Button>
                                     </CardContent>
                                 </Card>
                             </Grid>

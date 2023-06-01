@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
         },
     },
     card: {
-        height: "100%",
+        height: "99%",
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#ffffff",
@@ -68,6 +68,17 @@ export default makeStyles((theme) => ({
         cursor: "pointer",
         "&:hover": {
             color: "#F50057",
+        },
+    },
+    contentButton: {
+        marginRight: theme.spacing(3),
+        marginTop: theme.spacing(3),
+        color: "#fff",
+        backgroundColor:"#3F51B5",
+        textDecoration: "none",
+        cursor: "pointer",
+        "&:hover": {
+            backgroundColor:"#F50057",
         },
     },
     menuList: {
