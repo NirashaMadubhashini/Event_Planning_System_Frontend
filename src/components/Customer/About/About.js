@@ -8,10 +8,10 @@ import {
     CardContent,
     IconButton,
     Container,
-    Grid,
+    Grid, Menu, MenuItem,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { ExitToApp } from "@mui/icons-material";
+import {ArrowDropDown, ExitToApp} from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import Image1 from "../../../assets/images/I1.jpg";
 import useStyles from "./style";
@@ -44,6 +44,16 @@ const About = () => {
     }, []);
 
     const classes = useStyles();
+
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -119,17 +129,6 @@ const About = () => {
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/gallery"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Gallery")}
-                                style={{
-                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
-                                }}
-                            >
-                                Gallery
-                            </Typography>
-                            <Typography
-                                component={Link}
                                 to="/contact"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Contact")}
@@ -139,19 +138,23 @@ const About = () => {
                             >
                                 Contact
                             </Typography>
-                            <IconButton
-                                component={Link}
-                                to="/auth"
+                            <Button
                                 className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("ExitToApp")}
-                                style={{
-                                    color: clickedCategory === "ExitToApp" ? "#F50057" : "",
-                                }}
-                                color="inherit"
-                                edge="end"
+                                onClick={handleClick}
+                                endIcon={<ArrowDropDown />}
                             >
-                                <ExitToApp />
-                            </IconButton>
+                                Nirasha Madubhashini
+                            </Button>
+                            <Menu
+                                anchorEl={anchorEl}
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                                MenuListProps={{ className: classes.menuList }}
+                            >
+                                <MenuItem onClick={handleClose} component={Link} to="/">
+                                    Logout
+                                </MenuItem>
+                            </Menu>
                         </div>
                     </div>
                 </Toolbar>
