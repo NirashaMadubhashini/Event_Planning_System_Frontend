@@ -174,7 +174,7 @@ const About = () => {
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.serviceSection}>
-                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>
+                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>
                         ABOUT US
                     </Typography>
                 </div>
