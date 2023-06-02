@@ -42,12 +42,16 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import DatePicker from "@mui/lab/DatePicker";
 import { format } from "date-fns";
 import {Link} from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers-pro';
+import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { MultiInputTimeRangeField } from '@mui/x-date-pickers-pro/MultiInputTimeRangeField';
+
 
 const EventRequest = () => {
 
@@ -105,6 +109,7 @@ const EventRequest = () => {
 
     const [morningChecked, setMorningChecked] = useState(false);
     const [eveningChecked, setEveningChecked] = useState(false);
+
 
     const handleMorningCheckboxChange = (event) => {
         setMorningChecked(event.target.checked);
@@ -246,20 +251,18 @@ const EventRequest = () => {
                 <Box mt={3}>
                     <form onSubmit={handleSubmit}>
                         <Grid container spacing={3}>
-                            <Grid item xs={12} md={6}>
-                                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                    <DatePicker
-                                        label="Event Date"
-                                        value={selectedDate}
-                                        onChange={handleDateChange}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                fullWidth
-                                                variant="outlined"
-                                                {...params}
-                                            />
-                                        )}
-                                    />
+                            <Grid item xs={12} md={12}>
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <DemoContainer components={['DateRangePicker','MultiInputTimeRangeField']}>
+                                        <DateRangePicker localeText={{ start: 'Start-Date', end: 'End-Date' }} />
+                                        <MultiInputTimeRangeField
+                                            slotProps={{
+                                                textField: ({ position }) => ({
+                                                    label: position === 'start' ? 'From' : 'To',
+                                                }),
+                                            }}
+                                        />
+                                    </DemoContainer>
                                 </LocalizationProvider>
                             </Grid>
                             <Grid item xs={12} md={6}>
@@ -300,31 +303,31 @@ const EventRequest = () => {
                                     </Select>
                                 </FormControl>
                             </Grid>
-                            <Grid item xs={12} md={6}>
-                                <FormGroup>
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={morningChecked}
-                                                onChange={handleMorningCheckboxChange}
-                                                name="morning"
-                                            />
-                                        }
-                                        label="Morning"
-                                    />
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={eveningChecked}
-                                                onChange={handleEveningCheckboxChange}
-                                                name="evening"
-                                            />
-                                        }
-                                        label="Evening"
-                                    />
-                                </FormGroup>
-                            </Grid>
-                            <Grid item xs={12}>
+                            {/*<Grid item xs={12} md={6}>*/}
+                            {/*    <FormGroup>*/}
+                            {/*        <FormControlLabel*/}
+                            {/*            control={*/}
+                            {/*                <Checkbox*/}
+                            {/*                    checked={morningChecked}*/}
+                            {/*                    onChange={handleMorningCheckboxChange}*/}
+                            {/*                    name="morning"*/}
+                            {/*                />*/}
+                            {/*            }*/}
+                            {/*            label="Morning"*/}
+                            {/*        />*/}
+                            {/*        <FormControlLabel*/}
+                            {/*            control={*/}
+                            {/*                <Checkbox*/}
+                            {/*                    checked={eveningChecked}*/}
+                            {/*                    onChange={handleEveningCheckboxChange}*/}
+                            {/*                    name="evening"*/}
+                            {/*                />*/}
+                            {/*            }*/}
+                            {/*            label="Evening"*/}
+                            {/*        />*/}
+                            {/*    </FormGroup>*/}
+                            {/*</Grid>*/}
+                            <Grid item xs={6} md={6}>
                                 <Button variant="contained" color="primary" type="submit">
                                     Submit
                                 </Button>
