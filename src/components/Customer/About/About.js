@@ -15,14 +15,16 @@ import {
 import { Link } from "react-router-dom";
 import { ArrowDropDown, ExitToApp } from "@mui/icons-material";
 import Box from "@mui/material/Box";
-import Image1 from "../../../assets/images/I1.jpg";
 import useStyles from "./style";
 import EventPro from "../../../assets/images/CorrectLogo.png";
+import Image1 from "../../../assets/images/I2.webp";
+import Image2 from "../Gallery/img/slider-events.jpg";
+import Image3 from "../Gallery/img/Birthday.webp";
 
 const About = () => {
     const [appBarPosition, setAppBarPosition] = useState("relative");
-
     const [clickedCategory, setClickedCategory] = useState("");
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) =>
@@ -30,24 +32,20 @@ const About = () => {
         );
     };
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 100) {
-                setAppBarPosition("fixed");
-            } else {
-                setAppBarPosition("relative");
-            }
-        };
+    const handleScroll = () => {
+        if (window.scrollY > 100) {
+            setAppBarPosition("fixed");
+        } else {
+            setAppBarPosition("relative");
+        }
+    };
 
+    useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
-
-    const classes = useStyles();
-
-    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -56,6 +54,8 @@ const About = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const classes = useStyles();
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -67,7 +67,12 @@ const About = () => {
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton component={Link} to="/" color="inherit" edge="start">
+                            <IconButton
+                                component={Link}
+                                to="/"
+                                color="inherit"
+                                edge="start"
+                            >
                                 <img src={EventPro} alt="icon" height="60px" />
                             </IconButton>
                             <Typography
@@ -163,54 +168,32 @@ const About = () => {
                                     Logout
                                 </MenuItem>
                             </Menu>
-                            {/*<Button*/}
-                            {/*    component={Link}*/}
-                            {/*    to="/eventRequest"*/}
-                            {/*    variant="contained"*/}
-                            {/*    color="secondary"*/}
-                            {/*    className={classes.appBarButton}*/}
-                            {/*>*/}
-                            {/*    Book AN EVENT*/}
-                            {/*</Button>*/}
                         </div>
                     </div>
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.serviceSection}>
-                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>
-                        HELLO!
+                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>
+                        ABOUT US
                     </Typography>
-                    <Typography variant="h4" gutterBottom>
-                        We Are an Event Planning Agency
-                    </Typography>
-                    {/*<Typography variant="body1" gutterBottom>*/}
-                    {/*    As the event planning company in Sri Lanka, we know that it’s not*/}
-                    {/*    “one size fits all”. Each event and client is unique and we believe*/}
-                    {/*    our services should be as well. We know that it should be “Can I*/}
-                    {/*    hire a planner?” not “Can I afford one?”.*/}
-                    {/*</Typography>*/}
                 </div>
                 <Container maxWidth="xl" className={classes.container}>
                     <Box display="flex" alignItems="center">
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <Box>
-                                    <img src={Image1} alt="Image 1" className={classes.image} />
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12} sm={12}>
                                 <Card className={classes.card}>
                                     <CardContent className={classes.cardContent}>
                                         <Typography variant="h4" gutterBottom>
-                                            We will give a very special celebration for you
+                                            Our Vision
                                         </Typography>
                                         <Typography variant="body1" gutterBottom>
                                             As the event planning company in Sri Lanka, we know that
                                             it’s not "one size fits all". Each event and client is
                                             unique, and we believe our services should be as well. We
                                             understand that it should be "Can I hire a planner?" not
-                                            "Can I afford one?".
+                                            "Can I afford one?". We will give a very special
+                                            celebration for you
                                         </Typography>
                                         <Button
                                             component={Link}
@@ -224,6 +207,22 @@ const About = () => {
                                     </CardContent>
                                 </Card>
                             </Grid>
+                            <Grid item xs={12} sm={4} md={4}>
+                                <Box>
+                                    <img src={Image1} alt="Image 1" className={classes.image} />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                <Box>
+                                    <img src={Image2} alt="Image 2" className={classes.image} />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                <Box>
+                                    <img src={Image3} alt="Image 3" className={classes.image} />
+                                </Box>
+                            </Grid>
+
                         </Grid>
                     </Box>
                 </Container>

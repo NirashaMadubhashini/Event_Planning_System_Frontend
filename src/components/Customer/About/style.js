@@ -18,10 +18,10 @@ export default makeStyles((theme) => ({
         flexDirection: "column",
         backgroundColor: "#ffffff",
         transition: "background-color 0.2s ease, box-shadow 0.10s ease",
-        "&:hover": {
-            backgroundColor: "#3F51B5",
-            boxShadow: `5px 4px 20px -4px #3F51B5, -5px -4px 20px -4px #3F51B5`,
-        },
+        // "&:hover": {
+        //     backgroundColor: "#3F51B5",
+        //     boxShadow: `5px 4px 20px -4px #3F51B5, -5px -4px 20px -4px #3F51B5`,
+        // },
     },
     cardContent: {
         flexGrow: 1,
@@ -38,9 +38,7 @@ export default makeStyles((theme) => ({
         padding: "1px",
     },
     appBar: {
-        // borderRadius: 6,
         padding: "0px 20px",
-
         marginBottom: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
             padding: "0px 0px",
@@ -74,12 +72,8 @@ export default makeStyles((theme) => ({
         marginRight: theme.spacing(3),
         marginTop: theme.spacing(3),
         color: "#fff",
-        backgroundColor:"#3F51B5",
+        backgroundColor: "#3F51B5",
         textDecoration: "none",
-        // cursor: "pointer",
-        // "&:hover": {
-        //     backgroundColor:"#F50057",
-        // },
     },
 
     serviceSection: {
