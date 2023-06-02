@@ -1,6 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
-//Gallery Style.js
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
     menuTitle: {
@@ -13,31 +11,23 @@ export default makeStyles((theme) => ({
         padding: "1px",
     },
     serviceSection: {
-        paddingTop: theme.spacing(2),
+        paddingTop: theme.spacing(1),
         paddingBottom: theme.spacing(5),
         textAlign: "center",
     },
-    cardMedia: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9 aspect ratio
-    },
-
     appBar: {
         borderRadius: 0,
         padding: "0px 20px",
-
         marginBottom: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
             padding: "0px 0px",
         },
     },
-
     menuItem: {
         "&:hover": {
             textDecoration: "underline",
         },
     },
-
     appBarContainer: {
         display: "flex",
         justifyContent: "space-between",
@@ -73,12 +63,17 @@ export default makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     button: {
-        position: 'relative',
+        position: "relative",
     },
-
-
-// Add additional styles for smaller screens
-    [theme.breakpoints.down("xs")]: {
+    categoryButtons: {
+        display: "flex",
+        justifyContent: "center",
+        marginBottom: theme.spacing(2),
+    },
+    categoryButton: {
+        margin: theme.spacing(0.5),
+    },
+    "@media (max-width: 599px)": {
         appBar: {
             padding: "0px",
         },

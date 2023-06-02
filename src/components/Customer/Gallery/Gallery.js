@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
     AppBar,
     Button,
@@ -8,20 +8,22 @@ import {
     Menu,
     MenuItem,
     Container,
-    InputAdornment,
-    TextField,
+    CardMedia,
+    CardContent,
+    Card,
+    Grid,
 } from "@material-ui/core";
-import useStyles from "./style";
-import {
-    Search,
-    ArrowDropDown, ExitToApp,
-} from "@mui/icons-material";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Search, ArrowDropDown, ExitToApp } from "@mui/icons-material";
 import EventPro from "../../../assets/images/CorrectLogo.png";
+import useStyles from "./style";
+
+import EngagementImage from "../Gallery/img/Engagement.jpeg";
+import AnniversaryImage from "../Gallery/img/Anniversery.jpg";
+import BirthdayImage from "../Gallery/img/Birthday.webp";
+import SocialImage from "../Gallery/img/slider-events.jpg";
+import VersionImage from "../Gallery/img/version-events-thumb.jpg";
+import WeddingImage from "../Gallery/img/Wedding.jpg";
 
 const Gallery = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -47,9 +49,10 @@ const Gallery = () => {
     };
 
     const handleCategoryClick = (category) => {
-        setClickedCategory((prevCategory) => (prevCategory === category ? "" : category));
+        setClickedCategory((prevCategory) =>
+            prevCategory === category ? "" : category
+        );
     };
-
 
     useEffect(() => {
         const handleScroll = () => {
@@ -67,13 +70,39 @@ const Gallery = () => {
     }, []);
 
     const images = [
-        { id: 1, imageUrl: require("../Gallery/img/Engagement.jpeg")},
-        { id: 2, imageUrl: require("../Gallery/img/Anniversery.jpg")},
-        { id: 3, imageUrl: require("../Gallery/img/Birthday.webp")},
-        { id: 4, imageUrl: require("../Gallery/img/slider-events.jpg")},
-        { id: 5, imageUrl: require("../Gallery/img/version-events-thumb.jpg")},
-        { id: 6, imageUrl: require("../Gallery/img/Wedding.jpg")},
+        {
+            id: 1,
+            category: "All",
+            imageUrl: EngagementImage,
+        },
+        {
+            id: 2,
+            category: "Wedding",
+            imageUrl: AnniversaryImage,
+        },
+        {
+            id: 3,
+            category: "Party",
+            imageUrl: BirthdayImage,
+        },
+        {
+            id: 4,
+            category: "Social",
+            imageUrl: SocialImage,
+        },
+        {
+            id: 5,
+            category: "All",
+            imageUrl: VersionImage,
+        },
+        {
+            id: 6,
+            category: "Wedding",
+            imageUrl: WeddingImage,
+        },
     ];
+
+    const categories = ["All", "Wedding", "Party", "Social"];
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -192,39 +221,53 @@ const Gallery = () => {
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.serviceSection}>
-                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>OUR RECENT EVENTS</Typography>
-                    <Typography variant="h4" gutterBottom>Gallery</Typography>
-                    <Typography variant="body1" gutterBottom>See Our Best Events Gallery!</Typography>
+                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>
+                        Gallery
+                    </Typography>
+                    <Typography variant="h4" gutterBottom>
+                        See Our Best Events Gallery!
+                    </Typography>
+                    <div className={classes.categoryButtons}>
+                        {categories.map((category) => (
+                            <Button
+                                key={category}
+                                variant="text"
+                                color="primary"
+                                onClick={() => handleCategoryClick(category)}
+                                className={classes.categoryButton}
+                                style={{
+                                    fontWeight: "bold",
+                                    fontSize: "30",
+                                }}
+                            >
+                                {category}
+                            </Button>
+                        ))}
+                    </div>
                 </div>
                 <Grid container spacing={2}>
-                    {images.map((image) => (
-                        <Grid item xs={12} sm={6} md={4} key={image.id}>
-                            <Card>
-                                <CardMedia
-                                    component="img"
-                                    height="200"
-                                    image={image.imageUrl}
-                                    alt={`Image ${image.id}`}
-
-                                />
-                                {/*<CardContent>*/}
-                                {/*    /!* Add any additional content or caption for the image *!/*/}
-                                {/*</CardContent>*/}
-                            </Card>
-                        </Grid>
-                    ))}
+                    {images
+                        .filter((image) =>
+                            clickedCategory === "All"
+                                ? true
+                                : image.category === clickedCategory
+                        )
+                        .map((image) => (
+                            <Grid item xs={12} sm={6} md={4} key={image.id}>
+                                <Card>
+                                    <CardMedia
+                                        component="img"
+                                        height="200"
+                                        image={image.imageUrl}
+                                        alt={`Image ${image.id}`}
+                                    />
+                                </Card>
+                            </Grid>
+                        ))}
                 </Grid>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    style={{ margin: "20px auto", display: "block" }} // Center the button
-                >
-                    See More
-                </Button>
             </Container>
         </Container>
     );
 };
 
-export default Gallery
+export default Gallery;
