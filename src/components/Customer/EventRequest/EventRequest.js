@@ -246,7 +246,7 @@ const EventRequest = () => {
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.serviceSection}>
                     <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>WE ARE HERE TO HELP YOU</Typography>
-                    <Typography variant="h4" gutterBottom>Online Request</Typography>
+                    <Typography variant="h4" gutterBottom>Book an Event</Typography>
                 </div>
                 <Box mt={3}>
                     <form onSubmit={handleSubmit}>
@@ -297,9 +297,9 @@ const EventRequest = () => {
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value="Location 1">Location 1</MenuItem>
-                                        <MenuItem value="Location 2">Location 2</MenuItem>
-                                        <MenuItem value="Location 3">Location 3</MenuItem>
+                                        <MenuItem value="Location 1">Galle</MenuItem>
+                                        <MenuItem value="Location 2">Colombo</MenuItem>
+                                        <MenuItem value="Location 3">Matara</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>
