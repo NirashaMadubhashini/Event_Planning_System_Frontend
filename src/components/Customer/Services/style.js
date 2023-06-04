@@ -105,7 +105,7 @@ export default makeStyles((theme) => ({
         boxShadow: `5px 4px 20px -4px #3F51B5, -5px -4px 20px -4px #3F51B5`,
     },
     vendorCard: {
-        marginBottom: theme.spacing(3),
+        marginBottom: theme.spacing(2),
         backgroundColor: "#F5F5F5",
         color: "#333333",
     },

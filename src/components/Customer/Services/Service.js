@@ -40,7 +40,16 @@ import {
 import Box from "@mui/material/Box";
 import {Link} from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
-
+import DeckIcon from '@mui/icons-material/Deck';
+import OtherHousesIcon from '@mui/icons-material/OtherHouses';
+import EmojiTransportationIcon from '@mui/icons-material/EmojiTransportation';
+import CakeIcon from '@mui/icons-material/Cake';
+import CorporateFareIcon from '@mui/icons-material/CorporateFare';
+import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import MonochromePhotosIcon from '@mui/icons-material/MonochromePhotos';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 
 const Service = () => {
     const handleClick = (event) => {
@@ -143,73 +152,68 @@ const Service = () => {
     const services = [
         {
             id: 1,
-            name: "Venue rental",
+            name: "Hotel",
             icon: <MapsHomeWork />,
         },
         {
             id: 2,
-            name: "Catering and Bar",
-            icon: <Fastfood />,
+            name: "Hall",
+            icon: <DeckIcon/>,
         },
         {
             id: 3,
-            name: "Decorations and floral arrangements",
-            icon: <Celebration />,
+            name: "Villa",
+            icon: <OtherHousesIcon />,
         },
         {
             id: 4,
-            name: "Cake and desserts",
-            icon: <Cake />,
+            name: "Catering and Bar services",
+            icon: <Fastfood/>,
         },
         {
             id: 5,
-            name: "Photography and Videography",
-            icon: <CameraAlt />,
+            name: "Flora",
+            icon: <LocalFloristIcon />,
         },
         {
             id: 6,
-            name: "Entertainment",
-            icon: <LibraryMusic />,
+            name: "Decoration and Lightning",
+            icon: <AutoAwesomeIcon />,
         },
         {
             id: 7,
-            name: "Transportation",
-            icon: <EmojiTransportation />,
+            name: "Photography and Videography",
+            icon: <MonochromePhotosIcon />,
         },
         {
             id: 8,
-            name: "Invitations and stationery",
-            icon: <CardGiftcard />,
+            name: "DJ and Sound",
+            icon: <MusicNoteIcon />,
         },
         {
             id: 9,
-            name: "Hair and Makeup services",
-            icon: <Brush />,
+            name: "Cake",
+            icon: <CakeIcon/>,
         },
         {
             id: 10,
-            name: "Sound and lighting equipment",
-            icon: <SurroundSound />,
+            name: "Wedding invitations and stationery",
+            icon: <CardGiftcardIcon />,
         },
         {
             id: 11,
-            name: "Staging and seating",
-            icon: <Chair />,
+            name: "Hair and Makeup",
+            icon: <Brush/>,
         },
         {
             id: 12,
-            name: "Security personnel",
-            icon: <AdminPanelSettings />,
+            name: "Transportation",
+            icon: <EmojiTransportationIcon  />,
         },
         {
             id: 13,
-            name: "Marketing and promotion",
-            icon: <CropOriginal />,
-        },
-        {
-            id: 14,
-            name: "Merchandise sales",
-            icon: <Store />,
+            name: "Poruwa",
+            icon: <CorporateFareIcon  />,
         },
     ];
 
