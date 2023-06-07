@@ -420,49 +420,6 @@ const Service = () => {
                     </Grid>
                 </Grid>
             </Container>
-            <Dialog
-                open={openModal}
-                onClose={handleCloseModal}
-                maxWidth="sm"
-                fullWidth
-            >
-                <DialogTitle>Select Packages</DialogTitle>
-                <DialogContent>
-                    <Grid container spacing={3}>
-                        {serviceVendors.map((vendor) => (
-                            <Grid
-                                item
-                                xs={12}
-                                sm={4}
-                                key={vendor.id}
-                                className={classes.packageContainer}
-                            >
-                                <Card className={classes.vendorCard}>
-                                    <CardContent>
-                                        <Typography variant="h6">{vendor.name}</Typography>
-                                        <Typography variant="body1">
-                                            Description of the vendor...
-                                        </Typography>
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            onClick={handleOpenModal}
-                                        >
-                                            Show Packages
-                                        </Button>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </DialogContent>
-
-                <DialogActions>
-                    <Button onClick={handleCloseModal} color="primary">
-                        Close
-                    </Button>
-                </DialogActions>
-            </Dialog>
         </Container>
     );
 };
