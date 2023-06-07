@@ -84,8 +84,12 @@ export default makeStyles((theme) => ({
         position: "relative",
     },
     serviceSection: {
-        paddingTop: theme.spacing(2),
-        paddingBottom: theme.spacing(5),
+        paddingBottom: theme.spacing(2),
+        textAlign: "center",
+    },
+    serviceSection2: {
+
+        paddingBottom: theme.spacing(3),
         textAlign: "center",
     },
     packageContainer: {
@@ -106,7 +110,8 @@ export default makeStyles((theme) => ({
         boxShadow: `5px 4px 20px -4px #3F51B5, -5px -4px 20px -4px #3F51B5`,
     },
     vendorCard: {
-        marginBottom: theme.spacing(2),
+        marginBottom: theme.spacing(3),
+        marginLeft: theme.spacing(2),
         backgroundColor: "#F5F5F5",
         color: "#333333",
     },

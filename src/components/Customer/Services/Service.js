@@ -356,8 +356,8 @@ const Service = () => {
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={4}>
+                <Grid container>
+                    <Grid item xs={12} sm={12}>
                         <div className={classes.serviceSection}>
                             <Typography
                                 variant="h6"
@@ -369,6 +369,10 @@ const Service = () => {
                             <Typography variant="h4" gutterBottom>
                                 What We Offer
                             </Typography>
+                        </div>
+                    </Grid>
+                            <Grid item xs={12} sm={4}>
+                                <div className={classes.serviceSection2}>
                             {services.map((service) => (
                                 <Card
                                     key={service.id}
