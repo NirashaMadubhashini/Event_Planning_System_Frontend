@@ -11,10 +11,11 @@ export default makeStyles((theme) => ({
         height: "80%",
         backgroundColor: "#ffffff",
         borderColor: "black",
-        transition: "background-color 0.2s ease, box-shadow 0.10s ease",
+        transition: "background-color 0.2s ease, box-shadow 0.10s ease, transform 0.2s",
         "&:hover": {
             backgroundColor: "#3F51B5",
             boxShadow: `5px 4px 20px -4px #3F51B5, -5px -4px 20px -4px #3F51B5`,
+            transform: "scale(1.05)",
         },
         textAlign: "left",
         marginBottom: theme.spacing(2), // Add margin bottom for spacing
