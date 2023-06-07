@@ -115,7 +115,9 @@ export default makeStyles((theme) => ({
         backgroundColor: "#CCCCCC",
         color: "#333333",
     },
-    // Add additional styles for smaller screens
+
+
+    // responsive
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",
