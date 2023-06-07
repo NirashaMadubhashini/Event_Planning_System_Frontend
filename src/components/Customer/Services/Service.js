@@ -80,34 +80,18 @@ const Service = () => {
                     {
                         id: 1,
                         name: "Service Vendor 1",
-                        packages: [
-                            { id: 1, name: "Package 1" },
-                            { id: 2, name: "Package 2" },
-                        ],
                     },
                     {
                         id: 2,
                         name: "Service Vendor 2",
-                        packages: [
-                            { id: 3, name: "Package 3" },
-                            { id: 4, name: "Package 4" },
-                        ],
                     },
                     {
                         id: 3,
                         name: "Service Vendor 3",
-                        packages: [
-                            { id: 5, name: "Package 5" },
-                            { id: 6, name: "Package 6" },
-                        ],
                     },
                     {
                         id: 4,
                         name: "Service Vendor 4",
-                        packages: [
-                            { id: 5, name: "Package 7" },
-                            { id: 6, name: "Package 8" },
-                        ],
                     },
                 ];
                 setServiceVendors(mockServiceVendors);
@@ -416,7 +400,7 @@ const Service = () => {
                                         color="primary"
                                         onClick={handleOpenModal}
                                     >
-                                        Show Vendors
+                                        Show Packages
                                     </Button>
                                 </CardContent>
                             </Card>
