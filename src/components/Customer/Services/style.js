@@ -22,8 +22,8 @@ export default makeStyles((theme) => ({
     },
     cardContent: {
         minHeight: "50px",
-        backgroundColor: "#cccccc",
-        color: "black",
+        backgroundColor: "rgb(63,81,181)",
+        color: "white",
         transition: "background-color 0.2s ease, color 0.2s ease",
     },
     container: {
@@ -112,7 +112,7 @@ export default makeStyles((theme) => ({
     vendorCard: {
         marginBottom: theme.spacing(3),
         marginLeft: theme.spacing(2),
-        backgroundColor: "#F5F5F5",
+        backgroundColor: "#CCCCCC",
         color: "#333333",
     },
     // Add additional styles for smaller screens
