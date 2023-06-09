@@ -8,6 +8,7 @@ export default makeStyles((theme) => ({
         color: "inherit",
     },
     card: {
+        cursor: "pointer",
         height: "80%",
         backgroundColor: "#ffffff",
         borderColor: "black",
@@ -15,7 +16,7 @@ export default makeStyles((theme) => ({
         "&:hover": {
             backgroundColor: "#3F51B5",
             boxShadow: `5px 4px 20px -4px #212B36, -5px -4px 20px -4px #212B36`,
-            transform: "scale(1.06)",
+            transform: "scale(1.03)",
         },
         textAlign: "left",
         marginBottom: theme.spacing(2), // Add margin bottom for spacing
@@ -114,8 +115,18 @@ export default makeStyles((theme) => ({
         marginLeft: theme.spacing(2),
         backgroundColor: "#CCCCCC",
         color: "#333333",
+        cursor: "pointer",
     },
-
+    vendorContainer: {
+        // marginTop: theme.spacing(2),
+        marginLeft: theme.spacing(2),
+    },
+    vendorTitle: {
+        marginBottom: theme.spacing(2),
+    },
+    packageButton: {
+        marginTop: theme.spacing(2),
+    },
 
     // responsive
     [theme.breakpoints.down("xs")]: {
