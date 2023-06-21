@@ -79,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
+        backgroundColor:"pink",
     },
     categoryButton: {
         marginBottom: theme.spacing(2),
@@ -89,6 +90,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
+        backgroundColor:"red",
     },
     serviceButton: {
         marginBottom: theme.spacing(2),
@@ -99,21 +101,26 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
+        backgroundColor:"Yellow",
     },
     vendorInfoCard: {
         marginBottom: theme.spacing(2),
+        backgroundColor:"Purple",
     },
     packageCard: {
         marginBottom: theme.spacing(2),
+        backgroundColor:"blue",
     },
     addButton: {
         marginTop: theme.spacing(1),
     },
     bookingCard: {
         marginBottom: theme.spacing(2),
+        backgroundColor:"green",
     },
     selectedPackageCard: {
         marginBottom: theme.spacing(1),
+        backgroundColor:"orange",
     },
     removeButton: {
         marginTop: theme.spacing(1),

@@ -520,7 +520,6 @@ const Service = () => {
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={9}>
-                        {clickedCategory && (
                             <Card className={classes.serviceCard}>
                                 <CardContent>
                                     <Typography variant="h6" gutterBottom>
@@ -548,7 +547,6 @@ const Service = () => {
                                     </Grid>
                                 </CardContent>
                             </Card>
-                        )}
                         {clickedService && (
                             <Card className={classes.vendorCard}>
                                 <CardContent>

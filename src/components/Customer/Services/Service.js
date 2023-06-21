@@ -94,27 +94,56 @@ const Service = () => {
         setSelectedPackages([]);
     };
 
-    const handlePackageSelect = (vendorId, packageId) => {
-        setSelectedPackages((prevPackages) => {
-            const isPackageSelected = prevPackages.some(
-                (pkg) => pkg.vendorId === vendorId && pkg.packageId === packageId
-            );
-            if (isPackageSelected) {
-                return prevPackages.filter(
-                    (pkg) => pkg.vendorId !== vendorId || pkg.packageId !== packageId
-                );
-            } else {
-                return [
-                    ...prevPackages,
-                    {
-                        vendorId,
-                        packageId,
-                    },
-                ];
-            }
-        });
+    const handlePackageSelect = (vendorId, serviceId, packageId) => {
+        const selectedVendor = vendors.find((vendor) => vendor.id === vendorId);
+        const selectedService = selectedVendor.services.find(
+            (service) => service.id === serviceId
+        );
+        const selectedPackage = selectedService.packages.find(
+            (pkg) => pkg.id === packageId
+        );
+
+        const newClickedButtons = {
+            ...clickedButtons,
+            [clickedCategory]: {
+                ...clickedButtons[clickedCategory],
+                [clickedService]: {
+                    vendor: selectedVendor,
+                    service: selectedService,
+                    package: selectedPackage,
+                },
+            },
+        };
+
+        setClickedButtons(newClickedButtons);
     };
 
+    const handlePackageRemove = () => {
+        const newClickedButtons = {
+            ...clickedButtons,
+            [clickedCategory]: {
+                ...clickedButtons[clickedCategory],
+            },
+        };
+        delete newClickedButtons[clickedCategory][clickedService];
+
+        setClickedButtons(newClickedButtons);
+    };
+
+    const getTotalPrice = () => {
+        let total = 0;
+
+        Object.keys(clickedButtons).forEach((category) => {
+            Object.keys(clickedButtons[category]).forEach((service) => {
+                const { package: pkg } = clickedButtons[category][service];
+                total += pkg.price;
+            });
+        });
+
+        return total;
+    };
+
+    
     useEffect(() => {
         const handleScroll = () => {
             const isScrolling = window.scrollY < 80;
@@ -269,22 +298,70 @@ const Service = () => {
         {
             id: 4,
             name: "Vendor 4",
-            service:"Catering and Bar services"
+            service:"Catering and Bar services",
+            packages: [
+                {
+                    id: 1,
+                    name: "Package 1",
+                    price: 200,
+                },
+                {
+                    id: 2,
+                    name: "Package 2",
+                    price: 250,
+                },
+            ],
         },
         {
             id: 5,
             name: "Vendor 5",
-            service:"Flora"
+            service:"Flora",
+            packages: [
+                {
+                    id: 1,
+                    name: "Package 1",
+                    price: 300,
+                },
+                {
+                    id: 2,
+                    name: "Package 2",
+                    price: 350,
+                },
+            ],
         },
         {
             id: 6,
             name: "Vendor 6",
-            service:"Decoration and Lightning"
+            service:"Decoration and Lightning",
+            packages: [
+                {
+                    id: 1,
+                    name: "Package 1",
+                    price: 1000,
+                },
+                {
+                    id: 2,
+                    name: "Package 2",
+                    price: 1500,
+                },
+            ],
         },
         {
             id: 7,
             name: "Vendor 7",
-            service:"Hotel"
+            service:"Hotel",
+            packages: [
+                {
+                    id: 1,
+                    name: "Package 1",
+                    price: 3000,
+                },
+                {
+                    id: 2,
+                    name: "Package 2",
+                    price: 3500,
+                },
+            ],
         },
     ];
 
