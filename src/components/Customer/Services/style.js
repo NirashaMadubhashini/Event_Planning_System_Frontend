@@ -120,6 +120,7 @@ export default makeStyles((theme) => ({
     vendorContainer: {
         // marginTop: theme.spacing(2),
         marginLeft: theme.spacing(2),
+        marginBottom:theme.spacing(2),
     },
     vendorTitle: {
         marginBottom: theme.spacing(2),
@@ -127,7 +128,9 @@ export default makeStyles((theme) => ({
     packageButton: {
         marginTop: theme.spacing(2),
     },
-
+    addButton: {
+        marginTop: theme.spacing(1),
+    },
     // responsive
     [theme.breakpoints.down("xs")]: {
         appBar: {

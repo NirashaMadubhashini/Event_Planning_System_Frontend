@@ -1,8 +1,6 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
-//Booking Style.js
+import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
     menuTitle: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
@@ -12,14 +10,13 @@ export default makeStyles((theme) => ({
     container: {
         padding: "1px",
     },
-
     cardMedia: {
         height: 0,
         paddingTop: '56.25%', // 16:9 aspect ratio
     },
 
     appBar: {
-        borderRadius: 0,
+        borderRadius:0,
         padding: "0px 20px",
 
         marginBottom: theme.spacing(2),
@@ -27,7 +24,6 @@ export default makeStyles((theme) => ({
             padding: "0px 0px",
         },
     },
-
     menuItem: {
         "&:hover": {
             textDecoration: "underline",
@@ -71,9 +67,64 @@ export default makeStyles((theme) => ({
     button: {
         position: 'relative',
     },
+    title: {
+        flexGrow: 1,
+    },
+    link: {
+        textDecoration: "none",
+        color: "inherit",
+    },
+    categoryCard: {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+    },
+    categoryButton: {
+        marginBottom: theme.spacing(2),
+        width: "100%",
+    },
+    serviceCard: {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+    },
+    serviceButton: {
+        marginBottom: theme.spacing(2),
+        width: "100%",
+    },
+    vendorCard: {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+    },
+    vendorInfoCard: {
+        marginBottom: theme.spacing(2),
+    },
+    packageCard: {
+        marginBottom: theme.spacing(2),
+    },
+    addButton: {
+        marginTop: theme.spacing(1),
+    },
+    bookingCard: {
+        marginBottom: theme.spacing(2),
+    },
+    selectedPackageCard: {
+        marginBottom: theme.spacing(1),
+    },
+    removeButton: {
+        marginTop: theme.spacing(1),
+    },
+    serviceName: {
+        marginTop: theme.spacing(2),
+    },
+    totalPrice: {
+        marginTop: theme.spacing(2),
+    },
 
-
-// Add additional styles for smaller screens
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",
@@ -92,3 +143,5 @@ export default makeStyles((theme) => ({
         },
     },
 }));
+
+export default useStyles;

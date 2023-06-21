@@ -35,7 +35,7 @@ import {
     Chair,
     AdminPanelSettings,
     CropOriginal,
-    Store, ExitToApp,
+    Store, ExitToApp, Call, Message,
 } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import {Link} from "react-router-dom";
@@ -65,55 +65,23 @@ const Service = () => {
     const [appBarPosition, setAppBarPosition] = useState("relative");
     const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
-    const [selectedService, setSelectedService] = useState(null);
+    const [clickedService, setClickedService] = useState("");
+    const [selectedService, setSelectedService] = useState("");
+    const [selectedVendor, setSelectedVendor] = useState(null);
     const [serviceVendors, setServiceVendors] = useState([]);
     const [openModal, setOpenModal] = useState(false);
-    const [selectedPackages, setSelectedPackages] = useState([]);
 
-    const handleButtonClick = (id) => {
-        const clickedService = services.find((service) => service.id === id);
-        setSelectedService(clickedService);
-        setServiceVendors([]);
-        if (clickedService) {
-            setTimeout(() => {
-                const mockServiceVendors = [
-                    {
-                        id: 1,
-                        name: "Service Vendor 1",
-                    },
-                    {
-                        id: 2,
-                        name: "Service Vendor 2",
-                    },
-                    {
-                        id: 3,
-                        name: "Service Vendor 3",
-                    },
-                    {
-                        id: 4,
-                        name: "Service Vendor 4",
-                    },
-                    {
-                        id: 5,
-                        name: "Service Vendor 5",
-                    },
-                    {
-                        id: 6,
-                        name: "Service Vendor 6",
-                    },
-                ];
-                setServiceVendors(mockServiceVendors);
-            }, 1000);
-        }
-        setClickedButtons((prevState) => ({
-            ...prevState,
-            [id]: !prevState[id],
-        }));
-    };
+
 
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) =>
             prevCategory === category ? "" : category
+        );
+    };
+
+   const handleServiceClick = (service) => {
+        setClickedService((prevService) =>
+            prevService=== service ? "" : service
         );
     };
 
@@ -126,19 +94,25 @@ const Service = () => {
         setSelectedPackages([]);
     };
 
-    const handlePackageSelect = (packageId) => {
-        const packageExists = selectedPackages.includes(packageId);
-
-        if (packageExists) {
-            setSelectedPackages((prevSelectedPackages) =>
-                prevSelectedPackages.filter((id) => id !== packageId)
+    const handlePackageSelect = (vendorId, packageId) => {
+        setSelectedPackages((prevPackages) => {
+            const isPackageSelected = prevPackages.some(
+                (pkg) => pkg.vendorId === vendorId && pkg.packageId === packageId
             );
-        } else {
-            setSelectedPackages((prevSelectedPackages) => [
-                ...prevSelectedPackages,
-                packageId,
-            ]);
-        }
+            if (isPackageSelected) {
+                return prevPackages.filter(
+                    (pkg) => pkg.vendorId !== vendorId || pkg.packageId !== packageId
+                );
+            } else {
+                return [
+                    ...prevPackages,
+                    {
+                        vendorId,
+                        packageId,
+                    },
+                ];
+            }
+        });
     };
 
     useEffect(() => {
@@ -161,80 +135,80 @@ const Service = () => {
 
     const services = [
         {
-            id: 1,
             name: "Hotel",
+            id: 1,
             icon: <MapsHomeWork />,
             category: "Events",
         },
         {
-            id: 2,
             name: "Hall",
+            id: 2,
             icon: <DeckIcon/>,
             category: "Events",
         },
         {
-            id: 3,
             name: "Villa",
+            id: 3,
             icon: <OtherHousesIcon />,
             category: "Events",
         },
         {
-            id: 4,
             name: "Catering and Bar services",
+            id: 4,
             icon: <Fastfood/>,
             category: "Celebrations",
         },
         {
-            id: 5,
             name: "Flora",
+            id: 5,
             icon: <LocalFloristIcon />,
             category: "Celebrations",
         },
         {
-            id: 6,
             name: "Decoration and Lightning",
+            id: 6,
             icon: <AutoAwesomeIcon />,
             category: "Celebrations",
         },
         {
-            id: 7,
             name: "Photography and Videography",
+            id: 7,
             icon: <MonochromePhotosIcon />,
             category: "Events",
         },
         {
-            id: 8,
             name: "DJ and Sound",
+            id: 8,
             icon: <MusicNoteIcon />,
             category: "Celebrations",
         },
         {
-            id: 9,
             name: "Cake",
+            id: 9,
             icon: <CakeIcon/>,
             category: "Celebrations",
         },
         {
+            name: "Invitation Cards and stationery",
             id: 10,
-            name: "Wedding invitations and stationery",
             icon: <CardGiftcardIcon />,
             category: "Celebrations",
         },
         {
-            id: 11,
             name: "Hair and Makeup",
+            id: 11,
             icon: <Brush/>,
             category: "Celebrations",
         },
         {
-            id: 12,
             name: "Transportation",
+            id: 12,
             icon: <EmojiTransportationIcon  />,
             category: "Events",
         },
         {
-            id: 13,
             name: "Poruwa",
+            id: 13,
             icon: <CorporateFareIcon  />,
             category: "Events",
         },
@@ -244,136 +218,77 @@ const Service = () => {
         {
             id: 1,
             name: "Vendor 1",
-            services: [
+            service:"Hotel",
+            packages: [
                 {
                     id: 1,
-                    name: "Photography",
-                    packages: [
-                        {
-                            id: 1,
-                            name: "Package 1",
-                            price: "$100",
-                        },
-                        {
-                            id: 2,
-                            name: "Package 2",
-                            price: "$200",
-                        },
-                    ],
+                    name: "Package 1",
+                    price: 100,
+                },
+                {
+                    id: 2,
+                    name: "Package 2",
+                    price: 150,
                 },
             ],
         },
         {
             id: 2,
             name: "Vendor 2",
-            services: [
+            service:"Hall",
+            packages: [
+                {
+                    id: 1,
+                    name: "Package 1",
+                    price: 200,
+                },
                 {
                     id: 2,
-                    name: "Music",
-                    packages: [
-                        {
-                            id: 3,
-                            name: "Package 3",
-                            price: "$150",
-                        },
-                        {
-                            id: 4,
-                            name: "Package 4",
-                            price: "$250",
-                        },
-                    ],
+                    name: "Package 2",
+                    price: 250,
                 },
             ],
         },
         {
             id: 3,
             name: "Vendor 3",
-            services: [
+            service:"Villa",
+            packages: [
                 {
-                    id: 3,
-                    name: "Transportation",
-                    packages: [
-                        {
-                            id: 5,
-                            name: "Package 5",
-                            price: "$120",
-                        },
-                        {
-                            id: 6,
-                            name: "Package 6",
-                            price: "$220",
-                        },
-                    ],
+                    id: 1,
+                    name: "Package 1",
+                    price: 300,
+                },
+                {
+                    id: 2,
+                    name: "Package 2",
+                    price: 350,
                 },
             ],
         },
         {
             id: 4,
             name: "Vendor 4",
-            services: [
-                {
-                    id: 4,
-                    name: "Gifts",
-                    packages: [
-                        {
-                            id: 7,
-                            name: "Package 7",
-                            price: "$80",
-                        },
-                        {
-                            id: 8,
-                            name: "Package 8",
-                            price: "$180",
-                        },
-                    ],
-                },
-            ],
+            service:"Catering and Bar services"
         },
         {
             id: 5,
             name: "Vendor 5",
-            services: [
-                {
-                    id: 5,
-                    name: "Catering",
-                    packages: [
-                        {
-                            id: 9,
-                            name: "Package 9",
-                            price: "$90",
-                        },
-                        {
-                            id: 10,
-                            name: "Package 10",
-                            price: "$190",
-                        },
-                    ],
-                },
-            ],
+            service:"Flora"
         },
         {
             id: 6,
             name: "Vendor 6",
-            services: [
-                {
-                    id: 6,
-                    name: "Decoration",
-                    packages: [
-                        {
-                            id: 11,
-                            name: "Package 11",
-                            price: "$110",
-                        },
-                        {
-                            id: 12,
-                            name: "Package 12",
-                            price: "$210",
-                        },
-                    ],
-                },
-            ],
+            service:"Decoration and Lightning"
+        },
+        {
+            id: 7,
+            name: "Vendor 7",
+            service:"Hotel"
         },
     ];
+
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -447,6 +362,17 @@ const Service = () => {
                                 }}
                             >
                                 About
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/packages"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Packages")}
+                                style={{
+                                    color: clickedCategory === "About" ? "#F50057" : "",
+                                }}
+                            >
+                                Packages
                             </Typography>
                             <Typography
                                 component={Link}
@@ -535,7 +461,7 @@ const Service = () => {
                                 <Card
                                     key={service.id}
                                     className={classes.card}
-                                    onClick={() => handleButtonClick(service.id)}
+                                    onClick={() => handleServiceClick(service.name)}
                                 >
                                     <CardContent className={classes.cardContent}>
                                         <Box
@@ -560,93 +486,44 @@ const Service = () => {
                         </div>
                     </Grid>
                     <Grid item xs={12} sm={8}>
-                        {selectedService && (
-                            <Card className={classes.vendorContainer}>
+                        {vendors
+                            .filter(
+                                (vendor) =>
+                                    vendor.service === clickedService ||
+                                    clickedService === ""
+                            )
+                            .map((vendor) => (
+                            <Card
+                                className={classes.vendorCard}
+                                key={vendor.id}
+                            >
                                 <CardContent>
                                     <Typography variant="h5" className={classes.vendorTitle}>
-                                        {selectedService.name} Vendors
+                                        {vendor.name}
                                     </Typography>
-                                    <Grid container spacing={2}>
-                                        {serviceVendors.map((vendor) => (
-                                            <Grid item xs={12} sm={6} md={4} key={vendor.id}>
-                                                <Card className={classes.vendorCard}>
-                                                    <CardContent>
-                                                        <Typography variant="h6">{vendor.name}</Typography>
-                                                        <Button
-                                                            variant={
-                                                                clickedButtons[selectedService.id] ? "contained" : "contained"
-                                                            }
-                                                            color="primary"
-                                                            onClick={handleOpenModal}
-                                                            className={classes.packageButton}
-                                                        >
-                                                            Select Package
-                                                        </Button>
-                                                    </CardContent>
-                                                </Card>
-                                            </Grid>
-                                        ))}
-                                    </Grid>
+                                    <Button
+                                        variant={
+                                  clickedButtons[selectedService.id] ? "contained" : "contained"
+                                  }
+                                  color="primary"
+                                  onClick={handleOpenModal}
+                                  className={classes.packageButton}
+                                 >
+                                Select Package
+                                  </Button>
+                                    <Button
+                                        startIcon={<Call />}
+                                    >
+                                        Call
+                                    </Button>
+                                    <Button
+                                        startIcon={<Message />}
+                                    >
+                                        Message
+                                    </Button>
                                 </CardContent>
                             </Card>
-                        )}
-                        <Dialog open={openModal} onClose={handleCloseModal}>
-                            <DialogTitle>Select Packages</DialogTitle>
-                            <DialogContent>
-                                {selectedService &&
-                                    vendors.map((vendor) => {
-                                        const service = vendor.services.find(
-                                            (service) => service.id === selectedService.id
-                                        );
-                                        return (
-                                            service &&
-                                            service.packages.map((packageItem) => (
-                                                <Box key={packageItem.id} marginBottom={2}>
-                                                    <Card>
-                                                        <CardContent>
-                                                            <Grid container spacing={2} alignItems="center">
-                                                                <Grid item>
-                                                                    <Typography variant="h6">
-                                                                        {packageItem.name}
-                                                                    </Typography>
-                                                                </Grid>
-                                                                <Grid item>
-                                                                    <Typography variant="subtitle1">
-                                                                        {packageItem.price}
-                                                                    </Typography>
-                                                                </Grid>
-                                                                <Grid item>
-                                                                    <Button
-                                                                        variant={
-                                                                            selectedPackages.includes(packageItem.id)
-                                                                                ? "contained"
-                                                                                : ""
-                                                                        }
-                                                                        color="primary"
-                                                                        onClick={() =>
-                                                                            handlePackageSelect(packageItem.id)
-                                                                        }
-                                                                    >
-                                                                        Select
-                                                                    </Button>
-                                                                </Grid>
-                                                            </Grid>
-                                                        </CardContent>
-                                                    </Card>
-                                                </Box>
-                                            ))
-                                        );
-                                    })}
-                            </DialogContent>
-                            <DialogActions>
-                                <Button onClick={handleCloseModal} color="primary">
-                                    Cancel
-                                </Button>
-                                <Button onClick={handleCloseModal} color="primary">
-                                    Done
-                                </Button>
-                            </DialogActions>
-                        </Dialog>
+                        ))}
                     </Grid>
                 </Grid>
             </Container>
