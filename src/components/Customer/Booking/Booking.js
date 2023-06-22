@@ -84,61 +84,61 @@ const Service = () => {
             name: "Hotel",
             id: 1,
             icon: <MapsHomeWork />,
-            category: "Events",
+          //  category: "Events",
         },
         {
             name: "Hall",
             id: 2,
             icon: <DeckIcon />,
-            category: "Events",
+           // category: "Events",
         },
         {
             name: "Villa",
             id: 3,
             icon: <OtherHousesIcon />,
-            category: "Events",
+            //category: "Events",
         },
         {
             name: "Catering and Bar services",
             id: 4,
             icon: <Fastfood />,
-            category: "Celebrations",
+           // category: "Celebrations",
         },
         {
             name: "Flora",
             id: 5,
             icon: <LocalFloristIcon />,
-            category: "Celebrations",
+           // category: "Celebrations",
         },
         {
             name: "Decoration and Lightning",
             id: 6,
             icon: <AutoAwesomeIcon />,
-            category: "Celebrations",
+           // category: "Celebrations",
         },
         {
             name: "Photography and Videography",
             id: 7,
             icon: <MonochromePhotosIcon />,
-            category: "Events",
+           // category: "Events",
         },
         {
             name: "DJ and Sound",
             id: 8,
             icon: <MusicNoteIcon />,
-            category: "Celebrations",
+        //    category: "Celebrations",
         },
         {
             name: "Cake",
             id: 9,
             icon: <CakeIcon />,
-            category: "Celebrations",
+          //  category: "Celebrations",
         },
         {
             name: "Invitation Cards and stationery",
             id: 10,
             icon: <CardGiftcardIcon />,
-            category: "Celebrations",
+         //   category: "Celebrations",
         },
         {
             name: "Hair and Makeup",
@@ -150,43 +150,43 @@ const Service = () => {
             name: "Transportation",
             id: 12,
             icon: <EmojiTransportationIcon />,
-            category: "Events",
+          //  category: "Events",
         },
         {
             name: "Wedding",
             id: 13,
             icon: <AttractionsIcon />,
-            category: "Celebrations",
+          //  category: "Celebrations",
         },
         {
             name: "Sound and lighting",
             id: 14,
             icon: <SurroundSound />,
-            category: "Celebrations",
+           // category: "Celebrations",
         },
         {
             name: "Seating",
             id: 15,
             icon: <Chair />,
-            category: "Events",
+           // category: "Events",
         },
         {
             name: "Management",
             id: 16,
             icon: <AdminPanelSettings />,
-            category: "Events",
+           // category: "Events",
         },
         {
             name: "Photobooth",
             id: 17,
             icon: <CropOriginal />,
-            category: "Events",
+           // category: "Events",
         },
         {
             name: "Shop",
             id: 18,
             icon: <Store />,
-            category: "Events",
+            //category: "Events",
         },
     ];
 
@@ -194,7 +194,7 @@ const Service = () => {
         {
             id: 1,
             name: "Vendor 1",
-            category: "Events",
+          //  category: "Events",
             services: [
                 {
                     id: 1,
@@ -249,7 +249,7 @@ const Service = () => {
         {
             id: 2,
             name: "Vendor 2",
-            category: "Celebrations",
+           // category: "Celebrations",
             services: [
                 {
                     id: 4,
@@ -490,46 +490,17 @@ const Service = () => {
             <Toolbar />
             <Container>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} sm={3}>
-                        <Card className={classes.categoryCard}>
-                            <CardContent>
-                                <Typography variant="h6" gutterBottom>
-                                    Categories
-                                </Typography>
-                                <Button
-                                    className={classes.categoryButton}
-                                    onClick={() => handleCategoryClick("Events")}
-                                    variant={
-                                        clickedCategory === "Events" ? "contained" : "outlined"
-                                    }
-                                >
-                                    Events
-                                </Button>
-                                <Button
-                                    className={classes.categoryButton}
-                                    onClick={() => handleCategoryClick("Celebrations")}
-                                    variant={
-                                        clickedCategory === "Celebrations"
-                                            ? "contained"
-                                            : "outlined"
-                                    }
-                                >
-                                    Celebrations
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12} sm={9}>
+
+                    <Grid item xs={12} sm={4}>
                             <Card className={classes.serviceCard}>
                                 <CardContent>
                                     <Typography variant="h6" gutterBottom>
                                         Services
                                     </Typography>
-                                    <Grid container spacing={3}>
+                                    <Grid >
                                         {services
-                                            .filter((service) => service.category === clickedCategory)
                                             .map((service) => (
-                                                <Grid item xs={12} sm={4} key={service.id}>
+                                                <Grid  key={service.id}>
                                                     <Button
                                                         className={classes.serviceButton}
                                                         startIcon={service.icon}
@@ -547,6 +518,8 @@ const Service = () => {
                                     </Grid>
                                 </CardContent>
                             </Card>
+                    </Grid>
+                        <Grid item xs={12} sm={8}>
                         {clickedService && (
                             <Card className={classes.vendorCard}>
                                 <CardContent>
@@ -554,7 +527,6 @@ const Service = () => {
                                         Vendors
                                     </Typography>
                                     {vendors
-                                        .filter((vendor) => vendor.category === clickedCategory)
                                         .map((vendor) => (
                                             <Card key={vendor.id} className={classes.vendorInfoCard}>
                                                 <CardContent>
@@ -619,6 +591,8 @@ const Service = () => {
                                 </CardContent>
                             </Card>
                         )}
+                        </Grid>
+                    <Grid item xs={12} sm={12}>
                         {Object.keys(clickedButtons).length > 0 && (
                             <Card className={classes.bookingCard}>
                                 <CardContent>
@@ -692,7 +666,8 @@ const Service = () => {
                                 </CardContent>
                             </Card>
                         )}
-                    </Grid>
+                        </Grid>
+
                 </Grid>
             </Container>
         </div>

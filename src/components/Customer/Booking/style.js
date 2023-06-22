@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
         color: "inherit",
     },
     categoryCard: {
-        height: "100%",
+        height: "50%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",

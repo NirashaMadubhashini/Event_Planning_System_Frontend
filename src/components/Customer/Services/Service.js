@@ -143,7 +143,7 @@ const Service = () => {
         return total;
     };
 
-    
+
     useEffect(() => {
         const handleScroll = () => {
             const isScrolling = window.scrollY < 80;
@@ -578,16 +578,18 @@ const Service = () => {
                                     <Typography variant="h5" className={classes.vendorTitle}>
                                         {vendor.name}
                                     </Typography>
+
                                     <Button
                                         variant={
                                   clickedButtons[selectedService.id] ? "contained" : "contained"
                                   }
                                   color="primary"
-                                  onClick={handleOpenModal}
+                                 onClick={handleOpenModal}
                                   className={classes.packageButton}
                                  >
                                 Select Package
                                   </Button>
+
                                     <Button
                                         startIcon={<Call />}
                                     >
@@ -601,6 +603,7 @@ const Service = () => {
                                 </CardContent>
                             </Card>
                         ))}
+
                     </Grid>
                 </Grid>
             </Container>
