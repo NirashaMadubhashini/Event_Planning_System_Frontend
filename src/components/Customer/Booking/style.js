@@ -74,6 +74,10 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: "none",
         color: "inherit",
     },
+    serviceSection: {
+        paddingBottom: theme.spacing(2),
+        textAlign: "center",
+    },
     categoryCard: {
         height: "50%",
         display: "flex",

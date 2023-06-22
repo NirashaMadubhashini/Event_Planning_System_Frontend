@@ -487,10 +487,23 @@ const Service = () => {
                     </div>
                 </Toolbar>
             </AppBar>
-            <Toolbar />
-            <Container>
-                <Grid container spacing={3}>
+            <Container maxWidth="lg">
 
+                <Grid container spacing={3}>
+                    <Grid item xs={12} sm={12}>
+                        <div className={classes.serviceSection}>
+                            <Typography
+                                variant="h6"
+                                gutterBottom
+                                style={{ color: "#3F51B5" }}
+                            >
+                                OUR SERVICES
+                            </Typography>
+                            <Typography variant="h4" gutterBottom>
+                                What We Offer
+                            </Typography>
+                        </div>
+                    </Grid>
                     <Grid item xs={12} sm={4}>
                             <Card className={classes.serviceCard}>
                                 <CardContent>
