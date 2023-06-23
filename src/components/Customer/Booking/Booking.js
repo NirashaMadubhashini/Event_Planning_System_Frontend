@@ -16,7 +16,7 @@ import {
     TableRow,
 } from "@material-ui/core";
 import useStyles from "./style";
-import { ArrowDropDown, ExitToApp } from "@mui/icons-material";
+import { ArrowDropDown, CheckCircle, HourglassEmpty, Cancel } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 
@@ -63,6 +63,40 @@ const Booking = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    // Dummy data for the table
+    const bookings = [
+        {
+            date: "2023-06-24",
+            event: "Wedding",
+            customerName: "John Doe",
+            vendorName: "EventPro",
+            service: "Decoration",
+            status: "Confirmed",
+        },
+        {
+            date: "2023-06-25",
+            event: "Birthday Party",
+            customerName: "Jane Smith",
+            vendorName: "EventPro",
+            service: "Catering",
+            status: "Pending",
+        },
+        // Add more booking data if needed
+    ];
+
+    const getStatusIcon = (status) => {
+        switch (status) {
+            case "Confirmed":
+                return <CheckCircle style={{ color: "#4CAF50" }} />;
+            case "Pending":
+                return <HourglassEmpty style={{ color: "#FFC107" }} />;
+            case "Cancelled":
+                return <Cancel style={{ color: "#F44336" }} />;
+            default:
+                return null;
+        }
+    };
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -201,7 +235,7 @@ const Booking = () => {
                 </div>
                 <TableContainer>
                     <Table>
-                        <TableHead>
+                        <TableHead style={{backgroundColor:"#C8C9CB"}}>
                             <TableRow>
                                 <TableCell>Date</TableCell>
                                 <TableCell>Event</TableCell>
@@ -212,7 +246,29 @@ const Booking = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {/* Render your booking data here */}
+                            {bookings.map((booking, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{booking.date}</TableCell>
+                                    <TableCell>{booking.event}</TableCell>
+                                    <TableCell>{booking.customerName}</TableCell>
+                                    <TableCell>{booking.vendorName}</TableCell>
+                                    <TableCell>{booking.service}</TableCell>
+                                    <TableCell>
+                    <span
+                        style={{
+                            color:
+                                booking.status === "Confirmed"
+                                    ? "green"
+                                    : booking.status === "Pending"
+                                        ? "orange"
+                                        : "red",
+                        }}
+                    >
+                      {booking.status}
+                    </span>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
