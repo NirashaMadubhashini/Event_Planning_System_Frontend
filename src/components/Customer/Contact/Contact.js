@@ -1,4 +1,3 @@
-// Contact.js
 import React, { useEffect, useState } from "react";
 import {
     AppBar,
@@ -10,13 +9,17 @@ import {
     MenuItem,
     Container,
     TextField,
+    Grid,
 } from "@material-ui/core";
 import useStyles from "./style";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-
+import { LocationOn, Phone, Email } from "@mui/icons-material";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
 const Contact = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
@@ -33,9 +36,7 @@ const Contact = () => {
     const [clickedCategory, setClickedCategory] = useState("");
 
     const handleCategoryClick = (category) => {
-        setClickedCategory((prevCategory) =>
-            prevCategory === category ? "" : category
-        );
+        setClickedCategory((prevCategory) => (prevCategory === category ? "" : category));
     };
 
     useEffect(() => {
@@ -55,11 +56,7 @@ const Contact = () => {
 
     return (
         <Container maxWidth="xl" className={classes.container}>
-            <AppBar
-                className={classes.appBar}
-                position={appBarPosition}
-                color="primary"
-            >
+            <AppBar className={classes.appBar} position={appBarPosition} color="primary">
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
@@ -183,65 +180,134 @@ const Contact = () => {
                         Contact Us
                     </Typography>
                     <form>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            label="Your Name"
-                            variant="outlined"
-                            required
-                        />
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            label="Your Email"
-                            variant="outlined"
-                            required
-                        />
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            label="Your Phone"
-                            variant="outlined"
-                            required
-                        />
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            label="Subject"
-                            variant="outlined"
-                            required
-                        />
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            label="Your Message"
-                            variant="outlined"
-                            multiline
-                            rows={4}
-                        />
-                        <Button variant="contained" color="primary">
-                            Submit
-                        </Button>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    fullWidth
+                                    margin="normal"
+                                    label="Your Name"
+                                    variant="outlined"
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    fullWidth
+                                    margin="normal"
+                                    label="Your Email"
+                                    variant="outlined"
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    fullWidth
+                                    margin="normal"
+                                    label="Your Phone"
+                                    variant="outlined"
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    fullWidth
+                                    margin="normal"
+                                    label="Subject"
+                                    variant="outlined"
+                                    required
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    fullWidth
+                                    margin="normal"
+                                    label="Your Message"
+                                    variant="outlined"
+                                    multiline
+                                    rows={4}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Button variant="contained" color="primary">
+                                    Submit
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </form>
-                    <div className={classes.contactInfo}>
-                        <Typography variant="body1" gutterBottom>
-                            Postal Address: 123 Street, City, Country
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                            Phone: +1234567890
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                            Email: info@eventpro.com
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                            Open Hours: Monday to Friday, 9:00 AM - 5:00 PM
-                        </Typography>
-                    </div>
-                    <div className={classes.mapContainer}>
-                        {/* Add your map component here */}
-                    </div>
+                </div>
+                <div className={classes.companySection}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Typography variant="h6" gutterBottom>
+                                Company
+                            </Typography>
+                            <Typography variant="body2">Address:</Typography>
+                            <Typography variant="body2">
+                                123 Main Street, City, State, Country
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Typography variant="h6" gutterBottom>
+                                Phone & Email
+                            </Typography>
+                            <Typography variant="body2">
+                                Phone: +1 234 567 8901
+                            </Typography>
+                            <Typography variant="body2">
+                                Email: info@example.com
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Typography variant="h6" gutterBottom>
+                                Open Hours
+                            </Typography>
+                            <Typography variant="body2">Monday-Friday: 9am-6pm</Typography>
+                            <Typography variant="body2">Saturday: 10am-4pm</Typography>
+                            <Typography variant="body2">Sunday: Closed</Typography>
+                        </Grid>
+                    </Grid>
+                </div>
+                <div className={classes.mapSection}>
+                    <Typography variant="h6" gutterBottom>
+                        Location
+                    </Typography>
+                    {/* Add your map component or embed the map code here */}
                 </div>
             </Container>
+            <footer className={classes.footer}>
+                <div className={classes.footerIcons}>
+                    <IconButton
+                        color="inherit"
+                        component="a"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <FacebookIcon />
+                    </IconButton>
+                    <IconButton
+                        color="inherit"
+                        component="a"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <TwitterIcon />
+                    </IconButton>
+                    <IconButton
+                        color="inherit"
+                        component="a"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <InstagramIcon />
+                    </IconButton>
+                </div>
+                <Typography variant="body2" align="center" color="inherit">
+                    © {new Date().getFullYear()} Event-Pro. All rights reserved.
+                </Typography>
+            </footer>
         </Container>
     );
 };

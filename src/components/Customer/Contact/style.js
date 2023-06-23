@@ -1,4 +1,3 @@
-// style.js
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
@@ -66,31 +65,22 @@ export default makeStyles((theme) => ({
     button: {
         position: "relative",
     },
-    contactInfo: {
+    companySection: {
         marginTop: theme.spacing(5),
         marginBottom: theme.spacing(5),
-        textAlign: "center",
     },
-    mapContainer: {
-        height: "400px",
-        width: "100%",
+    mapSection: {
         marginBottom: theme.spacing(5),
     },
-    [theme.breakpoints.down("xs")]: {
-        appBar: {
-            padding: "0px",
-        },
-        appBarLeft: {
-            flex: "1",
-        },
-        appBarRight: {
-            display: "none",
-        },
-        appBarTitle: {
-            display: "none",
-        },
-        menuTitle: {
-            fontSize: "1.5rem",
-        },
+    footer: {
+        backgroundColor: "#3F51B5",
+        padding: theme.spacing(2),
+        color: "#fff",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+    },
+    footerIcons: {
+        marginBottom: theme.spacing(2),
     },
 }));
