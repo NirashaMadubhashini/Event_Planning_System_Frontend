@@ -1,42 +1,24 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
     menuTitle: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
         textDecoration: "none",
         color: "inherit",
     },
-    card: {
-        cursor: "pointer",
-        height: "80%",
-        backgroundColor: "#ffffff",
-        borderColor: "black",
-        transition: "background-color 0.2s ease, box-shadow 0.10s ease, transform 0.2s",
-        "&:hover": {
-            backgroundColor: "#3F51B5",
-            boxShadow: `5px 4px 20px -4px #212B36, -5px -4px 20px -4px #212B36`,
-            transform: "scale(1.03)",
-        },
-        textAlign: "left",
-        marginBottom: theme.spacing(2), // Add margin bottom for spacing
-    },
-    cardContent: {
-        minHeight: "50px",
-        backgroundColor: "rgb(63,81,181)",
-        color: "white",
-        transition: "background-color 0.2s ease, color 0.2s ease",
-    },
     container: {
         padding: "1px",
     },
     cardMedia: {
         height: 0,
-        paddingTop: "56.25%", // 16:9 aspect ratio
+        paddingTop: '56.25%', // 16:9 aspect ratio
     },
+
     appBar: {
-        borderRadius: 0,
+        borderRadius:0,
         padding: "0px 20px",
+
         marginBottom: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
             padding: "0px 0px",
@@ -47,6 +29,7 @@ export default makeStyles((theme) => ({
             textDecoration: "underline",
         },
     },
+
     appBarContainer: {
         display: "flex",
         justifyContent: "space-between",
@@ -82,56 +65,81 @@ export default makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     button: {
-        position: "relative",
+        position: 'relative',
+    },
+    title: {
+        flexGrow: 1,
+    },
+    link: {
+        textDecoration: "none",
+        color: "inherit",
     },
     serviceSection: {
         paddingBottom: theme.spacing(2),
         textAlign: "center",
     },
-    serviceSection2: {
-
-        paddingBottom: theme.spacing(3),
-        textAlign: "center",
+    categoryCard: {
+        height: "50%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        backgroundColor:"pink",
     },
-    packageContainer: {
-        marginBottom: theme.spacing(4),
+    categoryButton: {
+        marginBottom: theme.spacing(2),
+        width: "100%",
     },
-    packageCard: {
+    serviceCard: {
         height: "100%",
-        backgroundColor: "#F5F5F5",
-        color: "#333333",
-        cursor: "pointer",
-        transition: "background-color 0.2s ease",
-        // "&:hover": {
-        //     backgroundColor: "#3F51B5",
-        // },
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        //backgroundColor:"red",
+        minHeight: "50px",
+        backgroundColor: "rgb(63,81,181)",
+        color: "white",
+        transition: "background-color 0.2s ease, color 0.2s ease",
     },
-    selectedCard: {
-        // backgroundColor: "#3F51B5",
-        boxShadow: `5px 4px 20px -4px #3F51B5, -5px -4px 20px -4px #3F51B5`,
+    serviceButton: {
+        marginBottom: theme.spacing(2),
+        width: "100%",
     },
     vendorCard: {
-        marginBottom: theme.spacing(3),
-        marginLeft: theme.spacing(2),
-        backgroundColor: "#CCCCCC",
-        color: "#333333",
-        cursor: "pointer",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        backgroundColor:"Yellow",
     },
-    vendorContainer: {
-        // marginTop: theme.spacing(2),
-        marginLeft: theme.spacing(2),
-        marginBottom:theme.spacing(2),
-    },
-    vendorTitle: {
+    vendorInfoCard: {
         marginBottom: theme.spacing(2),
+        backgroundColor:"Purple",
     },
-    packageButton: {
-        marginTop: theme.spacing(2),
+    packageCard: {
+        marginBottom: theme.spacing(2),
+        backgroundColor:"blue",
     },
     addButton: {
         marginTop: theme.spacing(1),
     },
-    // responsive
+    bookingCard: {
+        marginBottom: theme.spacing(2),
+        backgroundColor:"green",
+    },
+    selectedPackageCard: {
+        marginBottom: theme.spacing(1),
+        backgroundColor:"orange",
+    },
+    removeButton: {
+        marginTop: theme.spacing(1),
+    },
+    serviceName: {
+        marginTop: theme.spacing(2),
+    },
+    totalPrice: {
+        marginTop: theme.spacing(2),
+    },
+
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",
@@ -150,3 +158,5 @@ export default makeStyles((theme) => ({
         },
     },
 }));
+
+export default useStyles;

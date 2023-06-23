@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { deepPurple } from "@material-ui/core/colors";
 
-const useStyles = makeStyles((theme) => ({
+export default makeStyles((theme) => ({
     menuTitle: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
@@ -10,15 +11,18 @@ const useStyles = makeStyles((theme) => ({
     container: {
         padding: "1px",
     },
+    serviceSection: {
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(5),
+        textAlign: "center",
+    },
     cardMedia: {
         height: 0,
-        paddingTop: '56.25%', // 16:9 aspect ratio
+        paddingTop: "56.25%", // 16:9 aspect ratio
     },
-
     appBar: {
-        borderRadius:0,
+        borderRadius: 0,
         padding: "0px 20px",
-
         marginBottom: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
             padding: "0px 0px",
@@ -29,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
             textDecoration: "underline",
         },
     },
-
     appBarContainer: {
         display: "flex",
         justifyContent: "space-between",
@@ -65,77 +68,8 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     button: {
-        position: 'relative',
+        position: "relative",
     },
-    title: {
-        flexGrow: 1,
-    },
-    link: {
-        textDecoration: "none",
-        color: "inherit",
-    },
-    serviceSection: {
-        paddingBottom: theme.spacing(2),
-        textAlign: "center",
-    },
-    categoryCard: {
-        height: "50%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        backgroundColor:"pink",
-    },
-    categoryButton: {
-        marginBottom: theme.spacing(2),
-        width: "100%",
-    },
-    serviceCard: {
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        backgroundColor:"red",
-    },
-    serviceButton: {
-        marginBottom: theme.spacing(2),
-        width: "100%",
-    },
-    vendorCard: {
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        backgroundColor:"Yellow",
-    },
-    vendorInfoCard: {
-        marginBottom: theme.spacing(2),
-        backgroundColor:"Purple",
-    },
-    packageCard: {
-        marginBottom: theme.spacing(2),
-        backgroundColor:"blue",
-    },
-    addButton: {
-        marginTop: theme.spacing(1),
-    },
-    bookingCard: {
-        marginBottom: theme.spacing(2),
-        backgroundColor:"green",
-    },
-    selectedPackageCard: {
-        marginBottom: theme.spacing(1),
-        backgroundColor:"orange",
-    },
-    removeButton: {
-        marginTop: theme.spacing(1),
-    },
-    serviceName: {
-        marginTop: theme.spacing(2),
-    },
-    totalPrice: {
-        marginTop: theme.spacing(2),
-    },
-
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",
@@ -154,5 +88,3 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-
-export default useStyles;
