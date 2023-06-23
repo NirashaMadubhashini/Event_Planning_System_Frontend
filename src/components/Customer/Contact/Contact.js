@@ -1,3 +1,4 @@
+// Contact.js
 import React, { useEffect, useState } from "react";
 import {
     AppBar,
@@ -13,8 +14,8 @@ import {
 import useStyles from "./style";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
-import ExitToApp from '@mui/icons-material/ExitToApp';
-import {ArrowDropDown} from "@mui/icons-material";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const Contact = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -32,7 +33,9 @@ const Contact = () => {
     const [clickedCategory, setClickedCategory] = useState("");
 
     const handleCategoryClick = (category) => {
-        setClickedCategory((prevCategory) => (prevCategory === category ? "" : category));
+        setClickedCategory((prevCategory) =>
+            prevCategory === category ? "" : category
+        );
     };
 
     useEffect(() => {
@@ -60,12 +63,7 @@ const Contact = () => {
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton
-                                component={Link}
-                                to="/"
-                                color="inherit"
-                                edge="start"
-                            >
+                            <IconButton component={Link} to="/" color="inherit" edge="start">
                                 <img src={EventPro} alt="icon" height="60px" />
                             </IconButton>
                             <Typography
@@ -158,7 +156,7 @@ const Contact = () => {
                             <Button
                                 className={classes.appBarButton}
                                 onClick={handleClick}
-                                endIcon={<ArrowDropDown />}
+                                endIcon={<ArrowDropDownIcon />}
                             >
                                 Nirasha Madubhashini
                             </Button>
@@ -225,6 +223,23 @@ const Contact = () => {
                             Submit
                         </Button>
                     </form>
+                    <div className={classes.contactInfo}>
+                        <Typography variant="body1" gutterBottom>
+                            Postal Address: 123 Street, City, Country
+                        </Typography>
+                        <Typography variant="body1" gutterBottom>
+                            Phone: +1234567890
+                        </Typography>
+                        <Typography variant="body1" gutterBottom>
+                            Email: info@eventpro.com
+                        </Typography>
+                        <Typography variant="body1" gutterBottom>
+                            Open Hours: Monday to Friday, 9:00 AM - 5:00 PM
+                        </Typography>
+                    </div>
+                    <div className={classes.mapContainer}>
+                        {/* Add your map component here */}
+                    </div>
                 </div>
             </Container>
         </Container>

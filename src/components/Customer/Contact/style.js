@@ -1,3 +1,4 @@
+// style.js
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
@@ -64,6 +65,16 @@ export default makeStyles((theme) => ({
     },
     button: {
         position: "relative",
+    },
+    contactInfo: {
+        marginTop: theme.spacing(5),
+        marginBottom: theme.spacing(5),
+        textAlign: "center",
+    },
+    mapContainer: {
+        height: "400px",
+        width: "100%",
+        marginBottom: theme.spacing(5),
     },
     [theme.breakpoints.down("xs")]: {
         appBar: {
