@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
     AppBar,
     Button,
@@ -8,16 +8,13 @@ import {
     Menu,
     MenuItem,
     Container,
-    InputAdornment,
     TextField,
 } from "@material-ui/core";
 import useStyles from "./style";
-import {
-    Search,
-    ArrowDropDown, ExitToApp,
-} from "@mui/icons-material";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
+import ExitToApp from '@mui/icons-material/ExitToApp';
+import {ArrowDropDown} from "@mui/icons-material";
 
 const Contact = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -32,20 +29,11 @@ const Contact = () => {
     };
 
     const [appBarPosition, setAppBarPosition] = useState("relative");
-    const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
-
-    const handleButtonClick = (id) => {
-        setClickedButtons((prevState) => ({
-            ...prevState,
-            [id]: !prevState[id],
-        }));
-    };
 
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) => (prevCategory === category ? "" : category));
     };
-
 
     useEffect(() => {
         const handleScroll = () => {
@@ -118,7 +106,7 @@ const Contact = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Packages")}
                                 style={{
-                                    color: clickedCategory === "About" ? "#F50057" : "",
+                                    color: clickedCategory === "Packages" ? "#F50057" : "",
                                 }}
                             >
                                 Packages
@@ -188,8 +176,59 @@ const Contact = () => {
                     </div>
                 </Toolbar>
             </AppBar>
+            <Container maxWidth="lg" className={classes.container}>
+                <div className={classes.serviceSection}>
+                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>
+                        GET IN TOUCH
+                    </Typography>
+                    <Typography variant="h4" gutterBottom>
+                        Contact Us
+                    </Typography>
+                    <form>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            label="Your Name"
+                            variant="outlined"
+                            required
+                        />
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            label="Your Email"
+                            variant="outlined"
+                            required
+                        />
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            label="Your Phone"
+                            variant="outlined"
+                            required
+                        />
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            label="Subject"
+                            variant="outlined"
+                            required
+                        />
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            label="Your Message"
+                            variant="outlined"
+                            multiline
+                            rows={4}
+                        />
+                        <Button variant="contained" color="primary">
+                            Submit
+                        </Button>
+                    </form>
+                </div>
+            </Container>
         </Container>
     );
 };
 
-export default Contact
+export default Contact;
