@@ -45,6 +45,8 @@ import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
 import AttractionsIcon from '@mui/icons-material/Attractions';
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
+import Rating from '@mui/material/Rating';
+import StarIcon from '@mui/icons-material/Star';
 
 const Service = () => {
     const handleClick = (event) => {
@@ -61,6 +63,24 @@ const Service = () => {
     const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
     const [clickedService, setClickedService] = useState("");
+    const [value, setValue] = React.useState(2);
+    const [hover, setHover] = React.useState(-1);
+    const labels = {
+        0.5: 'Useless',
+        1: 'Useless+',
+        1.5: 'Poor',
+        2: 'Poor+',
+        2.5: 'Ok',
+        3: 'Ok+',
+        3.5: 'Good',
+        4: 'Good+',
+        4.5: 'Excellent',
+        5: 'Excellent+',
+    };
+
+    function getLabelText(value) {
+        return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -516,6 +536,31 @@ const Service = () => {
                                                                             {/*<Button>*/}
                                                                             {/*    Call*/}
                                                                             {/*</Button>*/}
+                                                                            <Box
+                                                                                sx={{
+                                                                                    width: 200,
+                                                                                    display: 'flex',
+                                                                                    alignItems: 'center',
+                                                                                }}
+                                                                            >
+                                                                                <Rating
+                                                                                    name="hover-feedback"
+                                                                                    value={value}
+                                                                                    precision={0.5}
+                                                                                    getLabelText={getLabelText}
+                                                                                    onChange={(event, newValue) => {
+                                                                                        setValue(newValue);
+                                                                                    }}
+                                                                                    onChangeActive={(event, newHover) => {
+                                                                                        setHover(newHover);
+                                                                                    }}
+                                                                                    emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                                                                                />
+                                                                                {value !== null && (
+                                                                                    <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+                                                                                )}
+                                                                            </Box>
+
                                                                         </CardContent>
                                                                     </Card>
                                                                 ))}
