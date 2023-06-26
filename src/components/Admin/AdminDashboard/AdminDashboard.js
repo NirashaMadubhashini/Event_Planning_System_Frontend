@@ -256,8 +256,9 @@ const AdminDashboard = () => {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <Typography variant="h5" gutterBottom>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <Typography variant="h5">
                         Daily Income
                     </Typography>
                     <BarChart width={500} height={300} data={data}>
@@ -268,7 +269,6 @@ const AdminDashboard = () => {
                         <Legend />
                         <Bar dataKey="income" fill="#8884d8" />
                     </BarChart>
-                    </Grid>
                 </Grid>
             </Container>
         </Container>
