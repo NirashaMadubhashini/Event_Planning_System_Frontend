@@ -279,7 +279,7 @@ const Dashboard = () => {
                                     <TableCell>Service Vendor Name</TableCell>
                                     <TableCell >Event</TableCell>
                                     <TableCell align="right">Rating</TableCell>
-                                    <TableCell align="right">Comment</TableCell>
+                                    <TableCell align="right">Feedback</TableCell>
                                     <TableCell align="right">Update</TableCell>
                                     <TableCell align="right">Delete</TableCell>
                                 </TableRow>
@@ -288,8 +288,8 @@ const Dashboard = () => {
                                 <TableRow>
                                     <TableCell>Nirasha</TableCell>
                                     <TableCell >Wedding</TableCell>
-                                    <TableCell align="right">1 Star</TableCell>
-                                    <TableCell align="right">Best Service</TableCell>
+                                    <TableCell align="right">0.5 Star</TableCell>
+                                    <TableCell align="right">Useless</TableCell>
                                     <TableCell align="right">
                                         <Button variant="contained" color="primary" >
                                             Update
@@ -304,8 +304,8 @@ const Dashboard = () => {
                                 <TableRow>
                                     <TableCell>Chamodi</TableCell>
                                     <TableCell >Party</TableCell>
-                                    <TableCell align="right">2 Star</TableCell>
-                                    <TableCell align="right">Good Service</TableCell>
+                                    <TableCell align="right">1 Star</TableCell>
+                                    <TableCell align="right">Useless+</TableCell>
                                     <TableCell align="right">
                                         <Button variant="contained" color="primary">
                                             Update
@@ -320,8 +320,8 @@ const Dashboard = () => {
                                 <TableRow>
                                     <TableCell>Milasha</TableCell>
                                     <TableCell >Birthday</TableCell>
-                                    <TableCell align="right">3 Star</TableCell>
-                                    <TableCell align="right">Best Service</TableCell>
+                                    <TableCell align="right">1.5 Star</TableCell>
+                                    <TableCell align="right">Poor</TableCell>
                                     <TableCell align="right">
                                         <Button variant="contained" color="primary">
                                             Update
@@ -336,8 +336,8 @@ const Dashboard = () => {
                                 <TableRow>
                                     <TableCell>Hansi</TableCell>
                                     <TableCell >Farewell</TableCell>
-                                    <TableCell align="right">4 Star</TableCell>
-                                    <TableCell align="right">Best Service</TableCell>
+                                    <TableCell align="right">2 Star</TableCell>
+                                    <TableCell align="right">Poor+</TableCell>
                                     <TableCell align="right">
                                         <Button variant="contained" color="primary">
                                             Update
@@ -352,8 +352,8 @@ const Dashboard = () => {
                                 <TableRow>
                                     <TableCell>Anupama</TableCell>
                                     <TableCell >Musical Show</TableCell>
-                                    <TableCell align="right">5 Star</TableCell>
-                                    <TableCell align="right">Excellent Service</TableCell>
+                                    <TableCell align="right">2.5 Star</TableCell>
+                                    <TableCell align="right">Ok</TableCell>
                                     <TableCell align="right">
                                         <Button variant="contained" color="primary">
                                             Update
