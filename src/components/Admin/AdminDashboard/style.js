@@ -104,6 +104,15 @@ export default makeStyles((theme) => ({
     barChart:{
         paddingTop: theme.spacing(4),
     },
+    yearlyGrid:{
+        marginLeft: theme.spacing(18),
+    },
+    monthlyGrid:{
+        marginLeft: theme.spacing(16),
+    },
+    dailyGrid:{
+        //marginLeft: theme.spacing(3),
+    },
 
 
     [theme.breakpoints.down("xs")]: {

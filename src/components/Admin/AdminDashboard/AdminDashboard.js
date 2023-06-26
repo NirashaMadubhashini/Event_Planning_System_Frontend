@@ -258,11 +258,12 @@ const AdminDashboard = () => {
                         </Card>
                     </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Grid container spacing={5}>
+                <Grid item xs={12} sm={6} md={4} lg={3} className={classes.dailyGrid}>
                     <Typography variant="h5" className={classes.barChartTopic}>
                         Daily Income
                     </Typography>
-                    <BarChart width={500} height={300} data={data} className={classes.barChart}>
+                    <BarChart width={350} height={300} data={data} className={classes.barChart}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="day" />
                         <YAxis />
@@ -271,11 +272,11 @@ const AdminDashboard = () => {
                         <Bar dataKey="income" fill="#8884d8" />
                     </BarChart>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Grid item xs={12} sm={6} md={4} lg={3} className={classes.monthlyGrid}>
                     <Typography variant="h5" className={classes.barChartTopic}>
                         Monthly Income
                     </Typography>
-                    <BarChart width={500} height={300} data={data} className={classes.barChart}>
+                    <BarChart width={350} height={300} data={data} className={classes.barChart}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="day" />
                         <YAxis />
@@ -284,11 +285,11 @@ const AdminDashboard = () => {
                         <Bar dataKey="monthlyIncome" fill="#8884d8" />
                     </BarChart>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Grid item xs={12} sm={6} md={4} lg={3} className={classes.yearlyGrid}>
                     <Typography variant="h5" className={classes.barChartTopic}>
-                        Yearly Income
+                        Annual Income
                     </Typography>
-                    <BarChart width={500} height={300} data={data} className={classes.barChart}>
+                    <BarChart width={350} height={300} data={data} className={classes.barChart}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="day" />
                         <YAxis />
@@ -297,6 +298,9 @@ const AdminDashboard = () => {
                         <Bar dataKey="yearlyIncome" fill="#8884d8" />
                     </BarChart>
                 </Grid>
+                </Grid>
+
+
             </Container>
         </Container>
     );
