@@ -257,7 +257,7 @@ const AdminDashboard = () => {
                         </Card>
                     </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Grid maxWidth="lg" item xs={12} sm={6} md={4} lg={3}>
                     <Typography variant="h5">
                         Daily Income
                     </Typography>
