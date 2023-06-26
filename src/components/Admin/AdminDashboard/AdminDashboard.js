@@ -18,6 +18,7 @@ import useStyles from "./style";
 import { Search, ArrowDropDown, ExitToApp } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
 // This is the home menu
 const AdminDashboard = () => {
@@ -56,6 +57,16 @@ const AdminDashboard = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    const data = [
+        { day: "Mon", income: 500 },
+        { day: "Tue", income: 700 },
+        { day: "Wed", income: 900 },
+        { day: "Thu", income: 1200 },
+        { day: "Fri", income: 800 },
+        { day: "Sat", income: 1000 },
+        { day: "Sun", income: 600 },
+    ];
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -244,6 +255,19 @@ const AdminDashboard = () => {
                                 </Typography >
                             </CardContent>
                         </Card>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <Typography variant="h5" gutterBottom>
+                        Daily Income
+                    </Typography>
+                    <BarChart width={500} height={300} data={data}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="day" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="income" fill="#8884d8" />
+                    </BarChart>
                     </Grid>
                 </Grid>
             </Container>
