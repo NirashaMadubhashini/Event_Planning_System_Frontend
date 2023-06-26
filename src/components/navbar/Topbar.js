@@ -15,12 +15,14 @@ import {
     TextField,
 } from "@material-ui/core";
 import useStyles from "./style";
-import { Search, ArrowDropDown, ExitToApp } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import {Search, ArrowDropDown, ExitToApp} from "@mui/icons-material";
+import {Link} from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 
-// This is the home menu
+
+//this is the home menu
 const AdminDashboard = () => {
+
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
 
@@ -57,7 +59,10 @@ const AdminDashboard = () => {
         };
     }, []);
 
+
+
     return (
+
         <Container maxWidth="xl" className={classes.container}>
             <AppBar
                 className={classes.appBar}
@@ -89,12 +94,12 @@ const AdminDashboard = () => {
                                 component={Link}
                                 to="/adminDashboard"
                                 className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Dashboard")}
+                                onClick={() => handleCategoryClick("Home")}
                                 style={{
-                                    color: clickedCategory === "Dashboard" ? "#F50057" : "",
+                                    color: clickedCategory === "Home" ? "#F50057" : "",
                                 }}
                             >
-                                Dashboard
+                                Home
                             </Typography>
                             <Typography
                                 component={Link}
@@ -113,7 +118,7 @@ const AdminDashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Packages")}
                                 style={{
-                                    color: clickedCategory === "Packages" ? "#F50057" : "",
+                                    color: clickedCategory === "About" ? "#F50057" : "",
                                 }}
                             >
                                 Packages
@@ -184,71 +189,15 @@ const AdminDashboard = () => {
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Card className={classes.card}>
-                            <CardContent className={classes.cardContent}>
-                                <Typography variant="h6">
-                                    Total Bookings
-                                </Typography>
-                                <Typography variant="h3">
-                                    25
-                                </Typography >
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Card className={classes.card}>
-                            <CardContent className={classes.cardContent}>
-                                <Typography variant="h6">
-                                    Total Registered Customers
-                                </Typography>
-                                <Typography variant="h3">
-                                    30
-                                </Typography >
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Card className={classes.card}>
-                            <CardContent className={classes.cardContent}>
-                                <Typography variant="h6">
-                                    Total Registered Vendors
-                                </Typography>
-                                <Typography variant="h3">
-                                    40
-                                </Typography >
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Card className={classes.card}>
-                            <CardContent className={classes.cardContent}>
-                                <Typography variant="h6">
-                                    Total Registered Events
-                                </Typography>
-                                <Typography variant="h3">
-                                    25
-                                </Typography >
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Card className={classes.card}>
-                            <CardContent className={classes.cardContent}>
-                                <Typography variant="h6">
-                                    Total Registered Services
-                                </Typography >
-                                <Typography variant="h3">
-                                    10
-                                </Typography >
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
+                <div className={classes.adminDashboardSection}>
+                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>CHOOSE YOUR</Typography>
+                    <Typography variant="h4" gutterBottom>Events Packages</Typography>
+                </div>
+
             </Container>
+
         </Container>
     );
-};
+}
 
-export default AdminDashboard;
+export default AdminDashboard
