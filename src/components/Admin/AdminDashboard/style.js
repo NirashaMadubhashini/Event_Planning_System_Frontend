@@ -96,6 +96,16 @@ export default makeStyles((theme) => ({
         paddingBottom: theme.spacing(3),
         textAlign: "center",
     },
+    barChartTopic:{
+        paddingTop: theme.spacing(5),
+        fontWeight:"bold",
+
+    },
+    barChart:{
+        paddingTop: theme.spacing(4),
+    },
+
+
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",
