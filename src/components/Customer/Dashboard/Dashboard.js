@@ -280,7 +280,7 @@ const Dashboard = () => {
                                     <TableCell >Event</TableCell>
                                     <TableCell align="right">Rating</TableCell>
                                     <TableCell align="right">Feedback</TableCell>
-                                    <TableCell align="right">Update</TableCell>
+                                    {/*<TableCell align="right">Update</TableCell>*/}
                                     <TableCell align="right">Delete</TableCell>
                                 </TableRow>
                             </TableHead>
@@ -290,11 +290,11 @@ const Dashboard = () => {
                                     <TableCell >Wedding</TableCell>
                                     <TableCell align="right">0.5 Star</TableCell>
                                     <TableCell align="right">Useless</TableCell>
-                                    <TableCell align="right">
-                                        <Button variant="contained" color="primary" >
-                                            Update
-                                        </Button>
-                                    </TableCell>
+                                    {/*<TableCell align="right">*/}
+                                    {/*    <Button variant="contained" color="primary" >*/}
+                                    {/*        Update*/}
+                                    {/*    </Button>*/}
+                                    {/*</TableCell>*/}
                                     <TableCell align="right">
                                         <Button variant="contained" color="secondary">
                                             Delete
@@ -306,11 +306,11 @@ const Dashboard = () => {
                                     <TableCell >Party</TableCell>
                                     <TableCell align="right">1 Star</TableCell>
                                     <TableCell align="right">Useless+</TableCell>
-                                    <TableCell align="right">
-                                        <Button variant="contained" color="primary">
-                                            Update
-                                        </Button>
-                                    </TableCell>
+                                    {/*<TableCell align="right">*/}
+                                    {/*    <Button variant="contained" color="primary">*/}
+                                    {/*        Update*/}
+                                    {/*    </Button>*/}
+                                    {/*</TableCell>*/}
                                     <TableCell align="right">
                                         <Button variant="contained" color="secondary">
                                             Delete
@@ -322,11 +322,11 @@ const Dashboard = () => {
                                     <TableCell >Birthday</TableCell>
                                     <TableCell align="right">1.5 Star</TableCell>
                                     <TableCell align="right">Poor</TableCell>
-                                    <TableCell align="right">
-                                        <Button variant="contained" color="primary">
-                                            Update
-                                        </Button>
-                                    </TableCell>
+                                    {/*<TableCell align="right">*/}
+                                    {/*    <Button variant="contained" color="primary">*/}
+                                    {/*        Update*/}
+                                    {/*    </Button>*/}
+                                    {/*</TableCell>*/}
                                     <TableCell align="right">
                                         <Button variant="contained" color="secondary">
                                             Delete
@@ -338,11 +338,11 @@ const Dashboard = () => {
                                     <TableCell >Farewell</TableCell>
                                     <TableCell align="right">2 Star</TableCell>
                                     <TableCell align="right">Poor+</TableCell>
-                                    <TableCell align="right">
-                                        <Button variant="contained" color="primary">
-                                            Update
-                                        </Button>
-                                    </TableCell>
+                                    {/*<TableCell align="right">*/}
+                                    {/*    <Button variant="contained" color="primary">*/}
+                                    {/*        Update*/}
+                                    {/*    </Button>*/}
+                                    {/*</TableCell>*/}
                                     <TableCell align="right">
                                         <Button variant="contained" color="secondary">
                                             Delete
@@ -354,11 +354,11 @@ const Dashboard = () => {
                                     <TableCell >Musical Show</TableCell>
                                     <TableCell align="right">2.5 Star</TableCell>
                                     <TableCell align="right">Ok</TableCell>
-                                    <TableCell align="right">
-                                        <Button variant="contained" color="primary">
-                                            Update
-                                        </Button>
-                                    </TableCell>
+                                    {/*<TableCell align="right">*/}
+                                    {/*    <Button variant="contained" color="primary">*/}
+                                    {/*        Update*/}
+                                    {/*    </Button>*/}
+                                    {/*</TableCell>*/}
                                     <TableCell align="right">
                                         <Button variant="contained" color="secondary">
                                             Delete
