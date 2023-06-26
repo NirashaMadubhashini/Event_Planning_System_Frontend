@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import EventPro from "../../assets/images/BlackLogo.png";
 import useStyles from './style';
+import AdminDashboard from "../Admin/AdminDashboard/AdminDashboard";
 
 //Nav bar
 const Navbar = () => {
@@ -44,7 +45,8 @@ const Navbar = () => {
                         <Button variant="contained" className={classes.logout} color="primary" onClick={logout}>Logout</Button>
                     </div>
                 ) : (
-                    <Button component={Link} to="/dashboard" variant="contained" color="primary">Sign In</Button>
+                  //  <Button component={Link} to="/dashboard" variant="contained" color="primary">Sign In</Button>
+                    <Button component={Link} to="/adminDashboard" variant="contained" color="primary">Sign In</Button>
                 )}
             </Toolbar>
         </AppBar>
