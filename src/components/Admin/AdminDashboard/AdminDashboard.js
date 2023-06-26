@@ -59,13 +59,13 @@ const AdminDashboard = () => {
     }, []);
 
     const data = [
-        { day: "Mon", income: 500, monthlyIncome: 1500, yearlyIncome: 10000 },
-        { day: "Tue", income: 700, monthlyIncome: 1200, yearlyIncome: 8000 },
-        { day: "Wed", income: 900, monthlyIncome: 1400, yearlyIncome: 9000 },
-        { day: "Thu", income: 1200, monthlyIncome: 1800, yearlyIncome: 11000 },
-        { day: "Fri", income: 800, monthlyIncome: 1600, yearlyIncome: 12000 },
-        { day: "Sat", income: 1000, monthlyIncome: 1300, yearlyIncome: 13000 },
-        { day: "Sun", income: 600, monthlyIncome: 1900, yearlyIncome: 14000 },
+        { day: "Mon", income: 500, monthlyIncome: 1500, annualIncome: 10000 },
+        { day: "Tue", income: 700, monthlyIncome: 1200, annualIncome: 8000 },
+        { day: "Wed", income: 900, monthlyIncome: 1400, annualIncome: 9000 },
+        { day: "Thu", income: 1200, monthlyIncome: 1800, annualIncome: 11000 },
+        { day: "Fri", income: 800, monthlyIncome: 1600, annualIncome: 12000 },
+        { day: "Sat", income: 1000, monthlyIncome: 1300, annualIncome: 13000 },
+        { day: "Sun", income: 600, monthlyIncome: 1900, annualIncome: 14000 },
     ];
 
 
@@ -295,7 +295,7 @@ const AdminDashboard = () => {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="yearlyIncome" fill="#8884d8" />
+                        <Bar dataKey="annualIncome" fill="#8884d8" />
                     </BarChart>
                 </Grid>
                 </Grid>
