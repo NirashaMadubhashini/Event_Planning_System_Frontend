@@ -109,26 +109,26 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
-        backgroundColor:"Yellow",
+       // backgroundColor:"Yellow",
     },
     vendorInfoCard: {
         marginBottom: theme.spacing(2),
-        backgroundColor:"Purple",
+      //  backgroundColor:"Purple",
     },
     packageCard: {
         marginBottom: theme.spacing(2),
-        backgroundColor:"blue",
+      // backgroundColor:"blue",
     },
     addButton: {
         marginTop: theme.spacing(1),
     },
     bookingCard: {
         marginBottom: theme.spacing(2),
-        backgroundColor:"green",
+       // backgroundColor:"green",
     },
     selectedPackageCard: {
         marginBottom: theme.spacing(1),
-        backgroundColor:"orange",
+       // backgroundColor:"orange",
     },
     removeButton: {
         marginTop: theme.spacing(1),
