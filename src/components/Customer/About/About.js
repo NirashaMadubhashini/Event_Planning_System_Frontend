@@ -206,15 +206,6 @@ const About = () => {
                                             "Can I afford one?". We will give a very special
                                             celebration for you
                                         </Typography>
-                                        <Button
-                                            component={Link}
-                                            to="/eventRequest"
-                                            variant="contained"
-                                            color="secondary"
-                                            className={classes.contentButton}
-                                        >
-                                            Book AN EVENT
-                                        </Button>
                                     </CardContent>
                                 </Card>
                             </Grid>

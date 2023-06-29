@@ -220,7 +220,7 @@ const Home = () => {
                                         color="primary"
                                         size="large"
                                         component={Link}
-                                        to="/book-event"
+                                        to="/eventRequest"
                                     >
                                         Book An Event
                                     </Button>
@@ -248,7 +248,7 @@ const Home = () => {
                                         color="primary"
                                         size="large"
                                         component={Link}
-                                        to="/book-event"
+                                        to="/eventRequest"
                                     >
                                         Book An Event
                                     </Button>
@@ -276,7 +276,7 @@ const Home = () => {
                                         color="primary"
                                         size="large"
                                         component={Link}
-                                        to="/book-event"
+                                        to="/eventRequest"
                                     >
                                         Book An Event
                                     </Button>
@@ -304,7 +304,7 @@ const Home = () => {
                                         color="primary"
                                         size="large"
                                         component={Link}
-                                        to="/book-event"
+                                        to="/eventRequest"
                                     >
                                         Book An Event
                                     </Button>
