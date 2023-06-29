@@ -229,7 +229,7 @@ const Home = () => {
                                         color="primary"
                                         size="large"
                                         component={Link}
-                                        to="/event-packages"
+                                        to="/packages"
                                     >
                                         Event Packages
                                     </Button>
@@ -257,7 +257,7 @@ const Home = () => {
                                         color="primary"
                                         size="large"
                                         component={Link}
-                                        to="/event-packages"
+                                        to="/packages"
                                     >
                                         Event Packages
                                     </Button>
@@ -285,7 +285,7 @@ const Home = () => {
                                         color="primary"
                                         size="large"
                                         component={Link}
-                                        to="/event-packages"
+                                        to="/packages"
                                     >
                                         Event Packages
                                     </Button>
@@ -313,7 +313,7 @@ const Home = () => {
                                         color="primary"
                                         size="large"
                                         component={Link}
-                                        to="/event-packages"
+                                        to="/packages"
                                     >
                                         Event Packages
                                     </Button>
