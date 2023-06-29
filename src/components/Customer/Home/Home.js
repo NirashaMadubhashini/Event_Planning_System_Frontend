@@ -204,7 +204,7 @@ const Home = () => {
                         <Carousel
                             showThumbs={false}
                             autoPlay
-                            interval={2000}
+                            interval={4000}
                             infiniteLoop
                         >
                             <div>
