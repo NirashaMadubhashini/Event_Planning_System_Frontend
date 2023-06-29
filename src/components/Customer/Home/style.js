@@ -9,7 +9,7 @@ export default makeStyles((theme) => ({
         color: "inherit",
     },
     card: {
-        height: "30%",
+        height: "100%",
         display: "flex",
         flexDirection: "column",
     },
@@ -62,6 +62,7 @@ export default makeStyles((theme) => ({
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "center",
     },
     appBarButton: {
         marginRight: theme.spacing(3),
@@ -90,32 +91,30 @@ export default makeStyles((theme) => ({
     },
     button: {
         position: "relative",
+        top: "-15px",
+        marginLeft: "10px",
     },
-    adminDashboardSection: {
-        paddingTop: theme.spacing(2),
-        paddingBottom: theme.spacing(3),
-        textAlign: "center",
-    },
-    [theme.breakpoints.down("xs")]: {
-        adminDashboardSection: {
-            paddingTop: theme.spacing(2),
-            paddingBottom: theme.spacing(1),
-            textAlign: "center",
-        },
-    },
-    bigAvatar: {
-        margin: "auto",
-        width: 60,
-        height: 60,
-        color: "#fff",
-        backgroundColor: deepPurple[500],
-    },
-    iconContainer: {
-        display: "flex",
-        justifyContent: "space-around",
-        paddingTop: theme.spacing(1),
+    logoutButton: {
+        marginLeft: "10px",
+        marginRight: "10px",
     },
     menuList: {
-        padding: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
+    },
+    profileIcon: {
+        marginRight: theme.spacing(1),
+        color: deepPurple[500],
+    },
+    legend: {
+        position: "absolute",
+        top: "50px",
+        left: "50%",
+        transform: "translateX(-50%)",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "10px",
     },
 }));

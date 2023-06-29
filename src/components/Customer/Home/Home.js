@@ -70,7 +70,12 @@ const Home = () => {
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton component={Link} to="/" color="inherit" edge="start">
+                            <IconButton
+                                component={Link}
+                                to="/"
+                                color="inherit"
+                                edge="start"
+                            >
                                 <img src={EventPro} alt="icon" height="60px" />
                             </IconButton>
                             <Typography
@@ -196,16 +201,16 @@ const Home = () => {
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Paper className={classes.card}>
-                        <Carousel>
+                        <Carousel showThumbs={false}>
                             <div>
                                 <img
                                     src="https://i.ytimg.com/vi/9Gjs83Wz19M/maxresdefault.jpg"
                                     alt="Image 1"
                                 />
-                                <div className="legend">
+                                <div className={classes.legend}>
                                     <Button
                                         variant="contained"
-                                        color="primary"
+                                        color="#98B0E0"
                                         size="large"
                                         component={Link}
                                         to="/book-event"
@@ -228,10 +233,10 @@ const Home = () => {
                                     src="https://nobleevents.ae/wp-content/uploads/2020/11/New-Project-37.jpg"
                                     alt="Image 2"
                                 />
-                                <div className="legend">
+                                <div className={classes.legend}>
                                     <Button
                                         variant="contained"
-                                        color="primary"
+                                        color="#98B0E0"
                                         size="large"
                                         component={Link}
                                         to="/book-event"
@@ -254,10 +259,10 @@ const Home = () => {
                                     src="https://about-events.com/wp-content/uploads/2020/08/slider-events.jpg"
                                     alt="Image 3"
                                 />
-                                <div className="legend">
+                                <div className={classes.legend}>
                                     <Button
                                         variant="contained"
-                                        color="primary"
+                                        color="#98B0E0"
                                         size="large"
                                         component={Link}
                                         to="/book-event"
@@ -280,10 +285,10 @@ const Home = () => {
                                     src="https://www.inventiva.co.in/wp-content/uploads/2023/05/eventshub_evergreen_opengraph_1200x630_2x.jpg"
                                     alt="Image 4"
                                 />
-                                <div className="legend">
+                                <div className={classes.legend}>
                                     <Button
                                         variant="contained"
-                                        color="primary"
+                                        color="#98B0E0"
                                         size="large"
                                         component={Link}
                                         to="/book-event"
