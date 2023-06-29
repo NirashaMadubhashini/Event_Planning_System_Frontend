@@ -110,4 +110,23 @@ export default makeStyles((theme) => ({
         justifyContent: "center",
         gap:"10px",
     },
+
+// Add additional styles for smaller screens
+    [theme.breakpoints.down("xs")]: {
+        appBar: {
+            padding: "0px",
+        },
+        appBarLeft: {
+            flex: "1",
+        },
+        appBarRight: {
+            display: "none",
+        },
+        appBarTitle: {
+            display: "none",
+        },
+        menuTitle: {
+            fontSize: "1.5rem",
+        },
+    },
 }));
