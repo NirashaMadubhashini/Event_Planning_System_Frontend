@@ -22,7 +22,7 @@ export default makeStyles((theme) => ({
         minHeight: "100px",
         backgroundColor: theme.palette.primary.main,
         color: "#ffffff",
-        transition: "background-color 0.2s ease, box-shadow 0.10s ease",
+        transition: "background-color 0.1s ease, box-shadow 0.10s ease",
         "&:hover": {
             backgroundColor: "#ffffff",
             color: "#0000ff",
@@ -84,37 +84,30 @@ export default makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     titleSection: {
-        flex: "1 0 10%",
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
     },
-    headerName: {
+    title: {
         fontWeight: "bold",
     },
-    button: {
-        position: "relative",
-        top: "-15px",
-        marginLeft: "10px",
+    subtitle: {
+        color: theme.palette.text.secondary,
     },
-    logoutButton: {
-        marginLeft: "10px",
-        marginRight: "10px",
-    },
-    menuList: {
-        paddingTop: 0,
-        paddingBottom: 0,
-    },
-    profileIcon: {
-        marginRight: theme.spacing(1),
-        color: deepPurple[500],
+    icon: {
+        marginRight: theme.spacing(0.5),
+        width: 20,
+        height: 20,
     },
     legend: {
         position: "absolute",
-        top: "50px",
-        left: "50%",
-        transform: "translateX(-50%)",
+        top: 0,
+        left: 0,
+        right: 0,
+        background: "rgba(0, 0, 0, 0.5)",
+        color: "#fff",
+        padding: "10px",
         display: "flex",
-        flexDirection: "row",
         justifyContent: "center",
-        alignItems: "center",
-        gap: "10px",
+        gap:"10px",
     },
 }));

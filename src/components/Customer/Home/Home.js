@@ -201,16 +201,23 @@ const Home = () => {
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Paper className={classes.card}>
-                        <Carousel showThumbs={false}>
+                        <Carousel
+                            showThumbs={false}
+                            autoPlay
+                            interval={2000}
+                            infiniteLoop
+                        >
                             <div>
                                 <img
-                                    src="https://i.ytimg.com/vi/9Gjs83Wz19M/maxresdefault.jpg"
+                                    src="https://media.architecturaldigest.com/photos/5be465317c86c80e83b4b6d3/16:9/w_2560%2Cc_limit/Rafanelli%2520Events_Weddings_Aspen_11.jpg"
                                     alt="Image 1"
+                                    height="100%"
+                                    width="100%"
                                 />
                                 <div className={classes.legend}>
                                     <Button
                                         variant="contained"
-                                        color="#98B0E0"
+                                        color="primary"
                                         size="large"
                                         component={Link}
                                         to="/book-event"
@@ -230,13 +237,15 @@ const Home = () => {
                             </div>
                             <div>
                                 <img
-                                    src="https://nobleevents.ae/wp-content/uploads/2020/11/New-Project-37.jpg"
+                                    src="https://smallbizclub.com/wp-content/uploads/2016/03/6-Tips-to-Make-Your-Company-Party-the-Event-of-the-Year.jpg"
                                     alt="Image 2"
+                                    height="100%"
+                                    width="100%"
                                 />
                                 <div className={classes.legend}>
                                     <Button
                                         variant="contained"
-                                        color="#98B0E0"
+                                        color="primary"
                                         size="large"
                                         component={Link}
                                         to="/book-event"
@@ -258,11 +267,13 @@ const Home = () => {
                                 <img
                                     src="https://about-events.com/wp-content/uploads/2020/08/slider-events.jpg"
                                     alt="Image 3"
+                                    height="100%"
+                                    width="100%"
                                 />
                                 <div className={classes.legend}>
                                     <Button
                                         variant="contained"
-                                        color="#98B0E0"
+                                        color="primary"
                                         size="large"
                                         component={Link}
                                         to="/book-event"
@@ -282,13 +293,15 @@ const Home = () => {
                             </div>
                             <div>
                                 <img
-                                    src="https://www.inventiva.co.in/wp-content/uploads/2023/05/eventshub_evergreen_opengraph_1200x630_2x.jpg"
+                                    src="https://www.grapevinebirmingham.com/wp-content/uploads/2020/01/birthday-party.jpg"
                                     alt="Image 4"
+                                    height="100%"
+                                    width="100%"
                                 />
                                 <div className={classes.legend}>
                                     <Button
                                         variant="contained"
-                                        color="#98B0E0"
+                                        color="primary"
                                         size="large"
                                         component={Link}
                                         to="/book-event"
