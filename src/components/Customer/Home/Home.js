@@ -204,12 +204,12 @@ const Home = () => {
                         <Carousel
                             showThumbs={false}
                             autoPlay
-                            interval={4000}
+                            interval={3500}
                             infiniteLoop
                         >
                             <div>
                                 <img
-                                    src="https://media.architecturaldigest.com/photos/5be465317c86c80e83b4b6d3/16:9/w_2560%2Cc_limit/Rafanelli%2520Events_Weddings_Aspen_11.jpg"
+                                    src="https://www.grapevinebirmingham.com/wp-content/uploads/2020/01/birthday-party.jpg"
                                     alt="Image 1"
                                     height="100%"
                                     width="100%"
@@ -293,7 +293,7 @@ const Home = () => {
                             </div>
                             <div>
                                 <img
-                                    src="https://www.grapevinebirmingham.com/wp-content/uploads/2020/01/birthday-party.jpg"
+                                    src="https://media.architecturaldigest.com/photos/5be465317c86c80e83b4b6d3/16:9/w_2560%2Cc_limit/Rafanelli%2520Events_Weddings_Aspen_11.jpg"
                                     alt="Image 4"
                                     height="100%"
                                     width="100%"
