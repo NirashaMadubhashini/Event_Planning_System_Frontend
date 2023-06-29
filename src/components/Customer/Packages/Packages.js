@@ -258,7 +258,7 @@ const [packages,setPackages] = useState([
                         <div className={classes.appBarRight}>
                             <Typography
                                 component={Link}
-                                to="/dashboard"
+                                to="/home"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Home")}
                                 style={{
@@ -266,6 +266,17 @@ const [packages,setPackages] = useState([
                                 }}
                             >
                                 Home
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/dashboard"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Dashboard")}
+                                style={{
+                                    color: clickedCategory === "Dashboard" ? "#F50057" : "",
+                                }}
+                            >
+                                Dashboard
                             </Typography>
                             <Typography
                                 component={Link}
@@ -277,17 +288,6 @@ const [packages,setPackages] = useState([
                                 }}
                             >
                                 About
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/packages"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Packages")}
-                                style={{
-                                    color: clickedCategory === "About" ? "#F50057" : "",
-                                }}
-                            >
-                                Packages
                             </Typography>
                             <Typography
                                 component={Link}
