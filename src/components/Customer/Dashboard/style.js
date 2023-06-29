@@ -77,28 +77,18 @@ const useStyles = makeStyles((theme) => ({
         background: "linear-gradient(45deg, #4CAF50 30%, #8BC34A 90%)",
     },
     responsiveTable: {
-        "@media (max-width: 600px)": {
-            minWidth: 200,
+        "@media (max-width: 576px)": {
+            overflowX: "auto",
         },
     },
-
-    // responsive
-    [theme.breakpoints.down("xs")]: {
-        appBar: {
-            padding: "0px",
-        },
-        appBarLeft: {
-            flex: "1",
-        },
-        appBarRight: {
-            display: "none",
-        },
-        appBarTitle: {
-            display: "none",
-        },
-        menuTitle: {
-            fontSize: "1.5rem",
-        },
+    table: {
+        minWidth: 650,
+    },
+    menuList: {
+        backgroundColor: theme.palette.primary.main,
+        color: "#FFF",
+        borderRadius: 0,
+        marginTop: theme.spacing(2),
     },
 }));
 

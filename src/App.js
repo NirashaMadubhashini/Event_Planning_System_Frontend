@@ -15,6 +15,7 @@ import Gallery from "./components/Customer/Gallery/Gallery";
 import Contact from "./components/Customer/Contact/Contact";
 import ServicePackages from "./components/Customer/ServicePackages/ServicePackages";
 import AdminDashboard from "./components/Admin/AdminDashboard/AdminDashboard";
+import Home from "./components/Customer/Home/Home";
 
 const App = () => {
     return (
@@ -26,6 +27,7 @@ const App = () => {
                         <Navbar />
                         <SignUp />
                     </Route>
+                    <Route path="/home" exact component={Home} />
                     <Route path="/packages" exact component={Packages} />
                     <Route path="/service" exact component={Service} />
                     <Route path="/servicePackages" exact component={ServicePackages} />

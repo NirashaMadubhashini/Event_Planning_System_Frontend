@@ -1,49 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     AppBar,
     Button,
     Toolbar,
     Typography,
+    Card,
+    CardContent,
     IconButton,
     Menu,
     MenuItem,
-    Container,
     Grid,
+    Container,
+    InputAdornment,
+    TextField,
+    CardMedia,
     Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
 } from "@material-ui/core";
-import {
-    Search,
-    ArrowDropDown,
-    ExitToApp,
-    Event,
-} from "@mui/icons-material";
+import useStyles from "./style";
+import { Search, ArrowDropDown, ExitToApp } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
-import RoomServiceIcon from "@mui/icons-material/RoomService";
-import RateReviewIcon from "@mui/icons-material/RateReview";
-import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown";
-import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    ResponsiveContainer,
-} from "recharts";
-import useStyles from "./style";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const Dashboard = () => {
+const Home = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
 
@@ -56,6 +36,7 @@ const Dashboard = () => {
     };
 
     const [appBarPosition, setAppBarPosition] = useState("relative");
+    const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
 
     const handleCategoryClick = (category) => {
@@ -79,22 +60,6 @@ const Dashboard = () => {
         };
     }, []);
 
-    const data = [
-        { name: "Jan", events: 5 },
-        { name: "Feb", events: 8 },
-        { name: "Mar", events: 15 },
-        { name: "Apr", events: 12 },
-        { name: "May", events: 10 },
-        { name: "Jun", events: 20 },
-        { name: "Jul", events: 18 },
-        { name: "Aug", events: 22 },
-        { name: "Sep", events: 25 },
-        { name: "Oct", events: 30 },
-        { name: "Nov", events: 28 },
-        { name: "Dec", events: 35 },
-    ];
-
-
     return (
         <Container maxWidth="xl" className={classes.container}>
             <AppBar
@@ -105,12 +70,7 @@ const Dashboard = () => {
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton
-                                component={Link}
-                                to="/"
-                                color="inherit"
-                                edge="start"
-                            >
+                            <IconButton component={Link} to="/" color="inherit" edge="start">
                                 <img src={EventPro} alt="icon" height="60px" />
                             </IconButton>
                             <Typography
@@ -162,7 +122,7 @@ const Dashboard = () => {
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Packages")}
                                 style={{
-                                    color: clickedCategory === "About" ? "#F50057" : "",
+                                    color: clickedCategory === "Packages" ? "#F50057" : "",
                                 }}
                             >
                                 Packages
@@ -232,56 +192,121 @@ const Dashboard = () => {
                     </div>
                 </Toolbar>
             </AppBar>
-            <div className={classes.pageContent}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Paper className={classes.paper1}>
-                            <EventAvailableIcon className={classes.icon} />
-                            <Typography variant="h6">Total Events</Typography>
-                            <Typography variant="h4">24</Typography>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Paper className={classes.paper2}>
-                            <RoomServiceIcon className={classes.icon} />
-                            <Typography variant="h6">Total Services</Typography>
-                            <Typography variant="h4">8</Typography>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Paper className={classes.paper3}>
-                            <RateReviewIcon className={classes.icon} />
-                            <Typography variant="h6">Total Reviews</Typography>
-                            <Typography variant="h4">12</Typography>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Paper className={classes.paper4}>
-                            <ThumbsUpDownIcon className={classes.icon} />
-                            <Typography variant="h6">Total Likes</Typography>
-                            <Typography variant="h4">36</Typography>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Paper className={classes.paper}>
-                            <Typography variant="h6">Monthly Events</Typography>
-                            <ResponsiveContainer width="100%" height={400}>
-                                <LineChart data={data}>
-                                    <XAxis dataKey="name" />
-                                    <YAxis />
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <Tooltip />
-                                    <Legend />
-                                    <Line type="monotone" dataKey="events" stroke="#8884d8" />
-                                </LineChart>
-                            </ResponsiveContainer>
-                        </Paper>
-                    </Grid>
-                </Grid>
 
-            </div>
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <Paper className={classes.card}>
+                        <Carousel>
+                            <div>
+                                <img
+                                    src="https://i.ytimg.com/vi/9Gjs83Wz19M/maxresdefault.jpg"
+                                    alt="Image 1"
+                                />
+                                <div className="legend">
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large"
+                                        component={Link}
+                                        to="/book-event"
+                                    >
+                                        Book An Event
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large"
+                                        component={Link}
+                                        to="/event-packages"
+                                    >
+                                        Event Packages
+                                    </Button>
+                                </div>
+                            </div>
+                            <div>
+                                <img
+                                    src="https://nobleevents.ae/wp-content/uploads/2020/11/New-Project-37.jpg"
+                                    alt="Image 2"
+                                />
+                                <div className="legend">
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large"
+                                        component={Link}
+                                        to="/book-event"
+                                    >
+                                        Book An Event
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large"
+                                        component={Link}
+                                        to="/event-packages"
+                                    >
+                                        Event Packages
+                                    </Button>
+                                </div>
+                            </div>
+                            <div>
+                                <img
+                                    src="https://about-events.com/wp-content/uploads/2020/08/slider-events.jpg"
+                                    alt="Image 3"
+                                />
+                                <div className="legend">
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large"
+                                        component={Link}
+                                        to="/book-event"
+                                    >
+                                        Book An Event
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large"
+                                        component={Link}
+                                        to="/event-packages"
+                                    >
+                                        Event Packages
+                                    </Button>
+                                </div>
+                            </div>
+                            <div>
+                                <img
+                                    src="https://www.inventiva.co.in/wp-content/uploads/2023/05/eventshub_evergreen_opengraph_1200x630_2x.jpg"
+                                    alt="Image 4"
+                                />
+                                <div className="legend">
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large"
+                                        component={Link}
+                                        to="/book-event"
+                                    >
+                                        Book An Event
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large"
+                                        component={Link}
+                                        to="/event-packages"
+                                    >
+                                        Event Packages
+                                    </Button>
+                                </div>
+                            </div>
+                        </Carousel>
+                    </Paper>
+                </Grid>
+            </Grid>
         </Container>
     );
 };
 
-export default Dashboard;
+export default Home;
