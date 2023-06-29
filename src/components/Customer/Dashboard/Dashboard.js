@@ -158,17 +158,6 @@ const Dashboard = () => {
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/packages"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Packages")}
-                                style={{
-                                    color: clickedCategory === "About" ? "#F50057" : "",
-                                }}
-                            >
-                                Packages
-                            </Typography>
-                            <Typography
-                                component={Link}
                                 to="/service"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Services")}

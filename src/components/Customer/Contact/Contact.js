@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { LocationOn, Phone, Email } from "@mui/icons-material";
+import {LocationOn, Phone, Email, ArrowDropDown} from "@mui/icons-material";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -60,7 +60,12 @@ const Contact = () => {
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton component={Link} to="/" color="inherit" edge="start">
+                            <IconButton
+                                component={Link}
+                                to="/"
+                                color="inherit"
+                                edge="start"
+                            >
                                 <img src={EventPro} alt="icon" height="60px" />
                             </IconButton>
                             <Typography
@@ -75,7 +80,7 @@ const Contact = () => {
                         <div className={classes.appBarRight}>
                             <Typography
                                 component={Link}
-                                to="/dashboard"
+                                to="/home"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Home")}
                                 style={{
@@ -83,6 +88,17 @@ const Contact = () => {
                                 }}
                             >
                                 Home
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/dashboard"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Dashboard")}
+                                style={{
+                                    color: clickedCategory === "Dashboard" ? "#F50057" : "",
+                                }}
+                            >
+                                Dashboard
                             </Typography>
                             <Typography
                                 component={Link}
@@ -94,17 +110,6 @@ const Contact = () => {
                                 }}
                             >
                                 About
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/packages"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Packages")}
-                                style={{
-                                    color: clickedCategory === "Packages" ? "#F50057" : "",
-                                }}
-                            >
-                                Packages
                             </Typography>
                             <Typography
                                 component={Link}
@@ -153,7 +158,7 @@ const Contact = () => {
                             <Button
                                 className={classes.appBarButton}
                                 onClick={handleClick}
-                                endIcon={<ArrowDropDownIcon />}
+                                endIcon={<ArrowDropDown />}
                             >
                                 Nirasha Madubhashini
                             </Button>
