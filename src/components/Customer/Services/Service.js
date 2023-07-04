@@ -445,11 +445,13 @@ const Service = () => {
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         {services.map((service) => (
-                            <Card className={classes.serviceCard} key={service.id}>
+                            <Card
+                                className={`${classes.serviceCard} ${clickedService === service.name ? classes.selectedService : ''}`}
+                                key={service.id}
+                            >
                                 <CardContent
                                     className={classes.serviceButton}
                                     onClick={() => handleServiceClick(service.name)}
-                                    variant={clickedService === service.name}
                                 >
                                     <IconButton>
                                         {service.icon}

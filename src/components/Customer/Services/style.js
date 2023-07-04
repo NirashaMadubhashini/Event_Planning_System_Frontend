@@ -100,6 +100,15 @@ const useStyles = makeStyles((theme) => ({
         transition: "background-color 0.2s ease, color 0.2s ease",
         marginBottom: theme.spacing(1),
     },
+    selectedService: {
+        backgroundColor:"#0172EF",
+        transition: "background-color 0.2s ease",
+        cursor: "pointer",
+        "&:hover": {
+            color: "black",
+            iconHover:"black",
+        },
+    },
     serviceButton: {
         display: 'flex',
         alignItems: 'center',
