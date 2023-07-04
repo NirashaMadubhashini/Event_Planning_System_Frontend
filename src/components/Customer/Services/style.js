@@ -90,34 +90,39 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
     },
     serviceCard: {
-        height: "100%",
+        height: "-10%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
-        //backgroundColor:"red",
         minHeight: "50px",
         backgroundColor: "rgb(63,81,181)",
         color: "white",
         transition: "background-color 0.2s ease, color 0.2s ease",
+        marginBottom: theme.spacing(1),
     },
     serviceButton: {
-        marginBottom: theme.spacing(2),
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: 'auto',
         width: "100%",
+        padding: theme.spacing(1),
     },
     vendorCard: {
         height: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
-       // backgroundColor:"Yellow",
+        backgroundColor:"#3F51B5",
+        color: "white",
     },
     vendorInfoCard: {
         marginBottom: theme.spacing(2),
-      //  backgroundColor:"Purple",
+      // backgroundColor:"#3F51B5",
+        fontweight:'bold',
     },
     packageCard: {
         marginBottom: theme.spacing(2),
-      // backgroundColor:"blue",
+        backgroundColor:"#DFDFDF",
     },
     addButton: {
         marginTop: theme.spacing(1),
@@ -128,7 +133,7 @@ const useStyles = makeStyles((theme) => ({
     },
     selectedPackageCard: {
         marginBottom: theme.spacing(1),
-       // backgroundColor:"orange",
+        backgroundColor:"#DFDFDF",
     },
     removeButton: {
         marginTop: theme.spacing(1),
@@ -138,6 +143,7 @@ const useStyles = makeStyles((theme) => ({
     },
     totalPrice: {
         marginTop: theme.spacing(2),
+        fontWeight:'Bold',
     },
 
     [theme.breakpoints.down("xs")]: {

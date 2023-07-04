@@ -444,33 +444,22 @@ const Service = () => {
                         </div>
                     </Grid>
                     <Grid item xs={12} sm={4}>
-                        <Card className={classes.serviceCard}>
-                            <CardContent>
-                                <Typography variant="h6" gutterBottom>
-                                    Services
-                                </Typography>
-                                <Grid >
-                                    {services
-                                        .map((service) => (
-                                            <Grid  key={service.id}>
-                                                <Button
-                                                    className={classes.serviceButton}
-                                                    startIcon={service.icon}
-                                                    onClick={() => handleServiceClick(service.name)}
-                                                    variant={
-                                                        clickedService === service.name
-                                                            ? "contained"
-                                                            : "outlined"
-                                                    }
-
-                                                >
-                                                    {service.name}
-                                                </Button>
-                                            </Grid>
-                                        ))}
-                                </Grid>
-                            </CardContent>
-                        </Card>
+                        {services.map((service) => (
+                            <Card className={classes.serviceCard} key={service.id}>
+                                <CardContent
+                                    className={classes.serviceButton}
+                                    onClick={() => handleServiceClick(service.name)}
+                                    variant={clickedService === service.name}
+                                >
+                                    <IconButton>
+                                        {service.icon}
+                                    </IconButton>
+                                    <Typography variant="h6" gutterBottom>
+                                        {service.name}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        ))}
                     </Grid>
                     <Grid item xs={12} sm={8}>
                         {clickedService && (
@@ -492,9 +481,6 @@ const Service = () => {
                                                         )
                                                         .map((service) => (
                                                             <div key={service.id}>
-                                                                <Typography variant="subtitle2" gutterBottom>
-                                                                    {service.name}
-                                                                </Typography>
                                                                 {service.packages.map((pkg) => (
                                                                     <Card
                                                                         key={pkg.id}
@@ -541,6 +527,7 @@ const Service = () => {
                                                                                     width: 200,
                                                                                     display: 'flex',
                                                                                     alignItems: 'center',
+                                                                                    marginTop:'20px',
                                                                                 }}
                                                                             >
                                                                                 <Rating
@@ -577,7 +564,7 @@ const Service = () => {
                         {Object.keys(clickedButtons).length > 0 && (
                             <Card className={classes.bookingCard}>
                                 <CardContent>
-                                    <Typography variant="h6" gutterBottom>
+                                    <Typography variant="h6" gutterBottom sx={{fontWeight: 'Bold',}}>
                                         Booking Summary
                                     </Typography>
                                     {Object.keys(clickedButtons).map((category) => (
