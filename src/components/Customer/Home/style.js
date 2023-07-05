@@ -35,17 +35,17 @@ export default makeStyles((theme) => ({
         height: 0,
         paddingTop: "56.25%",
     },
+    menuItem: {
+        "&:hover": {
+            textDecoration: "underline",
+        },
+    },
     appBar: {
         borderRadius: 0,
         padding: "0px 20px",
         marginBottom: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
             padding: "0px 0px",
-        },
-    },
-    menuItem: {
-        "&:hover": {
-            textDecoration: "underline",
         },
     },
     appBarContainer: {
