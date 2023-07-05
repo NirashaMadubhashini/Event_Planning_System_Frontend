@@ -69,6 +69,24 @@ export default makeStyles((theme) => ({
     button: {
         position: "relative",
     },
+    tableRow: {
+        cursor: "pointer",
+        "&:hover": {
+            backgroundColor: theme.palette.action.hover,
+        },
+    },
+    modal: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    modalContent: {
+        backgroundColor: theme.palette.background.paper,
+        padding: theme.spacing(2),
+        outline: "none",
+        minWidth: 300,
+        maxWidth: 500,
+    },
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",

@@ -14,6 +14,8 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    Modal,
+    Paper,
 } from "@material-ui/core";
 import useStyles from "./style";
 import { ArrowDropDown, CheckCircle, HourglassEmpty, Cancel } from "@mui/icons-material";
@@ -22,7 +24,12 @@ import EventPro from "../../../assets/images/CorrectLogo.png";
 
 const Booking = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-    const classes = useStyles();
+    const [classes, setClasses] = useState(useStyles());
+    const [appBarPosition, setAppBarPosition] = useState("relative");
+    const [clickedButtons, setClickedButtons] = useState({});
+    const [clickedCategory, setClickedCategory] = useState("");
+    const [selectedBooking, setSelectedBooking] = useState(null);
+    const [openModal, setOpenModal] = useState(false);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -31,10 +38,6 @@ const Booking = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-    const [appBarPosition, setAppBarPosition] = useState("relative");
-    const [clickedButtons, setClickedButtons] = useState({});
-    const [clickedCategory, setClickedCategory] = useState("");
 
     const handleButtonClick = (id) => {
         setClickedButtons((prevState) => ({
@@ -49,15 +52,20 @@ const Booking = () => {
         );
     };
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 100) {
-                setAppBarPosition("fixed");
-            } else {
-                setAppBarPosition("relative");
-            }
-        };
+    const handleScroll = () => {
+        if (window.scrollY > 100) {
+            setAppBarPosition("fixed");
+        } else {
+            setAppBarPosition("relative");
+        }
+    };
 
+    const handleRowClick = (booking) => {
+        setSelectedBooking(booking);
+        setOpenModal(true);
+    };
+
+    useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
             window.removeEventListener("scroll", handleScroll);
@@ -230,12 +238,12 @@ const Booking = () => {
                         VIEW YOUR
                     </Typography>
                     <Typography variant="h4" gutterBottom>
-                        All Bookings
+                        My Booking History
                     </Typography>
                 </div>
-                <TableContainer>
+                <TableContainer component={Paper}>
                     <Table>
-                        <TableHead style={{backgroundColor:"#C8C9CB"}}>
+                        <TableHead style={{ backgroundColor: "#C8C9CB" }}>
                             <TableRow>
                                 <TableCell>Date</TableCell>
                                 <TableCell>Event</TableCell>
@@ -247,25 +255,29 @@ const Booking = () => {
                         </TableHead>
                         <TableBody>
                             {bookings.map((booking, index) => (
-                                <TableRow key={index}>
+                                <TableRow
+                                    key={index}
+                                    onClick={() => handleRowClick(booking)}
+                                    className={classes.tableRow}
+                                >
                                     <TableCell>{booking.date}</TableCell>
                                     <TableCell>{booking.event}</TableCell>
                                     <TableCell>{booking.customerName}</TableCell>
                                     <TableCell>{booking.vendorName}</TableCell>
                                     <TableCell>{booking.service}</TableCell>
                                     <TableCell>
-                    <span
-                        style={{
-                            color:
-                                booking.status === "Confirmed"
-                                    ? "green"
-                                    : booking.status === "Pending"
-                                        ? "orange"
-                                        : "red",
-                        }}
-                    >
-                      {booking.status}
-                    </span>
+                                        <span
+                                            style={{
+                                                color:
+                                                    booking.status === "Confirmed"
+                                                        ? "green"
+                                                        : booking.status === "Pending"
+                                                            ? "orange"
+                                                            : "red",
+                                            }}
+                                        >
+                                            {booking.status}
+                                        </span>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -273,6 +285,40 @@ const Booking = () => {
                     </Table>
                 </TableContainer>
             </Container>
+            <Modal
+                open={openModal}
+                onClose={() => setOpenModal(false)}
+                aria-labelledby="booking-details"
+                aria-describedby="booking-details-modal"
+            >
+                <div className={classes.modal}>
+                    {selectedBooking && (
+                        <div className={classes.modalContent}>
+                            <Typography variant="h5" gutterBottom>
+                                Booking Details
+                            </Typography>
+                            <Typography variant="body1" gutterBottom>
+                                Date: {selectedBooking.date}
+                            </Typography>
+                            <Typography variant="body1" gutterBottom>
+                                Event: {selectedBooking.event}
+                            </Typography>
+                            <Typography variant="body1" gutterBottom>
+                                Customer Name: {selectedBooking.customerName}
+                            </Typography>
+                            <Typography variant="body1" gutterBottom>
+                                Vendor Name: {selectedBooking.vendorName}
+                            </Typography>
+                            <Typography variant="body1" gutterBottom>
+                                Service: {selectedBooking.service}
+                            </Typography>
+                            <Typography variant="body1" gutterBottom>
+                                Status: {selectedBooking.status}
+                            </Typography>
+                        </div>
+                    )}
+                </div>
+            </Modal>
         </Container>
     );
 };
