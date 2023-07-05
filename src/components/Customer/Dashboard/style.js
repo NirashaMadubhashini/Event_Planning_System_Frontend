@@ -5,13 +5,12 @@ const useStyles = makeStyles((theme) => ({
         padding: "1px",
     },
     appBar: {
+        borderRadius: 0,
         padding: "0px 20px",
         marginBottom: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
             padding: "0px 0px",
         },
-        backgroundColor: theme.palette.primary.main,
-        boxShadow: "none",
     },
     appBarContainer: {
         display: "flex",
@@ -20,25 +19,30 @@ const useStyles = makeStyles((theme) => ({
     },
     appBarLeft: {
         display: "flex",
+        flexDirection: "row",
         alignItems: "center",
     },
     appBarRight: {
         display: "flex",
+        flexDirection: "row",
         alignItems: "center",
+        justifyContent: "center",
+    },
+    appBarButton: {
+        marginRight: theme.spacing(3),
+        color: "#fff",
+        textDecoration: "none",
+        cursor: "pointer",
+        "&:hover": {
+            color: "#F50057",
+        },
     },
     menuTitle: {
         marginLeft: theme.spacing(1),
         color: "#FFF",
         textDecoration: "none",
     },
-    appBarButton: {
-        marginLeft: theme.spacing(2),
-        color: "#FFF",
-        textDecoration: "none",
-        "&:hover": {
-            color: theme.palette.secondary.main,
-        },
-    },
+
     icon: {
         fontSize: "30px",
         color: theme.palette.augmentColor.main,
