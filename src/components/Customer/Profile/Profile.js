@@ -1,31 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     AppBar,
     Button,
     Toolbar,
     Typography,
+    Card,
+    CardContent,
     IconButton,
     Menu,
     MenuItem,
-    Container,
-    CardMedia,
-    CardContent,
-    Card,
     Grid,
+    Container,
+    InputAdornment,
+    TextField,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { Search, ArrowDropDown, ExitToApp } from "@mui/icons-material";
-import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
+import {Search, ArrowDropDown, ExitToApp} from "@mui/icons-material";
+import {Link} from "react-router-dom";
+import EventPro from "../../../assets/images/CorrectLogo.png";
 
-import EngagementImage from "../Gallery/img/Engagement.jpeg";
-import AnniversaryImage from "../Gallery/img/Anniversery.jpg";
-import BirthdayImage from "../Gallery/img/Birthday.webp";
-import SocialImage from "../Gallery/img/slider-events.jpg";
-import VersionImage from "../Gallery/img/version-events-thumb.jpg";
-import WeddingImage from "../Gallery/img/Wedding.jpg";
 
-const Gallery = () => {
+//this is the home menu
+const Profile= () => {
+
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
 
@@ -40,13 +37,6 @@ const Gallery = () => {
     const [appBarPosition, setAppBarPosition] = useState("relative");
     const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
-
-    const handleButtonClick = (id) => {
-        setClickedButtons((prevState) => ({
-            ...prevState,
-            [id]: !prevState[id],
-        }));
-    };
 
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) =>
@@ -69,42 +59,10 @@ const Gallery = () => {
         };
     }, []);
 
-    const images = [
-        {
-            id: 1,
-            category: "All",
-            imageUrl: EngagementImage,
-        },
-        {
-            id: 2,
-            category: "Wedding",
-            imageUrl: AnniversaryImage,
-        },
-        {
-            id: 3,
-            category: "Party",
-            imageUrl: BirthdayImage,
-        },
-        {
-            id: 4,
-            category: "Social",
-            imageUrl: SocialImage,
-        },
-        {
-            id: 5,
-            category: "All",
-            imageUrl: VersionImage,
-        },
-        {
-            id: 6,
-            category: "Wedding",
-            imageUrl: WeddingImage,
-        },
-    ];
 
-    const categories = ["All", "Wedding", "Party", "Social"];
 
     return (
+
         <Container maxWidth="xl" className={classes.container}>
             <AppBar
                 className={classes.appBar}
@@ -242,54 +200,15 @@ const Gallery = () => {
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
-                <div className={classes.serviceSection}>
-                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>
-                        Gallery
-                    </Typography>
-                    <Typography variant="h4" gutterBottom>
-                        See Our Best Events Gallery!
-                    </Typography>
-                    <div className={classes.categoryButtons}>
-                        {categories.map((category) => (
-                            <Button
-                                key={category}
-                                variant="text"
-                                color="primary"
-                                onClick={() => handleCategoryClick(category)}
-                                className={classes.categoryButton}
-                                style={{
-                                    fontWeight: "bold",
-                                    fontSize: "30",
-                                }}
-                            >
-                                {category}
-                            </Button>
-                        ))}
-                    </div>
+                <div className={classes.adminDashboardSection}>
+                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>VIEW YOUR DETAILS</Typography>
+                    <Typography variant="h4" gutterBottom>My Profile</Typography>
                 </div>
-                <Grid container spacing={2}>
-                    {images
-                        .filter((image) =>
-                            clickedCategory === "All"
-                                ? true
-                                : image.category === clickedCategory
-                        )
-                        .map((image) => (
-                            <Grid item xs={12} sm={6} md={4} key={image.id}>
-                                <Card>
-                                    <CardMedia
-                                        component="img"
-                                        height="200"
-                                        image={image.imageUrl}
-                                        alt={`Image ${image.id}`}
-                                    />
-                                </Card>
-                            </Grid>
-                        ))}
-                </Grid>
+
             </Container>
+
         </Container>
     );
-};
+}
 
-export default Gallery;
+export default Profile

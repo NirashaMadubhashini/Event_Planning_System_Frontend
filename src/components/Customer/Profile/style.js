@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
-//AdminDashboard Style.js
+//Profile Style.js
 
 export default makeStyles((theme) => ({
     menuTitle: {

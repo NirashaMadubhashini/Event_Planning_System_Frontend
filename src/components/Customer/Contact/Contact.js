@@ -56,7 +56,11 @@ const Contact = () => {
 
     return (
         <Container maxWidth="xl" className={classes.container}>
-            <AppBar className={classes.appBar} position={appBarPosition} color="primary">
+            <AppBar
+                className={classes.appBar}
+                position={appBarPosition}
+                color="primary"
+            >
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
@@ -99,6 +103,17 @@ const Contact = () => {
                                 }}
                             >
                                 Dashboard
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/profile"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Profile")}
+                                style={{
+                                    color: clickedCategory === "Profile" ? "#F50057" : "",
+                                }}
+                            >
+                                Profile
                             </Typography>
                             <Typography
                                 component={Link}

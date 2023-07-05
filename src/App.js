@@ -16,6 +16,7 @@ import Contact from "./components/Customer/Contact/Contact";
 import ServicePackages from "./components/Customer/ServicePackages/ServicePackages";
 import AdminDashboard from "./components/Admin/AdminDashboard/AdminDashboard";
 import Home from "./components/Customer/Home/Home";
+import Profile from "./components/Customer/Profile/Profile";
 
 const App = () => {
     return (
@@ -37,6 +38,7 @@ const App = () => {
                     <Route path="/booking" exact component={Booking} />
                     <Route path="/gallery" exact component={Gallery} />
                     <Route path="/contact" exact component={Contact} />
+                    <Route path="/profile" exact component={Profile} />
                     ---------------------------------------------------
                     <Route path="/adminDashboard" exact component={AdminDashboard} />
                     {/*<Route path="/addServices" exact component={AddService} />*/}

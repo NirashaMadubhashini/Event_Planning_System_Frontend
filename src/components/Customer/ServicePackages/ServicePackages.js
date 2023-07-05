@@ -110,6 +110,17 @@ const ServicePackages = () => {
                             </Typography>
                             <Typography
                                 component={Link}
+                                to="/profile"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Profile")}
+                                style={{
+                                    color: clickedCategory === "Profile" ? "#F50057" : "",
+                                }}
+                            >
+                                Profile
+                            </Typography>
+                            <Typography
+                                component={Link}
                                 to="/about"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("About")}
