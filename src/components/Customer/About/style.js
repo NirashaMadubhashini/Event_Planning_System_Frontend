@@ -38,6 +38,7 @@ export default makeStyles((theme) => ({
         padding: "1px",
     },
     appBar: {
+        borderRadius: 0,
         padding: "0px 20px",
         marginBottom: theme.spacing(2),
         [theme.breakpoints.down("sm")]: {
@@ -58,6 +59,7 @@ export default makeStyles((theme) => ({
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "center",
     },
     appBarButton: {
         marginRight: theme.spacing(3),
@@ -67,6 +69,16 @@ export default makeStyles((theme) => ({
         "&:hover": {
             color: "#F50057",
         },
+    },
+    appBarSearch: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        color: "white",
+        marginLeft: theme.spacing(2),
+    },
+    appBarTitle: {
+        marginRight: theme.spacing(2),
     },
     contentButton: {
         marginRight: theme.spacing(3),
