@@ -12,6 +12,7 @@ export default makeStyles((theme) => ({
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        position: "relative",
     },
     cardContent: {
         flexGrow: 1,
@@ -100,18 +101,16 @@ export default makeStyles((theme) => ({
     },
     legend: {
         position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        // background: "rgba(0, 0, 0, 0.5)",
-        // color: "#fff",
-        padding: "10px",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
         display: "flex",
-        justifyContent: "center",
-        gap:"10px",
+        flexDirection: "column",
+        gap: "10px",
+        textAlign: "center",
     },
 
-// Add additional styles for smaller screens
+    // Add additional styles for smaller screens
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",
