@@ -226,7 +226,96 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            {/* Remaining carousel items */}
+                            <div>
+                                <img
+                                    src="https://smallbizclub.com/wp-content/uploads/2016/03/6-Tips-to-Make-Your-Company-Party-the-Event-of-the-Year.jpg"
+                                    alt="Image 2"
+                                    height="100%"
+                                    width="100%"
+                                />
+                                <div className={classes.legend}>
+                                    <div style={{ display: "flex", gap: "10px" }}>
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            size="large"
+                                            component={Link}
+                                            to="/eventRequest"
+                                        >
+                                            Book An Event
+                                        </Button>
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            size="large"
+                                            component={Link}
+                                            to="/packages"
+                                        >
+                                            Event Packages
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <img
+                                    src="https://about-events.com/wp-content/uploads/2020/08/slider-events.jpg"
+                                    alt="Image 3"
+                                    height="100%"
+                                    width="100%"
+                                />
+                                <div className={classes.legend}>
+                                    <div style={{ display: "flex", gap: "10px" }}>
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            size="large"
+                                            component={Link}
+                                            to="/eventRequest"
+                                        >
+                                            Book An Event
+                                        </Button>
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            size="large"
+                                            component={Link}
+                                            to="/packages"
+                                        >
+                                            Event Packages
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <img
+                                    src="https://media.architecturaldigest.com/photos/5be465317c86c80e83b4b6d3/16:9/w_2560%2Cc_limit/Rafanelli%2520Events_Weddings_Aspen_11.jpg"
+                                    alt="Image 4"
+                                    height="100%"
+                                    width="100%"
+                                />
+                                <div className={classes.legend}>
+                                    <div style={{ display: "flex", gap: "10px" }}>
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            size="large"
+                                            component={Link}
+                                            to="/eventRequest"
+                                        >
+                                            Book An Event
+                                        </Button>
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            size="large"
+                                            component={Link}
+                                            to="/packages"
+                                        >
+                                            Event Packages
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
                         </Carousel>
                     </Paper>
                 </Grid>
