@@ -14,10 +14,10 @@ import {
     InputAdornment,
     TextField,
 } from "@material-ui/core";
-import useStyles from "./style";
 import { Search, ArrowDropDown, ExitToApp, Logout } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
+import useStyles from "./style";
 
 const Profile = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -66,12 +66,7 @@ const Profile = () => {
                 <Toolbar>
                     <div className={classes.appBarContainer}>
                         <div className={classes.appBarLeft}>
-                            <IconButton
-                                component={Link}
-                                to="/"
-                                color="inherit"
-                                edge="start"
-                            >
+                            <IconButton component={Link} to="/" color="inherit" edge="start">
                                 <img src={EventPro} alt="icon" height="60px" />
                             </IconButton>
                             <Typography
@@ -196,24 +191,22 @@ const Profile = () => {
                         My Profile
                     </Typography>
                 </div>
-                <Grid container spacing={3}>
+                <Grid container spacing={3} justify="center">
                     <Grid item xs={12} sm={6}>
                         <Card className={classes.card}>
                             <CardContent className={classes.cardContent}>
-                                {/* Add your customer details here */}
-                                <Typography variant="h6" gutterBottom>
-                                    Customer Details
-                                </Typography>
                                 <Typography variant="body1" gutterBottom>
                                     Name: John Doe
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    Email: john.doe@example.com
+                                    Email: johndoe@example.com
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    Phone: 123-456-7890
+                                    Phone: 1234567890
                                 </Typography>
-                                {/* Update button */}
+                                <Typography variant="body1" gutterBottom>
+                                    Address: 123 Street, City
+                                </Typography>
                                 <Button variant="contained" color="primary">
                                     Update
                                 </Button>

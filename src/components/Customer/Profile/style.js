@@ -11,6 +11,8 @@ export default makeStyles((theme) => ({
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
     },
     cardContent: {
         flexGrow: 1,
@@ -24,7 +26,7 @@ export default makeStyles((theme) => ({
         transition: "background-color 0.2s ease, box-shadow 0.10s ease",
         "&:hover": {
             backgroundColor: "#ffffff",
-            // color: "#0000ff",
+            color: "#0000ff",
         },
     },
     container: {
