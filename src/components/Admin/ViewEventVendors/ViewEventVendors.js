@@ -1,3 +1,4 @@
+// ViewVendors.js
 import React, { useState, useEffect } from "react";
 import {
     AppBar,
@@ -13,16 +14,26 @@ import {
     Container,
     InputAdornment,
     TextField,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
 } from "@material-ui/core";
 import useStyles from "./style";
-import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
-import {Link} from "react-router-dom";
+import {
+    Search,
+    ArrowDropDown,
+    ExitToApp,
+    Logout,
+    Edit,
+    Delete,
+} from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 
-
-//this is the home menu
 const ViewVendors = () => {
-
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
 
@@ -59,10 +70,26 @@ const ViewVendors = () => {
         };
     }, []);
 
-
+    const vendorsData = [
+        {
+            name: "John Doe",
+            contactNumber: "1234567890",
+            businessName: "Vendor 1",
+            services: ["Service A", "Service B"],
+            rating: 4.5,
+            numOfBookings: 10,
+        },
+        {
+            name: "Jane Smith",
+            contactNumber: "9876543210",
+            businessName: "Vendor 2",
+            services: ["Service C", "Service D", "Service E"],
+            rating: 4.2,
+            numOfBookings: 5,
+        },
+    ];
 
     return (
-
         <Container maxWidth="xl" className={classes.container}>
             <AppBar
                 className={classes.appBar}
@@ -166,7 +193,6 @@ const ViewVendors = () => {
                                 }}
                             >
                                 <Logout className={classes.logoutIcon} />
-
                             </Typography>
                         </div>
                     </div>
@@ -174,13 +200,66 @@ const ViewVendors = () => {
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.viewEventVendorsSection}>
-                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>View and Manage Service Vendors</Typography>
+                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>
+                        View and Manage Service Vendors
+                    </Typography>
                 </div>
-
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            variant="outlined"
+                            placeholder="Search"
+                            fullWidth
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton>
+                                            <Search />
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </Grid>
+                </Grid>
+                <TableContainer component={Card} className={classes.tableContainer}>
+                    <Table>
+                        <TableHead style={{ backgroundColor: "#C8C9CB" }}>
+                            <TableRow>
+                                <TableCell>Name</TableCell>
+                                <TableCell>Contact Number</TableCell>
+                                <TableCell>Business Name</TableCell>
+                                <TableCell>Services</TableCell>
+                                <TableCell>Rating</TableCell>
+                                <TableCell>No. of Bookings</TableCell>
+                                <TableCell>Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {vendorsData.map((vendor, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{vendor.name}</TableCell>
+                                    <TableCell>{vendor.contactNumber}</TableCell>
+                                    <TableCell>{vendor.businessName}</TableCell>
+                                    <TableCell>{vendor.services.join(", ")}</TableCell>
+                                    <TableCell>{vendor.rating}</TableCell>
+                                    <TableCell>{vendor.numOfBookings}</TableCell>
+                                    <TableCell>
+                                        <IconButton color="primary">
+                                            <Edit />
+                                        </IconButton>
+                                        <IconButton color="secondary">
+                                            <Delete />
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </Container>
-
         </Container>
     );
-}
+};
 
-export default ViewVendors
+export default ViewVendors;
