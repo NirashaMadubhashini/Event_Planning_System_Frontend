@@ -8,7 +8,7 @@ import Input from './Input';
 import IconButton from "@material-ui/core/IconButton";
 import {Facebook, Google} from "@mui/icons-material";
 
-const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
+const initialState = { nic: '', name: '', address: '', contactNo: '', email: '', password: '', confirmPassword: '' };
 
 const SignUp = () => {
   const [form, setForm] = useState(initialState);
@@ -53,8 +53,10 @@ const SignUp = () => {
             <Grid container spacing={2}>
               { isSignup && (
                   <>
-                    <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
-                    <Input name="lastName" label="Last Name" handleChange={handleChange} half />
+                    <Input name="nic" label="NIC" handleChange={handleChange} autoFocus half />
+                    <Input name="name" label="Name" handleChange={handleChange} half />
+                    <Input name="address" label="Address" handleChange={handleChange} half />
+                    <Input name="contactNo" label="ContactNo" handleChange={handleChange} half />
                   </>
               )}
               <Input name="email" label="Email Address" handleChange={handleChange} type="email" />

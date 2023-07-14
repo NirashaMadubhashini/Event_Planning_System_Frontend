@@ -18,17 +18,36 @@ import { Search, ArrowDropDown, ExitToApp, Logout } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 350,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+    '& > :not(style)': { m: 1, width: '35ch' },
+};
 const Profile = () => {
+
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+
 
     const handleClose = () => {
         setAnchorEl(null);
+        setOpen(false);
     };
 
     const [appBarPosition, setAppBarPosition] = useState("relative");
@@ -196,20 +215,41 @@ const Profile = () => {
                         <Card className={classes.card}>
                             <CardContent className={classes.cardContent}>
                                 <Typography variant="body1" gutterBottom>
-                                    <strong>Name:</strong> John Doe
+                                    <strong>NIC:</strong> 200071100222
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    <strong>Email:</strong> johndoe@example.com
+                                    <strong>Name:</strong> Nirasha Madubhashini
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    <strong>Phone:</strong> 1234567890
+                                    <strong>Email:</strong> nirasha0729@gmail.com
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
                                     <strong>Address:</strong> 123 Street, City
                                 </Typography>
-                                <Button variant="contained" color="primary">
+                                <Typography variant="body1" gutterBottom>
+                                    <strong>Phone:</strong> 1234567890
+                                </Typography>
+                                <div>
+                                <Button onClick={handleOpen} variant="contained" color="primary" className={classes.updatebtn}>
                                     Update
                                 </Button>
+                                    <Modal
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                    >
+                                        <Box sx={style}>
+                                            <TextField id="filled-basic" label="NIC" variant="filled" />
+                                            <TextField id="filled-basic" label="Name" variant="filled" />
+                                            <TextField id="filled-basic" label="Address" variant="filled" />
+                                            <TextField id="filled-basic" label="Phone" variant="filled" />
+                                            <Button variant="contained" color="secondary">
+                                                Submit
+                                            </Button>
+                                        </Box>
+                                    </Modal>
+                                </div>
                             </CardContent>
                         </Card>
                     </Grid>
