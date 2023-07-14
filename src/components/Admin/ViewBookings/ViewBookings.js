@@ -174,7 +174,7 @@ const ViewBookings = () => {
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.viewBookingsSection}>
-                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>View Bookings</Typography>
+                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>View and Manage Bookings</Typography>
                 </div>
 
             </Container>
