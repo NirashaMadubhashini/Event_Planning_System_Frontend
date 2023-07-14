@@ -15,7 +15,7 @@ import {
     TextField, Paper,
 } from "@material-ui/core";
 import useStyles from "./style";
-import { Search, ArrowDropDown, ExitToApp } from "@mui/icons-material";
+import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
@@ -114,6 +114,17 @@ const AdminDashboard = () => {
                             </Typography>
                             <Typography
                                 component={Link}
+                                to="/profile"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Profile")}
+                                style={{
+                                    color: clickedCategory === "Profile" ? "#F50057" : "",
+                                }}
+                            >
+                                Events
+                            </Typography>
+                            <Typography
+                                component={Link}
                                 to="/about"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("About")}
@@ -121,18 +132,7 @@ const AdminDashboard = () => {
                                     color: clickedCategory === "About" ? "#F50057" : "",
                                 }}
                             >
-                                About
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/packages"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Packages")}
-                                style={{
-                                    color: clickedCategory === "Packages" ? "#F50057" : "",
-                                }}
-                            >
-                                Packages
+                               Services
                             </Typography>
                             <Typography
                                 component={Link}
@@ -143,7 +143,7 @@ const AdminDashboard = () => {
                                     color: clickedCategory === "Services" ? "#F50057" : "",
                                 }}
                             >
-                                Services
+                                Customers
                             </Typography>
                             <Typography
                                 component={Link}
@@ -154,7 +154,7 @@ const AdminDashboard = () => {
                                     color: clickedCategory === "Bookings" ? "#F50057" : "",
                                 }}
                             >
-                                Bookings
+                               Vendors
                             </Typography>
                             <Typography
                                 component={Link}
@@ -165,36 +165,20 @@ const AdminDashboard = () => {
                                     color: clickedCategory === "Gallery" ? "#F50057" : "",
                                 }}
                             >
-                                Gallery
+                                Bookings
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/contact"
+                                to="/"
                                 className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Contact")}
+                                onClick={() => handleCategoryClick("Logout")}
                                 style={{
-                                    color: clickedCategory === "Contact" ? "#F50057" : "",
+                                    color: clickedCategory === "Logout" ? "#F50057" : "",
                                 }}
                             >
-                                Contact
+                                <Logout className={classes.logoutIcon} />
+
                             </Typography>
-                            <Button
-                                className={classes.appBarButton}
-                                onClick={handleClick}
-                                endIcon={<ArrowDropDown />}
-                            >
-                                Nirasha Madubhashini
-                            </Button>
-                            <Menu
-                                anchorEl={anchorEl}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                                MenuListProps={{ className: classes.menuList }}
-                            >
-                                <MenuItem onClick={handleClose} component={Link} to="/">
-                                    Logout
-                                </MenuItem>
-                            </Menu>
                         </div>
                     </div>
                 </Toolbar>
