@@ -114,55 +114,55 @@ const AdminDashboard = () => {
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/profile"
+                                to="/addEvents"
                                 className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Profile")}
+                                onClick={() => handleCategoryClick("Events")}
                                 style={{
-                                    color: clickedCategory === "Profile" ? "#F50057" : "",
+                                    color: clickedCategory === "Events" ? "#F50057" : "",
                                 }}
                             >
                                 Events
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/about"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("About")}
-                                style={{
-                                    color: clickedCategory === "About" ? "#F50057" : "",
-                                }}
-                            >
-                               Services
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/service"
+                                to="/addServices"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Services")}
                                 style={{
                                     color: clickedCategory === "Services" ? "#F50057" : "",
                                 }}
                             >
+                               Services
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/viewCustomers"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Customers")}
+                                style={{
+                                    color: clickedCategory === "Customers" ? "#F50057" : "",
+                                }}
+                            >
                                 Customers
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/booking"
+                                to="/viewVendors"
                                 className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Bookings")}
+                                onClick={() => handleCategoryClick("Vendors")}
                                 style={{
-                                    color: clickedCategory === "Bookings" ? "#F50057" : "",
+                                    color: clickedCategory === "Vendors" ? "#F50057" : "",
                                 }}
                             >
                                Vendors
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/gallery"
+                                to="/viewBookings"
                                 className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Gallery")}
+                                onClick={() => handleCategoryClick("Bookings")}
                                 style={{
-                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
+                                    color: clickedCategory === "Bookings" ? "#F50057" : "",
                                 }}
                             >
                                 Bookings

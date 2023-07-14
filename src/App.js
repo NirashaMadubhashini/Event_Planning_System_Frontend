@@ -41,12 +41,12 @@ const App = () => {
                     <Route path="/profile" exact component={Profile} />
                     ---------------------------------------------------
                     <Route path="/adminDashboard" exact component={AdminDashboard} />
-                    {/*<Route path="/addServices" exact component={AddService} />*/}
-                    {/*<Route path="/addEvents" exact component={AddEvent} />*/}
+                    <Route path="/addServices" exact component={AddService} />
+                    <Route path="/addEvents" exact component={AddEvent} />
                     {/*<Route path="/adminGallery" exact component={AdminGallery} />*/}
-                    {/*<Route path="/viewBookings" exact component={ViewBookings} />*/}
-                    {/*<Route path="/viewCustomers" exact component={ViewCustomers} />*/}
-                    {/*<Route path="/viewVendors" exact component={ViewVendors} />*/}
+                    <Route path="/viewBookings" exact component={ViewBookings} />
+                    <Route path="/viewCustomers" exact component={ViewCustomers} />
+                    <Route path="/viewVendors" exact component={ViewVendors} />
                 </Switch>
             </Container>
         </BrowserRouter>
