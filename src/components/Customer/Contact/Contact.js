@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import {LocationOn, Phone, Email, ArrowDropDown} from "@mui/icons-material";
+import {LocationOn, Phone, Email, ArrowDropDown, Logout} from "@mui/icons-material";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -170,23 +170,18 @@ const Contact = () => {
                             >
                                 Contact
                             </Typography>
-                            <Button
+                            <Typography
+                                component={Link}
+                                to="/"
                                 className={classes.appBarButton}
-                                onClick={handleClick}
-                                endIcon={<ArrowDropDown />}
+                                onClick={() => handleCategoryClick("Logout")}
+                                style={{
+                                    color: clickedCategory === "Logout" ? "#F50057" : "",
+                                }}
                             >
-                                Nirasha Madubhashini
-                            </Button>
-                            <Menu
-                                anchorEl={anchorEl}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                                MenuListProps={{ className: classes.menuList }}
-                            >
-                                <MenuItem onClick={handleClose} component={Link} to="/">
-                                    Logout
-                                </MenuItem>
-                            </Menu>
+                                <Logout className={classes.logoutIcon} />
+
+                            </Typography>
                         </div>
                     </div>
                 </Toolbar>

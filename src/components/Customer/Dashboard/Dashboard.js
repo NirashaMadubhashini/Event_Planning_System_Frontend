@@ -21,7 +21,7 @@ import {
     Search,
     ArrowDropDown,
     ExitToApp,
-    Event,
+    Event, Logout,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
@@ -211,23 +211,18 @@ const Dashboard = () => {
                             >
                                 Contact
                             </Typography>
-                            <Button
+                            <Typography
+                                component={Link}
+                                to="/"
                                 className={classes.appBarButton}
-                                onClick={handleClick}
-                                endIcon={<ArrowDropDown />}
+                                onClick={() => handleCategoryClick("Logout")}
+                                style={{
+                                    color: clickedCategory === "Logout" ? "#F50057" : "",
+                                }}
                             >
-                                Nirasha Madubhashini
-                            </Button>
-                            <Menu
-                                anchorEl={anchorEl}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                                MenuListProps={{ className: classes.menuList }}
-                            >
-                                <MenuItem onClick={handleClose} component={Link} to="/">
-                                    Logout
-                                </MenuItem>
-                            </Menu>
+                                <Logout className={classes.logoutIcon} />
+
+                            </Typography>
                         </div>
                     </div>
                 </Toolbar>

@@ -15,7 +15,7 @@ import {
     TextField,
 } from "@material-ui/core";
 import useStyles from "./style";
-import {Search, ArrowDropDown, ExitToApp} from "@mui/icons-material";
+import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
 import {Link} from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 
@@ -178,23 +178,18 @@ const AdminDashboard = () => {
                             >
                                 Contact
                             </Typography>
-                            <Button
+                            <Typography
+                                component={Link}
+                                to="/"
                                 className={classes.appBarButton}
-                                onClick={handleClick}
-                                endIcon={<ArrowDropDown />}
+                                onClick={() => handleCategoryClick("Logout")}
+                                style={{
+                                    color: clickedCategory === "Logout" ? "#F50057" : "",
+                                }}
                             >
-                                Nirasha Madubhashini
-                            </Button>
-                            <Menu
-                                anchorEl={anchorEl}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                                MenuListProps={{ className: classes.menuList }}
-                            >
-                                <MenuItem onClick={handleClose} component={Link} to="/">
-                                    Logout
-                                </MenuItem>
-                            </Menu>
+                                <Logout className={classes.logoutIcon} />
+
+                            </Typography>
                         </div>
                     </div>
                 </Toolbar>
