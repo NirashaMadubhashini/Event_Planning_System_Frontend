@@ -173,9 +173,8 @@ const AddEvent = () => {
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
-                <div className={classes.adminDashboardSection}>
-                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>CHOOSE YOUR</Typography>
-                    <Typography variant="h4" gutterBottom>Events Packages</Typography>
+                <div className={classes.addEventsSection}>
+                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>Add and Manage Events</Typography>
                 </div>
 
             </Container>
