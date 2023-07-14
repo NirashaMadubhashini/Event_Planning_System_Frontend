@@ -21,12 +21,12 @@ export default makeStyles((theme) => ({
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100px",
-        //backgroundColor: theme.palette.primary.main,
+       // backgroundColor: theme.palette.primary.main,
         color: "black",
         transition: "background-color 0.2s ease, box-shadow 0.10s ease",
         "&:hover": {
             backgroundColor: "#ffffff",
-            color: "#0000ff",
+           // color: "#0000ff",
         },
     },
     container: {
@@ -98,6 +98,7 @@ export default makeStyles((theme) => ({
         paddingBottom: theme.spacing(3),
         textAlign: "center",
     },
+
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",

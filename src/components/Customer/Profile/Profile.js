@@ -196,16 +196,16 @@ const Profile = () => {
                         <Card className={classes.card}>
                             <CardContent className={classes.cardContent}>
                                 <Typography variant="body1" gutterBottom>
-                                    Name: John Doe
+                                    <strong >Name:</strong> John Doe
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    Email: johndoe@example.com
+                                    <strong> Email:</strong> johndoe@example.com
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    Phone: 1234567890
+                                    <strong>Phone:</strong> 1234567890
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    Address: 123 Street, City
+                                    <strong>Address:</strong> 123 Street, City
                                 </Typography>
                                 <Button variant="contained" color="primary">
                                     Update
