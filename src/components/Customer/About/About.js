@@ -13,7 +13,7 @@ import {
     MenuItem,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { ArrowDropDown, ExitToApp } from "@mui/icons-material";
+import {ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import useStyles from "./style";
 import EventPro from "../../../assets/images/CorrectLogo.png";
@@ -173,23 +173,18 @@ const About = () => {
                             >
                                 Contact
                             </Typography>
-                            <Button
+                            <Typography
+                                component={Link}
+                                to="/"
                                 className={classes.appBarButton}
-                                onClick={handleClick}
-                                endIcon={<ArrowDropDown />}
+                                onClick={() => handleCategoryClick("Logout")}
+                                style={{
+                                    color: clickedCategory === "Logout" ? "#F50057" : "",
+                                }}
                             >
-                                Nirasha Madubhashini
-                            </Button>
-                            <Menu
-                                anchorEl={anchorEl}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                                MenuListProps={{ className: classes.menuList }}
-                            >
-                                <MenuItem onClick={handleClose} component={Link} to="/">
-                                    Logout
-                                </MenuItem>
-                            </Menu>
+                                <Logout className={classes.logoutIcon} />
+
+                            </Typography>
                         </div>
                     </div>
                 </Toolbar>
