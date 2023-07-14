@@ -92,18 +92,7 @@ const AdminDashboard = () => {
                         <div className={classes.appBarRight}>
                             <Typography
                                 component={Link}
-                                to="/home"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Home")}
-                                style={{
-                                    color: clickedCategory === "Home" ? "#F50057" : "",
-                                }}
-                            >
-                                Home
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/dashboard"
+                                to="/adminDashboard"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Dashboard")}
                                 style={{
@@ -114,29 +103,18 @@ const AdminDashboard = () => {
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/profile"
+                                to="/addEvents"
                                 className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Profile")}
+                                onClick={() => handleCategoryClick("Events")}
                                 style={{
-                                    color: clickedCategory === "Profile" ? "#F50057" : "",
+                                    color: clickedCategory === "Events" ? "#F50057" : "",
                                 }}
                             >
-                                Profile
+                                Events
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/about"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("About")}
-                                style={{
-                                    color: clickedCategory === "About" ? "#F50057" : "",
-                                }}
-                            >
-                                About
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/service"
+                                to="/addServices"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Services")}
                                 style={{
@@ -147,7 +125,29 @@ const AdminDashboard = () => {
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/booking"
+                                to="/viewCustomers"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Customers")}
+                                style={{
+                                    color: clickedCategory === "Customers" ? "#F50057" : "",
+                                }}
+                            >
+                                Customers
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/viewVendors"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Vendors")}
+                                style={{
+                                    color: clickedCategory === "Vendors" ? "#F50057" : "",
+                                }}
+                            >
+                                Vendors
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/viewBookings"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Bookings")}
                                 style={{
@@ -155,28 +155,6 @@ const AdminDashboard = () => {
                                 }}
                             >
                                 Bookings
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/gallery"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Gallery")}
-                                style={{
-                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
-                                }}
-                            >
-                                Gallery
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/contact"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Contact")}
-                                style={{
-                                    color: clickedCategory === "Contact" ? "#F50057" : "",
-                                }}
-                            >
-                                Contact
                             </Typography>
                             <Typography
                                 component={Link}
