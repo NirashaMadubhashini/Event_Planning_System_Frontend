@@ -17,6 +17,11 @@ import ServicePackages from "./components/Customer/ServicePackages/ServicePackag
 import AdminDashboard from "./components/Admin/AdminDashboard/AdminDashboard";
 import Home from "./components/Customer/Home/Home";
 import Profile from "./components/Customer/Profile/Profile";
+import AddService from "./components/Admin/AddServices/AddServices";
+import AddEvent from "./components/Admin/AddEvents/AddEvents";
+import ViewBookings from "./components/Admin/ViewBookings/ViewBookings";
+import ViewCustomers from "./components/Admin/ViewCustomers/ViewCustomers";
+import ViewVendors from "./components/Admin/ViewEventVendors/ViewEventVendors";
 
 const App = () => {
     return (

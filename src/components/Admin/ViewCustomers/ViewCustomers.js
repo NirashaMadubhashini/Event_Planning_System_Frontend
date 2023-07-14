@@ -21,7 +21,7 @@ import EventPro from "../../../assets/images/CorrectLogo.png";
 
 
 //this is the home menu
-const AdminDashboard = () => {
+const ViewCustomers = () => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
@@ -184,4 +184,4 @@ const AdminDashboard = () => {
     );
 }
 
-export default AdminDashboard
+export default ViewCustomers
