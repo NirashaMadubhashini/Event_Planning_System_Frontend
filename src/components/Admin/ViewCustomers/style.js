@@ -99,7 +99,7 @@ export default makeStyles((theme) => ({
     button: {
         position: 'relative',
     },
-    adminDashboardSection: {
+    viewCustomersSection: {
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(3),
         textAlign: "center",
