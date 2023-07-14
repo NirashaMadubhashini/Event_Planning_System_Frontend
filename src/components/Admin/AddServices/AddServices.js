@@ -173,8 +173,8 @@ const AddService = () => {
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
-                <div className={classes.adminDashboardSection}>
-                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>Add and Manage Events</Typography>
+                <div className={classes.addServicesSection}>
+                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>Add and Manage Services</Typography>
                 </div>
 
             </Container>
