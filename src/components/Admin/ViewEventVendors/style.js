@@ -100,4 +100,15 @@ export default makeStyles((theme) => ({
     tableContainer: {
         marginTop: theme.spacing(3),
     },
+    modal: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    modalContent: {
+        padding: theme.spacing(3),
+        maxWidth: 400,
+        width: "100%",
+        outline: "none",
+    },
 }));

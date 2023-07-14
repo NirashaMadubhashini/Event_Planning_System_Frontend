@@ -20,6 +20,12 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Modal,
+    Paper,
 } from "@material-ui/core";
 import useStyles from "./style";
 import {
@@ -48,11 +54,52 @@ const ViewVendors = () => {
     const [appBarPosition, setAppBarPosition] = useState("relative");
     const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
+    const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+    const [updateModalOpen, setUpdateModalOpen] = useState(false);
+    const [modalData, setModalData] = useState({
+        name: "",
+        contactNumber: "",
+        businessName: "",
+        services: "",
+        rating: "",
+        numOfBookings: "",
+    });
 
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) =>
             prevCategory === category ? "" : category
         );
+    };
+
+    const handleDeleteConfirmationOpen = () => {
+        setDeleteConfirmationOpen(true);
+    };
+
+    const handleDeleteConfirmationClose = () => {
+        setDeleteConfirmationOpen(false);
+    };
+
+    const handleUpdateModalOpen = (vendor) => {
+        setModalData(vendor);
+        setUpdateModalOpen(true);
+    };
+
+    const handleUpdateModalClose = () => {
+        setUpdateModalOpen(false);
+    };
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setModalData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleModalSubmit = () => {
+        // Handle the submit logic here
+        console.log(modalData);
+        setUpdateModalOpen(false);
     };
 
     useEffect(() => {
@@ -245,10 +292,16 @@ const ViewVendors = () => {
                                     <TableCell>{vendor.rating}</TableCell>
                                     <TableCell>{vendor.numOfBookings}</TableCell>
                                     <TableCell>
-                                        <IconButton color="primary">
+                                        <IconButton
+                                            color="primary"
+                                            onClick={() => handleUpdateModalOpen(vendor)}
+                                        >
                                             <Edit />
                                         </IconButton>
-                                        <IconButton color="secondary">
+                                        <IconButton
+                                            color="secondary"
+                                            onClick={handleDeleteConfirmationOpen}
+                                        >
                                             <Delete />
                                         </IconButton>
                                     </TableCell>
@@ -257,6 +310,88 @@ const ViewVendors = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                <Dialog
+                    open={deleteConfirmationOpen}
+                    onClose={handleDeleteConfirmationClose}
+                >
+                    <DialogTitle>Delete Vendor</DialogTitle>
+                    <DialogContent>
+                        <Typography>
+                            Are you sure you want to delete this vendor?
+                        </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleDeleteConfirmationClose}>Cancel</Button>
+                        <Button onClick={handleDeleteConfirmationClose} color="secondary">
+                            Delete
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+                <Modal open={updateModalOpen} onClose={handleUpdateModalClose}>
+                    <div className={classes.modal}>
+                        <Paper elevation={3} className={classes.modalContent}>
+                            <DialogTitle>Edit Vendor</DialogTitle>
+                            <DialogContent>
+                                <TextField
+                                    label="Name"
+                                    name="name"
+                                    value={modalData.name}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin="normal"
+                                />
+                                <TextField
+                                    label="Contact Number"
+                                    name="contactNumber"
+                                    value={modalData.contactNumber}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin="normal"
+                                />
+                                <TextField
+                                    label="Business Name"
+                                    name="businessName"
+                                    value={modalData.businessName}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin="normal"
+                                />
+                                <TextField
+                                    label="Services"
+                                    name="services"
+                                    value={modalData.services}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin="normal"
+                                />
+                                <TextField
+                                    label="Rating"
+                                    name="rating"
+                                    value={modalData.rating}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin="normal"
+                                />
+                                <TextField
+                                    label="Number of Bookings"
+                                    name="numOfBookings"
+                                    value={modalData.numOfBookings}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin="normal"
+                                />
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleUpdateModalClose} color="secondary">
+                                    Cancel
+                                </Button>
+                                <Button onClick={handleModalSubmit} color="primary">
+                                    Submit
+                                </Button>
+                            </DialogActions>
+                        </Paper>
+                    </div>
+                </Modal>
             </Container>
         </Container>
     );
