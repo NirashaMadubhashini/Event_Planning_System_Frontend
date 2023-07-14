@@ -12,13 +12,17 @@ import {
     Grid,
     Container,
     InputAdornment,
-    TextField,
+    TextField, Paper,
 } from "@material-ui/core";
 import useStyles from "./style";
 import { Search, ArrowDropDown, ExitToApp } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import RoomServiceIcon from "@mui/icons-material/RoomService";
+import RateReviewIcon from "@mui/icons-material/RateReview";
+import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown";
 
 // This is the home menu
 const AdminDashboard = () => {
@@ -198,64 +202,39 @@ const AdminDashboard = () => {
             <Container maxWidth="lg" className={classes.container}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Card className={classes.card}>
-                            <CardContent className={classes.cardContent}>
-                                <Typography variant="h6">
-                                    Total Bookings
-                                </Typography>
-                                <Typography variant="h3">
-                                    25
-                                </Typography >
-                            </CardContent>
-                        </Card>
+                        <Paper className={classes.paper1}>
+                            <EventAvailableIcon className={classes.icon} />
+                            <Typography variant="h6">Total Bookings</Typography>
+                            <Typography variant="h4">24</Typography>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Card className={classes.card}>
-                            <CardContent className={classes.cardContent}>
-                                <Typography variant="h6">
-                                    Total Registered Customers
-                                </Typography>
-                                <Typography variant="h3">
-                                    30
-                                </Typography >
-                            </CardContent>
-                        </Card>
+                        <Paper className={classes.paper2}>
+                            <RoomServiceIcon className={classes.icon} />
+                            <Typography variant="h6">Total Customers</Typography>
+                            <Typography variant="h4">8</Typography>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Card className={classes.card}>
-                            <CardContent className={classes.cardContent}>
-                                <Typography variant="h6">
-                                    Total Registered Vendors
-                                </Typography>
-                                <Typography variant="h3">
-                                    40
-                                </Typography >
-                            </CardContent>
-                        </Card>
+                        <Paper className={classes.paper3}>
+                            <RateReviewIcon className={classes.icon} />
+                            <Typography variant="h6">Total Vendors</Typography>
+                            <Typography variant="h4">12</Typography>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Card className={classes.card}>
-                            <CardContent className={classes.cardContent}>
-                                <Typography variant="h6">
-                                    Total Registered Events
-                                </Typography>
-                                <Typography variant="h3">
-                                    25
-                                </Typography >
-                            </CardContent>
-                        </Card>
+                        <Paper className={classes.paper4}>
+                            <ThumbsUpDownIcon className={classes.icon} />
+                            <Typography variant="h6">Total Events</Typography>
+                            <Typography variant="h4">36</Typography>
+                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={3}>
-                        <Card className={classes.card}>
-                            <CardContent className={classes.cardContent}>
-                                <Typography variant="h6">
-                                    Total Registered Services
-                                </Typography >
-                                <Typography variant="h3">
-                                    10
-                                </Typography >
-                            </CardContent>
-                        </Card>
+                        <Paper className={classes.paper5}>
+                            <ThumbsUpDownIcon className={classes.icon} />
+                            <Typography variant="h6">Total Services</Typography>
+                            <Typography variant="h4">36</Typography>
+                        </Paper>
                     </Grid>
                 </Grid>
                 <Grid container spacing={5}>

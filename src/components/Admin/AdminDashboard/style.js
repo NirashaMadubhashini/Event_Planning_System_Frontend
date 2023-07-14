@@ -105,7 +105,7 @@ export default makeStyles((theme) => ({
         paddingTop: theme.spacing(4),
     },
     yearlyGrid:{
-        marginLeft: theme.spacing(18),
+        marginLeft: theme.spacing(15),
     },
     monthlyGrid:{
         marginLeft: theme.spacing(16),
@@ -114,6 +114,36 @@ export default makeStyles((theme) => ({
         //marginLeft: theme.spacing(3),
     },
 
+    paper1: {
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+        background: "linear-gradient(45deg, #FF1744 30%, #FF8A80 90%)",
+    },
+    paper2: {
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+        background: "linear-gradient(45deg, #3D5AFE 30%, #8C9EFF 90%)",
+    },
+    paper3: {
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+        background: "linear-gradient(45deg, #FF6D00 30%, #FFD740 90%)",
+    },
+    paper4: {
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+        background: "linear-gradient(45deg, #00E676 30%, #69F0AE 90%)",
+    },
+    paper5: {
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+        background: "linear-gradient(45deg, #FFD600 30%, #FFFF8D 90%)",
+    },
 
     [theme.breakpoints.down("xs")]: {
         appBar: {
