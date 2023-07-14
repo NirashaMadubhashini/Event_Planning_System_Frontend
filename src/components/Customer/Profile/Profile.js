@@ -221,14 +221,18 @@ const Profile = () => {
                                     <strong>Name:</strong> Nirasha Madubhashini
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
-                                    <strong>Email:</strong> nirasha0729@gmail.com
-                                </Typography>
-                                <Typography variant="body1" gutterBottom>
                                     <strong>Address:</strong> 123 Street, City
                                 </Typography>
                                 <Typography variant="body1" gutterBottom>
                                     <strong>Phone:</strong> 1234567890
                                 </Typography>
+                                <Typography variant="body1" gutterBottom>
+                                    <strong>Type:</strong> Customer
+                                </Typography>
+                                <Typography variant="body1" gutterBottom>
+                                    <strong>Email:</strong> nirasha0729@gmail.com
+                                </Typography>
+
                                 <div>
                                 <Button onClick={handleOpen} variant="contained" color="primary" className={classes.updatebtn}>
                                     Update
