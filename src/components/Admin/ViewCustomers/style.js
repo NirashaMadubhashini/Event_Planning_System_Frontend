@@ -1,5 +1,5 @@
+// style.js
 import { makeStyles } from "@material-ui/core/styles";
-import { deepPurple } from "@material-ui/core/colors";
 
 export default makeStyles((theme) => ({
     menuTitle: {
@@ -98,10 +98,10 @@ export default makeStyles((theme) => ({
         textAlign: "center",
     },
     tableContainer: {
-       // marginTop: theme.spacing(1),
+        marginTop: theme.spacing(3),
     },
     search: {
-       marginTop: theme.spacing(3),
+        marginTop: theme.spacing(3),
     },
     [theme.breakpoints.down("xs")]: {
         appBar: {

@@ -82,6 +82,15 @@ const ViewCustomers = () => {
             time: "2:00 PM",
             paymentStatus: "Pending",
         },
+        {
+            customerName: "Jane Smith",
+            event: "Birthday Party",
+            vendorName: "Vendor 2",
+            numOfServices: 5,
+            date: "2023-07-16",
+            time: "2:00 PM",
+            paymentStatus: "Cancel",
+        },
     ];
 
     return (
@@ -214,7 +223,6 @@ const ViewCustomers = () => {
                             }}
                         />
                     </Grid>
-
                 </div>
                 <TableContainer component={Card} className={classes.tableContainer}>
                     <Table>
@@ -238,7 +246,20 @@ const ViewCustomers = () => {
                                     <TableCell>{customer.numOfServices}</TableCell>
                                     <TableCell>{customer.date}</TableCell>
                                     <TableCell>{customer.time}</TableCell>
-                                    <TableCell>{customer.paymentStatus}</TableCell>
+                                    <TableCell>
+                                        <Typography
+                                            style={{
+                                                color:
+                                                    customer.paymentStatus === "Paid"
+                                                        ? "green"
+                                                        : customer.paymentStatus === "Pending"
+                                                            ? "orange"
+                                                            : "red",
+                                            }}
+                                        >
+                                            {customer.paymentStatus}
+                                        </Typography>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
