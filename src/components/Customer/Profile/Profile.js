@@ -15,14 +15,11 @@ import {
     TextField,
 } from "@material-ui/core";
 import useStyles from "./style";
-import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
-import {Link} from "react-router-dom";
+import { Search, ArrowDropDown, ExitToApp, Logout } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 
-
-//this is the home menu
-const Profile= () => {
-
+const Profile = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
 
@@ -59,10 +56,7 @@ const Profile= () => {
         };
     }, []);
 
-
-
     return (
-
         <Container maxWidth="xl" className={classes.container}>
             <AppBar
                 className={classes.appBar}
@@ -188,7 +182,6 @@ const Profile= () => {
                                 }}
                             >
                                 <Logout className={classes.logoutIcon} />
-
                             </Typography>
                         </div>
                     </div>
@@ -196,14 +189,41 @@ const Profile= () => {
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.adminDashboardSection}>
-                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>VIEW YOUR DETAILS</Typography>
-                    <Typography variant="h4" gutterBottom>My Profile</Typography>
+                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>
+                        VIEW YOUR DETAILS
+                    </Typography>
+                    <Typography variant="h4" gutterBottom>
+                        My Profile
+                    </Typography>
                 </div>
-
+                <Grid container spacing={3}>
+                    <Grid item xs={12} sm={6}>
+                        <Card className={classes.card}>
+                            <CardContent className={classes.cardContent}>
+                                {/* Add your customer details here */}
+                                <Typography variant="h6" gutterBottom>
+                                    Customer Details
+                                </Typography>
+                                <Typography variant="body1" gutterBottom>
+                                    Name: John Doe
+                                </Typography>
+                                <Typography variant="body1" gutterBottom>
+                                    Email: john.doe@example.com
+                                </Typography>
+                                <Typography variant="body1" gutterBottom>
+                                    Phone: 123-456-7890
+                                </Typography>
+                                {/* Update button */}
+                                <Button variant="contained" color="primary">
+                                    Update
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
             </Container>
-
         </Container>
     );
-}
+};
 
-export default Profile
+export default Profile;
