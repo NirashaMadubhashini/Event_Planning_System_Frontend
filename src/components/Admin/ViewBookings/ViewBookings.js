@@ -173,8 +173,8 @@ const ViewBookings = () => {
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
-                <div className={classes.adminDashboardSection}>
-                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>Add and Manage Events</Typography>
+                <div className={classes.viewBookingsSection}>
+                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>View Bookings</Typography>
                 </div>
 
             </Container>
