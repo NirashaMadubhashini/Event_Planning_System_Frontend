@@ -1,3 +1,4 @@
+// ViewCustomers.js
 import React, { useState, useEffect } from "react";
 import {
     AppBar,
@@ -13,16 +14,19 @@ import {
     Container,
     InputAdornment,
     TextField,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
 } from "@material-ui/core";
-import useStyles from "./style";
-import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
-import {Link} from "react-router-dom";
+import { Search, ArrowDropDown, ExitToApp, Logout } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
+import useStyles from "./style";
 
-
-//this is the home menu
 const ViewCustomers = () => {
-
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
 
@@ -59,10 +63,28 @@ const ViewCustomers = () => {
         };
     }, []);
 
-
+    const customersData = [
+        {
+            customerName: "John Doe",
+            event: "Wedding",
+            vendorName: "Vendor 1",
+            numOfServices: 3,
+            date: "2023-07-15",
+            time: "12:00 PM",
+            paymentStatus: "Paid",
+        },
+        {
+            customerName: "Jane Smith",
+            event: "Birthday Party",
+            vendorName: "Vendor 2",
+            numOfServices: 5,
+            date: "2023-07-16",
+            time: "2:00 PM",
+            paymentStatus: "Pending",
+        },
+    ];
 
     return (
-
         <Container maxWidth="xl" className={classes.container}>
             <AppBar
                 className={classes.appBar}
@@ -166,7 +188,6 @@ const ViewCustomers = () => {
                                 }}
                             >
                                 <Logout className={classes.logoutIcon} />
-
                             </Typography>
                         </div>
                     </div>
@@ -174,13 +195,58 @@ const ViewCustomers = () => {
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.viewCustomersSection}>
-                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>View Customers</Typography>
+                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>
+                        View Customers
+                    </Typography>
+                    <Grid item xs={12} sm={6} className={classes.search}>
+                        <TextField
+                            variant="outlined"
+                            placeholder="Search"
+                            fullWidth
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton>
+                                            <Search />
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </Grid>
+
                 </div>
-
+                <TableContainer component={Card} className={classes.tableContainer}>
+                    <Table>
+                        <TableHead style={{ backgroundColor: "#C8C9CB" }}>
+                            <TableRow>
+                                <TableCell>Customer Name</TableCell>
+                                <TableCell>Event</TableCell>
+                                <TableCell>Vendor Name</TableCell>
+                                <TableCell>No. of Services</TableCell>
+                                <TableCell>Date</TableCell>
+                                <TableCell>Time</TableCell>
+                                <TableCell>Payment Status</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {customersData.map((customer, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{customer.customerName}</TableCell>
+                                    <TableCell>{customer.event}</TableCell>
+                                    <TableCell>{customer.vendorName}</TableCell>
+                                    <TableCell>{customer.numOfServices}</TableCell>
+                                    <TableCell>{customer.date}</TableCell>
+                                    <TableCell>{customer.time}</TableCell>
+                                    <TableCell>{customer.paymentStatus}</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </Container>
-
         </Container>
     );
-}
+};
 
-export default ViewCustomers
+export default ViewCustomers;
