@@ -399,7 +399,7 @@ const [packages,setPackages] = useState([
                                         onClick={() => handleButtonClick(packages.id)}
                                         className={classes.button}
                                     >
-                                        Purchase
+                                        See More
                                     </Button>
                                 </CardContent>
                             </Card>
