@@ -43,6 +43,7 @@ const AddEvent = () => {
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
     const [updateModalOpen, setUpdateModalOpen] = useState(false);
     const [modalData, setModalData] = useState({
+        eventId: "",
         eventName: "",
         eventDescription: "",
         eventPrice: "",
@@ -117,11 +118,13 @@ const AddEvent = () => {
     };
     const incidentsData = [
         {
+            eventId: "E001",
             eventName: "Wedding",
             eventDescription: "Wedding Events",
             eventPrice: "100,000",
         },
         {
+            eventId: "E002",
             eventName: "Gathering",
             eventDescription: "Gathering Events",
             eventPrice: "50,000",
@@ -263,6 +266,18 @@ const AddEvent = () => {
                         <TextField
                             fullWidth
                             variant="outlined"
+                            label="Event Id"
+                            value={modalData.eventId}
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                        />
+
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <TextField
+                            fullWidth
+                            variant="outlined"
                             label="Event Name"
                             // Add necessary onChange and value properties
                         />
@@ -311,6 +326,7 @@ const AddEvent = () => {
                     <Table>
                         <TableHead style={{ backgroundColor: "#C8C9CB" }}>
                             <TableRow>
+                                <TableCell>Event Id</TableCell>
                                 <TableCell>Event Name</TableCell>
                                 <TableCell>Event Description</TableCell>
                                 <TableCell>Event Price</TableCell>
@@ -320,6 +336,7 @@ const AddEvent = () => {
                         <TableBody>
                             {incidentsData.map((incident, index) => (
                                 <TableRow key={index}>
+                                    <TableCell>{incident.eventId}</TableCell>
                                     <TableCell>{incident.eventName}</TableCell>
                                     <TableCell>{incident.eventDescription}</TableCell>
                                     <TableCell>{incident.eventPrice}</TableCell>
@@ -364,6 +381,16 @@ const AddEvent = () => {
                 >
                     <DialogTitle>Update Service</DialogTitle>
                     <DialogContent>
+                        <TextField
+                            label="Event Id"
+                            name="eventId"
+                            value={modalData.eventId}
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                            fullWidth
+                            margin="normal"
+                        />
                         <TextField
                             label="Event Name"
                             name="eventName"
