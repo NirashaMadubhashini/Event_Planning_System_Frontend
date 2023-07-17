@@ -335,7 +335,7 @@ const AddEvent = () => {
                     <DialogTitle>Confirm Delete</DialogTitle>
                     <DialogContent>
                         <Typography variant="body1">
-                            Are you sure you want to delete this service?
+                            Are you sure you want to delete this Event?
                         </Typography>
                     </DialogContent>
                     <DialogActions>
