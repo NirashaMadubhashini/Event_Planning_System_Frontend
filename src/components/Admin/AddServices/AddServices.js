@@ -266,17 +266,6 @@ const AddService = () => {
                         <TextField
                             fullWidth
                             variant="outlined"
-                            label="Service Id"
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                            // Add necessary onChange and value properties
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <TextField
-                            fullWidth
-                            variant="outlined"
                             label="Service Name"
                             // Add necessary onChange and value properties
                         />

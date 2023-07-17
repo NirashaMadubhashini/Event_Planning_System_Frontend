@@ -266,18 +266,6 @@ const AddEvent = () => {
                         <TextField
                             fullWidth
                             variant="outlined"
-                            label="Event Id"
-                            value={modalData.eventId}
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                        />
-
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <TextField
-                            fullWidth
-                            variant="outlined"
                             label="Event Name"
                             // Add necessary onChange and value properties
                         />

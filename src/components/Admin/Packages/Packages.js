@@ -43,6 +43,7 @@ const AddPackages = () => {
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
     const [updateModalOpen, setUpdateModalOpen] = useState(false);
     const [modalData, setModalData] = useState({
+        customizePackageId: "",
         customizePackageName: "",
         customizePackagePrice: "",
         customizePackageDuration: "",
@@ -119,6 +120,7 @@ const AddPackages = () => {
     };
     const customizePackagesData = [
         {
+            customizePackageId: "P001",
             customizePackageName: "Wedding Celebration",
             customizePackagePrice: "$5000",
             customizePackageDuration: "8H",
@@ -127,6 +129,7 @@ const AddPackages = () => {
 
         },
         {
+            customizePackageId: "P002",
             customizePackageName: "Engagement Celebration",
             customizePackagePrice: "$2500",
             customizePackageDuration: "4H",
@@ -336,6 +339,7 @@ const AddPackages = () => {
                     <Table>
                         <TableHead style={{ backgroundColor: "#C8C9CB" }}>
                             <TableRow>
+                                <TableCell>Package Id</TableCell>
                                 <TableCell>Package Name</TableCell>
                                 <TableCell>Package Price</TableCell>
                                 <TableCell>Package Duration</TableCell>
@@ -347,6 +351,7 @@ const AddPackages = () => {
                         <TableBody>
                             {customizePackagesData.map((customizePackage, index) => (
                                 <TableRow key={index}>
+                                    <TableCell>{customizePackage.customizePackageId}</TableCell>
                                     <TableCell>{customizePackage.customizePackageName}</TableCell>
                                     <TableCell>{customizePackage.customizePackagePrice}</TableCell>
                                     <TableCell>{customizePackage.customizePackageDuration}</TableCell>
@@ -393,6 +398,17 @@ const AddPackages = () => {
                 >
                     <DialogTitle>Update Service</DialogTitle>
                     <DialogContent>
+                        <TextField
+                            label="Package Id"
+                            name="customizePackageId"
+                            value={modalData.customizePackageId}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                        />
                         <TextField
                             label="Package Name"
                             name="customizePackageName"

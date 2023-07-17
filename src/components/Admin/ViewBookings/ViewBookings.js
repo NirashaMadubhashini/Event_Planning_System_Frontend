@@ -1,4 +1,3 @@
-// ViewCustomers.js
 import React, { useState, useEffect } from "react";
 import {
     AppBar,
@@ -19,14 +18,27 @@ import {
     TableCell,
     TableContainer,
     TableHead,
-    TableRow, Dialog, DialogTitle, DialogContent, DialogActions, Modal, Paper,
+    TableRow,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Modal,
+    Paper,
 } from "@material-ui/core";
-import { Search, ArrowDropDown, ExitToApp, Logout,Edit,
-    Delete, } from "@mui/icons-material";
+import {
+    Search,
+    ArrowDropDown,
+    ExitToApp,
+    Logout,
+    Edit,
+    Delete,
+} from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const ViewBookings = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -44,6 +56,7 @@ const ViewBookings = () => {
     const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+    const [updateConfirmationOpen, setUpdateConfirmationOpen] = useState(false);
     const [updateModalOpen, setUpdateModalOpen] = useState(false);
     const [modalData, setModalData] = useState({
         name: "",
@@ -53,6 +66,7 @@ const ViewBookings = () => {
         rating: "",
         numOfBookings: "",
     });
+
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) =>
             prevCategory === category ? "" : category
@@ -65,6 +79,14 @@ const ViewBookings = () => {
 
     const handleDeleteConfirmationClose = () => {
         setDeleteConfirmationOpen(false);
+    };
+
+    const handleUpdateConfirmationOpen = () => {
+        setUpdateConfirmationOpen(true);
+    };
+
+    const handleUpdateConfirmationClose = () => {
+        setUpdateConfirmationOpen(false);
     };
 
     const handleUpdateModalOpen = (vendor) => {
@@ -87,6 +109,7 @@ const ViewBookings = () => {
     const handleModalSubmit = () => {
         // Handle the submit logic here
         console.log(modalData);
+        setUpdateConfirmationOpen(false);
         setUpdateModalOpen(false);
     };
 
@@ -262,7 +285,7 @@ const ViewBookings = () => {
                     </Typography>
                 </div>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6} >
+                    <Grid item xs={12} sm={6}>
                         <TextField
                             variant="outlined"
                             placeholder="Search"
@@ -318,10 +341,16 @@ const ViewBookings = () => {
                                     </TableCell>
                                     <TableCell>
                                         <IconButton
+                                            color="primary"
+                                            onClick={handleUpdateConfirmationOpen}
+                                        >
+                                            <CheckCircleIcon />
+                                        </IconButton>
+                                        <IconButton
                                             color="secondary"
                                             onClick={handleDeleteConfirmationOpen}
                                         >
-                                            <Delete />
+                                            <CancelIcon />
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
@@ -329,24 +358,45 @@ const ViewBookings = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <Dialog
-                    open={deleteConfirmationOpen}
-                    onClose={handleDeleteConfirmationClose}
-                >
-                    <DialogTitle>Delete Booking</DialogTitle>
-                    <DialogContent>
-                        <Typography>
-                            Are you sure you want to delete this booking?
-                        </Typography>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleDeleteConfirmationClose}>Cancel</Button>
-                        <Button onClick={handleDeleteConfirmationClose} color="secondary">
-                            Delete
-                        </Button>
-                    </DialogActions>
-                </Dialog>
             </Container>
+            <Dialog
+                open={deleteConfirmationOpen}
+                onClose={handleDeleteConfirmationClose}
+            >
+                <DialogTitle>Delete Confirmation</DialogTitle>
+                <DialogContent>
+                    <Typography variant="body1">
+                        Are you sure you want to delete this booking?
+                    </Typography>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleDeleteConfirmationClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleDeleteConfirmationClose} color="secondary">
+                        Delete
+                    </Button>
+                </DialogActions>
+            </Dialog>
+            <Dialog
+                open={updateConfirmationOpen}
+                onClose={handleUpdateConfirmationClose}
+            >
+                <DialogTitle>Update Confirmation</DialogTitle>
+                <DialogContent>
+                    <Typography variant="body1">
+                        Are you sure you want to Approve this booking?
+                    </Typography>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleUpdateConfirmationClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleUpdateConfirmationClose} color="secondary">
+                        Approve
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Container>
     );
 };
