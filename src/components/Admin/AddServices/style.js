@@ -1,6 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
-//AdminDashboard Style.js
 
 export default makeStyles((theme) => ({
     menuTitle: {
@@ -21,24 +19,21 @@ export default makeStyles((theme) => ({
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100px',
-        backgroundColor: theme.palette.primary.main, // Set background color to primary color
-        color: '#ffffff', // Set text color to white
-        transition: 'background-color 0.2s ease, box-shadow 0.10s ease', // Add transition for smooth color change
+        backgroundColor: theme.palette.primary.main,
+        color: '#ffffff',
+        transition: 'background-color 0.2s ease, box-shadow 0.10s ease',
         '&:hover': {
-            backgroundColor: '#ffffff', // Change background color to white on hover
-            color: '#0000ff', // Change text color to blue on hover
+            backgroundColor: '#ffffff',
+            color: '#0000ff',
         },
     },
-
     container: {
         padding: "1px",
     },
-
     cardMedia: {
         height: 0,
-        paddingTop: '56.25%', // 16:9 aspect ratio
+        paddingTop: '56.25%',
     },
-
     appBar: {
         borderRadius: 0,
         padding: "0px 20px",
@@ -87,14 +82,11 @@ export default makeStyles((theme) => ({
             textDecoration: "underline",
         },
     },
-
-
     titleSection: {
         flex: "1 0 10%",
-        // backgroundColor:"#D1DAD9"
     },
-    headerName:{
-        fontWeight:"bold",
+    headerName: {
+        fontWeight: "bold",
     },
     button: {
         position: 'relative',
@@ -104,7 +96,6 @@ export default makeStyles((theme) => ({
         paddingBottom: theme.spacing(3),
         textAlign: "center",
     },
-// Add additional styles for smaller screens
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",

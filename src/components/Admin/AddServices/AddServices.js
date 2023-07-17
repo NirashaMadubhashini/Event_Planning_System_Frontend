@@ -13,16 +13,24 @@ import {
     Container,
     InputAdornment,
     TextField,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
 } from "@material-ui/core";
-import useStyles from "./style";
-import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
-import {Link} from "react-router-dom";
+import {
+    Search,
+    ArrowDropDown,
+    ExitToApp,
+    Logout,
+} from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
+import useStyles from "./style";
 
-
-//this is the home menu
 const AddService = () => {
-
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
 
@@ -59,10 +67,7 @@ const AddService = () => {
         };
     }, []);
 
-
-
     return (
-
         <Container maxWidth="xl" className={classes.container}>
             <AppBar
                 className={classes.appBar}
@@ -166,7 +171,6 @@ const AddService = () => {
                                 }}
                             >
                                 <Logout className={classes.logoutIcon} />
-
                             </Typography>
                         </div>
                     </div>
@@ -174,13 +178,74 @@ const AddService = () => {
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.addServicesSection}>
-                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>Add and Manage Services</Typography>
+                    <Typography
+                        variant="h4"
+                        gutterBottom
+                        style={{ color: "#3F51B5" }}
+                    >
+                        Add and Manage Services
+                    </Typography>
+                    <Grid container spacing={2} alignItems="center">
+                        <Grid item xs={12} sm={6} md={4}>
+                            <TextField
+                                fullWidth
+                                variant="outlined"
+                                label="Service Name"
+                                // Add necessary onChange and value properties
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <TextField
+                                fullWidth
+                                variant="outlined"
+                                label="Service Description"
+                                // Add necessary onChange and value properties
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <TextField
+                                fullWidth
+                                variant="outlined"
+                                label="Service Price"
+                                // Add necessary onChange and value properties
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button variant="contained" color="primary">
+                                Add Service
+                            </Button>
+                        </Grid>
+                    </Grid>
+                    <TableContainer>
+                        <Table>
+                            <TableHead style={{ backgroundColor: "#C8C9CB" }}>
+                                <TableRow>
+                                    <TableCell>Service Name</TableCell>
+                                    <TableCell>Service Description</TableCell>
+                                    <TableCell>Service Price</TableCell>
+                                    <TableCell>Actions</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {/* Render the table rows with service data */}
+                                {/* Example:
+                <TableRow>
+                  <TableCell>Service 1</TableCell>
+                  <TableCell>Description 1</TableCell>
+                  <TableCell>10.00</TableCell>
+                  <TableCell>
+                    <Button>Edit</Button>
+                    <Button>Delete</Button>
+                  </TableCell>
+                </TableRow>
+                */}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                 </div>
-
             </Container>
-
         </Container>
     );
-}
+};
 
-export default AddService
+export default AddService;
