@@ -35,12 +35,19 @@ import {
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
+import service from "../../Customer/Services/Service";
 
 const AddService = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [searchValue, setSearchValue] = useState("");
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
     const [updateModalOpen, setUpdateModalOpen] = useState(false);
+    const [modalData, setModalData] = useState({
+        serviceName: "",
+        serviceDescription: "",
+        servicePrice: "",
+
+    });
     const classes = useStyles();
 
     const handleClick = (event) => {
@@ -88,13 +95,38 @@ const AddService = () => {
         setDeleteConfirmationOpen(false);
     };
 
-    const handleUpdateModalOpen = () => {
+    const handleUpdateModalOpen = (service) => {
+        setModalData(service);
         setUpdateModalOpen(true);
     };
 
     const handleUpdateModalClose = () => {
         setUpdateModalOpen(false);
     };
+    const handleModalSubmit = () => {
+        // Handle the submit logic here
+        console.log(modalData);
+        setUpdateModalOpen(false);
+    };
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setModalData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+    const servicesData = [
+        {
+            serviceName: "Hotel",
+            serviceDescription: "Hotels and halls for functions",
+            servicePrice: "10,000",
+        },
+        {
+            serviceName: "Saloon",
+            serviceDescription: "Beauty service for customers",
+            servicePrice: "15000",
+        },
+    ];
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -275,19 +307,24 @@ const AddService = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            <TableRow>
-                                <TableCell>Service 1</TableCell>
-                                <TableCell>Description 1</TableCell>
-                                <TableCell>10.00</TableCell>
+                            {servicesData.map((service, index) => (
+                            <TableRow key={index}>
+                                <TableCell>{service.serviceName}</TableCell>
+                                <TableCell>{service.serviceDescription}</TableCell>
+                                <TableCell>{service.servicePrice}</TableCell>
                                 <TableCell>
-                                    <IconButton color="primary" onClick={handleUpdateModalOpen}>
+                                    <IconButton color="primary"
+                                                onClick={() => handleUpdateModalOpen(service)}
+                                    >
                                         <Edit />
                                     </IconButton>
-                                    <IconButton color="secondary" onClick={handleDeleteConfirmationOpen}>
+                                    <IconButton color="secondary"
+                                                onClick={handleDeleteConfirmationOpen}>
                                         <Delete />
                                     </IconButton>
                                 </TableCell>
                             </TableRow>
+                                ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -316,13 +353,36 @@ const AddService = () => {
                 >
                     <DialogTitle>Update Service</DialogTitle>
                     <DialogContent>
-                        {/* Add the form fields for updating the service */}
+                        <TextField
+                            label="Service Name"
+                            name="serviceName"
+                            value={modalData.serviceName}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Service Description"
+                            name="serviceDescription"
+                            value={modalData.serviceDescription}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Service Price"
+                            name="servicePrice"
+                            value={modalData.servicePrice}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleUpdateModalClose} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={handleUpdateModalClose} color="primary">
+                        <Button onClick={handleModalSubmit} color="primary">
                             Update
                         </Button>
                     </DialogActions>

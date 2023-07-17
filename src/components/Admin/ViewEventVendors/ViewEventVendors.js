@@ -327,9 +327,7 @@ const ViewVendors = () => {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <Modal open={updateModalOpen} onClose={handleUpdateModalClose}>
-                    <div className={classes.modal}>
-                        <Paper elevation={3} className={classes.modalContent}>
+                <Dialog open={updateModalOpen} onClose={handleUpdateModalClose}>
                             <DialogTitle>Edit Vendor</DialogTitle>
                             <DialogContent>
                                 <TextField
@@ -389,9 +387,7 @@ const ViewVendors = () => {
                                     Submit
                                 </Button>
                             </DialogActions>
-                        </Paper>
-                    </div>
-                </Modal>
+                </Dialog>
             </Container>
         </Container>
     );
