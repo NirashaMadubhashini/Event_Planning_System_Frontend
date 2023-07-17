@@ -43,6 +43,7 @@ const AddService = () => {
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
     const [updateModalOpen, setUpdateModalOpen] = useState(false);
     const [modalData, setModalData] = useState({
+        serviceId: "",
         serviceName: "",
         serviceDescription: "",
         servicePrice: "",
@@ -117,11 +118,13 @@ const AddService = () => {
     };
     const servicesData = [
         {
+            serviceId: "S001",
             serviceName: "Hotel",
             serviceDescription: "Hotels and halls for functions",
             servicePrice: "10,000",
         },
         {
+            serviceId: "S002",
             serviceName: "Saloon",
             serviceDescription: "Beauty service for customers",
             servicePrice: "15000",
@@ -263,6 +266,17 @@ const AddService = () => {
                         <TextField
                             fullWidth
                             variant="outlined"
+                            label="Service Id"
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                            // Add necessary onChange and value properties
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <TextField
+                            fullWidth
+                            variant="outlined"
                             label="Service Name"
                             // Add necessary onChange and value properties
                         />
@@ -311,6 +325,7 @@ const AddService = () => {
                     <Table>
                         <TableHead style={{ backgroundColor: "#C8C9CB" }}>
                             <TableRow>
+                                <TableCell>Service Id</TableCell>
                                 <TableCell>Service Name</TableCell>
                                 <TableCell>Service Description</TableCell>
                                 <TableCell>Service Price</TableCell>
@@ -320,6 +335,7 @@ const AddService = () => {
                         <TableBody>
                             {servicesData.map((service, index) => (
                             <TableRow key={index}>
+                                <TableCell>{service.serviceId}</TableCell>
                                 <TableCell>{service.serviceName}</TableCell>
                                 <TableCell>{service.serviceDescription}</TableCell>
                                 <TableCell>{service.servicePrice}</TableCell>
@@ -365,6 +381,17 @@ const AddService = () => {
                     <DialogTitle>Update Service</DialogTitle>
                     <DialogContent>
                         <TextField
+                            label="Service Id"
+                            name="serviceId"
+                            value={modalData.serviceId}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                        />
+                        <TextField
                             label="Service Name"
                             name="serviceName"
                             value={modalData.serviceName}
@@ -390,7 +417,7 @@ const AddService = () => {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleUpdateModalClose} color="primary">
+                        <Button onClick={handleUpdateModalClose} color="secondary">
                             Cancel
                         </Button>
                         <Button onClick={handleModalSubmit} color="primary">
