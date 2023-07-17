@@ -52,6 +52,15 @@ const App = () => {
                     <Route path="/viewBookings" exact component={ViewBookings} />
                     <Route path="/viewCustomers" exact component={ViewCustomers} />
                     <Route path="/viewVendors" exact component={ViewVendors} />
+                    <Route path="/addPackages" exact component={AddPackages} />
+
+                    --------------------------------------------------------
+                    {/*<Route path="/vendorDashboard" exact component={AdminDashboard} />*/}
+                    {/*<Route path="/vendorProfile" exact component={Profile} />*/}
+                    {/*<Route path="/vendorAddPackages" exact component={AddService} />*/}
+                    {/*<Route path="/vendorAddBusiness" exact component={AddEvent} />*/}
+                    {/*<Route path="/VendorViewBookings" exact component={ViewBookings} />*/}
+                    {/*<Route path="/vendorGallery" exact component={AdminGallery} />*/}
                 </Switch>
             </Container>
         </BrowserRouter>
