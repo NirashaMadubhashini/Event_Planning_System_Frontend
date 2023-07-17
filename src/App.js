@@ -22,6 +22,7 @@ import AddEvent from "./components/Admin/AddEvents/AddEvents";
 import ViewBookings from "./components/Admin/ViewBookings/ViewBookings";
 import ViewCustomers from "./components/Admin/ViewCustomers/ViewCustomers";
 import ViewVendors from "./components/Admin/ViewEventVendors/ViewEventVendors";
+import AddPackages from "./components/Admin/Packages/Packages";
 
 const App = () => {
     return (
