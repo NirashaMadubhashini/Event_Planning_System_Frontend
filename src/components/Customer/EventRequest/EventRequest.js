@@ -200,17 +200,17 @@ const EventRequest = () => {
                             >
                                 About
                             </Typography>
-                            <Typography
-                                component={Link}
-                                to="/service"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Services")}
-                                style={{
-                                    color: clickedCategory === "Services" ? "#F50057" : "",
-                                }}
-                            >
-                                Services
-                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/service"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Services")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Services" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Services*/}
+                            {/*</Typography>*/}
                             <Typography
                                 component={Link}
                                 to="/booking"
@@ -263,7 +263,7 @@ const EventRequest = () => {
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.serviceSection}>
                     <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>WE ARE HERE TO HELP YOU</Typography>
-                    <Typography variant="h4" gutterBottom>Book an Event</Typography>
+                    <Typography variant="h4" gutterBottom>Book Services</Typography>
                 </div>
                 <Box mt={3}>
                     <form onSubmit={handleSubmit}>
@@ -272,13 +272,6 @@ const EventRequest = () => {
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <DemoContainer components={['DateRangePicker','MultiInputTimeRangeField']}>
                                         <DateRangePicker localeText={{ start: 'Start-Date', end: 'End-Date' }} />
-                                        <MultiInputTimeRangeField
-                                            slotProps={{
-                                                textField: ({ position }) => ({
-                                                    label: position === 'start' ? 'From' : 'To',
-                                                }),
-                                            }}
-                                        />
                                     </DemoContainer>
                                 </LocalizationProvider>
                             </Grid>
@@ -320,30 +313,6 @@ const EventRequest = () => {
                                     </Select>
                                 </FormControl>
                             </Grid>
-                            {/*<Grid item xs={12} md={6}>*/}
-                            {/*    <FormGroup>*/}
-                            {/*        <FormControlLabel*/}
-                            {/*            control={*/}
-                            {/*                <Checkbox*/}
-                            {/*                    checked={morningChecked}*/}
-                            {/*                    onChange={handleMorningCheckboxChange}*/}
-                            {/*                    name="morning"*/}
-                            {/*                />*/}
-                            {/*            }*/}
-                            {/*            label="Morning"*/}
-                            {/*        />*/}
-                            {/*        <FormControlLabel*/}
-                            {/*            control={*/}
-                            {/*                <Checkbox*/}
-                            {/*                    checked={eveningChecked}*/}
-                            {/*                    onChange={handleEveningCheckboxChange}*/}
-                            {/*                    name="evening"*/}
-                            {/*                />*/}
-                            {/*            }*/}
-                            {/*            label="Evening"*/}
-                            {/*        />*/}
-                            {/*    </FormGroup>*/}
-                            {/*</Grid>*/}
                             <Grid item xs={6} md={6}>
                                 <Button variant="contained" color="primary" type="submit">
                                     Submit

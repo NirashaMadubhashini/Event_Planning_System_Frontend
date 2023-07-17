@@ -10,7 +10,7 @@ import {
     Menu,
     MenuItem,
     Grid,
-    Container,
+    Container, TextField,
 } from "@material-ui/core";
 import useStyles from "./style";
 import {
@@ -47,7 +47,14 @@ import EventPro from "../../../assets/images/CorrectLogo.png";
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
-
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers-pro';
+import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import {format} from "date-fns";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
 const Service = () => {
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -299,7 +306,28 @@ const Service = () => {
         return total;
     };
 
+    const [selectedDate, setSelectedDate] = useState(null);
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
 
+    const [functionType, setFunctionType] = useState("");
+    const handleFunctionTypeChange = (event) => {
+        setFunctionType(event.target.value);
+    };
+
+    const [location, setLocation] = useState("");
+    const handleLocationChange = (event) => {
+        setLocation(event.target.value);
+    };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formattedDate = selectedDate ? format(selectedDate, "dd/MM/yyyy") : "";
+        console.log("Form Submitted");
+        console.log("Selected Date:", formattedDate);
+        console.log("Function Type:", functionType);
+        console.log("Location:", location);
+    };
     return (
         <div>
             <AppBar
@@ -372,17 +400,17 @@ const Service = () => {
                             >
                                 About
                             </Typography>
-                            <Typography
-                                component={Link}
-                                to="/service"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Services")}
-                                style={{
-                                    color: clickedCategory === "Services" ? "#F50057" : "",
-                                }}
-                            >
-                                Services
-                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/service"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Services")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Services" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Services*/}
+                            {/*</Typography>*/}
                             <Typography
                                 component={Link}
                                 to="/booking"
@@ -433,8 +461,7 @@ const Service = () => {
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg">
-
-                <Grid container spacing={3}>
+                <Grid container spacing={5}>
                     <Grid item xs={12} sm={12}>
                         <div className={classes.serviceSection}>
                             <Typography
@@ -445,10 +472,83 @@ const Service = () => {
                                 OUR SERVICES
                             </Typography>
                             <Typography variant="h4" gutterBottom>
-                                What We Offer
+                                Book Services
                             </Typography>
                         </div>
                     </Grid>
+                    <Grid container spacing={3} justify="center">
+                        <form onSubmit={handleSubmit}>
+                            <Grid container spacing={3}>
+                                <Grid item xs={12} md={12}>
+                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                        <DemoContainer components={['DateRangePicker','MultiInputTimeRangeField']}>
+                                            <DateRangePicker localeText={{ start: 'Start-Date', end: 'End-Date' }} />
+                                        </DemoContainer>
+                                    </LocalizationProvider>
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <FormControl fullWidth variant="outlined">
+                                        <InputLabel id="function-type-label">Function Type</InputLabel>
+                                        <Select
+                                            labelId="function-type-label"
+                                            id="function-type"
+                                            value={functionType}
+                                            onChange={handleFunctionTypeChange}
+                                            label="Function Type"
+                                        >
+                                            <MenuItem value="">
+                                                <em>None</em>
+                                            </MenuItem>
+                                            <MenuItem value="Corporate Event">Corporate Event</MenuItem>
+                                            <MenuItem value="Wedding">Wedding</MenuItem>
+                                            <MenuItem value="Birthday Party">Birthday Party</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <FormControl fullWidth variant="outlined">
+                                        <InputLabel id="location-label">Location</InputLabel>
+                                        <Select
+                                            labelId="location-label"
+                                            id="location"
+                                            value={location}
+                                            onChange={handleLocationChange}
+                                            label="Location"
+                                        >
+                                            <MenuItem value="">
+                                                <em>None</em>
+                                            </MenuItem>
+                                            <MenuItem value="Location 1">Galle</MenuItem>
+                                            <MenuItem value="Location 2">Colombo</MenuItem>
+                                            <MenuItem value="Location 3">Matara</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={6} md={6}>
+                                    <Button variant="contained" color="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </form>
+                    </Grid>
+                    {/*<Grid container spacing={3} justify="center">*/}
+                    {/*    <Grid item xs={12} sm={6}>*/}
+                    {/*        <Card className={classes.card}>*/}
+                    {/*            <CardContent className={classes.cardContent}>*/}
+                    {/*                <div>*/}
+                    {/*                    <TextField id="nic" label="NIC" variant="outlined" fullWidth />*/}
+                    {/*                    <TextField id="name" label="Name" variant="outlined" fullWidth />*/}
+                    {/*                    <TextField id="address" label="Address" variant="outlined" fullWidth />*/}
+                    {/*                    <TextField id="phone" label="Phone" variant="outlined" fullWidth />*/}
+                    {/*                    <Button variant="contained" color="primary" fullWidth>*/}
+                    {/*                        Submit*/}
+                    {/*                    </Button>*/}
+                    {/*                </div>*/}
+                    {/*            </CardContent>*/}
+                    {/*        </Card>*/}
+                    {/*    </Grid>*/}
+                    {/*</Grid>*/}
                     <Grid item xs={12} sm={4}>
                         {services.map((service) => (
                             <Card
@@ -639,6 +739,14 @@ const Service = () => {
                                     >
                                         Total Price: ${getTotalPrice()}
                                     </Typography>
+                                    <Button
+                                        className={classes.bookButton}
+                                        // onClick={handlePackageRemove}
+                                        variant="outlined"
+                                        color="secondary"
+                                    >
+                                        Purchase
+                                    </Button>
                                 </CardContent>
                             </Card>
                         )}

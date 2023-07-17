@@ -132,17 +132,17 @@ const Home = () => {
                             >
                                 About
                             </Typography>
-                            <Typography
-                                component={Link}
-                                to="/service"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Services")}
-                                style={{
-                                    color: clickedCategory === "Services" ? "#F50057" : "",
-                                }}
-                            >
-                                Services
-                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/service"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Services")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Services" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Services*/}
+                            {/*</Typography>*/}
                             <Typography
                                 component={Link}
                                 to="/booking"
@@ -216,9 +216,9 @@ const Home = () => {
                                             color="primary"
                                             size="large"
                                             component={Link}
-                                            to="/eventRequest"
+                                            to="/service"
                                         >
-                                            Book An Event
+                                            Book Services
                                         </Button>
                                         <Button
                                             variant="contained"
@@ -246,9 +246,9 @@ const Home = () => {
                                             color="primary"
                                             size="large"
                                             component={Link}
-                                            to="/eventRequest"
+                                            to="/service"
                                         >
-                                            Book An Event
+                                            Book Services
                                         </Button>
                                         <Button
                                             variant="contained"
@@ -276,9 +276,9 @@ const Home = () => {
                                             color="primary"
                                             size="large"
                                             component={Link}
-                                            to="/eventRequest"
+                                            to="/service"
                                         >
-                                            Book An Event
+                                            Book Services
                                         </Button>
                                         <Button
                                             variant="contained"

@@ -123,17 +123,17 @@ const ServicePackages = () => {
                             >
                                 About
                             </Typography>
-                            <Typography
-                                component={Link}
-                                to="/service"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Services")}
-                                style={{
-                                    color: clickedCategory === "Services" ? "#F50057" : "",
-                                }}
-                            >
-                                Services
-                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/service"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Services")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Services" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Services*/}
+                            {/*</Typography>*/}
                             <Typography
                                 component={Link}
                                 to="/booking"

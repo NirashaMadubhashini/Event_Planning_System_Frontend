@@ -147,12 +147,36 @@ const useStyles = makeStyles((theme) => ({
     removeButton: {
         marginTop: theme.spacing(1),
     },
+    bookButton: {
+        // marginTop: theme.spacing(1),
+        marginLeft:theme.spacing(115),
+    },
     serviceName: {
         marginTop: theme.spacing(2),
     },
     totalPrice: {
         marginTop: theme.spacing(2),
         fontWeight:'Bold',
+    },
+    card: {
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    cardContent: {
+        flexGrow: 1,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        minHeight: "100px",
+        color: "black",
+        transition: "background-color 0.2s ease, box-shadow 0.10s ease",
+        "&:hover": {
+            backgroundColor: "#ffffff",
+        },
     },
 
     [theme.breakpoints.down("xs")]: {
