@@ -13,17 +13,41 @@ import {
     Container,
     InputAdornment,
     TextField,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
 } from "@material-ui/core";
-import useStyles from "./style";
-import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
-import {Link} from "react-router-dom";
+import {
+    Search,
+    ArrowDropDown,
+    ExitToApp,
+    Logout,
+    Edit,
+    Delete,
+} from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
+import useStyles from "./style";
+import service from "../../Customer/Services/Service";
 
-
-//this is the home menu
 const AddEvent = () => {
-
     const [anchorEl, setAnchorEl] = useState(null);
+    const [searchValue, setSearchValue] = useState("");
+    const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+    const [updateModalOpen, setUpdateModalOpen] = useState(false);
+    const [modalData, setModalData] = useState({
+        eventName: "",
+        eventDescription: "",
+        eventPrice: "",
+
+    });
     const classes = useStyles();
 
     const handleClick = (event) => {
@@ -59,10 +83,52 @@ const AddEvent = () => {
         };
     }, []);
 
+    const handleSearchChange = (e) => {
+        setSearchValue(e.target.value);
+    };
 
+    const handleDeleteConfirmationOpen = () => {
+        setDeleteConfirmationOpen(true);
+    };
+
+    const handleDeleteConfirmationClose = () => {
+        setDeleteConfirmationOpen(false);
+    };
+
+    const handleUpdateModalOpen = (incident) => {
+        setModalData(incident);
+        setUpdateModalOpen(true);
+    };
+
+    const handleUpdateModalClose = () => {
+        setUpdateModalOpen(false);
+    };
+    const handleModalSubmit = () => {
+        // Handle the submit logic here
+        console.log(modalData);
+        setUpdateModalOpen(false);
+    };
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setModalData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+    const incidentsData = [
+        {
+            eventName: "Wedding",
+            eventDescription: "Wedding Events",
+            eventPrice: "100,000",
+        },
+        {
+            eventName: "Gathering",
+            eventDescription: "Gathering Events",
+            eventPrice: "50,000",
+        },
+    ];
 
     return (
-
         <Container maxWidth="xl" className={classes.container}>
             <AppBar
                 className={classes.appBar}
@@ -166,7 +232,6 @@ const AddEvent = () => {
                                 }}
                             >
                                 <Logout className={classes.logoutIcon} />
-
                             </Typography>
                         </div>
                     </div>
@@ -174,13 +239,157 @@ const AddEvent = () => {
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.addEventsSection}>
-                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>Add and Manage Events</Typography>
+                    <Typography
+                        variant="h4"
+                        gutterBottom
+                        style={{ color: "#3F51B5" }}
+                    >
+                        Add and Manage Events
+                    </Typography>
                 </div>
-
+                <Grid container spacing={2} alignItems="center">
+                    <Grid item xs={12} sm={6} md={4}>
+                        <TextField
+                            fullWidth
+                            variant="outlined"
+                            label="Event Name"
+                            // Add necessary onChange and value properties
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <TextField
+                            fullWidth
+                            variant="outlined"
+                            label="Event Description"
+                            // Add necessary onChange and value properties
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <TextField
+                            fullWidth
+                            variant="outlined"
+                            label="Event Price"
+                            // Add necessary onChange and value properties
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button variant="contained" color="primary">
+                            Add Event
+                        </Button>
+                    </Grid>
+                </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            variant="outlined"
+                            placeholder="Search"
+                            fullWidth
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton>
+                                            <Search />
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </Grid>
+                </Grid>
+                <TableContainer component={Card} className={classes.tableContainer}>
+                    <Table>
+                        <TableHead style={{ backgroundColor: "#C8C9CB" }}>
+                            <TableRow>
+                                <TableCell>Event Name</TableCell>
+                                <TableCell>Event Description</TableCell>
+                                <TableCell>Event Price</TableCell>
+                                <TableCell>Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {incidentsData.map((incident, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{incident.eventName}</TableCell>
+                                    <TableCell>{incident.eventDescription}</TableCell>
+                                    <TableCell>{incident.eventPrice}</TableCell>
+                                    <TableCell>
+                                        <IconButton color="primary"
+                                                    onClick={() => handleUpdateModalOpen(incident)}
+                                        >
+                                            <Edit />
+                                        </IconButton>
+                                        <IconButton color="secondary"
+                                                    onClick={handleDeleteConfirmationOpen}>
+                                            <Delete />
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <Dialog
+                    open={deleteConfirmationOpen}
+                    onClose={handleDeleteConfirmationClose}
+                >
+                    <DialogTitle>Confirm Delete</DialogTitle>
+                    <DialogContent>
+                        <Typography variant="body1">
+                            Are you sure you want to delete this service?
+                        </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleDeleteConfirmationClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={handleDeleteConfirmationClose} color="secondary">
+                            Delete
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+                <Dialog
+                    open={updateModalOpen}
+                    onClose={handleUpdateModalClose}
+                >
+                    <DialogTitle>Update Service</DialogTitle>
+                    <DialogContent>
+                        <TextField
+                            label="Event Name"
+                            name="eventName"
+                            value={modalData.eventName}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Event Description"
+                            name="eventDescription"
+                            value={modalData.eventDescription}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Event Price"
+                            name="eventPrice"
+                            value={modalData.eventPrice}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleUpdateModalClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={handleModalSubmit} color="primary">
+                            Update
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </Container>
-
         </Container>
     );
-}
+};
 
-export default AddEvent
+export default AddEvent;
