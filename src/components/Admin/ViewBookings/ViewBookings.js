@@ -249,7 +249,9 @@ const ViewBookings = () => {
                     <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>
                         View and Manage Bookings
                     </Typography>
-                    <Grid item xs={12} sm={6} className={classes.search}>
+                </div>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6} >
                         <TextField
                             variant="outlined"
                             placeholder="Search"
@@ -265,7 +267,7 @@ const ViewBookings = () => {
                             }}
                         />
                     </Grid>
-                </div>
+                </Grid>
                 <TableContainer component={Card} className={classes.tableContainer}>
                     <Table>
                         <TableHead style={{ backgroundColor: "#C8C9CB" }}>

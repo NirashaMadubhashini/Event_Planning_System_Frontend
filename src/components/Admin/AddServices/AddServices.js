@@ -25,6 +25,8 @@ import {
     ArrowDropDown,
     ExitToApp,
     Logout,
+    Edit,
+    Delete,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
@@ -32,6 +34,7 @@ import useStyles from "./style";
 
 const AddService = () => {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [searchValue, setSearchValue] = useState("");
     const classes = useStyles();
 
     const handleClick = (event) => {
@@ -66,6 +69,10 @@ const AddService = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    const handleSearchChange = (e) => {
+        setSearchValue(e.target.value);
+    };
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -216,6 +223,20 @@ const AddService = () => {
                             </Button>
                         </Grid>
                     </Grid>
+                    <TextField
+                        fullWidth
+                        variant="outlined"
+                        label="Search"
+                        value={searchValue}
+                        onChange={handleSearchChange}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <Search />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
                     <TableContainer>
                         <Table>
                             <TableHead style={{ backgroundColor: "#C8C9CB" }}>
@@ -228,17 +249,19 @@ const AddService = () => {
                             </TableHead>
                             <TableBody>
                                 {/* Render the table rows with service data */}
-                                {/* Example:
-                <TableRow>
-                  <TableCell>Service 1</TableCell>
-                  <TableCell>Description 1</TableCell>
-                  <TableCell>10.00</TableCell>
-                  <TableCell>
-                    <Button>Edit</Button>
-                    <Button>Delete</Button>
-                  </TableCell>
-                </TableRow>
-                */}
+                                <TableRow>
+                                    <TableCell>Service 1</TableCell>
+                                    <TableCell>Description 1</TableCell>
+                                    <TableCell>10.00</TableCell>
+                                    <TableCell>
+                                        <IconButton color="primary">
+                                            <Edit />
+                                        </IconButton>
+                                        <IconButton color="secondary">
+                                            <Delete />
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
                             </TableBody>
                         </Table>
                     </TableContainer>

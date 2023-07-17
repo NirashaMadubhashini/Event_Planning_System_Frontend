@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
     menuTitle: {
@@ -14,17 +14,17 @@ export default makeStyles((theme) => ({
     },
     cardContent: {
         flexGrow: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100px',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100px",
         backgroundColor: theme.palette.primary.main,
-        color: '#ffffff',
-        transition: 'background-color 0.2s ease, box-shadow 0.10s ease',
-        '&:hover': {
-            backgroundColor: '#ffffff',
-            color: '#0000ff',
+        color: "#ffffff",
+        transition: "background-color 0.2s ease, box-shadow 0.10s ease",
+        "&:hover": {
+            backgroundColor: "#ffffff",
+            color: "#0000ff",
         },
     },
     container: {
@@ -32,7 +32,7 @@ export default makeStyles((theme) => ({
     },
     cardMedia: {
         height: 0,
-        paddingTop: '56.25%',
+        paddingTop: "56.25%",
     },
     appBar: {
         borderRadius: 0,
@@ -89,7 +89,7 @@ export default makeStyles((theme) => ({
         fontWeight: "bold",
     },
     button: {
-        position: 'relative',
+        position: "relative",
     },
     addServicesSection: {
         paddingTop: theme.spacing(2),
