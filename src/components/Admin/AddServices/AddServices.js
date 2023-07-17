@@ -19,6 +19,10 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
 } from "@material-ui/core";
 import {
     Search,
@@ -35,6 +39,8 @@ import useStyles from "./style";
 const AddService = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [searchValue, setSearchValue] = useState("");
+    const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+    const [updateModalOpen, setUpdateModalOpen] = useState(false);
     const classes = useStyles();
 
     const handleClick = (event) => {
@@ -72,6 +78,22 @@ const AddService = () => {
 
     const handleSearchChange = (e) => {
         setSearchValue(e.target.value);
+    };
+
+    const handleDeleteConfirmationOpen = () => {
+        setDeleteConfirmationOpen(true);
+    };
+
+    const handleDeleteConfirmationClose = () => {
+        setDeleteConfirmationOpen(false);
+    };
+
+    const handleUpdateModalOpen = () => {
+        setUpdateModalOpen(true);
+    };
+
+    const handleUpdateModalClose = () => {
+        setUpdateModalOpen(false);
     };
 
     return (
@@ -193,37 +215,37 @@ const AddService = () => {
                         Add and Manage Services
                     </Typography>
                 </div>
-                    <Grid container spacing={2} alignItems="center">
-                        <Grid item xs={12} sm={6} md={4}>
-                            <TextField
-                                fullWidth
-                                variant="outlined"
-                                label="Service Name"
-                                // Add necessary onChange and value properties
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <TextField
-                                fullWidth
-                                variant="outlined"
-                                label="Service Description"
-                                // Add necessary onChange and value properties
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
-                            <TextField
-                                fullWidth
-                                variant="outlined"
-                                label="Service Price"
-                                // Add necessary onChange and value properties
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button variant="contained" color="primary">
-                                Add Service
-                            </Button>
-                        </Grid>
+                <Grid container spacing={2} alignItems="center">
+                    <Grid item xs={12} sm={6} md={4}>
+                        <TextField
+                            fullWidth
+                            variant="outlined"
+                            label="Service Name"
+                            // Add necessary onChange and value properties
+                        />
                     </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <TextField
+                            fullWidth
+                            variant="outlined"
+                            label="Service Description"
+                            // Add necessary onChange and value properties
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <TextField
+                            fullWidth
+                            variant="outlined"
+                            label="Service Price"
+                            // Add necessary onChange and value properties
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button variant="contained" color="primary">
+                            Add Service
+                        </Button>
+                    </Grid>
+                </Grid>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                         <TextField
@@ -243,33 +265,68 @@ const AddService = () => {
                     </Grid>
                 </Grid>
                 <TableContainer component={Card} className={classes.tableContainer}>
-                <Table>
-                            <TableHead style={{ backgroundColor: "#C8C9CB" }}>
-                                <TableRow>
-                                    <TableCell>Service Name</TableCell>
-                                    <TableCell>Service Description</TableCell>
-                                    <TableCell>Service Price</TableCell>
-                                    <TableCell>Actions</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {/* Render the table rows with service data */}
-                                <TableRow>
-                                    <TableCell>Service 1</TableCell>
-                                    <TableCell>Description 1</TableCell>
-                                    <TableCell>10.00</TableCell>
-                                    <TableCell>
-                                        <IconButton color="primary">
-                                            <Edit />
-                                        </IconButton>
-                                        <IconButton color="secondary">
-                                            <Delete />
-                                        </IconButton>
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                    <Table>
+                        <TableHead style={{ backgroundColor: "#C8C9CB" }}>
+                            <TableRow>
+                                <TableCell>Service Name</TableCell>
+                                <TableCell>Service Description</TableCell>
+                                <TableCell>Service Price</TableCell>
+                                <TableCell>Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableRow>
+                                <TableCell>Service 1</TableCell>
+                                <TableCell>Description 1</TableCell>
+                                <TableCell>10.00</TableCell>
+                                <TableCell>
+                                    <IconButton color="primary" onClick={handleUpdateModalOpen}>
+                                        <Edit />
+                                    </IconButton>
+                                    <IconButton color="secondary" onClick={handleDeleteConfirmationOpen}>
+                                        <Delete />
+                                    </IconButton>
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <Dialog
+                    open={deleteConfirmationOpen}
+                    onClose={handleDeleteConfirmationClose}
+                >
+                    <DialogTitle>Confirm Delete</DialogTitle>
+                    <DialogContent>
+                        <Typography variant="body1">
+                            Are you sure you want to delete this service?
+                        </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleDeleteConfirmationClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={handleDeleteConfirmationClose} color="secondary">
+                            Delete
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+                <Dialog
+                    open={updateModalOpen}
+                    onClose={handleUpdateModalClose}
+                >
+                    <DialogTitle>Update Service</DialogTitle>
+                    <DialogContent>
+                        {/* Add the form fields for updating the service */}
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleUpdateModalClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={handleUpdateModalClose} color="primary">
+                            Update
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </Container>
         </Container>
     );
