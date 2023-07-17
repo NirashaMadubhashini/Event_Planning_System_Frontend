@@ -66,30 +66,31 @@ const ViewCustomers = () => {
     const customersData = [
         {
             customerName: "John Doe",
-            event: "Wedding",
-            vendorName: "Vendor 1",
-            numOfServices: 3,
+            nic: "123456789",
+            mobile: "187632479816",
+            address: "Galle",
+            email: "john@gmail.com",
             date: "2023-07-15",
             time: "12:00 PM",
-            paymentStatus: "Paid",
+
         },
         {
-            customerName: "Jane Smith",
-            event: "Birthday Party",
-            vendorName: "Vendor 2",
-            numOfServices: 5,
-            date: "2023-07-16",
-            time: "2:00 PM",
-            paymentStatus: "Pending",
+            customerName: "John Samith",
+            nic: "2451234456",
+            mobile: "3487632479816",
+            address: "Galle",
+            email: "samith@gmail.com",
+            date: "2023-07-15",
+            time: "12:00 PM",
         },
         {
-            customerName: "Jane Smith",
-            event: "Birthday Party",
-            vendorName: "Vendor 2",
-            numOfServices: 5,
-            date: "2023-07-16",
-            time: "2:00 PM",
-            paymentStatus: "Cancel",
+            customerName: "John Pholl",
+            nic: "8556547676",
+            mobile: "567632479816",
+            address: "Galle",
+            email: "phall@gmail.com",
+            date: "2023-07-15",
+            time: "12:00 PM",
         },
     ];
 
@@ -229,37 +230,24 @@ const ViewCustomers = () => {
                         <TableHead style={{ backgroundColor: "#C8C9CB" }}>
                             <TableRow>
                                 <TableCell>Customer Name</TableCell>
-                                <TableCell>Event</TableCell>
-                                <TableCell>Vendor Name</TableCell>
-                                <TableCell>No. of Services</TableCell>
+                                <TableCell>NIC</TableCell>
+                                <TableCell>Mobile Number</TableCell>
+                                <TableCell>Address</TableCell>
+                                <TableCell>Email</TableCell>
                                 <TableCell>Date</TableCell>
                                 <TableCell>Time</TableCell>
-                                <TableCell>Payment Status</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {customersData.map((customer, index) => (
                                 <TableRow key={index}>
                                     <TableCell>{customer.customerName}</TableCell>
-                                    <TableCell>{customer.event}</TableCell>
-                                    <TableCell>{customer.vendorName}</TableCell>
-                                    <TableCell>{customer.numOfServices}</TableCell>
+                                    <TableCell>{customer.nic}</TableCell>
+                                    <TableCell>{customer.mobile}</TableCell>
+                                    <TableCell>{customer.address}</TableCell>
+                                    <TableCell>{customer.email}</TableCell>
                                     <TableCell>{customer.date}</TableCell>
                                     <TableCell>{customer.time}</TableCell>
-                                    <TableCell>
-                                        <Typography
-                                            style={{
-                                                color:
-                                                    customer.paymentStatus === "Paid"
-                                                        ? "green"
-                                                        : customer.paymentStatus === "Pending"
-                                                            ? "orange"
-                                                            : "red",
-                                            }}
-                                        >
-                                            {customer.paymentStatus}
-                                        </Typography>
-                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
