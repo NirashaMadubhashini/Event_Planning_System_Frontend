@@ -1,3 +1,4 @@
+// ViewCustomers.js
 import React, { useState, useEffect } from "react";
 import {
     AppBar,
@@ -13,16 +14,21 @@ import {
     Container,
     InputAdornment,
     TextField,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow, Dialog, DialogTitle, DialogContent, DialogActions, Modal, Paper,
 } from "@material-ui/core";
-import useStyles from "./style";
-import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
-import {Link} from "react-router-dom";
+import { Search, ArrowDropDown, ExitToApp, Logout,Edit,
+    Delete, } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
+import useStyles from "./style";
 
 
-//this is the home menu
 const ViewBookings = () => {
-
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
 
@@ -37,11 +43,51 @@ const ViewBookings = () => {
     const [appBarPosition, setAppBarPosition] = useState("relative");
     const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
-
+    const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+    const [updateModalOpen, setUpdateModalOpen] = useState(false);
+    const [modalData, setModalData] = useState({
+        name: "",
+        contactNumber: "",
+        businessName: "",
+        services: "",
+        rating: "",
+        numOfBookings: "",
+    });
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) =>
             prevCategory === category ? "" : category
         );
+    };
+
+    const handleDeleteConfirmationOpen = () => {
+        setDeleteConfirmationOpen(true);
+    };
+
+    const handleDeleteConfirmationClose = () => {
+        setDeleteConfirmationOpen(false);
+    };
+
+    const handleUpdateModalOpen = (vendor) => {
+        setModalData(vendor);
+        setUpdateModalOpen(true);
+    };
+
+    const handleUpdateModalClose = () => {
+        setUpdateModalOpen(false);
+    };
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setModalData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleModalSubmit = () => {
+        // Handle the submit logic here
+        console.log(modalData);
+        setUpdateModalOpen(false);
     };
 
     useEffect(() => {
@@ -59,10 +105,37 @@ const ViewBookings = () => {
         };
     }, []);
 
-
+    const bookingData = [
+        {
+            customerName: "John Doe",
+            event: "Wedding",
+            vendorName: "Vendor 1",
+            numOfServices: 3,
+            date: "2023-07-15",
+            time: "12:00 PM",
+            paymentStatus: "Paid",
+        },
+        {
+            customerName: "Jane Smith",
+            event: "Birthday Party",
+            vendorName: "Vendor 2",
+            numOfServices: 5,
+            date: "2023-07-16",
+            time: "2:00 PM",
+            paymentStatus: "Pending",
+        },
+        {
+            customerName: "Jane Smith",
+            event: "Birthday Party",
+            vendorName: "Vendor 2",
+            numOfServices: 5,
+            date: "2023-07-16",
+            time: "2:00 PM",
+            paymentStatus: "Cancel",
+        },
+    ];
 
     return (
-
         <Container maxWidth="xl" className={classes.container}>
             <AppBar
                 className={classes.appBar}
@@ -166,21 +239,174 @@ const ViewBookings = () => {
                                 }}
                             >
                                 <Logout className={classes.logoutIcon} />
-
                             </Typography>
                         </div>
                     </div>
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
-                <div className={classes.viewBookingsSection}>
-                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>View and Manage Bookings</Typography>
+                <div className={classes.viewBookingSection}>
+                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>
+                        View and Manage Bookings
+                    </Typography>
+                    <Grid item xs={12} sm={6} className={classes.search}>
+                        <TextField
+                            variant="outlined"
+                            placeholder="Search"
+                            fullWidth
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton>
+                                            <Search />
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </Grid>
                 </div>
-
+                <TableContainer component={Card} className={classes.tableContainer}>
+                    <Table>
+                        <TableHead style={{ backgroundColor: "#C8C9CB" }}>
+                            <TableRow>
+                                <TableCell>Customer Name</TableCell>
+                                <TableCell>Event</TableCell>
+                                <TableCell>Vendor Name</TableCell>
+                                <TableCell>No. of Services</TableCell>
+                                <TableCell>Date</TableCell>
+                                <TableCell>Time</TableCell>
+                                <TableCell>Payment Status</TableCell>
+                                <TableCell>Actions</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {bookingData.map((customer, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{customer.customerName}</TableCell>
+                                    <TableCell>{customer.event}</TableCell>
+                                    <TableCell>{customer.vendorName}</TableCell>
+                                    <TableCell>{customer.numOfServices}</TableCell>
+                                    <TableCell>{customer.date}</TableCell>
+                                    <TableCell>{customer.time}</TableCell>
+                                    <TableCell>
+                                        <Typography
+                                            style={{
+                                                color:
+                                                    customer.paymentStatus === "Paid"
+                                                        ? "green"
+                                                        : customer.paymentStatus === "Pending"
+                                                            ? "orange"
+                                                            : "red",
+                                            }}
+                                        >
+                                            {customer.paymentStatus}
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <IconButton
+                                            color="primary"
+                                            onClick={() => handleUpdateModalOpen(vendor)}
+                                        >
+                                            <Edit />
+                                        </IconButton>
+                                        <IconButton
+                                            color="secondary"
+                                            onClick={handleDeleteConfirmationOpen}
+                                        >
+                                            <Delete />
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <Dialog
+                    open={deleteConfirmationOpen}
+                    onClose={handleDeleteConfirmationClose}
+                >
+                    <DialogTitle>Delete Vendor</DialogTitle>
+                    <DialogContent>
+                        <Typography>
+                            Are you sure you want to delete this vendor?
+                        </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleDeleteConfirmationClose}>Cancel</Button>
+                        <Button onClick={handleDeleteConfirmationClose} color="secondary">
+                            Delete
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+                <Modal open={updateModalOpen} onClose={handleUpdateModalClose}>
+                    <div className={classes.modal}>
+                        <Paper elevation={3} className={classes.modalContent}>
+                            <DialogTitle>Edit Vendor</DialogTitle>
+                            <DialogContent>
+                                <TextField
+                                    label="Name"
+                                    name="name"
+                                    value={modalData.name}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin="normal"
+                                />
+                                <TextField
+                                    label="Contact Number"
+                                    name="contactNumber"
+                                    value={modalData.contactNumber}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin="normal"
+                                />
+                                <TextField
+                                    label="Business Name"
+                                    name="businessName"
+                                    value={modalData.businessName}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin="normal"
+                                />
+                                <TextField
+                                    label="Services"
+                                    name="services"
+                                    value={modalData.services}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin="normal"
+                                />
+                                <TextField
+                                    label="Rating"
+                                    name="rating"
+                                    value={modalData.rating}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin="normal"
+                                />
+                                <TextField
+                                    label="Number of Bookings"
+                                    name="numOfBookings"
+                                    value={modalData.numOfBookings}
+                                    onChange={handleInputChange}
+                                    fullWidth
+                                    margin="normal"
+                                />
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleUpdateModalClose} color="secondary">
+                                    Cancel
+                                </Button>
+                                <Button onClick={handleModalSubmit} color="primary">
+                                    Submit
+                                </Button>
+                            </DialogActions>
+                        </Paper>
+                    </div>
+                </Modal>
             </Container>
-
         </Container>
     );
-}
+};
 
-export default ViewBookings
+export default ViewBookings;

@@ -1,6 +1,5 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
-//AdminDashboard Style.js
+// style.js
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
     menuTitle: {
@@ -16,29 +15,26 @@ export default makeStyles((theme) => ({
     },
     cardContent: {
         flexGrow: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100px',
-        backgroundColor: theme.palette.primary.main, // Set background color to primary color
-        color: '#ffffff', // Set text color to white
-        transition: 'background-color 0.2s ease, box-shadow 0.10s ease', // Add transition for smooth color change
-        '&:hover': {
-            backgroundColor: '#ffffff', // Change background color to white on hover
-            color: '#0000ff', // Change text color to blue on hover
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100px",
+        backgroundColor: theme.palette.primary.main,
+        color: "#ffffff",
+        transition: "background-color 0.2s ease, box-shadow 0.10s ease",
+        "&:hover": {
+            backgroundColor: "#ffffff",
+            color: "#0000ff",
         },
     },
-
     container: {
         padding: "1px",
     },
-
     cardMedia: {
         height: 0,
-        paddingTop: '56.25%', // 16:9 aspect ratio
+        paddingTop: "56.25%",
     },
-
     appBar: {
         borderRadius: 0,
         padding: "0px 20px",
@@ -87,24 +83,37 @@ export default makeStyles((theme) => ({
             textDecoration: "underline",
         },
     },
-
-
     titleSection: {
         flex: "1 0 10%",
-        // backgroundColor:"#D1DAD9"
     },
-    headerName:{
-        fontWeight:"bold",
+    headerName: {
+        fontWeight: "bold",
     },
     button: {
-        position: 'relative',
+        position: "relative",
     },
-    viewBookingsSection: {
+    viewBookingSection: {
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(3),
         textAlign: "center",
     },
-// Add additional styles for smaller screens
+    tableContainer: {
+        marginTop: theme.spacing(3),
+    },
+    search: {
+        marginTop: theme.spacing(3),
+    },
+    modal: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    modalContent: {
+        padding: theme.spacing(3),
+        maxWidth: 400,
+        width: "100%",
+        outline: "none",
+    },
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",

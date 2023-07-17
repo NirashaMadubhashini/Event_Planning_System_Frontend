@@ -111,4 +111,21 @@ export default makeStyles((theme) => ({
         width: "100%",
         outline: "none",
     },
+    [theme.breakpoints.down("xs")]: {
+        appBar: {
+            padding: "0px",
+        },
+        appBarLeft: {
+            flex: "1",
+        },
+        appBarRight: {
+            display: "none",
+        },
+        appBarTitle: {
+            display: "none",
+        },
+        menuTitle: {
+            fontSize: "1.5rem",
+        },
+    },
 }));
