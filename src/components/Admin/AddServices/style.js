@@ -96,6 +96,9 @@ export default makeStyles((theme) => ({
         paddingBottom: theme.spacing(3),
         textAlign: "center",
     },
+    tableContainer: {
+        marginTop: theme.spacing(3),
+    },
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",

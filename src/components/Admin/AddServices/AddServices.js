@@ -192,6 +192,7 @@ const AddService = () => {
                     >
                         Add and Manage Services
                     </Typography>
+                </div>
                     <Grid container spacing={2} alignItems="center">
                         <Grid item xs={12} sm={6} md={4}>
                             <TextField
@@ -223,22 +224,26 @@ const AddService = () => {
                             </Button>
                         </Grid>
                     </Grid>
-                    <TextField
-                        fullWidth
-                        variant="outlined"
-                        label="Search"
-                        value={searchValue}
-                        onChange={handleSearchChange}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <Search />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                    <TableContainer>
-                        <Table>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                        <TextField
+                            variant="outlined"
+                            placeholder="Search"
+                            fullWidth
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton>
+                                            <Search />
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </Grid>
+                </Grid>
+                <TableContainer component={Card} className={classes.tableContainer}>
+                <Table>
                             <TableHead style={{ backgroundColor: "#C8C9CB" }}>
                                 <TableRow>
                                     <TableCell>Service Name</TableCell>
@@ -265,7 +270,6 @@ const AddService = () => {
                             </TableBody>
                         </Table>
                     </TableContainer>
-                </div>
             </Container>
         </Container>
     );
