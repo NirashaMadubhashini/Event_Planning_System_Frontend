@@ -157,6 +157,17 @@ const ViewCustomers = () => {
                             </Typography>
                             <Typography
                                 component={Link}
+                                to="/addPackages"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Packages")}
+                                style={{
+                                    color: clickedCategory === "Packages" ? "#F50057" : "",
+                                }}
+                            >
+                                Packages
+                            </Typography>
+                            <Typography
+                                component={Link}
                                 to="/viewCustomers"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Customers")}
