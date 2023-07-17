@@ -132,7 +132,18 @@ const AdminDashboard = () => {
                                     color: clickedCategory === "Services" ? "#F50057" : "",
                                 }}
                             >
-                               Services
+                                Services
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/addPackages"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Packages")}
+                                style={{
+                                    color: clickedCategory === "Packages" ? "#F50057" : "",
+                                }}
+                            >
+                                Packages
                             </Typography>
                             <Typography
                                 component={Link}
@@ -154,7 +165,7 @@ const AdminDashboard = () => {
                                     color: clickedCategory === "Vendors" ? "#F50057" : "",
                                 }}
                             >
-                               Vendors
+                                Vendors
                             </Typography>
                             <Typography
                                 component={Link}
@@ -177,7 +188,6 @@ const AdminDashboard = () => {
                                 }}
                             >
                                 <Logout className={classes.logoutIcon} />
-
                             </Typography>
                         </div>
                     </div>
