@@ -291,6 +291,8 @@ const VendorDashboard = () => {
                         </Paper>
                     </Grid>
 
+
+
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
                             <Typography variant="h6" className={classes.barChartTopic}>
