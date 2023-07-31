@@ -382,7 +382,7 @@ const ViewBookings = () => {
                 open={updateConfirmationOpen}
                 onClose={handleUpdateConfirmationClose}
             >
-                <DialogTitle>Update Confirmation</DialogTitle>
+                <DialogTitle>Approve Confirmation</DialogTitle>
                 <DialogContent>
                     <Typography variant="body1">
                         Are you sure you want to Approve this booking?

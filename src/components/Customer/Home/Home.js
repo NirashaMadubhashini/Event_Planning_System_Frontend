@@ -306,9 +306,9 @@ const Home = () => {
                                             color="primary"
                                             size="large"
                                             component={Link}
-                                            to="/eventRequest"
+                                            to="/service"
                                         >
-                                            Book An Event
+                                            Book Services
                                         </Button>
                                         <Button
                                             variant="contained"

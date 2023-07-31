@@ -56,7 +56,7 @@ const App = () => {
                     <Route path="/addPackages" exact component={AddPackages} />
 
                     --------------------------------------------------------
-                    {/*<Route path="/vendorDashboard" exact component={AdminDashboard} />*/}
+                    <Route path="/vendorDashboard" exact component={AdminDashboard} />
                     {/*<Route path="/vendorProfile" exact component={Profile} />*/}
                     {/*<Route path="/vendorAddPackages" exact component={AddService} />*/}
                     {/*<Route path="/vendorAddBusiness" exact component={AddEvent} />*/}
