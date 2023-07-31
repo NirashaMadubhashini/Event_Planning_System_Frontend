@@ -12,13 +12,27 @@ import {
     Grid,
     Container,
     InputAdornment,
-    TextField, Paper,
+    TextField,
+    Paper,
 } from "@material-ui/core";
 import useStyles from "./style";
-import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
+import { Search, ArrowDropDown, ExitToApp, Logout } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, PieChart, Pie} from "recharts";
+import {
+    BarChart,
+    Bar,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend,
+    LineChart,
+    Line,
+    PieChart,
+    Pie,
+    Cell,
+} from "recharts";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import RoomServiceIcon from "@mui/icons-material/RoomService";
 import RateReviewIcon from "@mui/icons-material/RateReview";
@@ -81,11 +95,13 @@ const VendorDashboard = () => {
     ];
 
     const earningData = [
-        {name: 'Group A', value: 400},
-        {name: 'Group B', value: 300},
-        {name: 'Group C', value: 300},
-        {name: 'Group D', value: 200},
+        { name: "Group A", value: 400 },
+        { name: "Group B", value: 300 },
+        { name: "Group C", value: 300 },
+        { name: "Group D", value: 200 },
     ];
+
+    const pieColors = ["#3D5AFE", "#FF6D00", "#FFD740", "#00E676"];
 
     const bookingHistory = [
         { date: "2023-07-28", event: "Wedding", customer: "John Doe", package: "Premium" },
@@ -234,9 +250,12 @@ const VendorDashboard = () => {
                             <Typography variant="h4">36</Typography>
                         </Paper>
                     </Grid>
+
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paper}>
-                            <Typography variant="h6">Sales Report</Typography>
+                            <Typography variant="h6" className={classes.barChartTopic}>
+                                Sales Report
+                            </Typography>
                             <LineChart width={500} height={300} data={salesData}>
                                 <Line type="monotone" dataKey="sales" stroke="#FF1744" />                                <CartesianGrid stroke="#ccc" />
                                 <XAxis dataKey="name" />
@@ -248,9 +267,25 @@ const VendorDashboard = () => {
 
                     <Grid item xs={12} sm={6}>
                         <Paper className={classes.paper}>
-                            <Typography variant="h6">Earnings</Typography>
-                            <PieChart width={400} height={400}>
-                                <Pie dataKey="value" isAnimationActive={false} data={earningData} cx={200} cy={200} outerRadius={80} fill="#3D5AFE" label /> {/* change fill color */}
+                            <Typography variant="h6" className={classes.barChartTopic}>
+                                Earnings
+                            </Typography>
+                            <PieChart width={300} height={300}>
+                                <Pie
+                                    dataKey="value"
+                                    isAnimationActive={false}
+                                    data={earningData}
+                                    cx={150} // Adjust the center X coordinate to move the pie chart horizontally
+                                    cy={150} // Adjust the center Y coordinate to move the pie chart vertically
+                                    innerRadius={80} // Adjust the inner radius to make the pie chart bigger
+                                    outerRadius={100}
+                                    fill="#8884d8"
+                                    label={(entry) => entry.name}
+                                >
+                                    {earningData.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
+                                    ))}
+                                </Pie>
                                 <Tooltip />
                             </PieChart>
                         </Paper>
@@ -258,7 +293,9 @@ const VendorDashboard = () => {
 
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
-                            <Typography variant="h6">Booking History</Typography>
+                            <Typography variant="h6" className={classes.barChartTopic}>
+                                Booking History
+                            </Typography>
                             <TableContainer className={classes.tableContainer}>
                                 <Table className={classes.table}>
                                     <TableHead>

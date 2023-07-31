@@ -96,14 +96,14 @@ export default makeStyles((theme) => ({
         paddingBottom: theme.spacing(3),
         textAlign: "center",
     },
-    barChartTopic:{
-        paddingTop: theme.spacing(5),
-        fontWeight:"bold",
-
-    },
-    barChart:{
-        paddingTop: theme.spacing(4),
-    },
+    // barChartTopic:{
+    //     paddingTop: theme.spacing(5),
+    //     fontWeight:"bold",
+    //
+    // },
+    // barChart:{
+    //     paddingTop: theme.spacing(4),
+    // },
     yearlyGrid:{
         marginLeft: theme.spacing(15),
     },
@@ -144,6 +144,29 @@ export default makeStyles((theme) => ({
         color: theme.palette.text.secondary,
         background: "linear-gradient(45deg, #FFD600 30%, #FFFF8D 90%)",
     },
+    barChartTopic: {
+        paddingTop: theme.spacing(5),
+        fontWeight: "bold",
+        textAlign: "center",
+    },
+    barChart: {
+        paddingTop: theme.spacing(4),
+    },
+    table: {
+        minWidth: 650,
+    },
+    tableContainer: {
+        marginTop: theme.spacing(2),
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: "center",
+        color: theme.palette.text.secondary,
+        marginBottom: theme.spacing(3),
+        borderRadius: theme.spacing(1),
+        boxShadow: theme.shadows[2],
+    },
+
 
     [theme.breakpoints.down("xs")]: {
         appBar: {
