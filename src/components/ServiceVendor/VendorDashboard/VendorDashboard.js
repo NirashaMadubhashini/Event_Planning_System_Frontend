@@ -18,11 +18,19 @@ import useStyles from "./style";
 import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, PieChart, Pie} from "recharts";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import RoomServiceIcon from "@mui/icons-material/RoomService";
 import RateReviewIcon from "@mui/icons-material/RateReview";
 import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+
+
 
 // This is the home menu
 const VendorDashboard = () => {
@@ -61,6 +69,30 @@ const VendorDashboard = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    const salesData = [
+        {name: 'Jan', sales: 4000},
+        {name: 'Feb', sales: 3000},
+        {name: 'Mar', sales: 5000},
+        {name: 'Apr', sales: 4500},
+        {name: 'May', sales: 6000},
+        {name: 'Jun', sales: 3000},
+        {name: 'Jul', sales: 2000},
+    ];
+
+    const earningData = [
+        {name: 'Group A', value: 400},
+        {name: 'Group B', value: 300},
+        {name: 'Group C', value: 300},
+        {name: 'Group D', value: 200},
+    ];
+
+    const bookingHistory = [
+        { date: "2023-07-28", event: "Wedding", customer: "John Doe", package: "Premium" },
+        { date: "2023-07-29", event: "Birthday", customer: "Jane Doe", package: "Basic" },
+        { date: "2023-07-30", event: "Conference", customer: "Alice", package: "Standard" },
+        { date: "2023-07-31", event: "Party", customer: "Bob", package: "Premium" },
+    ];
 
 
     return (
@@ -202,13 +234,57 @@ const VendorDashboard = () => {
                             <Typography variant="h4">36</Typography>
                         </Paper>
                     </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <Paper className={classes.paper}>
+                            <Typography variant="h6">Sales Report</Typography>
+                            <LineChart width={500} height={300} data={salesData}>
+                                <Line type="monotone" dataKey="sales" stroke="#FF1744" />                                <CartesianGrid stroke="#ccc" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                            </LineChart>
+                        </Paper>
+                    </Grid>
 
+                    <Grid item xs={12} sm={6}>
+                        <Paper className={classes.paper}>
+                            <Typography variant="h6">Earnings</Typography>
+                            <PieChart width={400} height={400}>
+                                <Pie dataKey="value" isAnimationActive={false} data={earningData} cx={200} cy={200} outerRadius={80} fill="#3D5AFE" label /> {/* change fill color */}
+                                <Tooltip />
+                            </PieChart>
+                        </Paper>
+                    </Grid>
 
+                    <Grid item xs={12}>
+                        <Paper className={classes.paper}>
+                            <Typography variant="h6">Booking History</Typography>
+                            <TableContainer className={classes.tableContainer}>
+                                <Table className={classes.table}>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Date</TableCell>
+                                            <TableCell>Event</TableCell>
+                                            <TableCell>Customer</TableCell>
+                                            <TableCell>Package</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {bookingHistory.map((row) => (
+                                            <TableRow key={row.date}>
+                                                <TableCell>{row.date}</TableCell>
+                                                <TableCell>{row.event}</TableCell>
+                                                <TableCell>{row.customer}</TableCell>
+                                                <TableCell>{row.package}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Paper>
+                    </Grid>
 
                 </Grid>
-
-
-
             </Container>
         </Container>
     );

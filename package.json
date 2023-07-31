@@ -28,6 +28,7 @@
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.7",
     "jwt-decode": "^3.1.2",
+    "material-table": "^2.0.5",
     "moment": "^2.29.4",
     "mui-image-slider": "^1.0.7",
     "pure-react-carousel": "^1.30.1",

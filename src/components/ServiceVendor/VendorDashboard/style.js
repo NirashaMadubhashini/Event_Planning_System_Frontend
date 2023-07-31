@@ -145,7 +145,6 @@ export default makeStyles((theme) => ({
         background: "linear-gradient(45deg, #FFD600 30%, #FFFF8D 90%)",
     },
 
-
     [theme.breakpoints.down("xs")]: {
         appBar: {
             padding: "0px",
