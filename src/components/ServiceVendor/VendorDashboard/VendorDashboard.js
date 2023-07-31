@@ -281,6 +281,7 @@ const VendorDashboard = () => {
                                     outerRadius={100}
                                     fill="#8884d8"
                                     label={(entry) => entry.name}
+
                                 >
                                     {earningData.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />

@@ -166,7 +166,11 @@ export default makeStyles((theme) => ({
         borderRadius: theme.spacing(1),
         boxShadow: theme.shadows[2],
     },
-
+    pieChartContainer: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
 
     [theme.breakpoints.down("xs")]: {
         appBar: {
