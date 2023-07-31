@@ -23,6 +23,7 @@ import ViewBookings from "./components/Admin/ViewBookings/ViewBookings";
 import ViewCustomers from "./components/Admin/ViewCustomers/ViewCustomers";
 import ViewVendors from "./components/Admin/ViewEventVendors/ViewEventVendors";
 import AddPackages from "./components/Admin/Packages/Packages";
+import VendorDashboard from "./components/ServiceVendor/VendorDashboard/VendorDashboard";
 
 const App = () => {
     return (
@@ -56,11 +57,11 @@ const App = () => {
                     <Route path="/addPackages" exact component={AddPackages} />
 
                     --------------------------------------------------------
-                    <Route path="/vendorDashboard" exact component={AdminDashboard} />
+                    <Route path="/vendorDashboard" exact component={VendorDashboard} />
                     {/*<Route path="/vendorProfile" exact component={Profile} />*/}
                     {/*<Route path="/vendorAddPackages" exact component={AddService} />*/}
                     {/*<Route path="/vendorAddBusiness" exact component={AddEvent} />*/}
-                    {/*<Route path="/VendorViewBookings" exact component={ViewBookings} />*/}
+                    {/*<Route path="/vendorViewBookings" exact component={ViewBookings} />*/}
                     {/*<Route path="/vendorGallery" exact component={AdminGallery} />*/}
                 </Switch>
             </Container>
