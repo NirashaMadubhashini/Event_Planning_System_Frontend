@@ -49,6 +49,14 @@ const VendorAddBusiness = () => {
         businessType: "",
 
     });
+    const [image, setImage] = useState(null);
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setImage(file);
+        }
+    };
     const classes = useStyles();
 
     const handleClick = (event) => {
@@ -107,6 +115,7 @@ const VendorAddBusiness = () => {
     const handleModalSubmit = () => {
         // Handle the submit logic here
         console.log(modalData);
+        console.log(image); // The selected image file
         setUpdateModalOpen(false);
     };
     const handleInputChange = (event) => {
@@ -122,9 +131,16 @@ const VendorAddBusiness = () => {
             businessName: "Hotel",
             businessDescription: "Hotels and halls for functions",
             businessType: "Large Business",
+            // businessImage:""
         },
         {
             businessId: "B002",
+            businessName: "Saloon",
+            businessDescription: "Beauty service for customers",
+            businessType: "Small Business",
+        },
+        {
+            businessId: "B003",
             businessName: "Saloon",
             businessDescription: "Beauty service for customers",
             businessType: "Small Business",
@@ -275,6 +291,18 @@ const VendorAddBusiness = () => {
                             // Add necessary onChange and value properties
                         />
                     </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                    <TextField
+                        type="file"
+                        fullWidth
+                        variant="outlined"
+                        // label="Business Image"
+                        name="image"
+                        accept="image/*"
+                        onChange={handleImageChange} // Add the handleImageChange method for image upload
+                        margin="normal"
+                    />
+                    </Grid>
                     <Grid item xs={12}>
                         <Button variant="contained" color="primary">
                             Add Business
@@ -307,6 +335,7 @@ const VendorAddBusiness = () => {
                                 <TableCell>Business Name</TableCell>
                                 <TableCell>Business Description</TableCell>
                                 <TableCell>Business Type</TableCell>
+                                <TableCell>Image</TableCell>
                                 <TableCell>Actions</TableCell>
                             </TableRow>
                         </TableHead>
@@ -317,6 +346,9 @@ const VendorAddBusiness = () => {
                                     <TableCell>{business.businessName}</TableCell>
                                     <TableCell>{business.businessDescription}</TableCell>
                                     <TableCell>{business.businessType}</TableCell>
+                                    <TableCell>
+                                        {business.image && <img src={business.image} alt="Business" height="50px" />}
+                                    </TableCell>
                                     <TableCell>
                                         <IconButton color="primary"
                                                     onClick={() => handleUpdateModalOpen(business)}
@@ -390,6 +422,14 @@ const VendorAddBusiness = () => {
                             name="businessType"
                             value={modalData.businessType}
                             onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            type="file"
+                            name="image"
+                            accept="image/*"
+                            onChange={handleImageChange} // Add the handleImageChange method for image upload
                             fullWidth
                             margin="normal"
                         />
