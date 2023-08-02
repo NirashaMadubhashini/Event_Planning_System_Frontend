@@ -107,9 +107,20 @@ const VendorAddPackages = () => {
         setUpdateModalOpen(false);
     };
     const handleModalSubmit = () => {
+
+        if (modalData.image) {
+            // Upload the image to your server or cloud storage and get the URL
+            const imageUrl = "url-to-uploaded-image";
+            setModalData((prevData) => ({
+                ...prevData,
+                image: imageUrl,
+            }));
+        }
         // Handle the submit logic here
         console.log(modalData);
         setUpdateModalOpen(false);
+
+
     };
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -118,6 +129,7 @@ const VendorAddPackages = () => {
             [name]: value,
         }));
     };
+
     const packagesData = [
         {
             packageId: "P001",
@@ -126,7 +138,7 @@ const VendorAddPackages = () => {
             packageDuration: "8H",
             packageNoOfGuests: "Up to 200 Persons",
             packageDescription: "Catering,Venue,Decoration,Photography",
-
+            image: null, // Placeholder for the image data URL
         },
         {
             packageId: "P002",
@@ -135,7 +147,7 @@ const VendorAddPackages = () => {
             packageDuration: "4H",
             packageNoOfGuests: "Up to 100 Persons",
             packageDescription: "Catering,Venue,Decoration,Photography",
-
+            image: null, // Placeholder for the image data URL
         },
         {
             packageId: "P003",
@@ -144,9 +156,26 @@ const VendorAddPackages = () => {
             packageDuration: "4H",
             packageNoOfGuests: "Up to 100 Persons",
             packageDescription: "Catering,Venue,Decoration,Photography",
-
+            image: null, // Placeholder for the image data URL
         },
     ];
+
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setModalData((prevData) => ({
+                ...prevData,
+                image: reader.result,
+            }));
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -308,6 +337,16 @@ const VendorAddPackages = () => {
                             // Add necessary onChange and value properties
                         />
                     </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <TextField
+                            variant="outlined"
+                            type="file"
+                            onChange={handleImageUpload}
+                            fullWidth
+
+                        />
+
+                    </Grid>
                     <Grid item xs={12}>
                         <Button variant="contained" color="primary">
                             Add Package
@@ -342,6 +381,7 @@ const VendorAddPackages = () => {
                                 <TableCell>Package Duration</TableCell>
                                 <TableCell>No.Of Guests</TableCell>
                                 <TableCell>Description</TableCell>
+                                <TableCell>Image</TableCell>
                                 <TableCell>Actions</TableCell>
                             </TableRow>
                         </TableHead>
@@ -354,6 +394,10 @@ const VendorAddPackages = () => {
                                     <TableCell>{newPackage.packageDuration}</TableCell>
                                     <TableCell>{newPackage.packageNoOfGuests}</TableCell>
                                     <TableCell>{newPackage.packageDescription}</TableCell>
+                                    <TableCell>
+                                        {newPackage.image && <img src={newPackage.image} alt={newPackage.packageName} style={{ maxWidth: "100px" }} />}
+                                    </TableCell>
+
                                     <TableCell>
                                         <IconButton color="primary"
                                                     onClick={() => handleUpdateModalOpen(newPackage)}
@@ -446,6 +490,14 @@ const VendorAddPackages = () => {
                             fullWidth
                             margin="normal"
                         />
+                        <TextField
+                            // label="Package Image"
+                            type="file"
+                            onChange={handleImageUpload}
+                            fullWidth
+                            margin="normal"
+                        />
+
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleUpdateModalClose} color="secondary">
