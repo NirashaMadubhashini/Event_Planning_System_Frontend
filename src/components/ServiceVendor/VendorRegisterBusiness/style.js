@@ -91,7 +91,7 @@ export default makeStyles((theme) => ({
     button: {
         position: "relative",
     },
-    addServicesSection: {
+    addBusinessesSection: {
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(3),
         textAlign: "center",
