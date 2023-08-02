@@ -35,7 +35,7 @@ import {
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
-import service from "../../Customer/Services/Service";
+
 
 const VendorAddBusiness = () => {
     const [anchorEl, setAnchorEl] = useState(null);
