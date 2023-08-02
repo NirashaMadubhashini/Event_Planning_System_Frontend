@@ -121,13 +121,13 @@ const VendorAddBusiness = () => {
             businessId: "B001",
             businessName: "Hotel",
             businessDescription: "Hotels and halls for functions",
-            businessPrice: "10,000",
+            businessType: "Venue",
         },
         {
-            businessId: "S002",
+            businessId: "B002",
             businessName: "Saloon",
             businessDescription: "Beauty service for customers",
-            businessPrice: "15000",
+            businessType: "Beauty",
         },
     ];
 
@@ -266,7 +266,7 @@ const VendorAddBusiness = () => {
                         <TextField
                             fullWidth
                             variant="outlined"
-                            label="Service Name"
+                            label="Business Name"
                             // Add necessary onChange and value properties
                         />
                     </Grid>
@@ -274,7 +274,7 @@ const VendorAddBusiness = () => {
                         <TextField
                             fullWidth
                             variant="outlined"
-                            label="Service Description"
+                            label="Business Description"
                             // Add necessary onChange and value properties
                         />
                     </Grid>
@@ -282,7 +282,7 @@ const VendorAddBusiness = () => {
                         <TextField
                             fullWidth
                             variant="outlined"
-                            label="Service Price"
+                            label="Business Type"
                             // Add necessary onChange and value properties
                         />
                     </Grid>
