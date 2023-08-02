@@ -258,7 +258,7 @@ const VendorAddBusiness = () => {
                         gutterBottom
                         style={{ color: "#3F51B5" }}
                     >
-                        Add and Manage Services
+                        Add and Manage Business
                     </Typography>
                 </div>
                 <Grid container spacing={2} alignItems="center">
@@ -288,7 +288,7 @@ const VendorAddBusiness = () => {
                     </Grid>
                     <Grid item xs={12}>
                         <Button variant="contained" color="primary">
-                            Add Service
+                            Add Business
                         </Button>
                     </Grid>
                 </Grid>
@@ -367,7 +367,7 @@ const VendorAddBusiness = () => {
                     open={updateModalOpen}
                     onClose={handleUpdateModalClose}
                 >
-                    <DialogTitle>Update Service</DialogTitle>
+                    <DialogTitle>Update Business</DialogTitle>
                     <DialogContent>
                         <TextField
                             label="Service Id"
