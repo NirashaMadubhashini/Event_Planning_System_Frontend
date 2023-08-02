@@ -288,7 +288,6 @@ const VendorDashboard = () => {
                                 </Pie>
                                 <Tooltip />
                             </PieChart>
-
                         </Paper>
                     </Grid>
 
