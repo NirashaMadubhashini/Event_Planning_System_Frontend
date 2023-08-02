@@ -98,6 +98,7 @@ export default makeStyles((theme) => ({
     },
     tableContainer: {
         marginTop: theme.spacing(3),
+        overflowX: "auto",
     },
     [theme.breakpoints.down("xs")]: {
         appBar: {
