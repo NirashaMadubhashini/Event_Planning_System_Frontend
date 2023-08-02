@@ -121,13 +121,13 @@ const VendorAddBusiness = () => {
             businessId: "B001",
             businessName: "Hotel",
             businessDescription: "Hotels and halls for functions",
-            businessType: "Venue",
+            businessType: "Large Business",
         },
         {
             businessId: "B002",
             businessName: "Saloon",
             businessDescription: "Beauty service for customers",
-            businessType: "Beauty",
+            businessType: "Small Business",
         },
     ];
 
