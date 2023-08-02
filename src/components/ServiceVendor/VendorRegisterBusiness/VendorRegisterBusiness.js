@@ -314,20 +314,20 @@ const VendorAddBusiness = () => {
                     <Table>
                         <TableHead style={{ backgroundColor: "#C8C9CB" }}>
                             <TableRow>
-                                <TableCell>Service Id</TableCell>
-                                <TableCell>Service Name</TableCell>
-                                <TableCell>Service Description</TableCell>
-                                <TableCell>Service Price</TableCell>
+                                <TableCell>Business Id</TableCell>
+                                <TableCell>Business Name</TableCell>
+                                <TableCell>Business Description</TableCell>
+                                <TableCell>Business Type</TableCell>
                                 <TableCell>Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {servicesData.map((service, index) => (
                                 <TableRow key={index}>
-                                    <TableCell>{service.serviceId}</TableCell>
-                                    <TableCell>{service.serviceName}</TableCell>
-                                    <TableCell>{service.serviceDescription}</TableCell>
-                                    <TableCell>{service.servicePrice}</TableCell>
+                                    <TableCell>{service.businessId}</TableCell>
+                                    <TableCell>{service.businessName}</TableCell>
+                                    <TableCell>{service.businessDescription}</TableCell>
+                                    <TableCell>{service.businessType}</TableCell>
                                     <TableCell>
                                         <IconButton color="primary"
                                                     onClick={() => handleUpdateModalOpen(service)}
