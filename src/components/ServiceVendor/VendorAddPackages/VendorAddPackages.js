@@ -338,17 +338,17 @@ const VendorAddPackages = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {customizePackagesData.map((customizePackage, index) => (
+                            {packagesData.map((newPackage, index) => (
                                 <TableRow key={index}>
-                                    <TableCell>{customizePackage.customizePackageId}</TableCell>
-                                    <TableCell>{customizePackage.customizePackageName}</TableCell>
-                                    <TableCell>{customizePackage.customizePackagePrice}</TableCell>
-                                    <TableCell>{customizePackage.customizePackageDuration}</TableCell>
-                                    <TableCell>{customizePackage.customizePackageNoOfGuests}</TableCell>
-                                    <TableCell>{customizePackage.customizePackageDescription}</TableCell>
+                                    <TableCell>{newPackage.packageId}</TableCell>
+                                    <TableCell>{newPackage.packageName}</TableCell>
+                                    <TableCell>{newPackage.packagePrice}</TableCell>
+                                    <TableCell>{newPackage.packageDuration}</TableCell>
+                                    <TableCell>{newPackage.packageNoOfGuests}</TableCell>
+                                    <TableCell>{newPackage.packageDescription}</TableCell>
                                     <TableCell>
                                         <IconButton color="primary"
-                                                    onClick={() => handleUpdateModalOpen(customizePackage)}
+                                                    onClick={() => handleUpdateModalOpen(newPackage)}
                                         >
                                             <Edit />
                                         </IconButton>
@@ -389,8 +389,8 @@ const VendorAddPackages = () => {
                     <DialogContent>
                         <TextField
                             label="Package Id"
-                            name="customizePackageId"
-                            value={modalData.customizePackageId}
+                            name="packageId"
+                            value={modalData.packageId}
                             onChange={handleInputChange}
                             fullWidth
                             margin="normal"
@@ -408,32 +408,32 @@ const VendorAddPackages = () => {
                         />
                         <TextField
                             label="Package Price"
-                            name="customizePackagePrice"
-                            value={modalData.customizePackagePrice}
+                            name="packagePrice"
+                            value={modalData.packagePrice}
                             onChange={handleInputChange}
                             fullWidth
                             margin="normal"
                         />
                         <TextField
                             label="Package Duration"
-                            name="customizePackageDuration"
-                            value={modalData.customizePackageDuration}
+                            name="packageDuration"
+                            value={modalData.packageDuration}
                             onChange={handleInputChange}
                             fullWidth
                             margin="normal"
                         />
                         <TextField
                             label="No.Of Guests"
-                            name="customizePackageNoOfGuests"
-                            value={modalData.customizePackageNoOfGuests}
+                            name="packageNoOfGuests"
+                            value={modalData.packageNoOfGuests}
                             onChange={handleInputChange}
                             fullWidth
                             margin="normal"
                         />
                         <TextField
                             label="Services"
-                            name="customizePackageServices"
-                            value={modalData.customizePackageServices}
+                            name="packageDescription"
+                            value={modalData.packageDescription}
                             onChange={handleInputChange}
                             fullWidth
                             margin="normal"
