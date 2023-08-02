@@ -43,10 +43,10 @@ const VendorAddBusiness = () => {
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
     const [updateModalOpen, setUpdateModalOpen] = useState(false);
     const [modalData, setModalData] = useState({
-        serviceId: "",
-        serviceName: "",
-        serviceDescription: "",
-        servicePrice: "",
+        businessId: "",
+        businessName: "",
+        businessDescription: "",
+        businessType: "",
 
     });
     const classes = useStyles();
@@ -116,7 +116,7 @@ const VendorAddBusiness = () => {
             [name]: value,
         }));
     };
-    const servicesData = [
+    const businessesData = [
         {
             businessId: "B001",
             businessName: "Hotel",
@@ -241,7 +241,7 @@ const VendorAddBusiness = () => {
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
-                <div className={classes.addServicesSection}>
+                <div className={classes.addBusinessesSection}>
                     <Typography
                         variant="h4"
                         gutterBottom
