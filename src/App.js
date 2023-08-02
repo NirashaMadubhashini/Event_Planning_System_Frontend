@@ -58,11 +58,11 @@ const App = () => {
 
                     --------------------------------------------------------
                     <Route path="/vendorDashboard" exact component={VendorDashboard} />
-                    {/*<Route path="/vendorProfile" exact component={Profile} />*/}
-                    {/*<Route path="/vendorAddPackages" exact component={AddService} />*/}
-                    {/*<Route path="/vendorAddBusiness" exact component={AddEvent} />*/}
-                    {/*<Route path="/vendorViewBookings" exact component={ViewBookings} />*/}
-                    {/*<Route path="/vendorGallery" exact component={AdminGallery} />*/}
+                    <Route path="/vendorProfile" exact component={VendorProfile} />
+                    {/*<Route path="/vendorAddPackages" exact component={VendorAddService} />*/}
+                    {/*<Route path="/vendorAddBusiness" exact component={VendorAddEvent} />*/}
+                    {/*<Route path="/vendorViewBookings" exact component={VendorViewBookings} />*/}
+                    {/*<Route path="/vendorGallery" exact component={VendorGallery} />*/}
                 </Switch>
             </Container>
         </BrowserRouter>
