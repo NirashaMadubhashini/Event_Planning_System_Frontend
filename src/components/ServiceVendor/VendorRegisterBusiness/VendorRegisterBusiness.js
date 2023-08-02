@@ -161,7 +161,7 @@ const VendorAddBusiness = () => {
                         <div className={classes.appBarRight}>
                             <Typography
                                 component={Link}
-                                to="/adminDashboard"
+                                to="/vendorDashboard"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Dashboard")}
                                 style={{
@@ -172,29 +172,29 @@ const VendorAddBusiness = () => {
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/addEvents"
+                                to="/vendorProfile"
                                 className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Events")}
+                                onClick={() => handleCategoryClick("Profile")}
                                 style={{
-                                    color: clickedCategory === "Events" ? "#F50057" : "",
+                                    color: clickedCategory === "Profile" ? "#F50057" : "",
                                 }}
                             >
-                                Events
+                                Profile
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/addServices"
+                                to="/vendorAddBusiness"
                                 className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Services")}
+                                onClick={() => handleCategoryClick("Business")}
                                 style={{
-                                    color: clickedCategory === "Services" ? "#F50057" : "",
+                                    color: clickedCategory === "Business" ? "#F50057" : "",
                                 }}
                             >
-                                Services
+                                Business
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/addPackages"
+                                to="/vendorAddPackages"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Packages")}
                                 style={{
@@ -205,29 +205,7 @@ const VendorAddBusiness = () => {
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/viewCustomers"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Customers")}
-                                style={{
-                                    color: clickedCategory === "Customers" ? "#F50057" : "",
-                                }}
-                            >
-                                Customers
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/viewVendors"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Vendors")}
-                                style={{
-                                    color: clickedCategory === "Vendors" ? "#F50057" : "",
-                                }}
-                            >
-                                Vendors
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/viewBookings"
+                                to="/vendorViewBookings"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Bookings")}
                                 style={{
@@ -235,6 +213,17 @@ const VendorAddBusiness = () => {
                                 }}
                             >
                                 Bookings
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/vendorGallery"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("Gallery")}
+                                style={{
+                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
+                                }}
+                            >
+                                Gallery
                             </Typography>
                             <Typography
                                 component={Link}
