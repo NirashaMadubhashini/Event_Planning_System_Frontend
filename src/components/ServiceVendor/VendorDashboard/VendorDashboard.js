@@ -103,6 +103,13 @@ const VendorDashboard = () => {
 
     const pieColors = ["#3D5AFE", "#FF6D00", "#FFD740", "#00E676"];
 
+    const [clickedEntry, setClickedEntry] = useState("");
+
+    // Function to handle pie chart segment click
+    const handlePieClick = (entry) => {
+        setClickedEntry(entry.name);
+    };
+
     const bookingHistory = [
         { date: "2023-07-28", event: "Wedding", customer: "John Doe", package: "Premium" },
         { date: "2023-07-29", event: "Birthday", customer: "Jane Doe", package: "Basic" },
@@ -270,24 +277,33 @@ const VendorDashboard = () => {
                             <Typography variant="h6" className={classes.barChartTopic}>
                                 Earnings
                             </Typography>
-                            <PieChart width={300} height={300}>
-                                <Pie
-                                    dataKey="value"
-                                    isAnimationActive={false}
-                                    data={earningData}
-                                    cx={150} // Half of the width (300 / 2)
-                                    cy={150} // Half of the height (300 / 2)
-                                    innerRadius={80}
-                                    outerRadius={90}
-                                    fill="#8884d8"
-                                    label={(entry) => entry.name}
-                                >
-                                    {earningData.map((entry, index) => (
-                                        <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
-                                    ))}
-                                </Pie>
-                                <Tooltip />
-                            </PieChart>
+                            <div className={classes.pieChartContainer}>
+                                <PieChart width={300} height={300}>
+                                    <Pie
+                                        dataKey="value"
+                                        isAnimationActive={false}
+                                        data={earningData}
+                                        cx={150} // Half of the width (300 / 2)
+                                        cy={150} // Half of the height (300 / 2)
+                                        innerRadius={80}
+                                        outerRadius={90}
+                                        fill="#8884d8"
+                                        label={(entry) => entry.name}
+                                        onClick={handlePieClick} // Attach the click handler to the pie chart
+                                    >
+                                        {earningData.map((entry, index) => (
+                                            <Cell
+                                                key={`cell-${index}`}
+                                                fill={pieColors[index % pieColors.length]}
+                                            />
+                                        ))}
+                                    </Pie>
+                                    <Tooltip />
+                                </PieChart>
+                            </div>
+                            <Typography variant="subtitle1" style={{ marginTop: 10 }}>
+                                Clicked Entry: {clickedEntry}
+                            </Typography>
                         </Paper>
                     </Grid>
 
