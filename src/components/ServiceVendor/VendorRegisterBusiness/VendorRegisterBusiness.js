@@ -311,15 +311,15 @@ const VendorAddBusiness = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {servicesData.map((service, index) => (
+                            {businessesData.map((business, index) => (
                                 <TableRow key={index}>
-                                    <TableCell>{service.businessId}</TableCell>
-                                    <TableCell>{service.businessName}</TableCell>
-                                    <TableCell>{service.businessDescription}</TableCell>
-                                    <TableCell>{service.businessType}</TableCell>
+                                    <TableCell>{business.businessId}</TableCell>
+                                    <TableCell>{business.businessName}</TableCell>
+                                    <TableCell>{business.businessDescription}</TableCell>
+                                    <TableCell>{business.businessType}</TableCell>
                                     <TableCell>
                                         <IconButton color="primary"
-                                                    onClick={() => handleUpdateModalOpen(service)}
+                                                    onClick={() => handleUpdateModalOpen(business)}
                                         >
                                             <Edit />
                                         </IconButton>
