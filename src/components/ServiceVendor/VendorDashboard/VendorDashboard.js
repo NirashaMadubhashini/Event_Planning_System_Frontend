@@ -263,7 +263,7 @@ const VendorDashboard = () => {
                             <Typography variant="h6" className={classes.barChartTopic}>
                                 Sales Report
                             </Typography>
-                            <LineChart width={500} height={300} data={salesData}>
+                            <LineChart width={500} height={340} data={salesData}>
                                 <Line type="monotone" dataKey="sales" stroke="#FF1744" />                                <CartesianGrid stroke="#ccc" />
                                 <XAxis dataKey="name" />
                                 <YAxis />
@@ -288,7 +288,7 @@ const VendorDashboard = () => {
                                         innerRadius={80}
                                         outerRadius={90}
                                         fill="#8884d8"
-                                        label={(entry) => entry.name}
+                                        label={({ value }) => `${value}`} // Show only the value
                                         onClick={handlePieClick} // Attach the click handler to the pie chart
                                     >
                                         {earningData.map((entry, index) => (
