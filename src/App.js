@@ -26,6 +26,7 @@ import AddPackages from "./components/Admin/Packages/Packages";
 import VendorDashboard from "./components/ServiceVendor/VendorDashboard/VendorDashboard";
 import VendorProfile from "./components/ServiceVendor/VendorProfile/VendorProfile";
 import VendorAddBusiness from "./components/ServiceVendor/VendorRegisterBusiness/VendorRegisterBusiness";
+import VendorAddPackages from "./components/ServiceVendor/VendorAddPackages/VendorAddPackages";
 
 const App = () => {
     return (
