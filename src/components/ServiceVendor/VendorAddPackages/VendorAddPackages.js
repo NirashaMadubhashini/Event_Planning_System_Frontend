@@ -43,12 +43,12 @@ const VendorAddPackages = () => {
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
     const [updateModalOpen, setUpdateModalOpen] = useState(false);
     const [modalData, setModalData] = useState({
-        customizePackageId: "",
-        customizePackageName: "",
-        customizePackagePrice: "",
-        customizePackageDuration: "",
-        customizePackageNoOfGuests: "",
-        customizePackageServices: "",
+        packageId: "",
+        packageName: "",
+        packagePrice: "",
+        packageDuration: "",
+        packageNoOfGuests: "",
+        packageDescription: "",
 
     });
     const classes = useStyles();
@@ -118,23 +118,23 @@ const VendorAddPackages = () => {
             [name]: value,
         }));
     };
-    const customizePackagesData = [
+    const packagesData = [
         {
-            customizePackageId: "P001",
-            customizePackageName: "Wedding Celebration",
-            customizePackagePrice: "$5000",
-            customizePackageDuration: "8H",
-            customizePackageNoOfGuests: "Up to 200 Persons",
-            customizePackageServices: "Catering,Venue,Decoration,Photography",
+            packageId: "P001",
+            packageName: "Wedding Celebration",
+            packagePrice: "$5000",
+            packageDuration: "8H",
+            packageNoOfGuests: "Up to 200 Persons",
+            packageDescription: "Catering,Venue,Decoration,Photography",
 
         },
         {
-            customizePackageId: "P002",
-            customizePackageName: "Engagement Celebration",
-            customizePackagePrice: "$2500",
-            customizePackageDuration: "4H",
-            customizePackageNoOfGuests: "Up to 100 Persons",
-            customizePackageServices: "Catering,Venue,Decoration,Photography",
+            packageId: "P002",
+            packageName: "Engagement Celebration",
+            packagePrice: "$2500",
+            packageDuration: "4H",
+            packageNoOfGuests: "Up to 100 Persons",
+            packageDescription: "Catering,Venue,Decoration,Photography",
 
 
         },
@@ -250,7 +250,7 @@ const VendorAddPackages = () => {
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
-                <div className={classes.addcustomizePackagesSection}>
+                <div className={classes.addPackagesSection}>
                     <Typography
                         variant="h4"
                         gutterBottom
@@ -296,7 +296,7 @@ const VendorAddPackages = () => {
                         <TextField
                             fullWidth
                             variant="outlined"
-                            label="Services"
+                            label="Description"
                             // Add necessary onChange and value properties
                         />
                     </Grid>
@@ -333,7 +333,7 @@ const VendorAddPackages = () => {
                                 <TableCell>Package Price</TableCell>
                                 <TableCell>Package Duration</TableCell>
                                 <TableCell>No.Of Guests</TableCell>
-                                <TableCell>Services</TableCell>
+                                <TableCell>Description</TableCell>
                                 <TableCell>Actions</TableCell>
                             </TableRow>
                         </TableHead>
@@ -345,7 +345,7 @@ const VendorAddPackages = () => {
                                     <TableCell>{customizePackage.customizePackagePrice}</TableCell>
                                     <TableCell>{customizePackage.customizePackageDuration}</TableCell>
                                     <TableCell>{customizePackage.customizePackageNoOfGuests}</TableCell>
-                                    <TableCell>{customizePackage.customizePackageServices}</TableCell>
+                                    <TableCell>{customizePackage.customizePackageDescription}</TableCell>
                                     <TableCell>
                                         <IconButton color="primary"
                                                     onClick={() => handleUpdateModalOpen(customizePackage)}
