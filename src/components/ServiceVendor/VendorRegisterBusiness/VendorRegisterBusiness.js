@@ -351,7 +351,7 @@ const VendorAddBusiness = () => {
                     <DialogTitle>Confirm Delete</DialogTitle>
                     <DialogContent>
                         <Typography variant="body1">
-                            Are you sure you want to delete this Service?
+                            Are you sure you want to delete this Business?
                         </Typography>
                     </DialogContent>
                     <DialogActions>
