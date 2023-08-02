@@ -136,6 +136,14 @@ const VendorAddPackages = () => {
             packageNoOfGuests: "Up to 100 Persons",
             packageDescription: "Catering,Venue,Decoration,Photography",
 
+        },
+        {
+            packageId: "P003",
+            packageName: "Birthday Celebration",
+            packagePrice: "$2500",
+            packageDuration: "4H",
+            packageNoOfGuests: "Up to 100 Persons",
+            packageDescription: "Catering,Venue,Decoration,Photography",
 
         },
     ];
