@@ -275,13 +275,12 @@ const VendorDashboard = () => {
                                     dataKey="value"
                                     isAnimationActive={false}
                                     data={earningData}
-                                    cx={150} // Adjust the center X coordinate to move the pie chart horizontally
-                                    cy={150} // Adjust the center Y coordinate to move the pie chart vertically
-                                    innerRadius={80} // Adjust the inner radius to make the pie chart bigger
+                                    cx={150} // Half of the width (300 / 2)
+                                    cy={150} // Half of the height (300 / 2)
+                                    innerRadius={80}
                                     outerRadius={100}
                                     fill="#8884d8"
                                     label={(entry) => entry.name}
-
                                 >
                                     {earningData.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
@@ -289,6 +288,7 @@ const VendorDashboard = () => {
                                 </Pie>
                                 <Tooltip />
                             </PieChart>
+
                         </Paper>
                     </Grid>
 
