@@ -24,6 +24,7 @@ import ViewCustomers from "./components/Admin/ViewCustomers/ViewCustomers";
 import ViewVendors from "./components/Admin/ViewEventVendors/ViewEventVendors";
 import AddPackages from "./components/Admin/Packages/Packages";
 import VendorDashboard from "./components/ServiceVendor/VendorDashboard/VendorDashboard";
+import VendorProfile from "./components/ServiceVendor/VendorProfile/VendorProfile";
 
 const App = () => {
     return (
