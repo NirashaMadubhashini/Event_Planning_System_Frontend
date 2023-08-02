@@ -278,7 +278,7 @@ const VendorDashboard = () => {
                                     cx={150} // Half of the width (300 / 2)
                                     cy={150} // Half of the height (300 / 2)
                                     innerRadius={80}
-                                    outerRadius={100}
+                                    outerRadius={90}
                                     fill="#8884d8"
                                     label={(entry) => entry.name}
                                 >

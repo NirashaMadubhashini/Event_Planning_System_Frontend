@@ -163,13 +163,20 @@ export default makeStyles((theme) => ({
         textAlign: "center",
         color: theme.palette.text.secondary,
         marginBottom: theme.spacing(3),
-        borderRadius: theme.spacing(1),
-        boxShadow: theme.shadows[2],
+        // borderRadius: theme.spacing(1),
+        // boxShadow: theme.shadows[2],
+        // borderRadius: theme.spacing(1),
+        // boxShadow: theme.shadows[2],
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center", // Center the content vertically
+        alignItems: "center", // Center the content horizontally
     },
     pieChartContainer: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+
     },
 
     [theme.breakpoints.down("xs")]: {
