@@ -37,7 +37,7 @@ import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
 import service from "../../Customer/Services/Service";
 
-const AddPackages = () => {
+const VendorAddPackages = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [searchValue, setSearchValue] = useState("");
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
@@ -464,4 +464,4 @@ const AddPackages = () => {
     );
 };
 
-export default AddPackages;
+export default VendorAddPackages;

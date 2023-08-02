@@ -61,7 +61,7 @@ const App = () => {
                     --------------------------------------------------------
                     <Route path="/vendorDashboard" exact component={VendorDashboard} />
                     <Route path="/vendorProfile" exact component={VendorProfile} />
-                    {/*<Route path="/vendorAddPackages" exact component={VendorAddPackages} />*/}
+                    <Route path="/vendorAddPackages" exact component={VendorAddPackages} />
                     <Route path="/vendorAddBusiness" exact component={VendorAddBusiness} />
                     {/*<Route path="/vendorViewBookings" exact component={VendorViewBookings} />*/}
                     {/*<Route path="/vendorGallery" exact component={VendorGallery} />*/}
