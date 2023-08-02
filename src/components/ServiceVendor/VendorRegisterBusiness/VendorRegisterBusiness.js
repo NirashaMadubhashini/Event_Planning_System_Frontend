@@ -370,9 +370,9 @@ const VendorAddBusiness = () => {
                     <DialogTitle>Update Business</DialogTitle>
                     <DialogContent>
                         <TextField
-                            label="Service Id"
-                            name="serviceId"
-                            value={modalData.serviceId}
+                            label="Business Id"
+                            name="businessId"
+                            value={modalData.businessId}
                             onChange={handleInputChange}
                             fullWidth
                             margin="normal"
@@ -381,25 +381,25 @@ const VendorAddBusiness = () => {
                             }}
                         />
                         <TextField
-                            label="Service Name"
-                            name="serviceName"
-                            value={modalData.serviceName}
+                            label="Business Name"
+                            name="businessName"
+                            value={modalData.businessName}
                             onChange={handleInputChange}
                             fullWidth
                             margin="normal"
                         />
                         <TextField
-                            label="Service Description"
-                            name="serviceDescription"
-                            value={modalData.serviceDescription}
+                            label="Business Description"
+                            name="businessDescription"
+                            value={modalData.businessDescription}
                             onChange={handleInputChange}
                             fullWidth
                             margin="normal"
                         />
                         <TextField
-                            label="Service Price"
-                            name="servicePrice"
-                            value={modalData.servicePrice}
+                            label="Business Type"
+                            name="businessType"
+                            value={modalData.businessType}
                             onChange={handleInputChange}
                             fullWidth
                             margin="normal"
