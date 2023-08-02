@@ -118,16 +118,16 @@ const VendorAddBusiness = () => {
     };
     const servicesData = [
         {
-            serviceId: "S001",
-            serviceName: "Hotel",
-            serviceDescription: "Hotels and halls for functions",
-            servicePrice: "10,000",
+            businessId: "B001",
+            businessName: "Hotel",
+            businessDescription: "Hotels and halls for functions",
+            businessPrice: "10,000",
         },
         {
-            serviceId: "S002",
-            serviceName: "Saloon",
-            serviceDescription: "Beauty service for customers",
-            servicePrice: "15000",
+            businessId: "S002",
+            businessName: "Saloon",
+            businessDescription: "Beauty service for customers",
+            businessPrice: "15000",
         },
     ];
 
