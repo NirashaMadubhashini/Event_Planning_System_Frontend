@@ -96,14 +96,6 @@ export default makeStyles((theme) => ({
         paddingBottom: theme.spacing(3),
         textAlign: "center",
     },
-    // barChartTopic:{
-    //     paddingTop: theme.spacing(5),
-    //     fontWeight:"bold",
-    //
-    // },
-    // barChart:{
-    //     paddingTop: theme.spacing(4),
-    // },
     yearlyGrid:{
         marginLeft: theme.spacing(15),
     },
@@ -163,10 +155,6 @@ export default makeStyles((theme) => ({
         textAlign: "center",
         color: theme.palette.text.secondary,
         marginBottom: theme.spacing(3),
-        // borderRadius: theme.spacing(1),
-        // boxShadow: theme.shadows[2],
-        // borderRadius: theme.spacing(1),
-        // boxShadow: theme.shadows[2],
         display: "flex",
         flexDirection: "column",
         justifyContent: "center", // Center the content vertically

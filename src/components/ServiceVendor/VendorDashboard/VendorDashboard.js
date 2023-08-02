@@ -317,11 +317,11 @@ const VendorDashboard = () => {
                             <TableContainer className={classes.tableContainer}>
                                 <Table className={classes.table}>
                                     <TableHead>
-                                        <TableRow>
-                                            <TableCell>Date</TableCell>
-                                            <TableCell>Event</TableCell>
-                                            <TableCell>Customer</TableCell>
-                                            <TableCell>Package</TableCell>
+                                        <TableRow style={{ backgroundColor: "#3F51B4", color: "#FFFFFF" }}>
+                                            <TableCell style={{ color: "#FFFFFF" }}>Date</TableCell>
+                                            <TableCell style={{ color: "#FFFFFF" }}>Event</TableCell>
+                                            <TableCell style={{ color: "#FFFFFF" }}>Customer</TableCell>
+                                            <TableCell style={{ color: "#FFFFFF" }}>Package</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -338,6 +338,8 @@ const VendorDashboard = () => {
                             </TableContainer>
                         </Paper>
                     </Grid>
+
+
 
                 </Grid>
             </Container>
