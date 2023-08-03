@@ -54,12 +54,12 @@ const VendorGallery= () => {
     };
 
     const galleryImages = [
-        { src: Image1, category: "Category1" },
-        { src: Image2, category: "Category2" },
-        { src: Image3, category: "Category3" },
-        { src: Image4, category: "Category1" },
-        { src: Image5, category: "Category2" },
-        { src: Image6, category: "Category3" },
+        { src: Image5, category: "Engagement" },
+        { src: Image2, category: "Social" },
+        { src: Image3, category: "Celebration" },
+        { src: Image4, category: "Engagement" },
+        { src: Image1, category: "Social" },
+        { src: Image6, category: "Celebration" },
         // ... (add more image objects with source and category as needed)
     ];
 
