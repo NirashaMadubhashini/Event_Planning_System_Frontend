@@ -18,12 +18,6 @@ import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
 
-import EngagementImage from "../Gallery/img/Engagement.jpeg";
-import AnniversaryImage from "../Gallery/img/Anniversery.jpg";
-import BirthdayImage from "../Gallery/img/Birthday.webp";
-import SocialImage from "../Gallery/img/slider-events.jpg";
-import VersionImage from "../Gallery/img/version-events-thumb.jpg";
-import WeddingImage from "../Gallery/img/Wedding.jpg";
 
 const VendorGallery= () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -69,40 +63,6 @@ const VendorGallery= () => {
         };
     }, []);
 
-    const images = [
-        {
-            id: 1,
-            category: "All",
-            imageUrl: EngagementImage,
-        },
-        {
-            id: 2,
-            category: "Wedding",
-            imageUrl: AnniversaryImage,
-        },
-        {
-            id: 3,
-            category: "Party",
-            imageUrl: BirthdayImage,
-        },
-        {
-            id: 4,
-            category: "Social",
-            imageUrl: SocialImage,
-        },
-        {
-            id: 5,
-            category: "All",
-            imageUrl: VersionImage,
-        },
-        {
-            id: 6,
-            category: "Wedding",
-            imageUrl: WeddingImage,
-        },
-    ];
-
-    const categories = ["All", "Wedding", "Party", "Social"];
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -221,44 +181,8 @@ const VendorGallery= () => {
                     <Typography variant="h4" gutterBottom>
                         See Our Best Events Gallery!
                     </Typography>
-                    <div className={classes.categoryButtons}>
-                        {categories.map((category) => (
-                            <Button
-                                key={category}
-                                variant="text"
-                                color="primary"
-                                onClick={() => handleCategoryClick(category)}
-                                className={classes.categoryButton}
-                                style={{
-                                    fontWeight: "bold",
-                                    fontSize: "30",
-                                }}
-                            >
-                                {category}
-                            </Button>
-                        ))}
-                    </div>
                 </div>
-                <Grid container spacing={2}>
-                    {images
-                        .filter((image) =>
-                            clickedCategory === "All"
-                                ? true
-                                : image.category === clickedCategory
-                        )
-                        .map((image) => (
-                            <Grid item xs={12} sm={6} md={4} key={image.id}>
-                                <Card>
-                                    <CardMedia
-                                        component="img"
-                                        height="200"
-                                        image={image.imageUrl}
-                                        alt={`Image ${image.id}`}
-                                    />
-                                </Card>
-                            </Grid>
-                        ))}
-                </Grid>
+
             </Container>
         </Container>
     );
