@@ -77,6 +77,7 @@ export default makeStyles((theme) => ({
         marginBottom: theme.spacing(2),
     },
 
+
     "@media (max-width: 599px)": {
         appBar: {
             padding: "0px",

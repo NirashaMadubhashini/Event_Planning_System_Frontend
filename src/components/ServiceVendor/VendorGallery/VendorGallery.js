@@ -17,7 +17,9 @@ import { Link } from "react-router-dom";
 import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
-
+import Image1 from '../../../assets/images/I1.jpg';
+import Image2 from '../../../assets/images/I2.webp';
+import Image3 from '../../Customer/Gallery/img/Birthday.webp';
 
 const VendorGallery= () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -49,9 +51,9 @@ const VendorGallery= () => {
     };
 
     const galleryImages = [
-        "image1.jpg",
-        "image2.jpg",
-        "image3.jpg",
+        Image1,
+        Image2,
+        Image3,
         // ... (add more image URLs as needed)
     ];
 
