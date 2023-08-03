@@ -48,6 +48,13 @@ const VendorGallery= () => {
         );
     };
 
+    const galleryImages = [
+        "image1.jpg",
+        "image2.jpg",
+        "image3.jpg",
+        // ... (add more image URLs as needed)
+    ];
+
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 100) {
@@ -183,6 +190,26 @@ const VendorGallery= () => {
                     </Typography>
                 </div>
 
+                <Grid container spacing={3}>
+                    {galleryImages.map((image, index) => (
+                        <Grid item xs={12} sm={6} md={4} key={index}>
+                            <Card className={classes.card}>
+                                <CardMedia
+                                    component="img"
+                                    alt={`Gallery Image ${index}`}
+                                    height="200"
+                                    image={image}
+                                />
+                                <CardContent>
+                                    <Typography variant="caption" color="textSecondary">
+                                        {/* Caption for the image; you can replace with actual caption data */}
+                                        Description for image {index + 1}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid>
             </Container>
         </Container>
     );

@@ -73,6 +73,10 @@ export default makeStyles((theme) => ({
     categoryButton: {
         margin: theme.spacing(0.5),
     },
+    card: {
+        marginBottom: theme.spacing(2),
+    },
+
     "@media (max-width: 599px)": {
         appBar: {
             padding: "0px",
