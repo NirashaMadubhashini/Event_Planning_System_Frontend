@@ -18,7 +18,8 @@ import {
     Paper,
 } from "@material-ui/core";
 import useStyles from "./style";
-import {ArrowDropDown, CheckCircle, HourglassEmpty, Cancel, Logout} from "@mui/icons-material";
+import {ArrowDropDown, CheckCircle, HourglassEmpty, Cancel, Logout,Call,
+    Message,} from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 
@@ -64,7 +65,15 @@ const Booking = () => {
         setSelectedBooking(booking);
         setOpenModal(true);
     };
+    const handleCallAction = () => {
+        // Implement the call action logic here
+        console.log("Calling...");
+    };
 
+    const handleMessageAction = () => {
+        // Implement the message action logic here
+        console.log("Sending a message...");
+    };
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
@@ -257,6 +266,7 @@ const Booking = () => {
                                 <TableCell>Vendor Name</TableCell>
                                 <TableCell>Service</TableCell>
                                 <TableCell>Status</TableCell>
+                                <TableCell>Action</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -284,6 +294,14 @@ const Booking = () => {
                                         >
                                             {booking.status}
                                         </span>
+                                    </TableCell>
+                                    <TableCell>
+                                        <IconButton color="primary" onClick={handleCallAction}>
+                                            <Call />
+                                        </IconButton>
+                                        <IconButton color="secondary" onClick={handleMessageAction}>
+                                            <Message />
+                                        </IconButton>
                                     </TableCell>
                                 </TableRow>
                             ))}
