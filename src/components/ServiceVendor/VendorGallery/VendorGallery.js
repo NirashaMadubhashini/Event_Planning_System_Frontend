@@ -20,6 +20,9 @@ import useStyles from "./style";
 import Image1 from '../../../assets/images/I1.jpg';
 import Image2 from '../../../assets/images/I2.webp';
 import Image3 from '../../Customer/Gallery/img/Birthday.webp';
+import Image4 from '../../Customer/Gallery/img/Wedding.jpg';
+import Image5 from '../../Customer/Gallery/img/Engagement.jpeg';
+import Image6 from '../../Customer/Gallery/img/Anniversery.jpg';
 
 const VendorGallery= () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -54,6 +57,9 @@ const VendorGallery= () => {
         { src: Image1, category: "Category1" },
         { src: Image2, category: "Category2" },
         { src: Image3, category: "Category3" },
+        { src: Image4, category: "Category1" },
+        { src: Image5, category: "Category2" },
+        { src: Image6, category: "Category3" },
         // ... (add more image objects with source and category as needed)
     ];
 
