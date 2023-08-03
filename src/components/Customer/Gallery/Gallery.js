@@ -17,15 +17,11 @@ import { Link } from "react-router-dom";
 import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
+import Image1 from '../../../assets/images/I1.jpg';
+import Image2 from '../../../assets/images/I2.webp';
+import Image3 from '../../Customer/Gallery/img/Birthday.webp';
 
-import EngagementImage from "../Gallery/img/Engagement.jpeg";
-import AnniversaryImage from "../Gallery/img/Anniversery.jpg";
-import BirthdayImage from "../Gallery/img/Birthday.webp";
-import SocialImage from "../Gallery/img/slider-events.jpg";
-import VersionImage from "../Gallery/img/version-events-thumb.jpg";
-import WeddingImage from "../Gallery/img/Wedding.jpg";
-
-const Gallery = () => {
+const Gallery= () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
 
@@ -54,6 +50,16 @@ const Gallery = () => {
         );
     };
 
+    const galleryImages = [
+        { src: Image1, category: "Wedding" },
+        { src: Image2, category: "Party" },
+        { src: Image3, category: "Social" },
+        // ... (add more image objects with source and category as needed)
+    ];
+
+    const [selectedCategory, setSelectedCategory] = useState("All");
+
+
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 100) {
@@ -69,40 +75,6 @@ const Gallery = () => {
         };
     }, []);
 
-    const images = [
-        {
-            id: 1,
-            category: "All",
-            imageUrl: EngagementImage,
-        },
-        {
-            id: 2,
-            category: "Wedding",
-            imageUrl: AnniversaryImage,
-        },
-        {
-            id: 3,
-            category: "Party",
-            imageUrl: BirthdayImage,
-        },
-        {
-            id: 4,
-            category: "Social",
-            imageUrl: SocialImage,
-        },
-        {
-            id: 5,
-            category: "All",
-            imageUrl: VersionImage,
-        },
-        {
-            id: 6,
-            category: "Wedding",
-            imageUrl: WeddingImage,
-        },
-    ];
-
-    const categories = ["All", "Wedding", "Party", "Social"];
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -244,44 +216,54 @@ const Gallery = () => {
                     <Typography variant="h4" gutterBottom>
                         See Our Best Events Gallery!
                     </Typography>
-                    <div className={classes.categoryButtons}>
-                        {categories.map((category) => (
-                            <Button
-                                key={category}
-                                variant="text"
-                                color="primary"
-                                onClick={() => handleCategoryClick(category)}
-                                className={classes.categoryButton}
-                                style={{
-                                    fontWeight: "bold",
-                                    fontSize: "30",
-                                }}
-                            >
-                                {category}
-                            </Button>
-                        ))}
-                    </div>
                 </div>
-                <Grid container spacing={2}>
-                    {images
-                        .filter((image) =>
-                            clickedCategory === "All"
-                                ? true
-                                : image.category === clickedCategory
-                        )
-                        .map((image) => (
-                            <Grid item xs={12} sm={6} md={4} key={image.id}>
-                                <Card>
+
+                <div className={classes.categoryButtons}>
+                    <Button
+                        className={classes.categoryButton}
+                        variant={selectedCategory === "All" ? "contained" : "text"}
+                        color="primary"
+                        onClick={() => setSelectedCategory("All")}
+                    >
+                        All
+                    </Button>
+                    {/* Dynamically create a button for each unique category */}
+                    {Array.from(new Set(galleryImages.map(image => image.category))).map(category => (
+                        <Button
+                            key={category}
+                            className={classes.categoryButton}
+                            variant={selectedCategory === category ? "contained" : "text"}
+                            color="primary"
+                            onClick={() => setSelectedCategory(category)}
+                        >
+                            {category}
+                        </Button>
+                    ))}
+                </div>
+
+                <Grid container spacing={3}>
+                    {galleryImages
+                        .filter(image => selectedCategory === "All" || image.category === selectedCategory)
+                        .map((image, index) => (
+                            <Grid item xs={12} sm={6} md={4} key={index}>
+                                <Card className={classes.card}>
                                     <CardMedia
                                         component="img"
+                                        alt={`Gallery Image ${index}`}
                                         height="200"
-                                        image={image.imageUrl}
-                                        alt={`Image ${image.id}`}
+                                        image={image.src}
                                     />
+                                    <CardContent>
+                                        <Typography variant="caption" color="textSecondary">
+                                            {/* Caption for the image; you can replace with actual caption data */}
+                                            Description for image {index + 1}
+                                        </Typography>
+                                    </CardContent>
                                 </Card>
                             </Grid>
                         ))}
                 </Grid>
+
             </Container>
         </Container>
     );
