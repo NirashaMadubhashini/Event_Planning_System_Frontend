@@ -51,11 +51,14 @@ const VendorGallery= () => {
     };
 
     const galleryImages = [
-        Image1,
-        Image2,
-        Image3,
-        // ... (add more image URLs as needed)
+        { src: Image1, category: "Category1" },
+        { src: Image2, category: "Category2" },
+        { src: Image3, category: "Category3" },
+        // ... (add more image objects with source and category as needed)
     ];
+
+    const [selectedCategory, setSelectedCategory] = useState("All");
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -192,26 +195,52 @@ const VendorGallery= () => {
                     </Typography>
                 </div>
 
-                <Grid container spacing={3}>
-                    {galleryImages.map((image, index) => (
-                        <Grid item xs={12} sm={6} md={4} key={index}>
-                            <Card className={classes.card}>
-                                <CardMedia
-                                    component="img"
-                                    alt={`Gallery Image ${index}`}
-                                    height="200"
-                                    image={image}
-                                />
-                                <CardContent>
-                                    <Typography variant="caption" color="textSecondary">
-                                        {/* Caption for the image; you can replace with actual caption data */}
-                                        Description for image {index + 1}
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
+                <div className={classes.categoryButtons}>
+                    <Button
+                        className={classes.categoryButton}
+                        variant={selectedCategory === "All" ? "contained" : "outlined"}
+                        color="primary"
+                        onClick={() => setSelectedCategory("All")}
+                    >
+                        All
+                    </Button>
+                    {/* Dynamically create a button for each unique category */}
+                    {Array.from(new Set(galleryImages.map(image => image.category))).map(category => (
+                        <Button
+                            key={category}
+                            className={classes.categoryButton}
+                            variant={selectedCategory === category ? "contained" : "outlined"}
+                            color="primary"
+                            onClick={() => setSelectedCategory(category)}
+                        >
+                            {category}
+                        </Button>
                     ))}
+                </div>
+
+                <Grid container spacing={3}>
+                    {galleryImages
+                        .filter(image => selectedCategory === "All" || image.category === selectedCategory)
+                        .map((image, index) => (
+                            <Grid item xs={12} sm={6} md={4} key={index}>
+                                <Card className={classes.card}>
+                                    <CardMedia
+                                        component="img"
+                                        alt={`Gallery Image ${index}`}
+                                        height="200"
+                                        image={image.src}
+                                    />
+                                    <CardContent>
+                                        <Typography variant="caption" color="textSecondary">
+                                            {/* Caption for the image; you can replace with actual caption data */}
+                                            Description for image {index + 1}
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        ))}
                 </Grid>
+
             </Container>
         </Container>
     );
