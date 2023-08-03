@@ -10,7 +10,7 @@ export default makeStyles((theme) => ({
     container: {
         padding: "1px",
     },
-    serviceSection: {
+    gallerySection: {
         paddingTop: theme.spacing(1),
         paddingBottom: theme.spacing(5),
         textAlign: "center",

@@ -209,7 +209,7 @@ const Gallery= () => {
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
-                <div className={classes.serviceSection}>
+                <div className={classes.gallerySection}>
                     <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>
                         Gallery
                     </Typography>
