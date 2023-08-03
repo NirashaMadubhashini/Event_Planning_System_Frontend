@@ -33,6 +33,8 @@ import {
     Logout,
     Edit,
     Delete,
+    Call,
+    Message,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
@@ -111,6 +113,15 @@ const VendorViewBookings = () => {
         console.log(modalData);
         setUpdateConfirmationOpen(false);
         setUpdateModalOpen(false);
+    };
+    const handleCallAction = () => {
+        // Implement the call action logic here
+        console.log("Calling...");
+    };
+
+    const handleMessageAction = () => {
+        // Implement the message action logic here
+        console.log("Sending a message...");
     };
 
     useEffect(() => {
@@ -329,17 +340,11 @@ const VendorViewBookings = () => {
                                         </Typography>
                                     </TableCell>
                                     <TableCell>
-                                        <IconButton
-                                            color="primary"
-                                            onClick={handleUpdateConfirmationOpen}
-                                        >
-                                            <CheckCircleIcon />
+                                        <IconButton color="primary" onClick={handleCallAction}>
+                                            <Call />
                                         </IconButton>
-                                        <IconButton
-                                            color="secondary"
-                                            onClick={handleDeleteConfirmationOpen}
-                                        >
-                                            <CancelIcon />
+                                        <IconButton color="secondary" onClick={handleMessageAction}>
+                                            <Message />
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
