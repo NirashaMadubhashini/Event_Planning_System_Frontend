@@ -253,12 +253,6 @@ const Gallery= () => {
                                         height="200"
                                         image={image.src}
                                     />
-                                    <CardContent>
-                                        <Typography variant="caption" color="textSecondary">
-                                            {/* Caption for the image; you can replace with actual caption data */}
-                                            Description for image {index + 1}
-                                        </Typography>
-                                    </CardContent>
                                 </Card>
                             </Grid>
                         ))}
