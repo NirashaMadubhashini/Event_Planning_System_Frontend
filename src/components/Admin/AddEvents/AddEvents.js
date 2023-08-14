@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {
     AppBar,
     Button,
@@ -32,12 +32,19 @@ import {
     Edit,
     Delete,
 } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
 import service from "../../Customer/Services/Service";
+import {useDispatch, useSelector} from 'react-redux';
+import {addEvent, getAllEvents, deleteEvent, updateEvent} from '../../../actions/admin';
+import Box from "@mui/material/Box";
 
 const AddEvent = () => {
+    const dispatch = useDispatch();
+    const events = useSelector(state => state.adminReducer.events);
+    const [filteredEvents, setFilteredEvents] = useState(events);
+
     const [anchorEl, setAnchorEl] = useState(null);
     const [searchValue, setSearchValue] = useState("");
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
@@ -47,16 +54,51 @@ const AddEvent = () => {
         eventName: "",
         eventDescription: "",
         eventPrice: "",
-
     });
+    const [priceError, setPriceError] = useState(false);
+    const [duplicateEventError, setDuplicateEventError] = useState(false);
+
     const classes = useStyles();
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+    // State variable to hold edited event data
+    const [editedEvent, setEditedEvent] = useState(null);
+
+    // Function to populate editedEvent and open update modal
+    const handleEditEvent = (event) => {
+        console.log("Edit event clicked:", event);
+        setEditedEvent(event);
+        setModalData(event);
+        setUpdateModalOpen(true);
     };
 
-    const handleClose = () => {
-        setAnchorEl(null);
+    const handleUpdateEvent = () => {
+        dispatch(updateEvent(modalData)).then(() => {
+            dispatch(getAllEvents()); // Fetch the updated list of events
+            setUpdateModalOpen(false); // Close the update modal
+            setEditedEvent(null); // Reset the editedEvent state
+        });
+    };
+
+    const handleSearchChange = (e) => {
+        const searchInput = e.target.value.toLowerCase();
+        const filtered = events.filter(event => event.eventName.toLowerCase().includes(searchInput));
+        setFilteredEvents(filtered);
+    };
+
+    const handleClearFields = () => {
+        setModalData({
+            eventId: "",
+            eventName: "",
+            eventDescription: "",
+            eventPrice: "",
+        });
+    };
+
+    const handleDeleteEvent = (eventId) => {
+        dispatch(deleteEvent(eventId)).then(() => {
+            dispatch(getAllEvents()); // Fetch the updated list of events
+        });
+        handleDeleteConfirmationClose();
     };
 
     const [appBarPosition, setAppBarPosition] = useState("relative");
@@ -70,23 +112,30 @@ const AddEvent = () => {
     };
 
     useEffect(() => {
+        // Fetch events when the component mounts
+        dispatch(getAllEvents());
+    }, [dispatch]);
+
+
+    useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 100) {
-                setAppBarPosition("fixed");
+                if (appBarPosition !== "fixed") {
+                    setAppBarPosition("fixed");
+                }
             } else {
-                setAppBarPosition("relative");
+                if (appBarPosition !== "relative") {
+                    setAppBarPosition("relative");
+                }
             }
         };
 
         window.addEventListener("scroll", handleScroll);
+
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, []);
-
-    const handleSearchChange = (e) => {
-        setSearchValue(e.target.value);
-    };
+    }, [appBarPosition]);
 
     const handleDeleteConfirmationOpen = () => {
         setDeleteConfirmationOpen(true);
@@ -94,11 +143,6 @@ const AddEvent = () => {
 
     const handleDeleteConfirmationClose = () => {
         setDeleteConfirmationOpen(false);
-    };
-
-    const handleUpdateModalOpen = (incident) => {
-        setModalData(incident);
-        setUpdateModalOpen(true);
     };
 
     const handleUpdateModalClose = () => {
@@ -110,26 +154,62 @@ const AddEvent = () => {
         setUpdateModalOpen(false);
     };
     const handleInputChange = (event) => {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
+
+        if (name === "eventPrice" && isNaN(value)) {
+            setPriceError(true);
+        } else {
+            setPriceError(false);
+        }
+
         setModalData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
     };
-    const incidentsData = [
-        {
-            eventId: "E001",
-            eventName: "Wedding",
-            eventDescription: "Wedding Events",
-            eventPrice: "100,000",
-        },
-        {
-            eventId: "E002",
-            eventName: "Gathering",
-            eventDescription: "Gathering Events",
-            eventPrice: "50,000",
-        },
-    ];
+
+    const handleInputChangeUpdate = (event) => {
+        const {name, value} = event.target;
+
+        if (name === "eventPrice" && isNaN(value)) {
+            setPriceError(true);
+        } else {
+            setPriceError(false);
+        }
+
+        setModalData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleAddEvent = () => {
+        const newEventName = modalData.eventName.trim(); // Remove leading and trailing spaces
+        const isDuplicateEvent = events.some(event => event.eventName === newEventName);
+
+        if (isDuplicateEvent) {
+            setDuplicateEventError(true);
+            return; // Stop the function if it's a duplicate event
+        }
+
+        const eventData = {
+            eventName: modalData.eventName,
+            eventDescription: modalData.eventDescription,
+            eventPrice: modalData.eventPrice,
+        };
+
+        dispatch(addEvent(eventData)).then(() => {
+            dispatch(getAllEvents());
+        });
+
+        setModalData({
+            eventId: "",
+            eventName: "",
+            eventDescription: "",
+            eventPrice: "",
+        });
+    };
+
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -147,7 +227,7 @@ const AddEvent = () => {
                                 color="inherit"
                                 edge="start"
                             >
-                                <img src={EventPro} alt="icon" height="60px" />
+                                <img src={EventPro} alt="icon" height="60px"/>
                             </IconButton>
                             <Typography
                                 component={Link}
@@ -245,7 +325,7 @@ const AddEvent = () => {
                                     color: clickedCategory === "Logout" ? "#F50057" : "",
                                 }}
                             >
-                                <Logout className={classes.logoutIcon} />
+                                <Logout className={classes.logoutIcon}/>
                             </Typography>
                         </div>
                     </div>
@@ -256,7 +336,7 @@ const AddEvent = () => {
                     <Typography
                         variant="h4"
                         gutterBottom
-                        style={{ color: "#3F51B5" }}
+                        style={{color: "#3F51B5"}}
                     >
                         Add and Manage Events
                     </Typography>
@@ -267,7 +347,9 @@ const AddEvent = () => {
                             fullWidth
                             variant="outlined"
                             label="Event Name"
-                            // Add necessary onChange and value properties
+                            name="eventName"
+                            value={modalData.eventName}
+                            onChange={handleInputChange}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
@@ -275,7 +357,9 @@ const AddEvent = () => {
                             fullWidth
                             variant="outlined"
                             label="Event Description"
-                            // Add necessary onChange and value properties
+                            name="eventDescription"
+                            value={modalData.eventDescription}
+                            onChange={handleInputChange}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
@@ -283,20 +367,39 @@ const AddEvent = () => {
                             fullWidth
                             variant="outlined"
                             label="Event Price"
-                            // Add necessary onChange and value properties
+                            name="eventPrice"
+                            value={modalData.eventPrice}
+                            onChange={handleInputChange}
+                            type="text"  // use text type but validate manually
+                            error={priceError}  // if priceError is true, the TextField will show error styling
+                            helperText={priceError ? "Please enter a valid number." : ""}  // error message
                         />
                     </Grid>
-                    <Grid item xs={12}>
-                        <Button variant="contained" color="primary">
-                            Add Event
-                        </Button>
+                    <Grid container item xs={12} sx={{justifyContent: 'center', alignItems: 'center'}}>
+                        <Grid item>
+                            <Button variant="contained" color="primary" onClick={handleAddEvent}>
+                                Add Event
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Box ml={2}>
+                                <Button
+                                    onClick={handleClearFields}
+                                    variant="contained"
+                                    color="secondary">
+                                    Clear
+                                </Button>
+                            </Box>
+                        </Grid>
                     </Grid>
+
+
                 </Grid>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                         <TextField
                             variant="outlined"
-                            placeholder="Search"
+                            placeholder="Search by Event Name"
                             fullWidth
                             InputProps={{
                                 endAdornment: (
@@ -307,12 +410,14 @@ const AddEvent = () => {
                                     </InputAdornment>
                                 ),
                             }}
+                            onChange={handleSearchChange}
                         />
+
                     </Grid>
                 </Grid>
                 <TableContainer component={Card} className={classes.tableContainer}>
                     <Table>
-                        <TableHead style={{ backgroundColor: "#C8C9CB" }}>
+                        <TableHead style={{backgroundColor: "#C8C9CB"}}>
                             <TableRow>
                                 <TableCell>Event Id</TableCell>
                                 <TableCell>Event Name</TableCell>
@@ -322,21 +427,24 @@ const AddEvent = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {incidentsData.map((incident, index) => (
-                                <TableRow key={index}>
-                                    <TableCell>{incident.eventId}</TableCell>
-                                    <TableCell>{incident.eventName}</TableCell>
-                                    <TableCell>{incident.eventDescription}</TableCell>
-                                    <TableCell>{incident.eventPrice}</TableCell>
+                            {filteredEvents.map((event, index) => (                                <TableRow key={event.eventId}>
+                                    <TableCell>{event.eventId}</TableCell>
+                                    <TableCell>{event.eventName}</TableCell>
+                                    <TableCell>{event.eventDescription}</TableCell>
+                                    <TableCell>{event.eventPrice}</TableCell>
                                     <TableCell>
                                         <IconButton color="primary"
-                                                    onClick={() => handleUpdateModalOpen(incident)}
+                                                    onClick={() => handleEditEvent(event)}
                                         >
-                                            <Edit />
+                                            <Edit/>
                                         </IconButton>
-                                        <IconButton color="secondary"
-                                                    onClick={handleDeleteConfirmationOpen}>
-                                            <Delete />
+                                        <IconButton
+                                            onClick={() => {
+                                                setModalData(event); // Store the event you want to delete
+                                                handleDeleteConfirmationOpen();
+                                            }}
+                                        >
+                                            <Delete/>
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
@@ -358,8 +466,11 @@ const AddEvent = () => {
                         <Button onClick={handleDeleteConfirmationClose} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={handleDeleteConfirmationClose} color="secondary">
-                            Delete
+                        <Button
+                            color="primary"
+                            onClick={() => handleDeleteEvent(modalData.eventId)}
+                        >
+                            Yes, Delete
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -383,7 +494,7 @@ const AddEvent = () => {
                             label="Event Name"
                             name="eventName"
                             value={modalData.eventName}
-                            onChange={handleInputChange}
+                            onChange={handleInputChangeUpdate} // <-- Corrected here
                             fullWidth
                             margin="normal"
                         />
@@ -391,7 +502,7 @@ const AddEvent = () => {
                             label="Event Description"
                             name="eventDescription"
                             value={modalData.eventDescription}
-                            onChange={handleInputChange}
+                            onChange={handleInputChangeUpdate} // <-- Corrected here
                             fullWidth
                             margin="normal"
                         />
@@ -399,7 +510,9 @@ const AddEvent = () => {
                             label="Event Price"
                             name="eventPrice"
                             value={modalData.eventPrice}
-                            onChange={handleInputChange}
+                            onChange={handleInputChangeUpdate}
+                            error={priceError} // <-- Added
+                            helperText={priceError ? "Please enter a valid price." : ""} // <-- Added
                             fullWidth
                             margin="normal"
                         />
@@ -408,11 +521,36 @@ const AddEvent = () => {
                         <Button onClick={handleUpdateModalClose} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={handleModalSubmit} color="primary">
+                        <Button onClick={handleUpdateEvent} color="primary">
                             Update
                         </Button>
                     </DialogActions>
                 </Dialog>
+                <Dialog
+                    open={duplicateEventError}
+                    onClose={() => setDuplicateEventError(false)}
+                    fullWidth
+                    maxWidth="xs" // You can adjust the size as needed
+                >
+                    <DialogTitle style={{backgroundColor: "#ff2222", color: "white"}}>
+                        Duplicate Event Name
+                    </DialogTitle>
+                    <DialogContent>
+                        <Typography variant="body1">
+                            An event with the same name already exists.
+                        </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button
+                            onClick={() => setDuplicateEventError(false)}
+                            color="primary"
+                            style={{color: "white"}}
+                        >
+                            OK
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+
             </Container>
         </Container>
     );
