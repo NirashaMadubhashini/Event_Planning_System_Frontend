@@ -323,24 +323,24 @@ const AddService = () => {
                         </TableHead>
                         <TableBody>
                             {servicesData.map((service, index) => (
-                            <TableRow key={index}>
-                                <TableCell>{service.serviceId}</TableCell>
-                                <TableCell>{service.serviceName}</TableCell>
-                                <TableCell>{service.serviceDescription}</TableCell>
-                                <TableCell>{service.servicePrice}</TableCell>
-                                <TableCell>
-                                    <IconButton color="primary"
-                                                onClick={() => handleUpdateModalOpen(service)}
-                                    >
-                                        <Edit />
-                                    </IconButton>
-                                    <IconButton color="secondary"
-                                                onClick={handleDeleteConfirmationOpen}>
-                                        <Delete />
-                                    </IconButton>
-                                </TableCell>
-                            </TableRow>
-                                ))}
+                                <TableRow key={index}>
+                                    <TableCell>{service.serviceId}</TableCell>
+                                    <TableCell>{service.serviceName}</TableCell>
+                                    <TableCell>{service.serviceDescription}</TableCell>
+                                    <TableCell>{service.servicePrice}</TableCell>
+                                    <TableCell>
+                                        <IconButton color="primary"
+                                                    onClick={() => handleUpdateModalOpen(service)}
+                                        >
+                                            <Edit />
+                                        </IconButton>
+                                        <IconButton color="secondary"
+                                                    onClick={handleDeleteConfirmationOpen}>
+                                            <Delete />
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
