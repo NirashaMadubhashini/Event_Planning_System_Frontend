@@ -45,9 +45,9 @@ const Navbar = () => {
                         <Button variant="contained" className={classes.logout} color="primary" onClick={logout}>Logout</Button>
                     </div>
                 ) : (
-                // <Button component={Link} to="/home" variant="contained" color="primary">Sign In</Button>
+                    // <Button component={Link} to="/home" variant="contained" color="primary">Sign In</Button>
                     <Button component={Link} to="/adminDashboard" variant="contained" color="primary">Sign In</Button>
-                //     <Button component={Link} to="/vendorDashboard" variant="contained" color="primary">Sign In</Button>
+                    //     <Button component={Link} to="/vendorDashboard" variant="contained" color="primary">Sign In</Button>
                 )}
             </Toolbar>
         </AppBar>
