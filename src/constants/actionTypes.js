@@ -1,16 +1,18 @@
-/*
-export const CREATE = 'CREATE';
-export const UPDATE = 'UPDATE';
-export const DELETE = 'DELETE';
-export const FETCH_ALL = 'FETCH_ALL';
-export const FETCH_BY_SEARCH = 'FETCH_BY_SEARCH';
-export const FETCH_POST = 'FETCH_POST';
-export const LIKE = 'LIKE';
-export const COMMENT = 'COMMENT';
-export const END_LOADING = 'END_LOADING';
-export const START_LOADING = 'START_LOADING';
-export const FETCH_BY_CREATOR = 'FETCH_BY_CREATOR';
+// actionTypes.js
 
-export const AUTH = 'AUTH';
-export const LOGOUT = 'LOGOUT';
-*/
+export const ADD_EVENT = 'ADD_EVENT';
+export const ADD_SERVICE = 'ADD_SERVICE';
+export const ADD_PACKAGE = 'ADD_PACKAGE';
+export const VIEW_ALL_EVENTS = 'VIEW_ALL_EVENTS';
+export const VIEW_ALL_SERVICES = 'VIEW_ALL_SERVICES';
+export const VIEW_ALL_PACKAGES = 'VIEW_ALL_PACKAGES';
+export const SEARCH_EVENT = 'SEARCH_EVENT';
+export const SEARCH_SERVICE = 'SEARCH_SERVICE';
+export const SEARCH_PACKAGE = 'SEARCH_PACKAGE';
+export const DELETE_EVENT = 'DELETE_EVENT';
+export const DELETE_SERVICE = 'DELETE_SERVICE';
+export const DELETE_PACKAGE = 'DELETE_PACKAGE';
+export const UPDATE_EVENT = 'UPDATE_EVENT';
+export const UPDATE_SERVICE = 'UPDATE_SERVICE';
+export const UPDATE_PACKAGE = 'UPDATE_PACKAGE';
+export const CHANGE_ADMIN_STATUS = 'CHANGE_ADMIN_STATUS';
