@@ -46,7 +46,6 @@ const AddEvent = () => {
     });
     const [priceError, setPriceError] = useState(false);
     const [duplicateEventError, setDuplicateEventError] = useState(false);
-
     const classes = useStyles();
 
     // State variable to hold edited event data
@@ -82,6 +81,7 @@ const AddEvent = () => {
             eventPrice: "",
         });
     };
+
     useEffect(() => {
         setFilteredEvents(events);
     }, [events]);
