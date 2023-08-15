@@ -185,7 +185,6 @@ const AddEvent = () => {
             return; // Stop the function if it's a duplicate event
         }
 
-
         const eventData = {
             eventName: modalData.eventName,
             eventDescription: modalData.eventDescription,
