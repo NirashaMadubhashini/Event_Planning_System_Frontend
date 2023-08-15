@@ -1,43 +1,32 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {
     AppBar,
     Button,
-    Toolbar,
-    Typography,
     Card,
-    CardContent,
-    IconButton,
-    Menu,
-    MenuItem,
-    Grid,
     Container,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Grid,
+    IconButton,
     InputAdornment,
-    TextField,
     Table,
     TableBody,
     TableCell,
     TableContainer,
     TableHead,
     TableRow,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
+    TextField,
+    Toolbar,
+    Typography,
 } from "@material-ui/core";
-import {
-    Search,
-    ArrowDropDown,
-    ExitToApp,
-    Logout,
-    Edit,
-    Delete,
-} from "@mui/icons-material";
+import {Delete, Edit, Logout, Search,} from "@mui/icons-material";
 import {Link} from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
-import service from "../../Customer/Services/Service";
 import {useDispatch, useSelector} from 'react-redux';
-import {addEvent, getAllEvents, deleteEvent, updateEvent} from '../../../actions/admin';
+import {addEvent, deleteEvent, getAllEvents, updateEvent} from '../../../actions/admin';
 import Box from "@mui/material/Box";
 
 const AddEvent = () => {
@@ -407,7 +396,7 @@ const AddEvent = () => {
                                 endAdornment: (
                                     <InputAdornment position="end">
                                         <IconButton>
-                                            <Search />
+                                            <Search/>
                                         </IconButton>
                                     </InputAdornment>
                                 ),
