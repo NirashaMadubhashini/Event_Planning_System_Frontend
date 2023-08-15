@@ -93,6 +93,10 @@ const AddEvent = () => {
             eventPrice: "",
         });
     };
+    useEffect(() => {
+        setFilteredEvents(events);
+    }, [events]);
+
 
     const handleDeleteEvent = (eventId) => {
         dispatch(deleteEvent(eventId)).then(() => {
@@ -427,7 +431,8 @@ const AddEvent = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {filteredEvents.map((event, index) => (                                <TableRow key={event.eventId}>
+                            {filteredEvents.map((event, index) => (
+                                <TableRow key={event.eventId}>
                                     <TableCell>{event.eventId}</TableCell>
                                     <TableCell>{event.eventName}</TableCell>
                                     <TableCell>{event.eventDescription}</TableCell>
