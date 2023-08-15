@@ -1,43 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import {
     AppBar,
     Button,
-    Toolbar,
-    Typography,
     Card,
-    CardContent,
-    IconButton,
-    Menu,
-    MenuItem,
-    Grid,
     Container,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Grid,
+    IconButton,
     InputAdornment,
-    TextField,
     Table,
     TableBody,
     TableCell,
     TableContainer,
     TableHead,
     TableRow,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
+    TextField,
+    Toolbar,
+    Typography,
 } from "@material-ui/core";
-import {
-    Search,
-    ArrowDropDown,
-    ExitToApp,
-    Logout,
-    Edit,
-    Delete,
-} from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import {Delete, Edit, Logout, Search,} from "@mui/icons-material";
+import {Link} from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
-import service from "../../Customer/Services/Service";
+import {useDispatch, useSelector} from 'react-redux';
+import {addService, deleteService, getAllServices, updateService} from '../../../actions/admin';
+import Box from "@mui/material/Box";
 
 const AddService = () => {
+    const dispatch = useDispatch();
+    const services = useSelector(state => state.adminReducer.services);
+    const [filteredServices, setFilteredServices] = useState(services);
+
     const [anchorEl, setAnchorEl] = useState(null);
     const [searchValue, setSearchValue] = useState("");
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
@@ -45,19 +41,68 @@ const AddService = () => {
     const [modalData, setModalData] = useState({
         serviceId: "",
         serviceName: "",
-        serviceDescription: "",
+        description: "",
         servicePrice: "",
 
     });
+    const [priceError, setPriceError] = useState(false);
+    const [duplicateServiceError, setDuplicateServiceError] = useState(false);
+
     const classes = useStyles();
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+    // State variable to hold edited event data
+    const [editedService, setEditedService] = useState(null);
+
+    // const handleClick = (service) => {
+    //     setAnchorEl(service.currentTarget);
+    // };
+
+    // Function to populate editedEvent and open update modal
+    const handleEditService = (service) => {
+        console.log("Service event clicked:", service);
+        setEditedService(service);
+        setModalData(service);
+        setUpdateModalOpen(true);
     };
 
-    const handleClose = () => {
-        setAnchorEl(null);
+    const handleUpdateService = () => {
+        dispatch(updateService(modalData)).then(() => {
+            dispatch(getAllServices()); // Fetch the updated list of events
+            setUpdateModalOpen(false); // Close the update modal
+            setEditedService(null); // Reset the editedEvent state
+        });
     };
+
+    const handleSearchChange = (e) => {
+        const searchInput = e.target.value.toLowerCase();
+        const filtered = services.filter(service => service.serviceName.toLowerCase().includes(searchInput));
+        setFilteredServices(filtered);
+    };
+
+    const handleClearFields = () => {
+        setModalData({
+            serviceId: "",
+            serviceName: "",
+            description: "",
+            servicePrice: "",
+        });
+    };
+
+    useEffect(() => {
+        setFilteredServices(services);
+    }, [services]);
+
+
+    const handleDeleteService = (serviceId) => {
+        dispatch(deleteService(serviceId)).then(() => {
+            dispatch(getAllServices()); // Fetch the updated list of events
+        });
+        handleDeleteConfirmationClose();
+    };
+
+    // const handleClose = () => {
+    //     setAnchorEl(null);
+    // };
 
     const [appBarPosition, setAppBarPosition] = useState("relative");
     const [clickedButtons, setClickedButtons] = useState({});
@@ -70,23 +115,31 @@ const AddService = () => {
     };
 
     useEffect(() => {
+        // Fetch events when the component mounts
+        dispatch(getAllServices());
+    }, [dispatch]);
+
+
+    useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 100) {
-                setAppBarPosition("fixed");
+                if (appBarPosition !== "fixed") {
+                    setAppBarPosition("fixed");
+                }
             } else {
-                setAppBarPosition("relative");
+                if (appBarPosition !== "relative") {
+                    setAppBarPosition("relative");
+                }
             }
         };
 
         window.addEventListener("scroll", handleScroll);
+
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, []);
+    }, [appBarPosition]);
 
-    const handleSearchChange = (e) => {
-        setSearchValue(e.target.value);
-    };
 
     const handleDeleteConfirmationOpen = () => {
         setDeleteConfirmationOpen(true);
@@ -96,10 +149,10 @@ const AddService = () => {
         setDeleteConfirmationOpen(false);
     };
 
-    const handleUpdateModalOpen = (service) => {
-        setModalData(service);
-        setUpdateModalOpen(true);
-    };
+    // const handleUpdateModalOpen = (service) => {
+    //     setModalData(service);
+    //     setUpdateModalOpen(true);
+    // };
 
     const handleUpdateModalClose = () => {
         setUpdateModalOpen(false);
@@ -109,27 +162,62 @@ const AddService = () => {
         console.log(modalData);
         setUpdateModalOpen(false);
     };
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
+    const handleInputChange = (service) => {
+        const {name, value} = service.target;
+
+        if (name === "servicePrice" && isNaN(value)) {
+            setPriceError(true);
+        } else {
+            setPriceError(false);
+        }
+
         setModalData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
     };
-    const servicesData = [
-        {
-            serviceId: "S001",
-            serviceName: "Hotel",
-            serviceDescription: "Hotels and halls for functions",
-            servicePrice: "10,000",
-        },
-        {
-            serviceId: "S002",
-            serviceName: "Saloon",
-            serviceDescription: "Beauty service for customers",
-            servicePrice: "15000",
-        },
-    ];
+
+    const handleInputChangeUpdate = (service) => {
+        const {name, value} = service.target;
+
+        if (name === "servicePrice" && isNaN(value)) {
+            setPriceError(true);
+        } else {
+            setPriceError(false);
+        }
+
+        setModalData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleAddService = () => {
+        const newServiceName = modalData.serviceName.trim(); // Remove leading and trailing spaces
+        const isDuplicateService = services.some(service => service.serviceName === newServiceName);
+
+        if (isDuplicateService) {
+            setDuplicateServiceError(true);
+            return; // Stop the function if it's a duplicate event
+        }
+
+        const serviceData = {
+            serviceName: modalData.serviceName,
+            description: modalData.description,
+            servicePrice: modalData.servicePrice,
+        };
+
+        dispatch(addService(serviceData)).then(() => {
+            dispatch(getAllServices());
+        });
+
+        setModalData({
+            serviceId: "",
+            serviceName: "",
+            description: "",
+            servicePrice: "",
+        });
+    };
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -147,7 +235,7 @@ const AddService = () => {
                                 color="inherit"
                                 edge="start"
                             >
-                                <img src={EventPro} alt="icon" height="60px" />
+                                <img src={EventPro} alt="icon" height="60px"/>
                             </IconButton>
                             <Typography
                                 component={Link}
@@ -245,7 +333,7 @@ const AddService = () => {
                                     color: clickedCategory === "Logout" ? "#F50057" : "",
                                 }}
                             >
-                                <Logout className={classes.logoutIcon} />
+                                <Logout className={classes.logoutIcon}/>
                             </Typography>
                         </div>
                     </div>
@@ -256,7 +344,7 @@ const AddService = () => {
                     <Typography
                         variant="h4"
                         gutterBottom
-                        style={{ color: "#3F51B5" }}
+                        style={{color: "#3F51B5"}}
                     >
                         Add and Manage Services
                     </Typography>
@@ -267,6 +355,9 @@ const AddService = () => {
                             fullWidth
                             variant="outlined"
                             label="Service Name"
+                            name="serviceName"
+                            value={modalData.serviceName}
+                            onChange={handleInputChange}
                             // Add necessary onChange and value properties
                         />
                     </Grid>
@@ -274,7 +365,10 @@ const AddService = () => {
                         <TextField
                             fullWidth
                             variant="outlined"
-                            label="Service Description"
+                            label="Description"
+                            name="description"
+                            value={modalData.description}
+                            onChange={handleInputChange}
                             // Add necessary onChange and value properties
                         />
                     </Grid>
@@ -283,36 +377,55 @@ const AddService = () => {
                             fullWidth
                             variant="outlined"
                             label="Service Price"
+                            name="servicePrice"
+                            value={modalData.servicePrice}
+                            onChange={handleInputChange}
+                            type="text"  // use text type but validate manually
+                            error={priceError}  // if priceError is true, the TextField will show error styling
+                            helperText={priceError ? "Please enter a valid number." : ""}  // error message
                             // Add necessary onChange and value properties
                         />
                     </Grid>
-                    <Grid item xs={12}>
-                        <Button variant="contained" color="primary">
-                            Add Service
-                        </Button>
+                    <Grid container item xs={12} sx={{justifyContent: 'center', alignItems: 'center'}}>
+                        <Grid item>
+                            <Button variant="contained" color="primary" onClick={handleAddService}>
+                                Add Service
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Box ml={2}>
+                                <Button
+                                    onClick={handleClearFields}
+                                    variant="contained"
+                                    color="secondary">
+                                    Clear
+                                </Button>
+                            </Box>
+                        </Grid>
                     </Grid>
                 </Grid>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                         <TextField
                             variant="outlined"
-                            placeholder="Search"
+                            placeholder="Search by Service Name"
                             fullWidth
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
                                         <IconButton>
-                                            <Search />
+                                            <Search/>
                                         </IconButton>
                                     </InputAdornment>
                                 ),
                             }}
+                            onChange={handleSearchChange}
                         />
                     </Grid>
                 </Grid>
                 <TableContainer component={Card} className={classes.tableContainer}>
                     <Table>
-                        <TableHead style={{ backgroundColor: "#C8C9CB" }}>
+                        <TableHead style={{backgroundColor: "#C8C9CB"}}>
                             <TableRow>
                                 <TableCell>Service Id</TableCell>
                                 <TableCell>Service Name</TableCell>
@@ -322,21 +435,25 @@ const AddService = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {servicesData.map((service, index) => (
-                                <TableRow key={index}>
+                            {filteredServices.map((service, index) => (
+                                <TableRow key={service.serviceId}>
                                     <TableCell>{service.serviceId}</TableCell>
                                     <TableCell>{service.serviceName}</TableCell>
-                                    <TableCell>{service.serviceDescription}</TableCell>
+                                    <TableCell>{service.description}</TableCell>
                                     <TableCell>{service.servicePrice}</TableCell>
                                     <TableCell>
                                         <IconButton color="primary"
-                                                    onClick={() => handleUpdateModalOpen(service)}
+                                                    onClick={() => handleEditService(service)}
                                         >
-                                            <Edit />
+                                            <Edit/>
                                         </IconButton>
                                         <IconButton color="secondary"
-                                                    onClick={handleDeleteConfirmationOpen}>
-                                            <Delete />
+                                                    onClick={() => {
+                                                        setModalData(service); // Store the event you want to delete
+                                                        handleDeleteConfirmationOpen();
+                                                    }}
+                                        >
+                                            <Delete/>
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
@@ -358,8 +475,11 @@ const AddService = () => {
                         <Button onClick={handleDeleteConfirmationClose} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={handleDeleteConfirmationClose} color="secondary">
-                            Delete
+                        <Button
+                            color="primary"
+                            onClick={() => handleDeleteService(modalData.serviceId)}
+                        >
+                            Yes, Delete
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -373,7 +493,6 @@ const AddService = () => {
                             label="Service Id"
                             name="serviceId"
                             value={modalData.serviceId}
-                            onChange={handleInputChange}
                             fullWidth
                             margin="normal"
                             InputProps={{
@@ -384,15 +503,15 @@ const AddService = () => {
                             label="Service Name"
                             name="serviceName"
                             value={modalData.serviceName}
-                            onChange={handleInputChange}
+                            onChange={handleInputChangeUpdate} // <-- Corrected here
                             fullWidth
                             margin="normal"
                         />
                         <TextField
                             label="Service Description"
-                            name="serviceDescription"
-                            value={modalData.serviceDescription}
-                            onChange={handleInputChange}
+                            name="description"
+                            value={modalData.description}
+                            onChange={handleInputChangeUpdate} // <-- Corrected here
                             fullWidth
                             margin="normal"
                         />
@@ -400,7 +519,9 @@ const AddService = () => {
                             label="Service Price"
                             name="servicePrice"
                             value={modalData.servicePrice}
-                            onChange={handleInputChange}
+                            onChange={handleInputChangeUpdate} // <-- Corrected here
+                            error={priceError} // <-- Added
+                            helperText={priceError ? "Please enter a valid price." : ""} // <-- Added
                             fullWidth
                             margin="normal"
                         />
@@ -409,8 +530,32 @@ const AddService = () => {
                         <Button onClick={handleUpdateModalClose} color="secondary">
                             Cancel
                         </Button>
-                        <Button onClick={handleModalSubmit} color="primary">
+                        <Button onClick={handleUpdateService} color="primary">
                             Update
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+                <Dialog
+                    open={duplicateServiceError}
+                    onClose={() => setDuplicateServiceError(false)}
+                    fullWidth
+                    maxWidth="xs" // You can adjust the size as needed
+                >
+                    <DialogTitle style={{backgroundColor: "#ff2222", color: "white"}}>
+                        Duplicate Service Name
+                    </DialogTitle>
+                    <DialogContent>
+                        <Typography variant="body1">
+                            An service with the same name already exists.
+                        </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button
+                            onClick={() => setDuplicateServiceError(false)}
+                            color="primary"
+                            style={{color: "white"}}
+                        >
+                            OK
                         </Button>
                     </DialogActions>
                 </Dialog>
