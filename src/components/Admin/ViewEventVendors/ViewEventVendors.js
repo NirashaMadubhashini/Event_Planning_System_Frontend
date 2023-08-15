@@ -339,65 +339,65 @@ const ViewVendors = () => {
                     </DialogActions>
                 </Dialog>
                 <Dialog open={updateModalOpen} onClose={handleUpdateModalClose}>
-                            <DialogTitle>Edit Vendor</DialogTitle>
-                            <DialogContent>
-                                <TextField
-                                    label="Name"
-                                    name="name"
-                                    value={modalData.name}
-                                    onChange={handleInputChange}
-                                    fullWidth
-                                    margin="normal"
-                                />
-                                <TextField
-                                    label="Contact Number"
-                                    name="contactNumber"
-                                    value={modalData.contactNumber}
-                                    onChange={handleInputChange}
-                                    fullWidth
-                                    margin="normal"
-                                />
-                                <TextField
-                                    label="Business Name"
-                                    name="businessName"
-                                    value={modalData.businessName}
-                                    onChange={handleInputChange}
-                                    fullWidth
-                                    margin="normal"
-                                />
-                                <TextField
-                                    label="Services"
-                                    name="services"
-                                    value={modalData.services}
-                                    onChange={handleInputChange}
-                                    fullWidth
-                                    margin="normal"
-                                />
-                                <TextField
-                                    label="Rating"
-                                    name="rating"
-                                    value={modalData.rating}
-                                    onChange={handleInputChange}
-                                    fullWidth
-                                    margin="normal"
-                                />
-                                <TextField
-                                    label="Number of Bookings"
-                                    name="numOfBookings"
-                                    value={modalData.numOfBookings}
-                                    onChange={handleInputChange}
-                                    fullWidth
-                                    margin="normal"
-                                />
-                            </DialogContent>
-                            <DialogActions>
-                                <Button onClick={handleUpdateModalClose} color="secondary">
-                                    Cancel
-                                </Button>
-                                <Button onClick={handleModalSubmit} color="primary">
-                                    Submit
-                                </Button>
-                            </DialogActions>
+                    <DialogTitle>Edit Vendor</DialogTitle>
+                    <DialogContent>
+                        <TextField
+                            label="Name"
+                            name="name"
+                            value={modalData.name}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Contact Number"
+                            name="contactNumber"
+                            value={modalData.contactNumber}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Business Name"
+                            name="businessName"
+                            value={modalData.businessName}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Services"
+                            name="services"
+                            value={modalData.services}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Rating"
+                            name="rating"
+                            value={modalData.rating}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            label="Number of Bookings"
+                            name="numOfBookings"
+                            value={modalData.numOfBookings}
+                            onChange={handleInputChange}
+                            fullWidth
+                            margin="normal"
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleUpdateModalClose} color="secondary">
+                            Cancel
+                        </Button>
+                        <Button onClick={handleModalSubmit} color="primary">
+                            Submit
+                        </Button>
+                    </DialogActions>
                 </Dialog>
             </Container>
         </Container>
