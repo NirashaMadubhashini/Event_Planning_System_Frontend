@@ -220,7 +220,7 @@ const ViewCustomers = () => {
                         View Customers
                     </Typography>
                 </div>
-                    <Grid container spacing={2}>
+                <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} >
                         <TextField
                             variant="outlined"
@@ -237,7 +237,7 @@ const ViewCustomers = () => {
                             }}
                         />
                     </Grid>
-                    </Grid>
+                </Grid>
                 <TableContainer component={Card} className={classes.tableContainer}>
                     <Table>
                         <TableHead style={{ backgroundColor: "#C8C9CB" }}>
