@@ -396,8 +396,6 @@ const AddEvent = () => {
                             </Box>
                         </Grid>
                     </Grid>
-
-
                 </Grid>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
@@ -444,10 +442,10 @@ const AddEvent = () => {
                                             <Edit/>
                                         </IconButton>
                                         <IconButton color="secondary"
-                                            onClick={() => {
-                                                setModalData(event); // Store the event you want to delete
-                                                handleDeleteConfirmationOpen();
-                                            }}
+                                                    onClick={() => {
+                                                        setModalData(event); // Store the event you want to delete
+                                                        handleDeleteConfirmationOpen();
+                                                    }}
                                         >
                                             <Delete/>
                                         </IconButton>
