@@ -443,7 +443,7 @@ const AddEvent = () => {
                                         >
                                             <Edit/>
                                         </IconButton>
-                                        <IconButton
+                                        <IconButton color="secondary"
                                             onClick={() => {
                                                 setModalData(event); // Store the event you want to delete
                                                 handleDeleteConfirmationOpen();
