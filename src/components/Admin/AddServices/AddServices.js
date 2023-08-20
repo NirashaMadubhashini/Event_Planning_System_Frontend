@@ -50,14 +50,14 @@ const AddService = () => {
 
     const classes = useStyles();
 
-    // State variable to hold edited event data
+    // State variable to hold edited service data
     const [editedService, setEditedService] = useState(null);
 
     // const handleClick = (service) => {
     //     setAnchorEl(service.currentTarget);
     // };
 
-    // Function to populate editedEvent and open update modal
+    // Function to populate editedService and open update modal
     const handleEditService = (service) => {
         console.log("Service event clicked:", service);
         setEditedService(service);
@@ -67,9 +67,9 @@ const AddService = () => {
 
     const handleUpdateService = () => {
         dispatch(updateService(modalData)).then(() => {
-            dispatch(getAllServices()); // Fetch the updated list of events
+            dispatch(getAllServices()); // Fetch the updated list of services
             setUpdateModalOpen(false); // Close the update modal
-            setEditedService(null); // Reset the editedEvent state
+            setEditedService(null); // Reset the editedService state
         });
     };
 
@@ -95,7 +95,7 @@ const AddService = () => {
 
     const handleDeleteService = (serviceId) => {
         dispatch(deleteService(serviceId)).then(() => {
-            dispatch(getAllServices()); // Fetch the updated list of events
+            dispatch(getAllServices()); // Fetch the updated list of services
         });
         handleDeleteConfirmationClose();
     };
@@ -198,7 +198,7 @@ const AddService = () => {
 
         if (isDuplicateService) {
             setDuplicateServiceError(true);
-            return; // Stop the function if it's a duplicate event
+            return; // Stop the function if it's a duplicate service
         }
 
         const serviceData = {
@@ -449,7 +449,7 @@ const AddService = () => {
                                         </IconButton>
                                         <IconButton color="secondary"
                                                     onClick={() => {
-                                                        setModalData(service); // Store the event you want to delete
+                                                        setModalData(service); // Store the service you want to delete
                                                         handleDeleteConfirmationOpen();
                                                     }}
                                         >
