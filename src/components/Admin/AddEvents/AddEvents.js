@@ -1,32 +1,43 @@
-import React, {useEffect, useState} from "react";
+import React, {useState, useEffect} from "react";
 import {
     AppBar,
     Button,
+    Toolbar,
+    Typography,
     Card,
-    Container,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    Grid,
+    CardContent,
     IconButton,
+    Menu,
+    MenuItem,
+    Grid,
+    Container,
     InputAdornment,
+    TextField,
     Table,
     TableBody,
     TableCell,
     TableContainer,
     TableHead,
     TableRow,
-    TextField,
-    Toolbar,
-    Typography,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
 } from "@material-ui/core";
-import {Delete, Edit, Logout, Search,} from "@mui/icons-material";
+import {
+    Search,
+    ArrowDropDown,
+    ExitToApp,
+    Logout,
+    Edit,
+    Delete,
+} from "@mui/icons-material";
 import {Link} from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
+import service from "../../Customer/Services/Service";
 import {useDispatch, useSelector} from 'react-redux';
-import {addEvent, deleteEvent, getAllEvents, updateEvent} from '../../../actions/admin';
+import {addEvent, getAllEvents, deleteEvent, updateEvent} from '../../../actions/admin';
 import Box from "@mui/material/Box";
 
 const AddEvent = () => {
@@ -46,6 +57,7 @@ const AddEvent = () => {
     });
     const [priceError, setPriceError] = useState(false);
     const [duplicateEventError, setDuplicateEventError] = useState(false);
+
     const classes = useStyles();
 
     // State variable to hold edited event data
@@ -81,7 +93,6 @@ const AddEvent = () => {
             eventPrice: "",
         });
     };
-
     useEffect(() => {
         setFilteredEvents(events);
     }, [events]);
@@ -385,6 +396,8 @@ const AddEvent = () => {
                             </Box>
                         </Grid>
                     </Grid>
+
+
                 </Grid>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
@@ -396,7 +409,7 @@ const AddEvent = () => {
                                 endAdornment: (
                                     <InputAdornment position="end">
                                         <IconButton>
-                                            <Search/>
+                                            <Search />
                                         </IconButton>
                                     </InputAdornment>
                                 ),
@@ -430,11 +443,11 @@ const AddEvent = () => {
                                         >
                                             <Edit/>
                                         </IconButton>
-                                        <IconButton color="secondary"
-                                                    onClick={() => {
-                                                        setModalData(event); // Store the event you want to delete
-                                                        handleDeleteConfirmationOpen();
-                                                    }}
+                                        <IconButton
+                                            onClick={() => {
+                                                setModalData(event); // Store the event you want to delete
+                                                handleDeleteConfirmationOpen();
+                                            }}
                                         >
                                             <Delete/>
                                         </IconButton>
