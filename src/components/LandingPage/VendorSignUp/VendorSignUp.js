@@ -15,7 +15,7 @@ const VendorSignUp = () => {
 
     const [user, setUser] = useState(null);
     const [form, setForm] = useState({
-        nic: '', name: '', address: '', contactNo: '', email: '', type: '', password: '', confirmPassword: ''
+        nic: '', name: '', address: '', contactNo: '', email: '', type: '', password: '', confirmPassword: '', serviceName: '', serviceType: ''
     });
     const [isSignup, setIsSignup] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -80,6 +80,21 @@ const VendorSignUp = () => {
                                     <Input name="name" label="Name" handleChange={handleChange} half />
                                     <Input name="address" label="Address" handleChange={handleChange} half />
                                     <Input name="contactNo" label="ContactNo" handleChange={handleChange} half />
+                                    <Input name="serviceName" label="Service Name" handleChange={handleChange} />
+                                    <FormControl variant="outlined" fullWidth className={classes.formControl}>
+                                        <InputLabel id="serviceType-label">Service Type</InputLabel>
+                                        <Select
+                                            labelId="serviceType-label"
+                                            name="serviceType"
+                                            value={form.serviceType}
+                                            onChange={handleChange}
+                                            label="Service Type"
+                                        >
+                                            <MenuItem value={'Type1'}>Type 1</MenuItem>
+                                            <MenuItem value={'Type2'}>Type 2</MenuItem>
+                                            {/* Add more service types as needed */}
+                                        </Select>
+                                    </FormControl>
                                 </>
                             )}
                             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
