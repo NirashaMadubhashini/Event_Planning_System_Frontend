@@ -1,15 +1,11 @@
 import React from 'react';
-import { Container } from '@mui/material';
+import {Container} from '@mui/material';
 import './index.css';
-import Navbar from "./components/navbar/Navbar";
-import SignUp from "./components/Auth/Auth";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import Auth from "./components/Auth/Auth";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import Packages from "./components/Customer/Packages/Packages";
 import Service from "./components/Customer/Services/Service";
 import Dashboard from "./components/Customer/Dashboard/Dashboard";
 import EventRequest from "./components/Customer/EventRequest/EventRequest";
-import About from "./components/Customer/About/About";
 import Booking from "./components/Customer/Booking/Booking";
 import Gallery from "./components/Customer/Gallery/Gallery";
 import Contact from "./components/Customer/Contact/Contact";
@@ -29,45 +25,48 @@ import VendorAddBusiness from "./components/ServiceVendor/VendorRegisterBusiness
 import VendorAddPackages from "./components/ServiceVendor/VendorAddPackages/VendorAddPackages";
 import VendorViewBookings from "./components/ServiceVendor/VendorViewBookings/VendorViewBookings";
 import VendorGallery from "./components/ServiceVendor/VendorGallery/VendorGallery";
+import LandingPage from "./components/LandingPage/LandingPage";
+import About from "./components/LandingPage/About/About";
 
 const App = () => {
     return (
         <BrowserRouter>
             <Container maxWidth="xl">
                 <Switch>
-                    <Route path="/" exact component={() => <Redirect to="/auth" />} />
+                    <Route path="/" exact component={() => <Redirect to="/auth"/>}/>
                     <Route path="/auth" exact>
-                        <Navbar />
-                        <SignUp />
+                        <LandingPage/>
+                        {/*<Navbar />*/}
+                        {/*<SignUp />*/}
                     </Route>
-                    <Route path="/home" exact component={Home} />
-                    <Route path="/packages" exact component={Packages} />
-                    <Route path="/service" exact component={Service} />
-                    <Route path="/servicePackages" exact component={ServicePackages} />
-                    <Route path="/eventRequest" exact component={EventRequest} />
-                    <Route path="/about" exact component={About} />
-                    <Route path="/dashboard" exact component={Dashboard} />
-                    <Route path="/booking" exact component={Booking} />
-                    <Route path="/gallery" exact component={Gallery} />
-                    <Route path="/contact" exact component={Contact} />
-                    <Route path="/profile" exact component={Profile} />
+                    <Route path="/home" exact component={Home}/>
+                    <Route path="/packages" exact component={Packages}/>
+                    <Route path="/service" exact component={Service}/>
+                    <Route path="/servicePackages" exact component={ServicePackages}/>
+                    <Route path="/eventRequest" exact component={EventRequest}/>
+                    <Route path="/about" exact component={About}/>
+                    <Route path="/dashboard" exact component={Dashboard}/>
+                    <Route path="/booking" exact component={Booking}/>
+                    <Route path="/gallery" exact component={Gallery}/>
+                    <Route path="/contact" exact component={Contact}/>
+                    <Route path="/profile" exact component={Profile}/>
                     ---------------------------------------------------
-                    <Route path="/adminDashboard" exact component={AdminDashboard} />
-                    <Route path="/addServices" exact component={AddService} />
-                    <Route path="/addEvents" exact component={AddEvent} />
+                    <Route path="/adminDashboard" exact component={AdminDashboard}/>
+                    <Route path="/addServices" exact component={AddService}/>
+                    <Route path="/addEvents" exact component={AddEvent}/>
                     {/*<Route path="/adminGallery" exact component={AdminGallery} />*/}
-                    <Route path="/viewBookings" exact component={ViewBookings} />
-                    <Route path="/viewCustomers" exact component={ViewCustomers} />
-                    <Route path="/viewVendors" exact component={ViewVendors} />
-                    <Route path="/addPackages" exact component={AddPackages} />
+                    <Route path="/viewBookings" exact component={ViewBookings}/>
+                    <Route path="/viewCustomers" exact component={ViewCustomers}/>
+                    <Route path="/viewVendors" exact component={ViewVendors}/>
+                    <Route path="/addPackages" exact component={AddPackages}/>
 
                     --------------------------------------------------------
-                    <Route path="/vendorDashboard" exact component={VendorDashboard} />
-                    <Route path="/vendorProfile" exact component={VendorProfile} />
-                    <Route path="/vendorAddPackages" exact component={VendorAddPackages} />
-                    <Route path="/vendorAddBusiness" exact component={VendorAddBusiness} />
-                    <Route path="/vendorViewBookings" exact component={VendorViewBookings} />
-                    <Route path="/vendorGallery" exact component={VendorGallery} />
+                    <Route path="/vendorDashboard" exact component={VendorDashboard}/>
+                    <Route path="/vendorProfile" exact component={VendorProfile}/>
+                    <Route path="/vendorAddPackages" exact component={VendorAddPackages}/>
+                    <Route path="/vendorAddBusiness" exact component={VendorAddBusiness}/>
+                    <Route path="/vendorViewBookings" exact component={VendorViewBookings}/>
+                    <Route path="/vendorGallery" exact component={VendorGallery}/>
                 </Switch>
             </Container>
         </BrowserRouter>

@@ -18,8 +18,8 @@ import Box from "@mui/material/Box";
 import useStyles from "./style";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import Image1 from "../../../assets/images/I2.webp";
-import Image2 from "../Gallery/img/slider-events.jpg";
-import Image3 from "../Gallery/img/Birthday.webp";
+import Image2 from "../../../assets/images/slider-events.jpg";
+import Image3 from "../../../assets/images/Birthday.webp";
 
 const About = () => {
     const [appBarPosition, setAppBarPosition] = useState("relative");
@@ -85,106 +85,13 @@ const About = () => {
                             </Typography>
                         </div>
                         <div className={classes.appBarRight}>
-                            <Typography
-                                component={Link}
-                                to="/home"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Home")}
-                                style={{
-                                    color: clickedCategory === "Home" ? "#F50057" : "",
-                                }}
-                            >
-                                Home
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/dashboard"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Dashboard")}
-                                style={{
-                                    color: clickedCategory === "Dashboard" ? "#F50057" : "",
-                                }}
-                            >
-                                Dashboard
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/profile"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Profile")}
-                                style={{
-                                    color: clickedCategory === "Profile" ? "#F50057" : "",
-                                }}
-                            >
-                                Profile
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/about"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("About")}
-                                style={{
-                                    color: clickedCategory === "About" ? "#F50057" : "",
-                                }}
-                            >
-                                About
-                            </Typography>
-                            {/*<Typography*/}
-                            {/*    component={Link}*/}
-                            {/*    to="/service"*/}
-                            {/*    className={classes.appBarButton}*/}
-                            {/*    onClick={() => handleCategoryClick("Services")}*/}
-                            {/*    style={{*/}
-                            {/*        color: clickedCategory === "Services" ? "#F50057" : "",*/}
-                            {/*    }}*/}
-                            {/*>*/}
-                            {/*    Services*/}
-                            {/*</Typography>*/}
-                            <Typography
-                                component={Link}
-                                to="/booking"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Bookings")}
-                                style={{
-                                    color: clickedCategory === "Bookings" ? "#F50057" : "",
-                                }}
-                            >
-                                Bookings
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/gallery"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Gallery")}
-                                style={{
-                                    color: clickedCategory === "Gallery" ? "#F50057" : "",
-                                }}
-                            >
-                                Gallery
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/contact"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Contact")}
-                                style={{
-                                    color: clickedCategory === "Contact" ? "#F50057" : "",
-                                }}
-                            >
-                                Contact
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Logout")}
-                                style={{
-                                    color: clickedCategory === "Logout" ? "#F50057" : "",
-                                }}
-                            >
-                                <Logout className={classes.logoutIcon} />
+                            <Toolbar className={classes.toolbar} style={{ height: '100%' }}>
 
-                            </Typography>
+                                {/*<Button component={Link} to="/home" variant="contained" color="primary">Sign In</Button>*/}
+                                {/*<Button component={Link} to="/adminDashboard" variant="contained" color="primary">Sign In</Button>*/}
+                                <Button component={Link} to="/" variant="contained" color="primary">Back</Button>
+
+                            </Toolbar>
                         </div>
                     </div>
                 </Toolbar>

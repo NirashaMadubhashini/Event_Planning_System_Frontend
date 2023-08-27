@@ -121,17 +121,17 @@ const Home = () => {
                             >
                                 Profile
                             </Typography>
-                            <Typography
-                                component={Link}
-                                to="/about"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("About")}
-                                style={{
-                                    color: clickedCategory === "About" ? "#F50057" : "",
-                                }}
-                            >
-                                About
-                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/about"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("About")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "About" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    About*/}
+                            {/*</Typography>*/}
                             {/*<Typography*/}
                             {/*    component={Link}*/}
                             {/*    to="/service"*/}
