@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import {ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import useStyles from "./style";
-import EventPro from "../../../assets/images/CorrectLogo.png";
+import EventPro from "../../../assets/images/BlackLogo.png";
 import Image1 from "../../../assets/images/I2.webp";
 import Image2 from "../../../assets/images/slider-events.jpg";
 import Image3 from "../../../assets/images/Birthday.webp";
@@ -59,46 +59,18 @@ const About = () => {
 
     return (
         <Container maxWidth="xl" className={classes.container}>
-            <AppBar
-                className={classes.appBar}
-                position={appBarPosition}
-                color="primary"
-            >
-                <Toolbar>
-                    <div className={classes.appBarContainer}>
-                        <div className={classes.appBarLeft}>
-                            <IconButton
-                                component={Link}
-                                to="/"
-                                color="inherit"
-                                edge="start"
-                            >
-                                <img src={EventPro} alt="icon" height="60px" />
-                            </IconButton>
-                            <Typography
-                                component={Link}
-                                to="/"
-                                variant="h6"
-                                className={classes.menuTitle}
-                            >
-                                Event - Pro
-                            </Typography>
-                        </div>
-                        <div className={classes.appBarRight}>
-                            <Toolbar className={classes.toolbar} style={{ height: '100%' }}>
-
-                                {/*<Button component={Link} to="/home" variant="contained" color="primary">Sign In</Button>*/}
-                                {/*<Button component={Link} to="/adminDashboard" variant="contained" color="primary">Sign In</Button>*/}
-                                <Button component={Link} to="/" variant="contained" color="primary">Back</Button>
-
-                            </Toolbar>
-                        </div>
-                    </div>
+            <AppBar className={classes.appBar} position="static" color="inherit">
+                <Toolbar className={classes.toolbar}>
+                    <Link to="/" className={classes.brandContainer}>
+                        <img component={Link} to="/" src={EventPro} alt="icon" height="60px" />
+                    </Link>
+                    <div style={{ flexGrow: 1 }}></div> {/* This div will take up any available space and push the button to the right */}
+                    <Button component={Link} to="/" variant="contained" color="primary">Back</Button>
                 </Toolbar>
             </AppBar>
             <Container maxWidth="lg" className={classes.container}>
                 <div className={classes.serviceSection}>
-                    <Typography variant="h6" gutterBottom style={{ color: "#3F51B5" }}>
+                    <Typography variant="h4" gutterBottom style={{ color: "#3F51B5" }}>
                         ABOUT US
                     </Typography>
                 </div>
@@ -108,7 +80,7 @@ const About = () => {
                             <Grid item xs={12} sm={12}>
                                 <Card className={classes.card}>
                                     <CardContent className={classes.cardContent}>
-                                        <Typography variant="h4" gutterBottom>
+                                        <Typography variant="h5" gutterBottom>
                                             Our Vision
                                         </Typography>
                                         <Typography variant="body1" gutterBottom>

@@ -27,6 +27,7 @@ import VendorViewBookings from "./components/ServiceVendor/VendorViewBookings/Ve
 import VendorGallery from "./components/ServiceVendor/VendorGallery/VendorGallery";
 import LandingPage from "./components/LandingPage/LandingPage";
 import About from "./components/LandingPage/About/About";
+import AdminSignUp from "./components/LandingPage/AdminSignUp/AdminSignUp";
 
 const App = () => {
     return (
@@ -39,6 +40,7 @@ const App = () => {
                         {/*<Navbar />*/}
                         {/*<SignUp />*/}
                     </Route>
+                    <Route path="/adminSignUp" exact component={AdminSignUp}/>
                     <Route path="/home" exact component={Home}/>
                     <Route path="/packages" exact component={Packages}/>
                     <Route path="/service" exact component={Service}/>
