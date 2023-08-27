@@ -56,9 +56,9 @@ const LandingPage = () => {
         if (role === 'admin') {
             routePath = '/adminSignUp';
         } else if (role === 'customer') {
-            routePath = '/get-started/customer';
+            routePath = '/customerSignUp';
         } else if (role === 'vendor') {
-            routePath = '/get-started/vendor';
+            routePath = '/vendorSignUp';
         }
         history.push(routePath);
         handleGetStartedClose();
@@ -94,9 +94,9 @@ const LandingPage = () => {
                         open={Boolean(anchorEl)}
                         onClose={handleGetStartedClose}
                     >
-                        <MenuItem onClick={() => handleRoleSelection('admin')}>Admin</MenuItem>
-                        <MenuItem onClick={() => handleRoleSelection('customer')}>Customer</MenuItem>
-                        <MenuItem onClick={() => handleRoleSelection('vendor')}>Vendor</MenuItem>
+                        <MenuItem onClick={() => handleRoleSelection('admin')}>As an Admin</MenuItem>
+                        <MenuItem onClick={() => handleRoleSelection('customer')}>As a Customer</MenuItem>
+                        <MenuItem onClick={() => handleRoleSelection('vendor')}>As a Vendor</MenuItem>
                     </Menu>
                 </div>
             </div>
