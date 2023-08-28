@@ -22,11 +22,21 @@ const AdminSignUp = () => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log('User signed in:', form);
+    //     history.push('/');
+    // };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('User signed in:', form);
-        history.push('/');
+        // TODO: Authenticate the user here
+
+        // If authentication succeeds:
+        history.push('/adminDashboard');
     };
+
 
     return (
         <>
@@ -57,7 +67,18 @@ const AdminSignUp = () => {
                                 handleShowPassword={handleShowPassword}
                             />
                         </Grid>
-                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>Sign In</Button>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            component={Link}
+                            to="/adminDashboard"
+                        >
+                            Sign In
+                        </Button>
+
                     </form>
                 </Paper>
             </Container>
