@@ -109,9 +109,18 @@ const VendorSignUp = () => {
                                 </>
                             )}
                         </Grid>
-                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            component={isSignup ? undefined : Link}
+                            to={isSignup ? undefined : "/vendorDashboard"}
+                        >
                             {isSignup ? 'Sign Up' : 'Sign In'}
                         </Button>
+
                         <Grid container justify="center">
                             <Grid item>
                                 <Typography>
