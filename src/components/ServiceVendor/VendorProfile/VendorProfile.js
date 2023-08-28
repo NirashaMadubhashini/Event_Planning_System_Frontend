@@ -127,17 +127,6 @@ const VendorProfile = () => {
                             </Typography>
                             <Typography
                                 component={Link}
-                                to="/vendorAddBusiness"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Business")}
-                                style={{
-                                    color: clickedCategory === "Business" ? "#F50057" : "",
-                                }}
-                            >
-                                Business
-                            </Typography>
-                            <Typography
-                                component={Link}
                                 to="/vendorAddPackages"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Packages")}
