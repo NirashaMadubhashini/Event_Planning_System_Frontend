@@ -45,6 +45,7 @@ const App = () => {
                     <Route path="/adminSignUp" exact component={AdminSignUp}/>
                     <Route path="/customerSignUp" exact component={CustomerSignUp}/>
                     <Route path="/vendorSignUp" exact component={VendorSignUp}/>
+                    --------------------------------------------------------------------------
                     <Route path="/home" exact component={Home}/>
                     <Route path="/packages" exact component={Packages}/>
                     <Route path="/service" exact component={Service}/>
