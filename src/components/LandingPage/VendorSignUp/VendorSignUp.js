@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { AppBar, Typography, Toolbar, Avatar, Button, Paper, Grid, Container, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import React, { useState } from 'react';
+import { AppBar, Typography, Toolbar, Avatar, Button, Paper, Grid, Container, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
@@ -10,26 +9,21 @@ import Input from './Input';
 
 const VendorSignUp = () => {
     const classes = useStyles();
-    const dispatch = useDispatch();
     const history = useHistory();
 
-    const [user, setUser] = useState(null);
     const [form, setForm] = useState({
-        nic: '', name: '', address: '', contactNo: '', email: '', type: '', password: '', confirmPassword: '', serviceName: '', serviceType: ''
+        nic: '', name: '', address: '', contactNo: '', email: '', password: '', confirmPassword: '',
+        serviceName: '', serviceType: '', portfolio: '', price: '', city: ''
     });
     const [isSignup, setIsSignup] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-
-    const logout = () => {
-        console.log("User logged out");
-        setUser(null);
-    };
 
     const handleShowPassword = () => setShowPassword(!showPassword);
 
     const switchMode = () => {
         setForm({
-            nic: '', name: '', address: '', contactNo: '', email: '', type: '', password: '', confirmPassword: ''
+            nic: '', name: '', address: '', contactNo: '', email: '', password: '', confirmPassword: '',
+            serviceName: '', serviceType: '', portfolio: '', price: '', city: ''
         });
         setIsSignup(!isSignup);
         setShowPassword(false);
@@ -43,10 +37,10 @@ const VendorSignUp = () => {
         e.preventDefault();
 
         if (isSignup) {
-            console.log('User signed up:', form);
+            console.log('Vendor signed up:', form);
             history.push('/');
         } else {
-            console.log('User signed in:', form);
+            console.log('Vendor signed in:', form);
             history.push('/');
         }
     };
@@ -58,13 +52,12 @@ const VendorSignUp = () => {
                     <Link to="/" className={classes.brandContainer}>
                         <img component={Link} to="/" src={EventPro} alt="icon" height="60px" />
                     </Link>
-                    <div style={{ flexGrow: 1 }}></div> {/* This div will take up any available space and push the button to the right */}
+                    <div style={{ flexGrow: 1 }}></div>
                     <Button component={Link} to="/" variant="contained" color="primary">Back</Button>
                 </Toolbar>
             </AppBar>
 
             <Container component="main" maxWidth="xs">
-                {/* ... The rest of the SignUp form contents ... */}
                 <Paper className={classes.paper} elevation={6}>
                     <Avatar className={classes.avatar}>
                         <LockOutlinedIcon />
@@ -80,31 +73,40 @@ const VendorSignUp = () => {
                                     <Input name="name" label="Name" handleChange={handleChange} half />
                                     <Input name="address" label="Address" handleChange={handleChange} half />
                                     <Input name="contactNo" label="ContactNo" handleChange={handleChange} half />
+                                    <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
+                                    <Typography variant="h6" className={classes.businessDetails}>Business Details</Typography>
                                     <Input name="serviceName" label="Service Name" handleChange={handleChange} />
-                                    <FormControl variant="outlined" fullWidth className={classes.formControl}>
+                                    <FormControl fullWidth>
                                         <InputLabel id="serviceType-label">Service Type</InputLabel>
                                         <Select
                                             labelId="serviceType-label"
+                                            id="serviceType"
                                             name="serviceType"
                                             value={form.serviceType}
                                             onChange={handleChange}
-                                            label="Service Type"
                                         >
-                                            <MenuItem value={'Type1'}>Type 1</MenuItem>
-                                            <MenuItem value={'Type2'}>Type 2</MenuItem>
-                                            {/* Add more service types as needed */}
+                                            <MenuItem value="Type1">Type1</MenuItem>
+                                            <MenuItem value="Type2">Type2</MenuItem>
+                                            <MenuItem value="Type3">Type3</MenuItem>
                                         </Select>
                                     </FormControl>
+                                    <Input name="portfolio" label="Portfolio" handleChange={handleChange} />
+                                    <Input name="price" label="Price" handleChange={handleChange} />
+                                    <Input name="city" label="City" handleChange={handleChange} />
                                 </>
                             )}
-                            <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-                            <Input
-                                name="password"
-                                label="Password"
-                                handleChange={handleChange}
-                                type={showPassword ? 'text' : 'password'}
-                                handleShowPassword={handleShowPassword}
-                            />
+                            {!isSignup && (
+                                <>
+                                    <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
+                                    <Input
+                                        name="password"
+                                        label="Password"
+                                        handleChange={handleChange}
+                                        type={showPassword ? 'text' : 'password'}
+                                        handleShowPassword={handleShowPassword}
+                                    />
+                                </>
+                            )}
                             {isSignup && (
                                 <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />
                             )}
