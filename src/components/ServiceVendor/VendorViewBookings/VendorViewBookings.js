@@ -41,6 +41,7 @@ import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 const VendorViewBookings = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -142,6 +143,7 @@ const VendorViewBookings = () => {
     const bookingData = [
         {
             customerName: "John Doe",
+            contactNo:"0761319259",
             event: "Wedding",
             vendorName: "Vendor 1",
             numOfServices: 3,
@@ -151,6 +153,7 @@ const VendorViewBookings = () => {
         },
         {
             customerName: "Jane Smith",
+            contactNo:"0766430010",
             event: "Birthday Party",
             vendorName: "Vendor 2",
             numOfServices: 5,
@@ -160,6 +163,7 @@ const VendorViewBookings = () => {
         },
         {
             customerName: "Jane Smith",
+            contactNo:"0764910300",
             event: "Birthday Party",
             vendorName: "Vendor 2",
             numOfServices: 5,
@@ -218,17 +222,6 @@ const VendorViewBookings = () => {
                                 }}
                             >
                                 Profile
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/vendorAddBusiness"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Business")}
-                                style={{
-                                    color: clickedCategory === "Business" ? "#F50057" : "",
-                                }}
-                            >
-                                Business
                             </Typography>
                             <Typography
                                 component={Link}
@@ -307,6 +300,7 @@ const VendorViewBookings = () => {
                         <TableHead style={{ backgroundColor: "#C8C9CB" }}>
                             <TableRow>
                                 <TableCell>Customer Name</TableCell>
+                                <TableCell>Contact No</TableCell>
                                 <TableCell>Event</TableCell>
                                 <TableCell>Vendor Name</TableCell>
                                 <TableCell>No. of Services</TableCell>
@@ -320,6 +314,7 @@ const VendorViewBookings = () => {
                             {bookingData.map((customer, index) => (
                                 <TableRow key={index}>
                                     <TableCell>{customer.customerName}</TableCell>
+                                    <TableCell>{customer.contactNo}</TableCell>
                                     <TableCell>{customer.event}</TableCell>
                                     <TableCell>{customer.vendorName}</TableCell>
                                     <TableCell>{customer.numOfServices}</TableCell>
@@ -340,11 +335,8 @@ const VendorViewBookings = () => {
                                         </Typography>
                                     </TableCell>
                                     <TableCell>
-                                        <IconButton color="primary" onClick={handleCallAction}>
-                                            <Call />
-                                        </IconButton>
                                         <IconButton color="secondary" onClick={handleMessageAction}>
-                                            <Message />
+                                            <MailOutlineIcon />
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
