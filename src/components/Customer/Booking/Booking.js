@@ -20,6 +20,7 @@ import {
 import useStyles from "./style";
 import {ArrowDropDown, CheckCircle, HourglassEmpty, Cancel, Logout,Call,
     Message,} from "@mui/icons-material";
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 
@@ -89,7 +90,8 @@ const Booking = () => {
             customerName: "John Doe",
             vendorName: "EventPro",
             service: "Decoration",
-            status: "Confirmed",
+            contactNo: "0761319259",
+            status: "Approve",
         },
         {
             date: "2023-06-25",
@@ -97,6 +99,7 @@ const Booking = () => {
             customerName: "Jane Smith",
             vendorName: "EventPro",
             service: "Catering",
+            contactNo: "0766430010",
             status: "Pending",
         },
         // Add more booking data if needed
@@ -243,6 +246,7 @@ const Booking = () => {
                                 <TableCell>Customer Name</TableCell>
                                 <TableCell>Vendor Name</TableCell>
                                 <TableCell>Service</TableCell>
+                                <TableCell>Contact</TableCell>
                                 <TableCell>Status</TableCell>
                                 <TableCell>Action</TableCell>
                             </TableRow>
@@ -259,11 +263,12 @@ const Booking = () => {
                                     <TableCell>{booking.customerName}</TableCell>
                                     <TableCell>{booking.vendorName}</TableCell>
                                     <TableCell>{booking.service}</TableCell>
+                                    <TableCell>{booking.contactNo}</TableCell>
                                     <TableCell>
                                         <span
                                             style={{
                                                 color:
-                                                    booking.status === "Confirmed"
+                                                        booking.status === "Approve"
                                                         ? "green"
                                                         : booking.status === "Pending"
                                                             ? "orange"
@@ -274,11 +279,8 @@ const Booking = () => {
                                         </span>
                                     </TableCell>
                                     <TableCell>
-                                        <IconButton color="primary" onClick={handleCallAction}>
-                                            <Call />
-                                        </IconButton>
                                         <IconButton color="secondary" onClick={handleMessageAction}>
-                                            <Message />
+                                            <MailOutlineIcon />
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
