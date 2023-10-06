@@ -39,6 +39,8 @@ import service from "../../Customer/Services/Service";
 import {useDispatch, useSelector} from 'react-redux';
 import {addEvent, getAllEvents, deleteEvent, updateEvent} from '../../../actions/admin';
 import Box from "@mui/material/Box";
+import { Snackbar } from "@material-ui/core";
+import Alert from '@material-ui/lab/Alert';
 
 const AddEvent = () => {
     const dispatch = useDispatch();
@@ -58,11 +60,22 @@ const AddEvent = () => {
     const [priceError, setPriceError] = useState(false);
     const [duplicateEventError, setDuplicateEventError] = useState(false);
     const [eventNameError, setEventNameError] = useState(false);
-
     const classes = useStyles();
-
     // State variable to hold edited event data
     const [editedEvent, setEditedEvent] = useState(null);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
+    const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+
+    const openSnackbar = (message, severity) => {
+        setSnackbarMessage(message);
+        setSnackbarSeverity(severity);
+        setSnackbarOpen(true);
+    };
+
+    const closeSnackbar = () => {
+        setSnackbarOpen(false);
+    };
 
     // Function to populate editedEvent and open update modal
     const handleEditEvent = (event) => {
@@ -75,6 +88,7 @@ const AddEvent = () => {
     const handleUpdateEvent = () => {
         dispatch(updateEvent(modalData)).then(() => {
             dispatch(getAllEvents()); // Fetch the updated list of events
+            openSnackbar("Event updated successfully!", "success");
             setUpdateModalOpen(false); // Close the update modal
             setEditedEvent(null); // Reset the editedEvent state
         });
@@ -101,7 +115,8 @@ const AddEvent = () => {
 
     const handleDeleteEvent = (eventId) => {
         dispatch(deleteEvent(eventId)).then(() => {
-            dispatch(getAllEvents()); // Fetch the updated list of events
+            dispatch(getAllEvents());
+            openSnackbar("Event deleted successfully!", "success");
         });
         handleDeleteConfirmationClose();
     };
@@ -206,9 +221,9 @@ const AddEvent = () => {
 
         if (isDuplicateEvent) {
             setDuplicateEventError(true);
-            return; // Stop the function if it's a duplicate event
+            openSnackbar("Event with this name already exists!", "error");
+            return;
         }
-
         const eventData = {
             eventName: modalData.eventName,
             eventDescription: modalData.eventDescription,
@@ -217,6 +232,7 @@ const AddEvent = () => {
 
         dispatch(addEvent(eventData)).then(() => {
             dispatch(getAllEvents());
+            openSnackbar("Event added successfully!", "success");
         });
 
         setModalData({
@@ -548,31 +564,39 @@ const AddEvent = () => {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <Dialog
-                    open={duplicateEventError}
-                    onClose={() => setDuplicateEventError(false)}
-                    fullWidth
-                    maxWidth="xs" // You can adjust the size as needed
+                {/*<Dialog*/}
+                {/*    open={duplicateEventError}*/}
+                {/*    onClose={() => setDuplicateEventError(false)}*/}
+                {/*    fullWidth*/}
+                {/*    maxWidth="xs" // You can adjust the size as needed*/}
+                {/*>*/}
+                {/*    <DialogTitle style={{backgroundColor: "#ff2222", color: "white"}}>*/}
+                {/*        Duplicate Event Name*/}
+                {/*    </DialogTitle>*/}
+                {/*    <DialogContent>*/}
+                {/*        <Typography variant="body1">*/}
+                {/*            An event with the same name already exists.*/}
+                {/*        </Typography>*/}
+                {/*    </DialogContent>*/}
+                {/*    <DialogActions>*/}
+                {/*        <Button*/}
+                {/*            onClick={() => setDuplicateEventError(false)}*/}
+                {/*            color="primary"*/}
+                {/*            style={{color: "white"}}*/}
+                {/*        >*/}
+                {/*            OK*/}
+                {/*        </Button>*/}
+                {/*    </DialogActions>*/}
+                {/*</Dialog>*/}
+                <Snackbar
+                    open={snackbarOpen}
+                    autoHideDuration={6000}
+                    onClose={closeSnackbar}
                 >
-                    <DialogTitle style={{backgroundColor: "#ff2222", color: "white"}}>
-                        Duplicate Event Name
-                    </DialogTitle>
-                    <DialogContent>
-                        <Typography variant="body1">
-                            An event with the same name already exists.
-                        </Typography>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button
-                            onClick={() => setDuplicateEventError(false)}
-                            color="primary"
-                            style={{color: "white"}}
-                        >
-                            OK
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-
+                    <Alert onClose={closeSnackbar} severity={snackbarSeverity}>
+                        {snackbarMessage}
+                    </Alert>
+                </Snackbar>
             </Container>
         </Container>
     );
