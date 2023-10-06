@@ -183,6 +183,12 @@ const AddService = () => {
     const handleInputChange = (service) => {
         const {name, value} = service.target;
 
+        if (name === "serviceName" && !/^[a-zA-Z\s]*$/.test(value)) {
+           setServiceNameError(true);
+        } else {
+            setServiceNameError(false);
+        }
+
         if (name === "servicePrice" && isNaN(value)) {
             setPriceError(true);
         } else {
@@ -197,6 +203,12 @@ const AddService = () => {
 
     const handleInputChangeUpdate = (service) => {
         const {name, value} = service.target;
+
+        if (name === "serviceName" && !/^[a-zA-Z\s]*$/.test(value)) {
+            setServiceNameError(true);
+        } else {
+            setServiceNameError(false);
+        }
 
         if (name === "servicePrice" && isNaN(value)) {
             setPriceError(true);
@@ -388,6 +400,8 @@ const AddService = () => {
                             name="serviceName"
                             value={modalData.serviceName}
                             onChange={handleInputChange}
+                            error={serviceNameError}
+                            helperText={serviceNameError ? "Only alphabetic characters allowed." : ""}
                             // Add necessary onChange and value properties
                         />
                     </Grid>
@@ -534,6 +548,8 @@ const AddService = () => {
                             name="serviceName"
                             value={modalData.serviceName}
                             onChange={handleInputChangeUpdate} // <-- Corrected here
+                            error={serviceNameError} // <-- Added
+                            helperText={serviceNameError ? "Only alphabetic characters allowed." : ""}
                             fullWidth
                             margin="normal"
                         />
