@@ -86,6 +86,11 @@ const AddEvent = () => {
     };
 
     const handleUpdateEvent = () => {
+        if (!modalData.eventName || !modalData.eventDescription || !modalData.eventPrice) {
+            openSnackbar("Please fill all the fields!", "error");
+            return;
+        }
+
         dispatch(updateEvent(modalData)).then(() => {
             dispatch(getAllEvents()); // Fetch the updated list of events
             openSnackbar("Event updated successfully!", "success");
@@ -93,6 +98,7 @@ const AddEvent = () => {
             setEditedEvent(null); // Reset the editedEvent state
         });
     };
+
 
     const handleSearchChange = (e) => {
         const searchInput = e.target.value.toLowerCase();
@@ -216,6 +222,16 @@ const AddEvent = () => {
     };
 
     const handleAddEvent = () => {
+        // Check if any field is empty
+        if (
+            !modalData.eventName.trim() ||
+            !modalData.eventDescription.trim() ||
+            !modalData.eventPrice.trim()
+        ) {
+            openSnackbar("Please fill all the fields!", "error");
+            return;
+        }
+
         const newEventName = modalData.eventName.trim(); // Remove leading and trailing spaces
         const isDuplicateEvent = events.some(event => event.eventName === newEventName);
 
@@ -224,6 +240,7 @@ const AddEvent = () => {
             openSnackbar("Event with this name already exists!", "error");
             return;
         }
+
         const eventData = {
             eventName: modalData.eventName,
             eventDescription: modalData.eventDescription,
@@ -242,6 +259,7 @@ const AddEvent = () => {
             eventPrice: "",
         });
     };
+
 
 
     return (
