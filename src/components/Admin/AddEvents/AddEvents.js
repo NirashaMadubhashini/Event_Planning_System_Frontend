@@ -57,6 +57,7 @@ const AddEvent = () => {
     });
     const [priceError, setPriceError] = useState(false);
     const [duplicateEventError, setDuplicateEventError] = useState(false);
+    const [eventNameError, setEventNameError] = useState(false);
 
     const classes = useStyles();
 
@@ -160,6 +161,12 @@ const AddEvent = () => {
     const handleInputChange = (event) => {
         const {name, value} = event.target;
 
+        if (name === "eventName" && !/^[a-zA-Z\s]*$/.test(value)) {
+            setEventNameError(true);
+        } else {
+            setEventNameError(false);
+        }
+
         if (name === "eventPrice" && isNaN(value)) {
             setPriceError(true);
         } else {
@@ -174,6 +181,12 @@ const AddEvent = () => {
 
     const handleInputChangeUpdate = (event) => {
         const {name, value} = event.target;
+
+        if (name === "eventName" && !/^[a-zA-Z\s]*$/.test(value)) {
+            setEventNameError(true);
+        } else {
+            setEventNameError(false);
+        }
 
         if (name === "eventPrice" && isNaN(value)) {
             setPriceError(true);
@@ -354,6 +367,8 @@ const AddEvent = () => {
                             name="eventName"
                             value={modalData.eventName}
                             onChange={handleInputChange}
+                            error={eventNameError}
+                            helperText={eventNameError ? "Only alphabetic characters allowed." : ""}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
@@ -375,8 +390,8 @@ const AddEvent = () => {
                             value={modalData.eventPrice}
                             onChange={handleInputChange}
                             type="text"  // use text type but validate manually
-                            error={priceError}  // if priceError is true, the TextField will show error styling
-                            helperText={priceError ? "Please enter a valid number." : ""}  // error message
+                            error={priceError}
+                            helperText={priceError ? "Please enter a valid number." : ""}
                         />
                     </Grid>
                     <Grid container item xs={12} sx={{justifyContent: 'center', alignItems: 'center'}}>
@@ -500,6 +515,8 @@ const AddEvent = () => {
                             name="eventName"
                             value={modalData.eventName}
                             onChange={handleInputChangeUpdate} // <-- Corrected here
+                            error={eventNameError} // <-- Added
+                            helperText={eventNameError ? "Please enter a valid eventName." : ""} // <-- Added
                             fullWidth
                             margin="normal"
                         />
