@@ -77,6 +77,7 @@ const AddPackage = () => {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
     const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+    const [durationError, setDurationError] = useState(false);
 
     const openSnackbar = (message, severity) => {
         setSnackbarMessage(message);
@@ -203,16 +204,49 @@ const AddPackage = () => {
         console.log(modalData);
         setUpdateModalOpen(false);
     };
+
+    const validatePackageName = (name) => {
+        const pattern = /^[A-Za-z\s]+$/;
+        return pattern.test(name);
+    };
+
+    const validatePackagePrice = (price) => {
+        const pattern = /^\d+$/;
+        return pattern.test(price);
+    };
+
+    const validatePackageDuration = (duration) => {
+        const pattern = /^(Morning|Evening|Night)$/;
+        return pattern.test(duration);
+    };
+
+    const validateGuestCount = (count) => {
+        const pattern = /^\d+$/;
+        return pattern.test(count);
+    };
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
 
-        if (name === "packagePrice" && isNaN(value)) {
+        if (name === "packageName" && !validatePackageName(value)) {
+            setPackageNameError(true);
+        } else {
+            setPackageNameError(false);
+        }
+
+        if (name === "packagePrice" && !validatePackagePrice(value)) {
             setPriceError(true);
         } else {
             setPriceError(false);
         }
 
-        if (name === "guestCount" && isNaN(value)) {
+        if (name === "packageDuration" && !validatePackageDuration(value)) {
+            setDurationError(true);
+        } else {
+            setDurationError(false);
+        }
+
+        if (name === "guestCount" && !validateGuestCount(value)) {
             setGuestCountError(true);
         } else {
             setGuestCountError(false);
@@ -228,13 +262,25 @@ const AddPackage = () => {
     const handleInputChangeUpdate = (pack) => {
         const {name, value} = pack.target;
 
-        if (name === "packagePrice" && isNaN(value)) {
+        if (name === "packageName" && !validatePackageName(value)) {
+            setPackageNameError(true);
+        } else {
+            setPackageNameError(false);
+        }
+
+        if (name === "packagePrice" && !validatePackagePrice(value)) {
             setPriceError(true);
         } else {
             setPriceError(false);
         }
 
-        if (name === "guestCount" && isNaN(value)) {
+        if (name === "packageDuration" && !validatePackageDuration(value)) {
+            setDurationError(true);
+        } else {
+            setDurationError(false);
+        }
+
+        if (name === "guestCount" && !validateGuestCount(value)) {
             setGuestCountError(true);
         } else {
             setGuestCountError(false);
@@ -247,6 +293,7 @@ const AddPackage = () => {
     };
 
     const handleAddPackage= () => {
+
         if (
             modalData.packageName === "" ||
             modalData.packagePrice === "" ||
@@ -429,6 +476,8 @@ const AddPackage = () => {
                             name="packageName"
                             value={modalData.packageName}
                             onChange={handleInputChange}
+                            error={packageNameError}
+                            helperText={packageNameError ? "Please enter a valid package name." : ""}
                             // Add necessary onChange and value properties
                         />
                     </Grid>
@@ -454,6 +503,8 @@ const AddPackage = () => {
                             name="packageDuration"
                             value={modalData.packageDuration}
                             onChange={handleInputChange}
+                            error={durationError}
+                            helperText={durationError ? "Please enter a valid duration." : ""}
                             // Add necessary onChange and value properties
                         />
                     </Grid>
@@ -604,6 +655,8 @@ const AddPackage = () => {
                             onChange={handleInputChangeUpdate} // <-- Corrected here
                             fullWidth
                             margin="normal"
+                            error={packageNameError}
+                            helperText={packageNameError ? "Please enter a valid package name." : ""}
                         />
                         <TextField
                             label="Package Price"
@@ -622,6 +675,8 @@ const AddPackage = () => {
                             onChange={handleInputChangeUpdate} // <-- Corrected here
                             fullWidth
                             margin="normal"
+                            error={durationError}
+                            helperText={durationError ? "Please enter a valid duration." : ""}
                         />
                         <TextField
                             label="No.Of Guests"
