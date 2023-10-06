@@ -45,7 +45,8 @@ import {
     updateService, getAllServices, deleteService, addService
 } from '../../../actions/admin';
 import Box from "@mui/material/Box";
-
+import { Snackbar } from "@material-ui/core";
+import Alert from '@material-ui/lab/Alert';
 
 const AddPackage = () => {
     const dispatch = useDispatch();
@@ -69,12 +70,23 @@ const AddPackage = () => {
     const [priceError, setPriceError] = useState(false);
     const [guestCountError, setGuestCountError] = useState(false);
     const [duplicatePackageError, setDuplicatePackageError] = useState(false);
-
+    const [packageNameError, setPackageNameError] = useState(false);
     const classes = useStyles();
-
     // State variable to hold edited package data
     const [editedPackage, setEditedPackage] = useState(null);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
+    const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
+    const openSnackbar = (message, severity) => {
+        setSnackbarMessage(message);
+        setSnackbarSeverity(severity);
+        setSnackbarOpen(true);
+    };
+
+    const closeSnackbar = () => {
+        setSnackbarOpen(false);
+    };
     // const handleClick = (event) => {
     //     setAnchorEl(event.currentTarget);
     // };
@@ -88,8 +100,13 @@ const AddPackage = () => {
     };
 
     const handleUpdatePackage = () => {
+        if (!modalData.packageName || !modalData.packagePrice || !modalData.packageDuration || !modalData.guestCount|| !modalData.listOfServices) {
+            openSnackbar("Please fill all the fields!", "error");
+            return;
+        }
         dispatch(updatePackage(modalData)).then(() => {
             dispatch(getAllPackages()); // Fetch the updated list of packages
+            openSnackbar("Package updated successfully!", "success");
             setUpdateModalOpen(false); // Close the update modal
             setEditedPackage(null); // Reset the editedPackage state
         });
@@ -119,6 +136,7 @@ const AddPackage = () => {
     const handleDeletePackage = (packageId) => {
         dispatch(deletePackage(packageId)).then(() => {
             dispatch(getAllPackages()); // Fetch the updated list of packages
+            openSnackbar("Package deleted successfully!", "success");
         });
         handleDeleteConfirmationClose();
     };
@@ -229,11 +247,22 @@ const AddPackage = () => {
     };
 
     const handleAddPackage= () => {
+        if (
+            modalData.packageName === "" ||
+            modalData.packagePrice === "" ||
+            modalData.packageDuration === "" ||
+            modalData.guestCount === "" ||
+            modalData.listOfServices === ""
+        ) {
+            openSnackbar("Please fill all the fields!", "error");
+            return;
+        }
         const newPackageName = modalData.packageName.trim(); // Remove leading and trailing spaces
         const isDuplicatePackage = packages.some(pack => pack.packageName === newPackageName);
 
         if (isDuplicatePackage) {
             setDuplicatePackageError(true);
+            openSnackbar("Package with this name already exists!", "error");
             return; // Stop the function if it's a duplicate package
         }
 
@@ -247,6 +276,7 @@ const AddPackage = () => {
 
         dispatch(addPackage(packData)).then(() => {
             dispatch(getAllPackages());
+            openSnackbar("Service added successfully!", "success");
         });
 
         setModalData({
@@ -621,30 +651,15 @@ const AddPackage = () => {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <Dialog
-                    open={duplicatePackageError}
-                    onClose={() => setDuplicatePackageError(false)}
-                    fullWidth
-                    maxWidth="xs" // You can adjust the size as needed
+                <Snackbar
+                    open={snackbarOpen}
+                    autoHideDuration={6000}
+                    onClose={closeSnackbar}
                 >
-                    <DialogTitle style={{backgroundColor: "#ff2222", color: "white"}}>
-                        Duplicate Package Name
-                    </DialogTitle>
-                    <DialogContent>
-                        <Typography variant="body1">
-                            An package with the same name already exists.
-                        </Typography>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button
-                            onClick={() => setDuplicatePackageError(false)}
-                            color="primary"
-                            style={{color: "white"}}
-                        >
-                            OK
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                    <Alert onClose={closeSnackbar} severity={snackbarSeverity}>
+                        {snackbarMessage}
+                    </Alert>
+                </Snackbar>
             </Container>
         </Container>
     );
