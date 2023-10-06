@@ -28,7 +28,8 @@ import useStyles from "./style";
 import {useDispatch, useSelector} from 'react-redux';
 import {addService, deleteService, getAllServices, updateService} from '../../../actions/admin';
 import Box from "@mui/material/Box";
-
+import { Snackbar } from "@material-ui/core";
+import Alert from '@material-ui/lab/Alert';
 const AddService = () => {
     const dispatch = useDispatch();
     const services = useSelector(state => state.adminReducer.services);
@@ -47,12 +48,23 @@ const AddService = () => {
     });
     const [priceError, setPriceError] = useState(false);
     const [duplicateServiceError, setDuplicateServiceError] = useState(false);
-
+    const [serviceNameError, setServiceNameError] = useState(false);
     const classes = useStyles();
-
     // State variable to hold edited service data
     const [editedService, setEditedService] = useState(null);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
+    const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
+    const openSnackbar = (message, severity) => {
+        setSnackbarMessage(message);
+        setSnackbarSeverity(severity);
+        setSnackbarOpen(true);
+    };
+
+    const closeSnackbar = () => {
+        setSnackbarOpen(false);
+    };
     // const handleClick = (service) => {
     //     setAnchorEl(service.currentTarget);
     // };
@@ -66,8 +78,13 @@ const AddService = () => {
     };
 
     const handleUpdateService = () => {
+        if (!modalData.serviceName || !modalData.description || !modalData.servicePrice) {
+            openSnackbar("Please fill all the fields!", "error");
+            return;
+        }
         dispatch(updateService(modalData)).then(() => {
             dispatch(getAllServices()); // Fetch the updated list of services
+            openSnackbar("Service updated successfully!", "success");
             setUpdateModalOpen(false); // Close the update modal
             setEditedService(null); // Reset the editedService state
         });
@@ -96,6 +113,7 @@ const AddService = () => {
     const handleDeleteService = (serviceId) => {
         dispatch(deleteService(serviceId)).then(() => {
             dispatch(getAllServices()); // Fetch the updated list of services
+            openSnackbar("Service deleted successfully!", "success");
         });
         handleDeleteConfirmationClose();
     };
@@ -193,11 +211,21 @@ const AddService = () => {
     };
 
     const handleAddService = () => {
-        const newServiceName = modalData.serviceName.trim(); // Remove leading and trailing spaces
-        const isDuplicateService = services.some(service => service.serviceName === newServiceName);
+        // Check if any field is empty
+        if (
+            modalData.serviceName === "" ||
+            modalData.description === "" ||
+            modalData.servicePrice === ""
+        ) {
+            openSnackbar("Please fill all the fields!", "error");
+            return;
+        }
+
+        const isDuplicateService = services.some(service => service.serviceName === modalData.serviceName);
 
         if (isDuplicateService) {
             setDuplicateServiceError(true);
+            openSnackbar("Service with this name already exists!", "error");
             return; // Stop the function if it's a duplicate service
         }
 
@@ -209,6 +237,7 @@ const AddService = () => {
 
         dispatch(addService(serviceData)).then(() => {
             dispatch(getAllServices());
+            openSnackbar("Service added successfully!", "success");
         });
 
         setModalData({
@@ -218,6 +247,7 @@ const AddService = () => {
             servicePrice: "",
         });
     };
+
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -535,30 +565,40 @@ const AddService = () => {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                <Dialog
-                    open={duplicateServiceError}
-                    onClose={() => setDuplicateServiceError(false)}
-                    fullWidth
-                    maxWidth="xs" // You can adjust the size as needed
+                {/*<Dialog*/}
+                {/*    open={duplicateServiceError}*/}
+                {/*    onClose={() => setDuplicateServiceError(false)}*/}
+                {/*    fullWidth*/}
+                {/*    maxWidth="xs" // You can adjust the size as needed*/}
+                {/*>*/}
+                {/*    <DialogTitle style={{backgroundColor: "#ff2222", color: "white"}}>*/}
+                {/*        Duplicate Service Name*/}
+                {/*    </DialogTitle>*/}
+                {/*    <DialogContent>*/}
+                {/*        <Typography variant="body1">*/}
+                {/*            An service with the same name already exists.*/}
+                {/*        </Typography>*/}
+                {/*    </DialogContent>*/}
+                {/*    <DialogActions>*/}
+                {/*        <Button*/}
+                {/*            onClick={() => setDuplicateServiceError(false)}*/}
+                {/*            color="primary"*/}
+                {/*            style={{color: "white"}}*/}
+                {/*        >*/}
+                {/*            OK*/}
+                {/*        </Button>*/}
+                {/*    </DialogActions>*/}
+                {/*</Dialog>*/}
+
+                <Snackbar
+                    open={snackbarOpen}
+                    autoHideDuration={6000}
+                    onClose={closeSnackbar}
                 >
-                    <DialogTitle style={{backgroundColor: "#ff2222", color: "white"}}>
-                        Duplicate Service Name
-                    </DialogTitle>
-                    <DialogContent>
-                        <Typography variant="body1">
-                            An service with the same name already exists.
-                        </Typography>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button
-                            onClick={() => setDuplicateServiceError(false)}
-                            color="primary"
-                            style={{color: "white"}}
-                        >
-                            OK
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                    <Alert onClose={closeSnackbar} severity={snackbarSeverity}>
+                        {snackbarMessage}
+                    </Alert>
+                </Snackbar>
             </Container>
         </Container>
     );
