@@ -516,7 +516,7 @@ const AddEvent = () => {
                             value={modalData.eventName}
                             onChange={handleInputChangeUpdate} // <-- Corrected here
                             error={eventNameError} // <-- Added
-                            helperText={eventNameError ? "Please enter a valid eventName." : ""} // <-- Added
+                            helperText={eventNameError ? "Only alphabetic characters allowed." : ""}
                             fullWidth
                             margin="normal"
                         />
