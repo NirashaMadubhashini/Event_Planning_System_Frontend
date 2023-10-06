@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         // backgroundPosition: 'center',
         height: '97vh',
-        width: '207vh',
+        width: '209vh',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
