@@ -43,7 +43,7 @@ import {
     updatePackage,
     searchPackage,
     updateService, getAllServices, deleteService, addService
-} from '../../../actions/admin';
+} from '../../../actions';
 import Box from "@mui/material/Box";
 import { Snackbar } from "@material-ui/core";
 import Alert from '@material-ui/lab/Alert';

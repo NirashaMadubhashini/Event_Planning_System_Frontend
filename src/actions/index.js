@@ -14,10 +14,11 @@ import {
     UPDATE_EVENT,
     UPDATE_SERVICE,
     UPDATE_PACKAGE,
-    CHANGE_ADMIN_STATUS
+    CHANGE_ADMIN_STATUS, FETCH_SERVICES_TYPE_WISE_SUCCESS, FETCH_SERVICES_TYPE_WISE_FAILURE
 } from '../constants/actionTypes';
 
 import AdminService from '../api/adminService';
+import VendorService from "../api/venderService";
 
 
 export const addEvent = (data) => async (dispatch) => {
@@ -49,7 +50,6 @@ export const addPackage = (data) => async (dispatch) => {
 }
 
 // ... continue for all other methods similarly ...
-
 export const getAllEvents = () => async (dispatch) => {
     try {
         const response = await AdminService.getAllEvents();
@@ -58,7 +58,6 @@ export const getAllEvents = () => async (dispatch) => {
         console.error(error.message);
     }
 }
-
 export const searchEvent = (eventId) => async (dispatch) => {
     try {
         const response = await AdminService.searchEvent(eventId);
@@ -165,3 +164,31 @@ export const updatePackage = (data) => async (dispatch) => {
         console.error(error.message);
     }
 }
+export const fetchServicesTypeWise = (serviceType) => {
+    return async (dispatch) => {
+        try {
+            const response = await VendorService.getServicesTypeWise(serviceType);
+            dispatch({
+                type: FETCH_SERVICES_TYPE_WISE_SUCCESS,
+                payload: response.data
+            });
+        } catch (error) {
+            dispatch({
+                type: FETCH_SERVICES_TYPE_WISE_ERROR,
+                payload: error.message
+            });
+        }
+    };
+};
+
+
+const fetchServicesTypeWiseSuccess = (data) => ({
+    type: FETCH_SERVICES_TYPE_WISE_SUCCESS,
+    payload: data
+});
+
+const fetchServicesTypeWiseFailure = (error) => ({
+    type: FETCH_SERVICES_TYPE_WISE_FAILURE,
+    error
+});
+

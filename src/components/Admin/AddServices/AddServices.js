@@ -26,7 +26,7 @@ import {Link} from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
 import {useDispatch, useSelector} from 'react-redux';
-import {addService, deleteService, getAllServices, updateService} from '../../../actions/admin';
+import {addService, deleteService, getAllServices, updateService} from '../../../actions';
 import Box from "@mui/material/Box";
 import { Snackbar } from "@material-ui/core";
 import Alert from '@material-ui/lab/Alert';

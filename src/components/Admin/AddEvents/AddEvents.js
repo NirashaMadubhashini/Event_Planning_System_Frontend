@@ -37,7 +37,7 @@ import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
 import service from "../../Customer/Services/Service";
 import {useDispatch, useSelector} from 'react-redux';
-import {addEvent, getAllEvents, deleteEvent, updateEvent} from '../../../actions/admin';
+import {addEvent, getAllEvents, deleteEvent, updateEvent} from '../../../actions';
 import Box from "@mui/material/Box";
 import { Snackbar } from "@material-ui/core";
 import Alert from '@material-ui/lab/Alert';
