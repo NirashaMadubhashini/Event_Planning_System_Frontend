@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import {
     AppBar,
     Button,
@@ -32,7 +32,7 @@ import {
     ExitToApp, Brush, Logout,
 } from "@mui/icons-material";
 import Box from "@mui/material/Box";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import DeckIcon from "@mui/icons-material/Deck";
 import OtherHousesIcon from "@mui/icons-material/OtherHouses";
 import LocalFloristIcon from "@mui/icons-material/LocalFlorist";
@@ -47,16 +47,17 @@ import EventPro from "../../../assets/images/CorrectLogo.png";
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { LocalizationProvider } from '@mui/x-date-pickers-pro';
-import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
-import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import {DemoContainer} from '@mui/x-date-pickers/internals/demo';
+import {LocalizationProvider} from '@mui/x-date-pickers-pro';
+import {AdapterDayjs} from '@mui/x-date-pickers-pro/AdapterDayjs';
+import {DateRangePicker} from '@mui/x-date-pickers-pro/DateRangePicker';
 import {format} from "date-fns";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import {fetchServicesTypeWise, getAllServices} from "../../../actions";
 import {useDispatch, useSelector} from 'react-redux';
+
 const Service = () => {
 
     const dispatch = useDispatch();
@@ -119,6 +120,143 @@ const Service = () => {
         dispatch(getAllServices());
     }, [dispatch]);
 
+    // const services = [
+    //     {
+    //         name: "Hotel",
+    //         id: 1,
+    //         icon: <MapsHomeWork/>,
+    //     },
+    //     {
+    //         name: "Hall",
+    //         id: 2,
+    //         icon: <DeckIcon/>,
+    //     },
+    //     {
+    //         name: "Villa",
+    //         id: 3,
+    //         icon: <OtherHousesIcon/>,
+    //     },
+    //     {
+    //         name: "Catering and Bar services",
+    //         id: 4,
+    //         icon: <Fastfood/>,
+    //     },
+    //     {
+    //         name: "Flora",
+    //         id: 5,
+    //         icon: <LocalFloristIcon/>,
+    //     },
+    //     {
+    //         name: "Decoration and Lightning",
+    //         id: 6,
+    //         icon: <AutoAwesomeIcon/>,
+    //     },
+    //     {
+    //         name: "Photography and Videography",
+    //         id: 7,
+    //         icon: <MonochromePhotosIcon/>,
+    //     },
+    //     {
+    //         name: "DJ and Sound",
+    //         id: 8,
+    //         icon: <MusicNoteIcon/>,
+    //     },
+    //     {
+    //         name: "Cake",
+    //         id: 9,
+    //         icon: <CakeIcon/>,
+    //     },
+    //     {
+    //         name: "Invitation Cards and stationery",
+    //         id: 10,
+    //         icon: <CardGiftcardIcon/>,
+    //     },
+    //     {
+    //         name: "Hair and Makeup",
+    //         id: 11,
+    //         icon: <Brush/>,
+    //     },
+    //     {
+    //         name: "Transportation",
+    //         id: 12,
+    //         icon: <EmojiTransportationIcon/>,
+    //     },
+    //     {
+    //         name: "Poruwa",
+    //         id: 13,
+    //         icon: <CorporateFareIcon/>,
+    //     },
+    // ];
+
+    // const vendors = [
+    //     {
+    //         id: 1,
+    //         name: "Vendor 1",
+    //         services: [
+    //             {
+    //                 id: 1,
+    //                 name: "Hotel",
+    //                 packages: [
+    //                     {
+    //                         id: 1,
+    //                         name: "Package 1",
+    //                         price: 100,
+    //                     },
+    //                     {
+    //                         id: 2,
+    //                         name: "Package 2",
+    //                         price: 150,
+    //                     },
+    //                 ],
+    //             },
+    //
+    //         ],
+    //     },
+    //     {
+    //         id: 2,
+    //         name: "Vendor 2",
+    //         services: [
+    //             {
+    //                 id: 2,
+    //                 name: "Hall",
+    //                 packages: [
+    //                     {
+    //                         id: 3,
+    //                         name: "Package 1",
+    //                         price: 1000,
+    //                     },
+    //                     {
+    //                         id: 4,
+    //                         name: "Package 2",
+    //                         price: 1500,
+    //                     },
+    //                 ],
+    //             },
+    //         ],
+    //     },
+    //     {
+    //         id: 3,
+    //         name: "Vendor 3",
+    //         services: [
+    //             {
+    //                 id: 3,
+    //                 name: "Villa",
+    //                 packages: [
+    //                     {
+    //                         id: 5,
+    //                         name: "Package 1",
+    //                         price: 1000,
+    //                     },
+    //                     {
+    //                         id: 6,
+    //                         name: "Package 2",
+    //                         price: 1500,
+    //                     },
+    //                 ],
+    //             },
+    //         ],
+    //     },
+    // ];
 
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) =>
@@ -175,7 +313,7 @@ const Service = () => {
 
         Object.keys(clickedButtons).forEach((category) => {
             Object.keys(clickedButtons[category]).forEach((service) => {
-                const { package: pkg } = clickedButtons[category][service];
+                const {package: pkg} = clickedButtons[category][service];
                 total += pkg.price;
             });
         });
@@ -221,7 +359,7 @@ const Service = () => {
                                 color="inherit"
                                 edge="start"
                             >
-                                <img src={EventPro} alt="icon" height="60px" />
+                                <img src={EventPro} alt="icon" height="60px"/>
                             </IconButton>
                             <Typography
                                 component={Link}
@@ -268,6 +406,28 @@ const Service = () => {
                             </Typography>
                             <Typography
                                 component={Link}
+                                to="/about"
+                                className={classes.appBarButton}
+                                onClick={() => handleCategoryClick("About")}
+                                style={{
+                                    color: clickedCategory === "About" ? "#F50057" : "",
+                                }}
+                            >
+                                About
+                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/service"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Services")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Services" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Services*/}
+                            {/*</Typography>*/}
+                            <Typography
+                                component={Link}
                                 to="/booking"
                                 className={classes.appBarButton}
                                 onClick={() => handleCategoryClick("Bookings")}
@@ -308,7 +468,7 @@ const Service = () => {
                                     color: clickedCategory === "Logout" ? "#F50057" : "",
                                 }}
                             >
-                                <Logout className={classes.logoutIcon} />
+                                <Logout className={classes.logoutIcon}/>
 
                             </Typography>
                         </div>
@@ -322,7 +482,7 @@ const Service = () => {
                             <Typography
                                 variant="h6"
                                 gutterBottom
-                                style={{ color: "#3F51B5" }}
+                                style={{color: "#3F51B5"}}
                             >
                                 OUR SERVICES
                             </Typography>
@@ -336,8 +496,8 @@ const Service = () => {
                             <Grid container spacing={3}>
                                 <Grid item xs={12} md={12}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DemoContainer components={['DateRangePicker','MultiInputTimeRangeField']}>
-                                            <DateRangePicker localeText={{ start: 'Start-Date', end: 'End-Date' }} />
+                                        <DemoContainer components={['DateRangePicker', 'MultiInputTimeRangeField']}>
+                                            <DateRangePicker localeText={{start: 'Start-Date', end: 'End-Date'}}/>
                                         </DemoContainer>
                                     </LocalizationProvider>
                                 </Grid>
@@ -424,6 +584,108 @@ const Service = () => {
                             </Card>
                         ))}
                     </Grid>
+                    {/*<Grid item xs={12} sm={8}>*/}
+                    {/*    {clickedService && (*/}
+                    {/*        <Card className={classes.vendorCard}>*/}
+                    {/*            <CardContent>*/}
+                    {/*                <Typography variant="h6" gutterBottom>*/}
+                    {/*                    Vendors*/}
+                    {/*                </Typography>*/}
+                    {/*                {vendors*/}
+                    {/*                    .map((vendor) => (*/}
+                    {/*                        <Card key={vendor.id} className={classes.vendorInfoCard}>*/}
+                    {/*                            <CardContent>*/}
+                    {/*                                <Typography variant="subtitle1" gutterBottom>*/}
+                    {/*                                    {vendor.name}*/}
+                    {/*                                </Typography>*/}
+                    {/*                                {vendor.services*/}
+                    {/*                                    .filter(*/}
+                    {/*                                        (service) => service.name === clickedService*/}
+                    {/*                                    )*/}
+                    {/*                                    .map((service) => (*/}
+                    {/*                                        <div key={service.id}>*/}
+                    {/*                                            {service.packages.map((pkg) => (*/}
+                    {/*                                                <Card*/}
+                    {/*                                                    key={pkg.id}*/}
+                    {/*                                                    className={classes.packageCard}*/}
+                    {/*                                                >*/}
+                    {/*                                                    <CardContent>*/}
+                    {/*                                                        <Typography*/}
+                    {/*                                                            variant="body2"*/}
+                    {/*                                                            gutterBottom*/}
+                    {/*                                                        >*/}
+                    {/*                                                            {pkg.name}*/}
+                    {/*                                                        </Typography>*/}
+                    {/*                                                        <Typography*/}
+                    {/*                                                            variant="body2"*/}
+                    {/*                                                            gutterBottom*/}
+                    {/*                                                        >*/}
+                    {/*                                                            Price: ${pkg.price}*/}
+                    {/*                                                        </Typography>*/}
+                    {/*                                                        <Button*/}
+                    {/*                                                            className={classes.addButton}*/}
+                    {/*                                                            onClick={() =>*/}
+                    {/*                                                                handlePackageSelect(*/}
+                    {/*                                                                    vendor.id,*/}
+                    {/*                                                                    service.id,*/}
+                    {/*                                                                    pkg.id*/}
+                    {/*                                                                )*/}
+                    {/*                                                            }*/}
+                    {/*                                                            variant="outlined"*/}
+                    {/*                                                            color="primary"*/}
+                    {/*                                                            disabled={*/}
+                    {/*                                                                clickedButtons[clickedCategory] &&*/}
+                    {/*                                                                clickedButtons[clickedCategory][*/}
+                    {/*                                                                    clickedService*/}
+                    {/*                                                                    ]*/}
+                    {/*                                                            }*/}
+                    {/*                                                        >*/}
+                    {/*                                                            Add*/}
+                    {/*                                                        </Button>*/}
+                    {/*                                                        /!*<Button>*!/*/}
+                    {/*                                                        /!*    Call*!/*/}
+                    {/*                                                        /!*</Button>*!/*/}
+                    {/*                                                        <Box*/}
+                    {/*                                                            sx={{*/}
+                    {/*                                                                width: 200,*/}
+                    {/*                                                                display: 'flex',*/}
+                    {/*                                                                alignItems: 'center',*/}
+                    {/*                                                                marginTop: '20px',*/}
+                    {/*                                                            }}*/}
+                    {/*                                                        >*/}
+                    {/*                                                            <Rating*/}
+                    {/*                                                                name="hover-feedback"*/}
+                    {/*                                                                value={value}*/}
+                    {/*                                                                precision={0.5}*/}
+                    {/*                                                                getLabelText={getLabelText}*/}
+                    {/*                                                                onChange={(event, newValue) => {*/}
+                    {/*                                                                    setValue(newValue);*/}
+                    {/*                                                                }}*/}
+                    {/*                                                                onChangeActive={(event, newHover) => {*/}
+                    {/*                                                                    setHover(newHover);*/}
+                    {/*                                                                }}*/}
+                    {/*                                                                emptyIcon={<StarIcon*/}
+                    {/*                                                                    style={{opacity: 0.55}}*/}
+                    {/*                                                                    fontSize="inherit"/>}*/}
+                    {/*                                                            />*/}
+                    {/*                                                            {value !== null && (*/}
+                    {/*                                                                <Box*/}
+                    {/*                                                                    sx={{ml: 2}}>{labels[hover !== -1 ? hover : value]}</Box>*/}
+                    {/*                                                            )}*/}
+                    {/*                                                        </Box>*/}
+
+                    {/*                                                    </CardContent>*/}
+                    {/*                                                </Card>*/}
+                    {/*                                            ))}*/}
+                    {/*                                        </div>*/}
+                    {/*                                    ))}*/}
+                    {/*                            </CardContent>*/}
+                    {/*                        </Card>*/}
+                    {/*                    ))}*/}
+                    {/*            </CardContent>*/}
+                    {/*        </Card>*/}
+                    {/*    )}*/}
+                    {/*</Grid>*/}
                     <Grid item xs={12} sm={8}>
                         {clickedService && (
                             <Card className={classes.vendorCard}>
