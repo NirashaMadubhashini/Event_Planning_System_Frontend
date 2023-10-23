@@ -432,64 +432,65 @@ const Service = () => {
                                         Vendors
                                     </Typography>
                                     {vendors && vendors.length > 0 && vendors.map((vendor) => (
-                                            <Card key={vendor.vendorId} className={classes.vendorInfoCard}>
-                                                <CardContent>
-                                                    <Typography variant="subtitle1" gutterBottom>
-                                                        {vendor.vendorName}
+                                        <Card key={vendor.vendorId} className={classes.vendorInfoCard}>
+                                            <CardContent>
+                                                <Typography variant="subtitle1" gutterBottom>
+                                                    {vendor.vendorName}
+                                                </Typography>
+                                                <div>
+                                                    <Typography variant="body2" gutterBottom>
+                                                        Service: {vendor.serviceName}
                                                     </Typography>
-                                                            <div>
-                                                                <Typography variant="body2" gutterBottom>
-                                                                    Service: {vendor.serviceName}
-                                                                </Typography>
-                                                                <Typography variant="body2" gutterBottom>
-                                                                    Type: {vendor.serviceType}
-                                                                </Typography>
-                                                                <Typography variant="body2" gutterBottom>
-                                                                    Price: ${vendor.price}
-                                                                </Typography>
-                                                                <Button
-                                                                    className={classes.addButton}
-                                                                    onClick={() => handlePackageSelect(vendor.vendorId)}
-                                                                    variant="outlined"
-                                                                    color="primary"
-                                                                >
-                                                                    Add
-                                                                </Button>
-                                                                            {/*<Button>*/}
-                                                                            {/*    Call*/}
-                                                                            {/*</Button>*/}
-                                                                            <Box
-                                                                                sx={{
-                                                                                    width: 200,
-                                                                                    display: 'flex',
-                                                                                    alignItems: 'center',
-                                                                                    marginTop:'20px',
-                                                                                }}
-                                                                            >
-                                                                                <Rating
-                                                                                    name="hover-feedback"
-                                                                                    value={value}
-                                                                                    precision={0.5}
-                                                                                    getLabelText={getLabelText}
-                                                                                    onChange={(event, newValue) => {
-                                                                                        setValue(newValue);
-                                                                                    }}
-                                                                                    onChangeActive={(event, newHover) => {
-                                                                                        setHover(newHover);
-                                                                                    }}
-                                                                                    emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-                                                                                />
-                                                                                {value !== null && (
-                                                                                    <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
-                                                                                )}
-                                                                            </Box>
-                                                            </div>
-                                                                        </CardContent>
-                                                                    </Card>
-                                                                ))}
-                                                </CardContent>
-                                            </Card>
-                            )}
+                                                    <Typography variant="body2" gutterBottom>
+                                                        Type: {vendor.serviceType}
+                                                    </Typography>
+                                                    <Typography variant="body2" gutterBottom>
+                                                        Price: ${vendor.price}
+                                                    </Typography>
+                                                    <Button
+                                                        className={classes.addButton}
+                                                        onClick={() => handlePackageSelect(vendor.vendorId)}
+                                                        variant="outlined"
+                                                        color="primary"
+                                                    >
+                                                        Add
+                                                    </Button>
+                                                    <Box
+                                                        sx={{
+                                                            width: 200,
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            marginTop: '20px',
+                                                        }}
+                                                    >
+                                                        <Rating
+                                                            name="hover-feedback"
+                                                            value={value}
+                                                            precision={0.5}
+                                                            getLabelText={getLabelText}
+                                                            onChange={(event, newValue) => {
+                                                                setValue(newValue);
+                                                            }}
+                                                            onChangeActive={(event, newHover) => {
+                                                                setHover(newHover);
+                                                            }}
+                                                            emptyIcon={
+                                                                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+                                                            }
+                                                        />
+                                                        {value !== null && (
+                                                            <Box sx={{ ml: 2 }}>
+                                                                {labels[hover !== -1 ? hover : value]}
+                                                            </Box>
+                                                        )}
+                                                    </Box>
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    ))}
+                                </CardContent>
+                            </Card>
+                        )}
                     </Grid>
 
                     <Grid item xs={12} sm={12}>
