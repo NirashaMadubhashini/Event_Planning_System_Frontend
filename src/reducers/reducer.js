@@ -1,13 +1,33 @@
-import {ADD_EVENT, VIEW_ALL_EVENTS, SEARCH_EVENT, DELETE_EVENT, UPDATE_EVENT, ADD_SERVICE, VIEW_ALL_SERVICES, SEARCH_SERVICE, DELETE_SERVICE, UPDATE_SERVICE, ADD_PACKAGE, VIEW_ALL_PACKAGES, SEARCH_PACKAGE, DELETE_PACKAGE, UPDATE_PACKAGE, CHANGE_ADMIN_STATUS} from "../constants/actionTypes";
+import {
+    ADD_EVENT,
+    VIEW_ALL_EVENTS,
+    SEARCH_EVENT,
+    DELETE_EVENT,
+    UPDATE_EVENT,
+    ADD_SERVICE,
+    VIEW_ALL_SERVICES,
+    SEARCH_SERVICE,
+    DELETE_SERVICE,
+    UPDATE_SERVICE,
+    ADD_PACKAGE,
+    VIEW_ALL_PACKAGES,
+    SEARCH_PACKAGE,
+    DELETE_PACKAGE,
+    UPDATE_PACKAGE,
+    CHANGE_ADMIN_STATUS,
+    FETCH_SERVICES_TYPE_WISE_SUCCESS, FETCH_SERVICES_TYPE_WISE_FAILURE
+} from "../constants/actionTypes";
 
 const initialState = {
     events: [],
     services: [],
     packages: [],
-    adminStatusChanged: false
+    adminStatusChanged: false,
+    vendorServicesTypeWise: [],
+    error: null
 };
 
-const adminReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
 
         // Events
@@ -111,10 +131,22 @@ const adminReducer = (state = initialState, action) => {
                 ...state,
                 adminStatusChanged: action.payload
             };
+        case FETCH_SERVICES_TYPE_WISE_SUCCESS:
+            return {
+                ...state,
+                vendorServicesTypeWise: action.payload,
+                error: null
+            };
+
+        case FETCH_SERVICES_TYPE_WISE_FAILURE:
+            return {
+                ...state,
+                error: action.error
+            };
 
         default:
             return state;
     }
 };
 
-export default adminReducer;
+export default reducer;

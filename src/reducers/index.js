@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 
-import adminReducer from './adminReducer';
+import reducer from './reducer';
 
-export const reducers = combineReducers({ adminReducer });
+export const reducers = combineReducers({ adminReducer: reducer });
