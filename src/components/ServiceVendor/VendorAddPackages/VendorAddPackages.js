@@ -35,9 +35,23 @@ import {
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import useStyles from "./style";
-import service from "../../Customer/Services/Service";
+import {
+    addPackage,
+    deletePackage,
+    getAllPackages,
+    updatePackage,
+    searchPackage
+} from '../../../actions';
+import Box from "@mui/material/Box";
+import { Snackbar } from "@material-ui/core";
+import Alert from '@material-ui/lab/Alert';
+import {useDispatch, useSelector} from "react-redux";
 
 const VendorAddPackages = () => {
+    const dispatch = useDispatch();
+    const packages = useSelector(state => state.adminReducer.packages);
+    const [filteredPackages, setFilteredPackages] = useState(packages);
+
     const [anchorEl, setAnchorEl] = useState(null);
     const [searchValue, setSearchValue] = useState("");
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
@@ -51,7 +65,79 @@ const VendorAddPackages = () => {
         packageDescription: "",
 
     });
+
+    const [priceError, setPriceError] = useState(false);
+    const [guestCountError, setGuestCountError] = useState(false);
+    const [duplicatePackageError, setDuplicatePackageError] = useState(false);
+    const [packageNameError, setPackageNameError] = useState(false);
     const classes = useStyles();
+    // State variable to hold edited package data
+    const [editedPackage, setEditedPackage] = useState(null);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
+    const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+    const [durationError, setDurationError] = useState(false);
+
+    const openSnackbar = (message, severity) => {
+        setSnackbarMessage(message);
+        setSnackbarSeverity(severity);
+        setSnackbarOpen(true);
+    };
+
+    const closeSnackbar = () => {
+        setSnackbarOpen(false);
+    };
+
+    // Function to populate editedPackage and open update modal
+    const handleEditPackage = (pack) => {
+        console.log("Package event clicked:", pack);
+        setEditedPackage(pack);
+        setModalData(pack);
+        setUpdateModalOpen(true);
+    };
+
+    const handleUpdatePackage = () => {
+        if (!modalData.packageName || !modalData.packagePrice || !modalData.packageDuration || !modalData.packageNoOfGuests|| !modalData.packageDescription) {
+            openSnackbar("Please fill all the fields!", "error");
+            return;
+        }
+        dispatch(updatePackage(modalData)).then(() => {
+            dispatch(getAllPackages()); // Fetch the updated list of packages
+            openSnackbar("Package updated successfully!", "success");
+            setUpdateModalOpen(false); // Close the update modal
+            setEditedPackage(null); // Reset the editedPackage state
+        });
+    };
+
+    const handleSearchChange = (e) => {
+        const searchInput = e.target.value.toLowerCase();
+        const filtered = packages.filter(pack => pack.packageName.toLowerCase().includes(searchInput));
+        setFilteredPackages(filtered);
+    };
+
+    const handleClearFields = () => {
+        setModalData({
+            packageId: "",
+            packageName: "",
+            packagePrice: "",
+            packageDuration: "",
+            packageNoOfGuests: "",
+            packageDescription: "",
+        });
+    };
+
+    useEffect(() => {
+        setFilteredPackages(packages);
+    }, [packages]);
+
+    const handleDeletePackage = (packageId) => {
+        dispatch(deletePackage(packageId)).then(() => {
+            dispatch(getAllPackages()); // Fetch the updated list of packages
+            openSnackbar("Package deleted successfully!", "success");
+        });
+        handleDeleteConfirmationClose();
+    };
+
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -72,6 +158,11 @@ const VendorAddPackages = () => {
     };
 
     useEffect(() => {
+        // Fetch events when the component mounts
+        dispatch(getAllPackages());
+    }, [dispatch]);
+
+    useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 100) {
                 setAppBarPosition("fixed");
@@ -86,9 +177,6 @@ const VendorAddPackages = () => {
         };
     }, []);
 
-    const handleSearchChange = (e) => {
-        setSearchValue(e.target.value);
-    };
 
     const handleDeleteConfirmationOpen = () => {
         setDeleteConfirmationOpen(true);
@@ -98,10 +186,10 @@ const VendorAddPackages = () => {
         setDeleteConfirmationOpen(false);
     };
 
-    const handleUpdateModalOpen = (customizePackage) => {
-        setModalData(customizePackage);
-        setUpdateModalOpen(true);
-    };
+    // const handleUpdateModalOpen = (customizePackage) => {
+    //     setModalData(customizePackage);
+    //     setUpdateModalOpen(true);
+    // };
 
     const handleUpdateModalClose = () => {
         setUpdateModalOpen(false);
@@ -122,43 +210,135 @@ const VendorAddPackages = () => {
 
 
     };
+
+    const validatePackageName = (name) => {
+        const pattern = /^[A-Za-z0-9\s]+$/;
+        return pattern.test(name);
+    };
+
+    const validatePackagePrice = (price) => {
+        const pattern = /^\d+$/;
+        return pattern.test(price);
+    };
+
+    const validatePackageDuration = (duration) => {
+        const pattern = /^(Morning|Evening|Night)$/;
+        return pattern.test(duration);
+    };
+
+    const validateGuestCount = (count) => {
+        const pattern = /^\d+$/;
+        return pattern.test(count);
+    };
     const handleInputChange = (event) => {
         const { name, value } = event.target;
+
+        if (name === "packageName" && !validatePackageName(value)) {
+            setPackageNameError(true);
+        } else {
+            setPackageNameError(false);
+        }
+
+        if (name === "packagePrice" && !validatePackagePrice(value)) {
+            setPriceError(true);
+        } else {
+            setPriceError(false);
+        }
+
+        if (name === "packageDuration" && !validatePackageDuration(value)) {
+            setDurationError(true);
+        } else {
+            setDurationError(false);
+        }
+
+        if (name === "packageNoOfGuests" && !validateGuestCount(value)) {
+            setGuestCountError(true);
+        } else {
+            setGuestCountError(false);
+        }
+
         setModalData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
     };
 
-    const packagesData = [
-        {
-            packageId: "P001",
-            packageName: "Wedding Celebration",
-            packagePrice: "$5000",
-            packageDuration: "8H",
-            packageNoOfGuests: "Up to 200 Persons",
-            packageDescription: "Catering,Venue,Decoration,Photography",
-            image: null, // Placeholder for the image data URL
-        },
-        {
-            packageId: "P002",
-            packageName: "Engagement Celebration",
-            packagePrice: "$2500",
-            packageDuration: "4H",
-            packageNoOfGuests: "Up to 100 Persons",
-            packageDescription: "Catering,Venue,Decoration,Photography",
-            image: null, // Placeholder for the image data URL
-        },
-        {
-            packageId: "P003",
-            packageName: "Birthday Celebration",
-            packagePrice: "$2500",
-            packageDuration: "4H",
-            packageNoOfGuests: "Up to 100 Persons",
-            packageDescription: "Catering,Venue,Decoration,Photography",
-            image: null, // Placeholder for the image data URL
-        },
-    ];
+    const handleInputChangeUpdate = (pack) => {
+        const {name, value} = pack.target;
+
+        if (name === "packageName" && !validatePackageName(value)) {
+            setPackageNameError(true);
+        } else {
+            setPackageNameError(false);
+        }
+
+        if (name === "packagePrice" && !validatePackagePrice(value)) {
+            setPriceError(true);
+        } else {
+            setPriceError(false);
+        }
+
+        if (name === "packageDuration" && !validatePackageDuration(value)) {
+            setDurationError(true);
+        } else {
+            setDurationError(false);
+        }
+
+        if (name === "guestCount" && !validateGuestCount(value)) {
+            setGuestCountError(true);
+        } else {
+            setGuestCountError(false);
+        }
+
+        setModalData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleAddPackage= () => {
+
+        if (
+            modalData.packageName === "" ||
+            modalData.packagePrice === "" ||
+            modalData.packageDuration === "" ||
+            modalData.packageNoOfGuests === "" ||
+            modalData.packageDescription === ""
+        ) {
+            openSnackbar("Please fill all the fields!", "error");
+            return;
+        }
+        const newPackageName = modalData.packageName.trim(); // Remove leading and trailing spaces
+        const isDuplicatePackage = packages.some(pack => pack.packageName === newPackageName);
+
+        if (isDuplicatePackage) {
+            setDuplicatePackageError(true);
+            openSnackbar("Package with this name already exists!", "error");
+            return; // Stop the function if it's a duplicate package
+        }
+
+        const packData = {
+            packageName: modalData.packageName,
+            packagePrice: modalData.packagePrice,
+            packageDuration: modalData.packageDuration,
+            packageNoOfGuests: modalData.packageNoOfGuests,
+            packageDescription: modalData.packageDescription,
+        };
+
+        dispatch(addPackage(packData)).then(() => {
+            dispatch(getAllPackages());
+            openSnackbar("Package added successfully!", "success");
+        });
+
+        setModalData({
+            packageId: "",
+            packageName: "",
+            packagePrice: "",
+            packageDuration: "",
+            packageNoOfGuests: "",
+            packageDescription: "",
+        });
+    };
 
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
@@ -291,7 +471,11 @@ const VendorAddPackages = () => {
                             fullWidth
                             variant="outlined"
                             label="Package Name"
-                            // Add necessary onChange and value properties
+                            name="packageName"
+                            value={modalData.packageName}
+                            onChange={handleInputChange}
+                            error={packageNameError}
+                            helperText={packageNameError ? "Please enter a valid package name." : ""}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
@@ -299,7 +483,12 @@ const VendorAddPackages = () => {
                             fullWidth
                             variant="outlined"
                             label="Package Price"
-                            // Add necessary onChange and value properties
+                            name="packagePrice"
+                            value={modalData.packagePrice}
+                            onChange={handleInputChange}
+                            type="text"  // use text type but validate manually
+                            error={priceError}  // if priceError is true, the TextField will show error styling
+                            helperText={priceError ? "Please enter a valid number." : ""}  // error message
                         />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
@@ -307,7 +496,11 @@ const VendorAddPackages = () => {
                             fullWidth
                             variant="outlined"
                             label="Package Duration"
-                            // Add necessary onChange and value properties
+                            name="packageDuration"
+                            value={modalData.packageDuration}
+                            onChange={handleInputChange}
+                            error={durationError}
+                            helperText={durationError ? "Please enter a valid duration." : ""}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
@@ -315,7 +508,11 @@ const VendorAddPackages = () => {
                             fullWidth
                             variant="outlined"
                             label="No.Of Guests"
-                            // Add necessary onChange and value properties
+                            name="packageNoOfGuests"
+                            value={modalData.packageNoOfGuests}
+                            onChange={handleInputChange}
+                            error={guestCountError}  // if priceError is true, the TextField will show error styling
+                            helperText={guestCountError ? "Please enter a valid number." : ""}  // error message
                         />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
@@ -323,7 +520,9 @@ const VendorAddPackages = () => {
                             fullWidth
                             variant="outlined"
                             label="Description"
-                            // Add necessary onChange and value properties
+                            name="packageDescription"
+                            value={modalData.packageDescription}
+                            onChange={handleInputChange}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4}>
@@ -336,17 +535,30 @@ const VendorAddPackages = () => {
                         />
 
                     </Grid>
-                    <Grid item xs={12}>
-                        <Button variant="contained" color="primary">
-                            Add Package
-                        </Button>
+                    <Grid container item xs={12} sx={{justifyContent: 'center', alignItems: 'center'}}>
+                        <Grid item >
+                            <Button variant="contained" color="primary" onClick={handleAddPackage}>
+                                Add Package
+                            </Button>
+                        </Grid>
+                        <Grid item>
+                            <Box ml={2}>
+                                <Button
+                                    onClick={handleClearFields}
+                                    variant="contained"
+                                    color="secondary">
+                                    Clear
+                                </Button>
+                            </Box>
+                        </Grid>
                     </Grid>
+
                 </Grid>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                         <TextField
                             variant="outlined"
-                            placeholder="Search"
+                            placeholder="Search by Package Name"
                             fullWidth
                             InputProps={{
                                 endAdornment: (
@@ -357,6 +569,7 @@ const VendorAddPackages = () => {
                                     </InputAdornment>
                                 ),
                             }}
+                            onChange={handleSearchChange}
                         />
                     </Grid>
                 </Grid>
@@ -375,21 +588,21 @@ const VendorAddPackages = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {packagesData.map((newPackage, index) => (
+                            {filteredPackages.map((pack, index) => (
                                 <TableRow key={index}>
-                                    <TableCell>{newPackage.packageId}</TableCell>
-                                    <TableCell>{newPackage.packageName}</TableCell>
-                                    <TableCell>{newPackage.packagePrice}</TableCell>
-                                    <TableCell>{newPackage.packageDuration}</TableCell>
-                                    <TableCell>{newPackage.packageNoOfGuests}</TableCell>
-                                    <TableCell>{newPackage.packageDescription}</TableCell>
+                                    <TableCell>{pack.packageId}</TableCell>
+                                    <TableCell>{pack.packageName}</TableCell>
+                                    <TableCell>{pack.packagePrice}</TableCell>
+                                    <TableCell>{pack.packageDuration}</TableCell>
+                                    <TableCell>{pack.packageNoOfGuests}</TableCell>
+                                    <TableCell>{pack.packageDescription}</TableCell>
                                     <TableCell>
-                                        {newPackage.image && <img src={newPackage.image} alt={newPackage.packageName} style={{ maxWidth: "100px" }} />}
+                                        {pack.image && <img src={pack.image} alt={pack.packageName} style={{ maxWidth: "100px" }} />}
                                     </TableCell>
 
                                     <TableCell>
                                         <IconButton color="primary"
-                                                    onClick={() => handleUpdateModalOpen(newPackage)}
+                                                    onClick={() => handleEditPackage(pack)}
                                         >
                                             <Edit />
                                         </IconButton>
@@ -418,7 +631,7 @@ const VendorAddPackages = () => {
                             Cancel
                         </Button>
                         <Button onClick={handleDeleteConfirmationClose} color="secondary">
-                            Delete
+                            Yes, Delete
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -442,16 +655,20 @@ const VendorAddPackages = () => {
                         <TextField
                             label="Package Name"
                             name="customizePackageName"
-                            value={modalData.customizePackageName}
-                            onChange={handleInputChange}
+                            value={modalData.packageName}
+                            onChange={handleInputChangeUpdate} // <-- Corrected here
                             fullWidth
                             margin="normal"
+                            error={packageNameError}
+                            helperText={packageNameError ? "Please enter a valid package name." : ""}
                         />
                         <TextField
                             label="Package Price"
                             name="packagePrice"
                             value={modalData.packagePrice}
-                            onChange={handleInputChange}
+                            onChange={handleInputChangeUpdate} // <-- Corrected here
+                            error={priceError} // <-- Added
+                            helperText={priceError ? "Please enter a valid price." : ""} // <-- Added
                             fullWidth
                             margin="normal"
                         />
@@ -459,15 +676,19 @@ const VendorAddPackages = () => {
                             label="Package Duration"
                             name="packageDuration"
                             value={modalData.packageDuration}
-                            onChange={handleInputChange}
+                            onChange={handleInputChangeUpdate} // <-- Corrected here
                             fullWidth
                             margin="normal"
+                            error={durationError}
+                            helperText={durationError ? "Please enter a valid duration." : ""}
                         />
                         <TextField
                             label="No.Of Guests"
                             name="packageNoOfGuests"
                             value={modalData.packageNoOfGuests}
-                            onChange={handleInputChange}
+                            onChange={handleInputChangeUpdate} // <-- Corrected here
+                            error={guestCountError} // <-- Added
+                            helperText={guestCountError? "Please enter a valid Guest Count." : ""} // <-- Added
                             fullWidth
                             margin="normal"
                         />
@@ -475,7 +696,7 @@ const VendorAddPackages = () => {
                             label="Services"
                             name="packageDescription"
                             value={modalData.packageDescription}
-                            onChange={handleInputChange}
+                            onChange={handleInputChangeUpdate} // <-- Corrected here
                             fullWidth
                             margin="normal"
                         />
@@ -497,6 +718,15 @@ const VendorAddPackages = () => {
                         </Button>
                     </DialogActions>
                 </Dialog>
+                <Snackbar
+                    open={snackbarOpen}
+                    autoHideDuration={6000}
+                    onClose={closeSnackbar}
+                >
+                    <Alert onClose={closeSnackbar} severity={snackbarSeverity}>
+                        {snackbarMessage}
+                    </Alert>
+                </Snackbar>
             </Container>
         </Container>
     );
