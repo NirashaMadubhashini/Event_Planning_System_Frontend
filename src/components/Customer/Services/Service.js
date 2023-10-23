@@ -128,7 +128,7 @@ const Service = () => {
 
     const handleServiceClick = (service) => {
         setClickedService((prevService) =>
-            prevService=== service ? "" : service
+            prevService === service ? "" : service
         );
 
         dispatch(fetchServicesTypeWise(service));
