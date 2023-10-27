@@ -101,7 +101,8 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(1),
     },
     selectedService: {
-        backgroundColor:"#0172EF",
+        backgroundColor:"#DFDFDF",
+        color: "black",
         transition: "background-color 0.2s ease",
         cursor: "pointer",
         "&:hover": {
@@ -126,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
     },
     vendorInfoCard: {
         marginBottom: theme.spacing(2),
-      // backgroundColor:"#3F51B5",
+        // backgroundColor:"#3F51B5",
         fontweight:'bold',
     },
     packageCard: {
@@ -138,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
     },
     bookingCard: {
         marginBottom: theme.spacing(2),
-       // backgroundColor:"green",
+        // backgroundColor:"green",
     },
     selectedPackageCard: {
         marginBottom: theme.spacing(1),
