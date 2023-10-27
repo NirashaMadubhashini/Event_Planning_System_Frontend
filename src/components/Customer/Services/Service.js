@@ -63,6 +63,7 @@ const Service = () => {
     const dispatch = useDispatch();
     const services = useSelector(state => state.adminReducer.services); // Adjust the path based on your state structure
     const vendors = useSelector((state) => state.adminReducer.vendorServicesTypeWise);
+    const [selectedVendors, setSelectedVendors] = useState([]);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -93,6 +94,13 @@ const Service = () => {
         5: 'Excellent+',
     };
 
+
+
+    const handleRemoveVendor = (vendorId) => {
+        const updatedVendors = selectedVendors.filter(vendor => vendor.vendorId !== vendorId);
+        setSelectedVendors(updatedVendors);
+    };
+
     function getLabelText(value) {
         return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
     }
@@ -120,143 +128,7 @@ const Service = () => {
         dispatch(getAllServices());
     }, [dispatch]);
 
-    // const services = [
-    //     {
-    //         name: "Hotel",
-    //         id: 1,
-    //         icon: <MapsHomeWork/>,
-    //     },
-    //     {
-    //         name: "Hall",
-    //         id: 2,
-    //         icon: <DeckIcon/>,
-    //     },
-    //     {
-    //         name: "Villa",
-    //         id: 3,
-    //         icon: <OtherHousesIcon/>,
-    //     },
-    //     {
-    //         name: "Catering and Bar services",
-    //         id: 4,
-    //         icon: <Fastfood/>,
-    //     },
-    //     {
-    //         name: "Flora",
-    //         id: 5,
-    //         icon: <LocalFloristIcon/>,
-    //     },
-    //     {
-    //         name: "Decoration and Lightning",
-    //         id: 6,
-    //         icon: <AutoAwesomeIcon/>,
-    //     },
-    //     {
-    //         name: "Photography and Videography",
-    //         id: 7,
-    //         icon: <MonochromePhotosIcon/>,
-    //     },
-    //     {
-    //         name: "DJ and Sound",
-    //         id: 8,
-    //         icon: <MusicNoteIcon/>,
-    //     },
-    //     {
-    //         name: "Cake",
-    //         id: 9,
-    //         icon: <CakeIcon/>,
-    //     },
-    //     {
-    //         name: "Invitation Cards and stationery",
-    //         id: 10,
-    //         icon: <CardGiftcardIcon/>,
-    //     },
-    //     {
-    //         name: "Hair and Makeup",
-    //         id: 11,
-    //         icon: <Brush/>,
-    //     },
-    //     {
-    //         name: "Transportation",
-    //         id: 12,
-    //         icon: <EmojiTransportationIcon/>,
-    //     },
-    //     {
-    //         name: "Poruwa",
-    //         id: 13,
-    //         icon: <CorporateFareIcon/>,
-    //     },
-    // ];
 
-    // const vendors = [
-    //     {
-    //         id: 1,
-    //         name: "Vendor 1",
-    //         services: [
-    //             {
-    //                 id: 1,
-    //                 name: "Hotel",
-    //                 packages: [
-    //                     {
-    //                         id: 1,
-    //                         name: "Package 1",
-    //                         price: 100,
-    //                     },
-    //                     {
-    //                         id: 2,
-    //                         name: "Package 2",
-    //                         price: 150,
-    //                     },
-    //                 ],
-    //             },
-    //
-    //         ],
-    //     },
-    //     {
-    //         id: 2,
-    //         name: "Vendor 2",
-    //         services: [
-    //             {
-    //                 id: 2,
-    //                 name: "Hall",
-    //                 packages: [
-    //                     {
-    //                         id: 3,
-    //                         name: "Package 1",
-    //                         price: 1000,
-    //                     },
-    //                     {
-    //                         id: 4,
-    //                         name: "Package 2",
-    //                         price: 1500,
-    //                     },
-    //                 ],
-    //             },
-    //         ],
-    //     },
-    //     {
-    //         id: 3,
-    //         name: "Vendor 3",
-    //         services: [
-    //             {
-    //                 id: 3,
-    //                 name: "Villa",
-    //                 packages: [
-    //                     {
-    //                         id: 5,
-    //                         name: "Package 1",
-    //                         price: 1000,
-    //                     },
-    //                     {
-    //                         id: 6,
-    //                         name: "Package 2",
-    //                         price: 1500,
-    //                     },
-    //                 ],
-    //             },
-    //         ],
-    //     },
-    // ];
 
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) =>
@@ -272,28 +144,14 @@ const Service = () => {
         dispatch(fetchServicesTypeWise(service));
     };
 
-    const handlePackageSelect = (vendorId, serviceId, packageId) => {
-        const selectedVendor = vendors.find((vendor) => vendor.id === vendorId);
-        const selectedService = selectedVendor.services.find(
-            (service) => service.id === serviceId
-        );
-        const selectedPackage = selectedService.packages.find(
-            (pkg) => pkg.id === packageId
-        );
+    const handlePackageSelect = (vendorId) => {
+        const selectedVendor = vendors.find((vendor) => vendor.vendorId === vendorId);
 
-        const newClickedButtons = {
-            ...clickedButtons,
-            [clickedCategory]: {
-                ...clickedButtons[clickedCategory],
-                [clickedService]: {
-                    vendor: selectedVendor,
-                    service: selectedService,
-                    package: selectedPackage,
-                },
-            },
-        };
-
-        setClickedButtons(newClickedButtons);
+        console.log( selectedVendor)
+        // Check if the vendor is already selected to avoid duplicates
+        if(!selectedVendors.some(v => v.vendorId === selectedVendor.vendorId)) {
+            setSelectedVendors(prevVendors => [...prevVendors, selectedVendor]);
+        }
     };
 
     const handlePackageRemove = () => {
@@ -308,6 +166,8 @@ const Service = () => {
         setClickedButtons(newClickedButtons);
     };
 
+
+
     const getTotalPrice = () => {
         let total = 0;
 
@@ -317,8 +177,8 @@ const Service = () => {
                 total += pkg.price;
             });
         });
-
-        return total;
+        return selectedVendors.reduce((total, vendor) => total + vendor.price, 0);
+        /*return total;*/
     };
 
     const [selectedDate, setSelectedDate] = useState(null);
@@ -733,68 +593,48 @@ const Service = () => {
                         )}
                     </Grid>
 
+
                     <Grid item xs={12} sm={12}>
-                        {Object.keys(clickedButtons).length > 0 && (
+                        {selectedVendors && selectedVendors.length > 0 && (
                             <Card className={classes.bookingCard}>
                                 <CardContent>
                                     <Typography variant="h6" gutterBottom sx={{fontWeight: 'Bold',}}>
                                         Booking Summary
                                     </Typography>
-                                    {Object.keys(clickedButtons).map((category) => (
-                                        <div key={category}>
-                                            {Object.keys(clickedButtons[category]).map(
-                                                (service) => (
-                                                    <div key={service}>
-                                                        <Typography
-                                                            variant="subtitle1"
-                                                            gutterBottom
-                                                            className={classes.serviceName}
-                                                        >
-                                                            {service}
-                                                        </Typography>
-                                                        <Card className={classes.selectedPackageCard}>
-                                                            <CardContent>
-                                                                <Typography variant="body2" gutterBottom>
-                                                                    Vendor:{" "}
-                                                                    {
-                                                                        clickedButtons[category][service].vendor
-                                                                            .name
-                                                                    }
-                                                                </Typography>
-                                                                <Typography variant="body2" gutterBottom>
-                                                                    Service:{" "}
-                                                                    {
-                                                                        clickedButtons[category][service].service
-                                                                            .name
-                                                                    }
-                                                                </Typography>
-                                                                <Typography variant="body2" gutterBottom>
-                                                                    Package:{" "}
-                                                                    {
-                                                                        clickedButtons[category][service].package
-                                                                            .name
-                                                                    }
-                                                                </Typography>
-                                                                <Typography variant="body2" gutterBottom>
-                                                                    Price: $
-                                                                    {
-                                                                        clickedButtons[category][service].package
-                                                                            .price
-                                                                    }
-                                                                </Typography>
-                                                                <Button
-                                                                    className={classes.removeButton}
-                                                                    onClick={handlePackageRemove}
-                                                                    variant="outlined"
-                                                                    color="secondary"
-                                                                >
-                                                                    Remove
-                                                                </Button>
-                                                            </CardContent>
-                                                        </Card>
-                                                    </div>
-                                                )
-                                            )}
+                                    {selectedVendors.map((vendor) => (
+                                        <div key={vendor.vendorId}>
+                                            <Typography
+                                                variant="subtitle1"
+                                                gutterBottom
+                                                className={classes.serviceName}
+                                            >
+                                                {vendor.serviceName}
+                                            </Typography>
+                                            <Card className={classes.selectedPackageCard}>
+                                                <CardContent>
+                                                    <Typography variant="body2" gutterBottom>
+                                                        Vendor: {vendor.vendorName}
+                                                    </Typography>
+                                                    <Typography variant="body2" gutterBottom>
+                                                        Service: {vendor.serviceName}
+                                                    </Typography>
+                                                    <Typography variant="body2" gutterBottom>
+                                                        Type: {vendor.serviceType}
+                                                    </Typography>
+                                                    <Typography variant="body2" gutterBottom>
+                                                        Price: ${vendor.price}
+                                                    </Typography>
+                                                    <Button
+                                                        className={classes.removeButton}
+                                                        onClick={() => handleRemoveVendor(vendor.vendorId)}
+                                                        variant="outlined"
+                                                        color="secondary"
+                                                    >
+                                                        Remove
+                                                    </Button>
+
+                                                </CardContent>
+                                            </Card>
                                         </div>
                                     ))}
                                     <Typography
@@ -804,11 +644,13 @@ const Service = () => {
                                     >
                                         Total Price: ${getTotalPrice()}
                                     </Typography>
+
                                     <Button
                                         className={classes.bookButton}
-                                        // onClick={handlePackageRemove}
                                         variant="outlined"
                                         color="secondary"
+                                        component={Link}
+                                        to="/checkout"
                                     >
                                         Purchase
                                     </Button>
@@ -816,6 +658,9 @@ const Service = () => {
                             </Card>
                         )}
                     </Grid>
+
+
+
 
                 </Grid>
             </Container>
