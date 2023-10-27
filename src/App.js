@@ -30,6 +30,7 @@ import About from "./components/LandingPage/About/About";
 import AdminSignUp from "./components/LandingPage/AdminSignUp/AdminSignUp";
 import CustomerSignUp from "./components/LandingPage/CustomerSignUp/CustomerSignUp";
 import VendorSignUp from "./components/LandingPage/VendorSignUp/VendorSignUp";
+import Checkout from "./components/Customer/pay/Checkout";
 
 const App = () => {
     return (
@@ -74,6 +75,7 @@ const App = () => {
                     <Route path="/vendorAddBusiness" exact component={VendorAddBusiness}/>
                     <Route path="/vendorViewBookings" exact component={VendorViewBookings}/>
                     <Route path="/vendorGallery" exact component={VendorGallery}/>
+                    <Route path="/checkout" exact component={Checkout} />
                 </Switch>
             </Container>
         </BrowserRouter>
