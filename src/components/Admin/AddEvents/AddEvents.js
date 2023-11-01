@@ -232,8 +232,7 @@ const AddEvent = () => {
             return;
         }
 
-        const newEventName = modalData.eventName.trim(); // Remove leading and trailing spaces
-        const isDuplicateEvent = events.some(event => event.eventName === newEventName);
+        const isDuplicateEvent  = events.some(event => event.eventName === modalData.eventName);
 
         if (isDuplicateEvent) {
             setDuplicateEventError(true);
