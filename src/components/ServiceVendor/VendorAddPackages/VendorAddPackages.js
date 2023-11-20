@@ -284,7 +284,7 @@ const VendorAddPackages = () => {
             setDurationError(false);
         }
 
-        if (name === "guestCount" && !validateGuestCount(value)) {
+        if (name === "packageNoOfGuests" && !validateGuestCount(value)) {
             setGuestCountError(true);
         } else {
             setGuestCountError(false);
