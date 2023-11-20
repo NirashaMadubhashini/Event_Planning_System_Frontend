@@ -20,21 +20,30 @@ const useStyles = makeStyles((theme) => ({
         overflowY: 'hidden', // Prevent horizontal scrollbar
     },
     websiteName: {
-        fontSize: '2.5rem',
+        fontSize: '3rem',
         fontWeight: 'bold',
-        marginBottom: '0.5rem',
+        marginBottom: '1rem',
     },
     heading: {
-        fontSize: '3rem',
-        marginBottom: '0.5rem',
+        fontSize: '4rem',
+        marginBottom: '1rem',
     },
     subHeading: {
-        fontSize: '1.2rem',
-        marginBottom: '1.5rem',
+        fontSize: '1.5rem',
+        marginBottom: '2rem',
     },
     buttonContainer: {
         display: 'flex',
-        gap: '1rem',
+        gap: '2rem',
+        '& button': {
+            padding: '10px 20px',
+            fontSize: '1rem',
+            fontWeight: 'bold',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+                transform: 'scale(1.05)',
+            },
+        },
     },
 }));
 
