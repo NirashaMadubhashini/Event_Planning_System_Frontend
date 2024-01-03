@@ -7,6 +7,11 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(function (config) {
+    // Retrieve the JWT token from localStorage
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
 }, function (error) {
     return Promise.reject(error);
@@ -15,6 +20,11 @@ axiosInstance.interceptors.request.use(function (config) {
 axiosInstance.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
+    // Handle 403 Forbidden error specifically
+    if (error.response && error.response.status === 403) {
+        console.error('Access Forbidden: You might not have the required permissions.');
+        // Additional handling like redirecting to a login page or showing a message can be added here
+    }
     return Promise.reject(error);
 });
 
