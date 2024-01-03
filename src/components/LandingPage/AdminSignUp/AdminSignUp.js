@@ -6,6 +6,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import EventPro from "../../../assets/images/BlackLogo.png";
 import useStyles from './styles';
 import Input from './Input';
+import AuthService from "../../../api/authService";
 
 const AdminSignUp = () => {
     const classes = useStyles();
@@ -22,19 +23,17 @@ const AdminSignUp = () => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log('User signed in:', form);
-    //     history.push('/');
-    // };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('User signed in:', form);
-        // TODO: Authenticate the user here
+        try {
+            const response = await AuthService.login(form.email,form.password);
+            history.push('/adminDashboard');
 
-        // If authentication succeeds:
-        history.push('/adminDashboard');
+        }catch (e) {
+            console.error('Login failed:', e.message);
+
+        }
     };
 
 
