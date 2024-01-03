@@ -16,7 +16,7 @@ import {
     UPDATE_PACKAGE,
     CHANGE_ADMIN_STATUS,
     FETCH_SERVICES_TYPE_WISE_SUCCESS,
-    FETCH_SERVICES_TYPE_WISE_FAILURE
+    FETCH_SERVICES_TYPE_WISE_FAILURE, SET_USER_ROLE
 } from "../constants/actionTypes";
 
 const initialState = {
@@ -31,7 +31,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-//User Role
+// User Role
         case SET_USER_ROLE:
             return {
                 ...state,
