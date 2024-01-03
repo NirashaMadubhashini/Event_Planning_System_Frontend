@@ -7,18 +7,25 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(function (config) {
-    // Here, you can still perform actions before the request is sent
+    // Retrieve the JWT token from localStorage
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
 }, function (error) {
-    // If there's an error in the request, reject the Promise
     return Promise.reject(error);
 });
 
 axiosInstance.interceptors.response.use(function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
     return response;
 }, function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Handle 403 Forbidden error specifically
+    if (error.response && error.response.status === 403) {
+        console.error('Access Forbidden: You might not have the required permissions.');
+        alert("Access Forbidden: You might not have the required permissions.")
+        // Additional handling like redirecting to a login page or showing a message can be added here
+    }
     return Promise.reject(error);
 });
 
