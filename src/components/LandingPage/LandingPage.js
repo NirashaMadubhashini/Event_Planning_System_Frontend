@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Menu, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import {useDispatch} from "react-redux";
+import {setUserRole} from "../../actions";
 
 const useStyles = makeStyles((theme) => ({
     landingPage: {
@@ -67,6 +69,7 @@ const LandingPage = () => {
     const classes = useStyles();
     const history = useHistory();
     const [anchorEl, setAnchorEl] = useState(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         // Apply styles to body when component mounts
@@ -92,11 +95,11 @@ const LandingPage = () => {
 
     const handleRoleSelection = (role) => {
         let routePath = '';
-        if (role === 'admin') {
+        if (role === 'ROLE_ADMIN') {
             routePath = '/adminSignUp';
-        } else if (role === 'customer') {
+        } else if (role === 'ROLE_USER') {
             routePath = '/customerSignUp';
-        } else if (role === 'vendor') {
+        } else if (role === 'ROLE_VENDOR') {
             routePath = '/vendorSignUp';
         }
         history.push(routePath);
@@ -129,9 +132,9 @@ const LandingPage = () => {
                     open={Boolean(anchorEl)}
                     onClose={handleGetStartedClose}
                 >
-                    <MenuItem onClick={() => handleRoleSelection('admin')}>As an Admin</MenuItem>
-                    <MenuItem onClick={() => handleRoleSelection('customer')}>As a Customer</MenuItem>
-                    <MenuItem onClick={() => handleRoleSelection('vendor')}>As a Vendor</MenuItem>
+                    <MenuItem onClick={() => handleRoleSelection('ROLE_ADMIN')}>As an Admin</MenuItem>
+                    <MenuItem onClick={() => handleRoleSelection('ROLE_USER')}>As a Customer</MenuItem>
+                    <MenuItem onClick={() => handleRoleSelection('ROLE_VENDOR')}>As a Vendor</MenuItem>
                 </Menu>
             </div>
         </div>
