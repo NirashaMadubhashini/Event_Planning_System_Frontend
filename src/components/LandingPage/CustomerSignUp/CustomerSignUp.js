@@ -7,6 +7,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import EventPro from "../../../assets/images/BlackLogo.png";
 import useStyles from './styles';
 import Input from './Input';
+import AuthService from "../../../api/authService";
 
 const CustomerSignUp = () => {
     const classes = useStyles();
@@ -19,6 +20,8 @@ const CustomerSignUp = () => {
     });
     const [isSignup, setIsSignup] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const userRole = useSelector((state) => state.adminReducer.userRole);
+    const [error, setError] = useState('');
 
     const logout = () => {
         console.log("User logged out");
@@ -39,17 +42,52 @@ const CustomerSignUp = () => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(''); // Clear any existing errors
 
-        if (isSignup) {
-            console.log('User signed up:', form);
-            history.push('/');
-        } else {
-            console.log('User signed in:', form);
-            history.push('/');
+        if (isSignup && form.password !== form.confirmPassword) {
+            setError("Passwords don't match.");
+            return;
+        }
+
+        try {
+            if (isSignup) {
+                const userData = {
+                    username: form.name,
+                    password: form.password,
+                    roles: [userRole]
+                };
+                const response = await AuthService.register(userData);
+                setIsSignup(false);
+                setError('');
+                alert('Registration successful. Please log in.');
+            } else {
+                const response = await AuthService.login(form.name, form.password);
+                if (response.token) {
+                    localStorage.setItem('jwtToken', response.token);
+                    history.push('/home');
+                    setError('');
+                } else {
+                    setError(response.message || 'Login failed');
+                    alert(response.message || 'Login failed');
+
+                }
+            }
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || 'Authentication failed';
+            alert(error.response?.data?.message || 'Authentication failed')
+            setError(errorMessage);
         }
     };
+
+    const handleBlur = () => {
+        setError(''); // Clear error message
+    };
+ /*   const containerStyle = {
+        overflowY: 'auto', // make it scrollable
+        maxHeight: isSignup ? 'none' : '90vh', // adjust max height based on isSignup state
+    };*/
 
     return (
         <>
@@ -77,22 +115,30 @@ const CustomerSignUp = () => {
                             {isSignup && (
                                 <>
                                     <Input name="nic" label="NIC" handleChange={handleChange} autoFocus half />
-                                    <Input name="name" label="Name" handleChange={handleChange} half />
                                     <Input name="address" label="Address" handleChange={handleChange} half />
                                     <Input name="contactNo" label="ContactNo" handleChange={handleChange} half />
+                                    <Input name="email" label="Email Address" half handleChange={handleChange} type="email" />
                                 </>
                             )}
-                            <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
                             <Input
+                                name="name"
+                                label="Name"
+                                handleChange={handleChange}
+                                handleBlur={handleBlur} // Add this
+
+                            />                            <Input
                                 name="password"
                                 label="Password"
                                 handleChange={handleChange}
                                 type={showPassword ? 'text' : 'password'}
                                 handleShowPassword={handleShowPassword}
+                                handleBlur={handleBlur} // Add this
                             />
                             {isSignup && (
                                 <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />
                             )}
+                            {!isSignup && error && <Typography color="error">{error}</Typography>}
+
                         </Grid>
                         <Button
                             type="submit"
@@ -100,8 +146,6 @@ const CustomerSignUp = () => {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            component={isSignup ? undefined : Link}
-                            to={isSignup ? undefined : "/home"}
                         >
                             {isSignup ? 'Sign Up' : 'Sign In'}
                         </Button>
