@@ -231,6 +231,14 @@ const AdminDashboard = () => {
                         </Paper>
                     </Grid>
                 </Grid>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    // className={classes.miPredictionButton}
+                    // onClick={handleViewMIPredictions}
+                >
+                    View MI Predictions
+                </Button>
                 <Grid container spacing={5}>
                     <Grid item xs={12} sm={6} md={4} lg={3} className={classes.dailyGrid}>
                         <Typography variant="h5" className={classes.barChartTopic}>
