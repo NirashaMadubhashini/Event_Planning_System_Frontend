@@ -14,7 +14,7 @@ import {
     UPDATE_EVENT,
     UPDATE_SERVICE,
     UPDATE_PACKAGE,
-    CHANGE_ADMIN_STATUS, FETCH_SERVICES_TYPE_WISE_SUCCESS, FETCH_SERVICES_TYPE_WISE_FAILURE
+    CHANGE_ADMIN_STATUS, FETCH_SERVICES_TYPE_WISE_SUCCESS, FETCH_SERVICES_TYPE_WISE_FAILURE, SET_USER_ROLE
 } from '../constants/actionTypes';
 
 import AdminService from '../api/adminService';
@@ -22,7 +22,6 @@ import VendorService from "../api/venderService";
 
 
 export const addEvent = (data) => async (dispatch) => {
-    console.log('data',data)
     try {
         const response = await AdminService.addEvent(data);
         dispatch({ type: ADD_EVENT, payload: response.data });
@@ -85,6 +84,12 @@ export const updateEvent = (data) => async (dispatch) => {
     }
 }
 
+export const setUserRole = (role) => {
+    return {
+        type:SET_USER_ROLE,
+        payload: role
+    }
+}
 export const changeAdminStatus = (data) => async (dispatch) => {
     try {
         const response = await AdminService.changeStatusAdmin(data);
