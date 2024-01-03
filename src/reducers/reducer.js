@@ -25,12 +25,18 @@ const initialState = {
     packages: [],
     adminStatusChanged: false,
     vendorServicesTypeWise: [],
-    error: null
+    error: null,
+    userRole:null
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-
+//User Role
+        case SET_USER_ROLE:
+            return {
+                ...state,
+                userRole: action.payload
+            }
         // Events
         case ADD_EVENT:
             return {
