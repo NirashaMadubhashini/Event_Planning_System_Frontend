@@ -111,10 +111,10 @@ const VendorSignUp = () => {
                                     <FormControl fullWidth className={classes.input}>
                                         <InputLabel>Service Type</InputLabel>
                                         <Select name="serviceType" value={form.serviceType} onChange={handleChange}>
-                                            <MenuItem value="serviceType1">Floral</MenuItem>
-                                            <MenuItem value="serviceType2">Photography</MenuItem>
-                                            <MenuItem value="serviceType3">Catering</MenuItem>
-                                            <MenuItem value="serviceType4">DJ</MenuItem>
+                                            <MenuItem value="serviceType1">Venue Rental</MenuItem>
+                                            <MenuItem value="serviceType2">Catering and Bar</MenuItem>
+                                            <MenuItem value="serviceType3">Decorations and Floral Arrangements</MenuItem>
+                                            <MenuItem value="serviceType4">Cake and Desserts</MenuItem>
                                         </Select>
                                     </FormControl>
                                     <Input name="portfolio" label="Portfolio" handleChange={handleChange} />
