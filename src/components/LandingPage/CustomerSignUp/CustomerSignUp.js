@@ -108,8 +108,8 @@ const CustomerSignUp = () => {
                                 <>
                                     <Input name="nic" label="NIC" handleChange={handleChange} autoFocus half />
                                     <Input name="address" label="Address" handleChange={handleChange} half />
-                                    <Input name="contactNo" label="ContactNo" handleChange={handleChange} half />
-                                    <Input name="email" label="Email Address" half handleChange={handleChange} type="email" />
+                                    <Input name="contactNo" label="ContactNo" handleChange={handleChange} />
+                                    <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
                                 </>
                             )}
                             <Input
