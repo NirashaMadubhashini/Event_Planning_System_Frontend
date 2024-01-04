@@ -8,18 +8,18 @@ import {setUserRole} from "../../actions";
 const useStyles = makeStyles((theme) => ({
     landingPage: {
         background: 'url("https://www.datocms-assets.com/9759/1590743134-18th-black-white-birthday-party-kent-013.jpg") no-repeat center center',
-        backgroundSize: 'cover',
-        margin:'-24px',
+        backgroundSize: 'cover', // This will make the image cover the entire element
+        margin: 0,
         padding: 0,
-        width: '100vw',
-        height: '105vh',
+        width: '100vw', // 100% of the viewport width
+        height: '100vh', // 100% of the viewport height
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         color: '#fff',
         textAlign: 'center',
-        overflow: 'hidden',
+        overflow: 'hidden', // Ensures no scrolling
     },
     websiteName: {
         fontSize: '3rem',
@@ -72,10 +72,11 @@ const LandingPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+
         // Apply styles to body when component mounts
         document.body.style.margin = '0';
         document.body.style.padding = '0';
-       /* document.body.style.overflow = 'hidden'; // Prevent scrolling on the entire body*/
+
 
 
         // Reset body styles when component unmounts
