@@ -77,6 +77,7 @@ const LandingPage = () => {
         document.body.style.padding = '0';
         document.body.style.overflow = 'hidden'; // Prevent scrolling on the entire body
 
+
         // Reset body styles when component unmounts
         return () => {
             document.body.style.margin = '';
@@ -86,6 +87,7 @@ const LandingPage = () => {
     }, []);
 
     const handleGetStartedClick = (event) => {
+
         setAnchorEl(event.currentTarget);
     };
 
@@ -94,14 +96,16 @@ const LandingPage = () => {
     };
 
     const handleRoleSelection = (role) => {
+        dispatch(setUserRole(role))
         let routePath = '';
         if (role === 'ROLE_ADMIN') {
             routePath = '/adminSignUp';
         } else if (role === 'ROLE_USER') {
             routePath = '/customerSignUp';
         } else if (role === 'ROLE_VENDOR') {
-            routePath = '/vendorSignUp';
+            /*routePath = '/vendorSignUp';*/
         }
+
         history.push(routePath);
         handleGetStartedClose();
     };
@@ -115,7 +119,8 @@ const LandingPage = () => {
                 <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => history.push('/about')}
+                    /*  onClick={() => history.push('/about')}*/
+                    onClick={() => history.push('/')}
                 >
                     About Us
                 </Button>
