@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { AppBar, Typography, Toolbar, Avatar, Button, Paper, Grid, Container, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -20,7 +20,8 @@ const VendorSignUp = () => {
     });
     const [isSignup, setIsSignup] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-
+    const userRole = useSelector((state) => state.adminReducer.userRole);
+    const [error, setError] = useState('');
     const handleShowPassword = () => setShowPassword(!showPassword);
 
     const switchMode = () => {
@@ -35,16 +36,47 @@ const VendorSignUp = () => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(''); // Clear any existing errors
 
-        if (isSignup) {
-            console.log('User signed up:', form);
-            history.push('/');
-        } else {
-            console.log('User signed in:', form);
-            history.push('/');
+        if (isSignup && form.password !== form.confirmPassword) {
+            setError("Passwords don't match.");
+            return;
         }
+
+        try {
+            if (isSignup) {
+                const userData = {
+                    username: form.name,
+                    password: form.password,
+                    roles: [userRole]
+                };
+                const response = await AuthService.register(userData);
+                setIsSignup(false);
+                setError('');
+                alert('Registration successful. Please log in.');
+            } else {
+                const response = await AuthService.login(form.name, form.password);
+                if (response.token) {
+                    localStorage.setItem('jwtToken', response.token);
+                    history.push('/vendorDashboard');
+                    setError('');
+                } else {
+                    setError(response.message || 'Login failed');
+                    alert(response.message || 'Login failed');
+
+                }
+            }
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || 'Authentication failed';
+            alert(error.response?.data?.message || 'Authentication failed')
+            setError(errorMessage);
+        }
+    };
+
+    const handleBlur = () => {
+        setError(''); // Clear error message
     };
 
     return (
@@ -72,43 +104,44 @@ const VendorSignUp = () => {
                             {isSignup && (
                                 <>
                                     <Input name="nic" label="NIC" handleChange={handleChange} autoFocus half />
-                                    <Input name="name" label="Name" handleChange={handleChange} half />
                                     <Input name="address" label="Address" handleChange={handleChange} half />
-                                    <Input name="contactNo" label="ContactNo" handleChange={handleChange} half />
+                                    <Input name="contactNo" label="ContactNo" handleChange={handleChange}  />
                                     <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
                                     <Input name="serviceName" label="Service Name" handleChange={handleChange} />
                                     <FormControl fullWidth className={classes.input}>
                                         <InputLabel>Service Type</InputLabel>
                                         <Select name="serviceType" value={form.serviceType} onChange={handleChange}>
-                                            <MenuItem value="type1">Type 1</MenuItem>
-                                            <MenuItem value="type2">Type 2</MenuItem>
+                                            <MenuItem value="serviceType1">Floral</MenuItem>
+                                            <MenuItem value="serviceType2">Photography</MenuItem>
+                                            <MenuItem value="serviceType3">Catering</MenuItem>
+                                            <MenuItem value="serviceType4">DJ</MenuItem>
                                         </Select>
                                     </FormControl>
                                     <Input name="portfolio" label="Portfolio" handleChange={handleChange} />
                                     <Input name="price" label="Price" handleChange={handleChange} />
                                     <Input name="city" label="City" handleChange={handleChange} />
+                                </>
+                            )}
+                                    <Input
+                                        name="name"
+                                        label="Name"
+                                        handleChange={handleChange}
+                                        handleBlur={handleBlur} // Add this
+
+                                    />
                                     <Input
                                         name="password"
                                         label="Password"
                                         handleChange={handleChange}
                                         type={showPassword ? 'text' : 'password'}
                                         handleShowPassword={handleShowPassword}
+                                        handleBlur={handleBlur} // Add this
+
                                     />
-                                    <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />
-                                </>
-                            )}
-                            {!isSignup && (
-                                <>
-                                    <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-                                    <Input
-                                        name="password"
-                                        label="Password"
-                                        handleChange={handleChange}
-                                        type={showPassword ? 'text' : 'password'}
-                                        handleShowPassword={handleShowPassword}
-                                    />
-                                </>
-                            )}
+                                    {isSignup && (
+                                        <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />
+                                    )}
+                                    {!isSignup && error && <Typography color="error">{error}</Typography>}
                         </Grid>
                         <Button
                             type="submit"
@@ -116,8 +149,6 @@ const VendorSignUp = () => {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            component={isSignup ? undefined : Link}
-                            to={isSignup ? undefined : "/vendorDashboard"}
                         >
                             {isSignup ? 'Sign Up' : 'Sign In'}
                         </Button>
