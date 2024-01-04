@@ -103,7 +103,7 @@ const LandingPage = () => {
         } else if (role === 'ROLE_USER') {
             routePath = '/customerSignUp';
         } else if (role === 'ROLE_VENDOR') {
-            /*routePath = '/vendorSignUp';*/
+            routePath = '/vendorSignUp';
         }
 
         history.push(routePath);
