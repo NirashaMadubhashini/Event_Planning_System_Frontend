@@ -93,7 +93,7 @@ const CustomerSignUp = () => {
                 </Toolbar>
             </AppBar>
 
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" >
                 {/* ... The rest of the SignUp form contents ... */}
                 <Paper className={classes.paper} elevation={6}>
                     <Avatar className={classes.avatar}>
