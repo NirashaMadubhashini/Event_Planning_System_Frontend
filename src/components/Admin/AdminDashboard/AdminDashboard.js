@@ -23,6 +23,8 @@ import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import RoomServiceIcon from "@mui/icons-material/RoomService";
 import RateReviewIcon from "@mui/icons-material/RateReview";
 import ThumbsUpDownIcon from "@mui/icons-material/ThumbsUpDown";
+import MLService from "../../../api/MlService";
+import {Divider} from "@mui/material";
 
 // This is the home menu
 const AdminDashboard = () => {
@@ -40,6 +42,14 @@ const AdminDashboard = () => {
     const [appBarPosition, setAppBarPosition] = useState("relative");
     const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
+
+    const handlePredictionsClick = () => {
+        MLService.runPrediction().
+        then( res => {
+        }).
+        catch( err => {
+        })
+    }
 
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) =>
@@ -231,11 +241,12 @@ const AdminDashboard = () => {
                         </Paper>
                     </Grid>
                 </Grid>
+                {/*<Divider style={{ margin: '20px 0' }} />  Or an empty div: <div style={{ height: '20px' }} /> */}
                 <Button
                     variant="contained"
                     color="primary"
-                    // className={classes.miPredictionButton}
-                    // onClick={handleViewMIPredictions}
+                    onClick={handlePredictionsClick}
+                    style={{ marginTop: '20px' }} // Add margin at the top
                 >
                     View MI Predictions
                 </Button>
