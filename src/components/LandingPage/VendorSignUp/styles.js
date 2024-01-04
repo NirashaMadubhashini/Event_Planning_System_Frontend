@@ -2,13 +2,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(2),
-    maxHeight: '500px', // Adjust this value as per your requirement
-    overflowY: 'auto',
   },
   root: {
     '& .MuiTextField-root': {
