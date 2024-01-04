@@ -16,6 +16,7 @@ const CustomerSignUp = () => {
     const [form, setForm] = useState({
         nic: '', name: '', address: '', contactNo: '', email: '', type: '', password: '', confirmPassword: ''
     });
+    const [errors, setErrors] = useState({});
     const [isSignup, setIsSignup] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const userRole = useSelector((state) => state.adminReducer.userRole);
