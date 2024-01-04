@@ -2,13 +2,24 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(2),
 
   },
+  // paper: {
+  //   marginTop: theme.spacing(8),
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   alignItems: 'center',
+  //   padding: theme.spacing(2),
+  //   // Add these lines for the scrollbar
+  //   overflow: 'auto', // Enable scrolling
+  //   maxHeight: '500px', // Set a maximum height
+  // },
+
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
