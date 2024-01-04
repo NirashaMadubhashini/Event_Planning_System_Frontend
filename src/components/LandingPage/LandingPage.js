@@ -75,7 +75,7 @@ const LandingPage = () => {
         // Apply styles to body when component mounts
         document.body.style.margin = '0';
         document.body.style.padding = '0';
-        document.body.style.overflow = 'hidden'; // Prevent scrolling on the entire body
+       /* document.body.style.overflow = 'hidden'; // Prevent scrolling on the entire body*/
 
 
         // Reset body styles when component unmounts
