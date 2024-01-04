@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Avatar, Button, Paper, Grid, Typography, Container, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import {
+  Avatar,
+  Button,
+  Paper,
+  Grid,
+  Typography,
+  Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Snackbar
+} from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import useStyles from './styles';
 import Input from './Input';
+import AuthService from "../../api/authService";
+import Alert from "@material-ui/lab/Alert";
 
 const initialState = {
   nic: '',
@@ -19,11 +33,12 @@ const initialState = {
 
 const SignUp = () => {
   const [form, setForm] = useState(initialState);
-  const [isSignup, setIsSignup] = useState(false);
+  const [isSignup, setIsSignup] = useState(true);
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -33,23 +48,31 @@ const SignUp = () => {
     setForm(initialState);
     setIsSignup((prevIsSignup) => !prevIsSignup);
     setShowPassword(false);
+    setError('');
   };
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const closeSnackbar = () => setError('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (isSignup) {
-      // Dummy signup logic
-      console.log('User signed up:', form);
-      history.push('/');
-    } else {
-      // Dummy signin logic
-      console.log('User signed in:', form);
-      history.push('/');
+    if (isSignup && form.password !== form.confirmPassword) {
+      setError("Passwords don't match.");
+      return;
+    }
+
+    try {
+      if (isSignup) {
+        await AuthService.register(form);
+        history.push('/'); // Redirect after successful signup
+      } else {
+        await AuthService.login(form.email, form.password);
+        history.push('/'); // Redirect after successful login
+      }
+    } catch (error) {
+      setError(error.response?.data?.message || 'Authentication failed');
     }
   };
 
@@ -114,6 +137,13 @@ const SignUp = () => {
               </Grid>
             </Grid>
           </form>
+          {error && (
+              <Snackbar open={!!error} autoHideDuration={6000} onClose={closeSnackbar}>
+                <Alert onClose={closeSnackbar} severity="error">
+                  {error}
+                </Alert>
+              </Snackbar>
+          )}
         </Paper>
       </Container>
   );
