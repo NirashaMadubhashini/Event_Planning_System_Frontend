@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import { AppBar, Typography, Toolbar, Avatar, Button, Paper, Grid, Container, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -11,10 +11,8 @@ import AuthService from "../../../api/authService";
 
 const CustomerSignUp = () => {
     const classes = useStyles();
-    const dispatch = useDispatch();
     const history = useHistory();
 
-    const [user, setUser] = useState(null);
     const [form, setForm] = useState({
         nic: '', name: '', address: '', contactNo: '', email: '', type: '', password: '', confirmPassword: ''
     });
@@ -22,11 +20,6 @@ const CustomerSignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const userRole = useSelector((state) => state.adminReducer.userRole);
     const [error, setError] = useState('');
-
-    const logout = () => {
-        console.log("User logged out");
-        setUser(null);
-    };
 
     const handleShowPassword = () => setShowPassword(!showPassword);
 
@@ -80,14 +73,13 @@ const CustomerSignUp = () => {
             setError(errorMessage);
         }
     };
-
     const handleBlur = () => {
         setError(''); // Clear error message
     };
- /*   const containerStyle = {
+    const containerStyle = {
         overflowY: 'auto', // make it scrollable
         maxHeight: isSignup ? 'none' : '90vh', // adjust max height based on isSignup state
-    };*/
+    };
 
     return (
         <>
@@ -126,18 +118,22 @@ const CustomerSignUp = () => {
                                 handleChange={handleChange}
                                 handleBlur={handleBlur} // Add this
 
-                            />                            <Input
+                            />
+                            {/* Repeat for other Input fields */}
+                            <Input
                                 name="password"
                                 label="Password"
                                 handleChange={handleChange}
                                 type={showPassword ? 'text' : 'password'}
                                 handleShowPassword={handleShowPassword}
                                 handleBlur={handleBlur} // Add this
+
                             />
                             {isSignup && (
                                 <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />
                             )}
                             {!isSignup && error && <Typography color="error">{error}</Typography>}
+
 
                         </Grid>
                         <Button
@@ -149,6 +145,7 @@ const CustomerSignUp = () => {
                         >
                             {isSignup ? 'Sign Up' : 'Sign In'}
                         </Button>
+
                         <Grid container justify="center">
                             <Grid item>
                                 <Typography>
