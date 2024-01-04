@@ -52,7 +52,6 @@ const AddPackage = () => {
     const dispatch = useDispatch();
     const packages = useSelector(state => state.adminReducer.packages);
     const [filteredPackages, setFilteredPackages] = useState(packages);
-
     const [anchorEl, setAnchorEl] = useState(null);
     const [searchValue, setSearchValue] = useState("");
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
