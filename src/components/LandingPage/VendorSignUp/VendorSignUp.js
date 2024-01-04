@@ -7,6 +7,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import EventPro from "../../../assets/images/BlackLogo.png";
 import useStyles from './styles';
 import Input from './Input';
+import AuthService from "../../../api/authService";
 
 const VendorSignUp = () => {
     const classes = useStyles();
