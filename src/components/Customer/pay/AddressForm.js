@@ -17,8 +17,8 @@ export default function AddressForm() {
     country: ''
   });
 
-  const cities = ["New York", "Los Angeles", "Chicago"]; // Dummy data
-  const states = ["New York", "California", "Illinois"]; // Dummy data
+  const cities = ["Galle", "Colombo", "Matara"]; // Dummy data
+  const states = ["Southern", "Western", "Sabaragamu"]; // Dummy data
   const countries = ["USA", "Canada", "Mexico"]; // Dummy data
 
   const handleInputChange = (e) => {
