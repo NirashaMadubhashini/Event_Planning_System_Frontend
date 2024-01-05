@@ -19,14 +19,18 @@ export default function AddressForm() {
 
   const cities = ["Galle", "Colombo", "Matara"]; // Dummy data
   const states = ["Southern", "Western", "Sabaragamu"]; // Dummy data
-  const countries = ["USA", "Canada", "Mexico"]; // Dummy data
+  const countries = ["Sri Lanka"]; // Dummy data
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({ ...prevState, [name]: value }));
+    if (name !== 'zip' || isZipValid(value)) {
+      setFormData(prevState => ({ ...prevState, [name]: value }));
+    }
   };
 
   const isNameValid = (name) => /^[a-zA-Z]+$/.test(name);
+
+  const isZipValid = (zip) => /^\d*$/.test(zip); // Regex for numbers only
 
   const validateForm = () => {
     // Check for name validity and presence of all other fields
@@ -46,7 +50,6 @@ export default function AddressForm() {
       console.log("Form has errors. Please fill all fields correctly.");
     }
   };
-
 
 
   return (
@@ -125,6 +128,8 @@ export default function AddressForm() {
                 variant="standard"
                 value={formData.zip}
                 onChange={handleInputChange}
+                error={formData.zip && !isZipValid(formData.zip)}
+                helperText={formData.zip && !isZipValid(formData.zip) ? "Only numbers allowed" : ""}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
