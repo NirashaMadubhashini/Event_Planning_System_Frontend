@@ -7,10 +7,8 @@ import {
     Card,
     CardContent,
     IconButton,
-    Menu,
-    MenuItem,
     Grid,
-    Container, TextField,
+    Container
 } from "@material-ui/core";
 import useStyles from "./style";
 import {Logout,} from "@mui/icons-material";
@@ -450,10 +448,6 @@ const Service = () => {
                             </Card>
                         )}
                     </Grid>
-
-
-
-
                 </Grid>
             </Container>
         </div>
