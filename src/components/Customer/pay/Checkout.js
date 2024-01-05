@@ -1,5 +1,5 @@
-import
-    * as React from 'react';
+import * as React from 'react';
+import { useHistory } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,6 +12,8 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
@@ -28,7 +30,6 @@ function Copyright() {
         </Typography>
     );
 }
-
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
@@ -47,6 +48,7 @@ function getStepContent(step) {
 
 export default function Checkout() {
     const [activeStep, setActiveStep] = React.useState(0);
+    const history = useHistory();
 
     const handleNext = () => {
         setActiveStep(activeStep + 1);
@@ -54,6 +56,10 @@ export default function Checkout() {
 
     const handleBack = () => {
         setActiveStep(activeStep - 1);
+    };
+
+    const handleClose = () => {
+        history.push('/service');
     };
 
     return (
@@ -68,7 +74,11 @@ export default function Checkout() {
                     borderBottom: (t) => `1px solid ${t.palette.divider}`,
                 }}
             >
-
+                <Toolbar>
+                    <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+                        <CloseIcon />
+                    </IconButton>
+                </Toolbar>
             </AppBar>
             <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
