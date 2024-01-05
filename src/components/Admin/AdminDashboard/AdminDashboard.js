@@ -12,7 +12,7 @@ import {
     Grid,
     Container,
     InputAdornment,
-    TextField, Paper,
+    TextField, Paper,CircularProgress
 } from "@material-ui/core";
 import useStyles from "./style";
 import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
@@ -30,6 +30,8 @@ import {Divider} from "@mui/material";
 const AdminDashboard = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
+    const [loading, setLoading] = useState(false); // Added loading state
+
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -43,14 +45,20 @@ const AdminDashboard = () => {
     const [clickedButtons, setClickedButtons] = useState({});
     const [clickedCategory, setClickedCategory] = useState("");
 
-    const handlePredictionsClick = () => {
-        MLService.runPrediction().
-        then( res => {
-        }).
-        catch( err => {
-        })
-    }
 
+    const handlePredictionsClick = () => {
+        setLoading(true); // Start loading
+        MLService.runPrediction()
+            .then(res => {
+                // Handle successful prediction
+            })
+            .catch(err => {
+                // Handle error
+            })
+            .finally(() => {
+                setLoading(false); // Stop loading
+            });
+    }
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) =>
             prevCategory === category ? "" : category
@@ -246,9 +254,10 @@ const AdminDashboard = () => {
                     variant="contained"
                     color="primary"
                     onClick={handlePredictionsClick}
-                    style={{ marginTop: '20px' }} // Add margin at the top
+                    style={{ marginTop: '20px' }}
+                    disabled={loading} // Disable button when loading
                 >
-                    View MI Predictions
+                    {loading ? <CircularProgress size={24} /> : "View MI Predictions"}
                 </Button>
                 <Grid container spacing={5}>
                     <Grid item xs={12} sm={6} md={4} lg={3} className={classes.dailyGrid}>
