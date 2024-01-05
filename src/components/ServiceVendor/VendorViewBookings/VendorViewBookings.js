@@ -142,7 +142,7 @@ const VendorViewBookings = () => {
 
     const bookingData = [
         {
-            customerName: "John Doe",
+            customerName: "Nirasha Madubhashini",
             contactNo:"0761319259",
             event: "Wedding",
             vendorName: "Vendor 1",
@@ -152,7 +152,7 @@ const VendorViewBookings = () => {
             paymentStatus: "Paid",
         },
         {
-            customerName: "Jane Smith",
+            customerName: "Anupama Sathsarani",
             contactNo:"0766430010",
             event: "Birthday Party",
             vendorName: "Vendor 2",
@@ -162,7 +162,7 @@ const VendorViewBookings = () => {
             paymentStatus: "Pending",
         },
         {
-            customerName: "Jane Smith",
+            customerName: "Geeth Malinda",
             contactNo:"0764910300",
             event: "Birthday Party",
             vendorName: "Vendor 2",
@@ -307,7 +307,7 @@ const VendorViewBookings = () => {
                                 <TableCell>Date</TableCell>
                                 <TableCell>Time</TableCell>
                                 <TableCell>Payment Status</TableCell>
-                                <TableCell>Actions</TableCell>
+                                {/*<TableCell>Actions</TableCell>*/}
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -334,11 +334,11 @@ const VendorViewBookings = () => {
                                             {customer.paymentStatus}
                                         </Typography>
                                     </TableCell>
-                                    <TableCell>
-                                        <IconButton color="secondary" onClick={handleMessageAction}>
-                                            <MailOutlineIcon />
-                                        </IconButton>
-                                    </TableCell>
+                                    {/*<TableCell>*/}
+                                    {/*    <IconButton color="secondary" onClick={handleMessageAction}>*/}
+                                    {/*        <MailOutlineIcon />*/}
+                                    {/*    </IconButton>*/}
+                                    {/*</TableCell>*/}
                                 </TableRow>
                             ))}
                         </TableBody>
