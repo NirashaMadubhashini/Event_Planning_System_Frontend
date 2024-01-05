@@ -13,48 +13,13 @@ import {
     Container, TextField,
 } from "@material-ui/core";
 import useStyles from "./style";
-import {
-    Search,
-    ArrowDropDown,
-    MapsHomeWork,
-    Fastfood,
-    Celebration,
-    Cake,
-    CameraAlt,
-    LibraryMusic,
-    EmojiTransportation,
-    CardGiftcard,
-    SurroundSound,
-    Chair,
-    AdminPanelSettings,
-    CropOriginal,
-    Store,
-    ExitToApp, Brush, Logout,
-} from "@mui/icons-material";
+import {Logout,} from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import {Link} from "react-router-dom";
-import DeckIcon from "@mui/icons-material/Deck";
-import OtherHousesIcon from "@mui/icons-material/OtherHouses";
-import LocalFloristIcon from "@mui/icons-material/LocalFlorist";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import MonochromePhotosIcon from "@mui/icons-material/MonochromePhotos";
-import MusicNoteIcon from "@mui/icons-material/MusicNote";
-import CakeIcon from "@mui/icons-material/Cake";
-import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
-import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
-import AttractionsIcon from '@mui/icons-material/Attractions';
 import EventPro from "../../../assets/images/CorrectLogo.png";
-import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
-import {DemoContainer} from '@mui/x-date-pickers/internals/demo';
-import {LocalizationProvider} from '@mui/x-date-pickers-pro';
-import {AdapterDayjs} from '@mui/x-date-pickers-pro/AdapterDayjs';
-import {DateRangePicker} from '@mui/x-date-pickers-pro/DateRangePicker';
 import {format} from "date-fns";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
 import {fetchServicesTypeWise, getAllServices} from "../../../actions";
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -330,71 +295,7 @@ const Service = () => {
                         </div>
                     </Grid>
                     <Grid container spacing={3} justify="center">
-                        {/*<form onSubmit={handleSubmit}>*/}
-                        {/*    <Grid container spacing={3}>*/}
-                        {/*        <Grid item xs={12} md={6}>*/}
-                        {/*            <FormControl fullWidth variant="outlined">*/}
-                        {/*                <InputLabel id="function-type-label">Function Type</InputLabel>*/}
-                        {/*                <Select*/}
-                        {/*                    labelId="function-type-label"*/}
-                        {/*                    id="function-type"*/}
-                        {/*                    value={functionType}*/}
-                        {/*                    onChange={handleFunctionTypeChange}*/}
-                        {/*                    label="Function Type"*/}
-                        {/*                >*/}
-                        {/*                    <MenuItem value="">*/}
-                        {/*                        <em>None</em>*/}
-                        {/*                    </MenuItem>*/}
-                        {/*                    <MenuItem value="Corporate Event">Corporate Event</MenuItem>*/}
-                        {/*                    <MenuItem value="Wedding">Wedding</MenuItem>*/}
-                        {/*                    <MenuItem value="Birthday Party">Birthday Party</MenuItem>*/}
-                        {/*                </Select>*/}
-                        {/*            </FormControl>*/}
-                        {/*        </Grid>*/}
-                        {/*        <Grid item xs={12} md={6}>*/}
-                        {/*            <FormControl fullWidth variant="outlined">*/}
-                        {/*                <InputLabel id="location-label">Location</InputLabel>*/}
-                        {/*                <Select*/}
-                        {/*                    labelId="location-label"*/}
-                        {/*                    id="location"*/}
-                        {/*                    value={location}*/}
-                        {/*                    onChange={handleLocationChange}*/}
-                        {/*                    label="Location"*/}
-                        {/*                >*/}
-                        {/*                    <MenuItem value="">*/}
-                        {/*                        <em>None</em>*/}
-                        {/*                    </MenuItem>*/}
-                        {/*                    <MenuItem value="Location 1">Galle</MenuItem>*/}
-                        {/*                    <MenuItem value="Location 2">Colombo</MenuItem>*/}
-                        {/*                    <MenuItem value="Location 3">Matara</MenuItem>*/}
-                        {/*                </Select>*/}
-                        {/*            </FormControl>*/}
-                        {/*        </Grid>*/}
-                        {/*        <Grid item xs={6} md={6}>*/}
-                        {/*            <Button variant="contained" color="primary" type="submit">*/}
-                        {/*                Submit*/}
-                        {/*            </Button>*/}
-                        {/*        </Grid>*/}
-                        {/*    </Grid>*/}
-                        {/*</form>*/}
                     </Grid>
-                    {/*<Grid container spacing={3} justify="center">*/}
-                    {/*    <Grid item xs={12} sm={6}>*/}
-                    {/*        <Card className={classes.card}>*/}
-                    {/*            <CardContent className={classes.cardContent}>*/}
-                    {/*                <div>*/}
-                    {/*                    <TextField id="nic" label="NIC" variant="outlined" fullWidth />*/}
-                    {/*                    <TextField id="name" label="Name" variant="outlined" fullWidth />*/}
-                    {/*                    <TextField id="address" label="Address" variant="outlined" fullWidth />*/}
-                    {/*                    <TextField id="phone" label="Phone" variant="outlined" fullWidth />*/}
-                    {/*                    <Button variant="contained" color="primary" fullWidth>*/}
-                    {/*                        Submit*/}
-                    {/*                    </Button>*/}
-                    {/*                </div>*/}
-                    {/*            </CardContent>*/}
-                    {/*        </Card>*/}
-                    {/*    </Grid>*/}
-                    {/*</Grid>*/}
                     <Grid item xs={12} sm={4}>
                         {services.map((service) => (
                             <Card
@@ -415,108 +316,6 @@ const Service = () => {
                             </Card>
                         ))}
                     </Grid>
-                    {/*<Grid item xs={12} sm={8}>*/}
-                    {/*    {clickedService && (*/}
-                    {/*        <Card className={classes.vendorCard}>*/}
-                    {/*            <CardContent>*/}
-                    {/*                <Typography variant="h6" gutterBottom>*/}
-                    {/*                    Vendors*/}
-                    {/*                </Typography>*/}
-                    {/*                {vendors*/}
-                    {/*                    .map((vendor) => (*/}
-                    {/*                        <Card key={vendor.id} className={classes.vendorInfoCard}>*/}
-                    {/*                            <CardContent>*/}
-                    {/*                                <Typography variant="subtitle1" gutterBottom>*/}
-                    {/*                                    {vendor.name}*/}
-                    {/*                                </Typography>*/}
-                    {/*                                {vendor.services*/}
-                    {/*                                    .filter(*/}
-                    {/*                                        (service) => service.name === clickedService*/}
-                    {/*                                    )*/}
-                    {/*                                    .map((service) => (*/}
-                    {/*                                        <div key={service.id}>*/}
-                    {/*                                            {service.packages.map((pkg) => (*/}
-                    {/*                                                <Card*/}
-                    {/*                                                    key={pkg.id}*/}
-                    {/*                                                    className={classes.packageCard}*/}
-                    {/*                                                >*/}
-                    {/*                                                    <CardContent>*/}
-                    {/*                                                        <Typography*/}
-                    {/*                                                            variant="body2"*/}
-                    {/*                                                            gutterBottom*/}
-                    {/*                                                        >*/}
-                    {/*                                                            {pkg.name}*/}
-                    {/*                                                        </Typography>*/}
-                    {/*                                                        <Typography*/}
-                    {/*                                                            variant="body2"*/}
-                    {/*                                                            gutterBottom*/}
-                    {/*                                                        >*/}
-                    {/*                                                            Price: ${pkg.price}*/}
-                    {/*                                                        </Typography>*/}
-                    {/*                                                        <Button*/}
-                    {/*                                                            className={classes.addButton}*/}
-                    {/*                                                            onClick={() =>*/}
-                    {/*                                                                handlePackageSelect(*/}
-                    {/*                                                                    vendor.id,*/}
-                    {/*                                                                    service.id,*/}
-                    {/*                                                                    pkg.id*/}
-                    {/*                                                                )*/}
-                    {/*                                                            }*/}
-                    {/*                                                            variant="outlined"*/}
-                    {/*                                                            color="primary"*/}
-                    {/*                                                            disabled={*/}
-                    {/*                                                                clickedButtons[clickedCategory] &&*/}
-                    {/*                                                                clickedButtons[clickedCategory][*/}
-                    {/*                                                                    clickedService*/}
-                    {/*                                                                    ]*/}
-                    {/*                                                            }*/}
-                    {/*                                                        >*/}
-                    {/*                                                            Add*/}
-                    {/*                                                        </Button>*/}
-                    {/*                                                        /!*<Button>*!/*/}
-                    {/*                                                        /!*    Call*!/*/}
-                    {/*                                                        /!*</Button>*!/*/}
-                    {/*                                                        <Box*/}
-                    {/*                                                            sx={{*/}
-                    {/*                                                                width: 200,*/}
-                    {/*                                                                display: 'flex',*/}
-                    {/*                                                                alignItems: 'center',*/}
-                    {/*                                                                marginTop: '20px',*/}
-                    {/*                                                            }}*/}
-                    {/*                                                        >*/}
-                    {/*                                                            <Rating*/}
-                    {/*                                                                name="hover-feedback"*/}
-                    {/*                                                                value={value}*/}
-                    {/*                                                                precision={0.5}*/}
-                    {/*                                                                getLabelText={getLabelText}*/}
-                    {/*                                                                onChange={(event, newValue) => {*/}
-                    {/*                                                                    setValue(newValue);*/}
-                    {/*                                                                }}*/}
-                    {/*                                                                onChangeActive={(event, newHover) => {*/}
-                    {/*                                                                    setHover(newHover);*/}
-                    {/*                                                                }}*/}
-                    {/*                                                                emptyIcon={<StarIcon*/}
-                    {/*                                                                    style={{opacity: 0.55}}*/}
-                    {/*                                                                    fontSize="inherit"/>}*/}
-                    {/*                                                            />*/}
-                    {/*                                                            {value !== null && (*/}
-                    {/*                                                                <Box*/}
-                    {/*                                                                    sx={{ml: 2}}>{labels[hover !== -1 ? hover : value]}</Box>*/}
-                    {/*                                                            )}*/}
-                    {/*                                                        </Box>*/}
-
-                    {/*                                                    </CardContent>*/}
-                    {/*                                                </Card>*/}
-                    {/*                                            ))}*/}
-                    {/*                                        </div>*/}
-                    {/*                                    ))}*/}
-                    {/*                            </CardContent>*/}
-                    {/*                        </Card>*/}
-                    {/*                    ))}*/}
-                    {/*            </CardContent>*/}
-                    {/*        </Card>*/}
-                    {/*    )}*/}
-                    {/*</Grid>*/}
                     <Grid item xs={12} sm={8}>
                         {clickedService && (
                             <Card className={classes.vendorCard}>
