@@ -65,13 +65,13 @@ const ViewCustomers = () => {
 
     const customersData = [
         {
-            customerName: "John Doe",
-            nic: "123456789",
-            mobile: "187632479816",
+            customerName: "Nirasha Madubhashini",
+            nic: "200071100222",
+            mobile: "0761319259",
             address: "Galle",
-            email: "john@gmail.com",
-            date: "2023-07-15",
-            time: "12:00 PM",
+            email: "nirasha0729@gmail.com",
+            date: "2024-01-05",
+            time: "11:00 aM",
 
         },
         {
@@ -80,7 +80,7 @@ const ViewCustomers = () => {
             mobile: "3487632479816",
             address: "Galle",
             email: "samith@gmail.com",
-            date: "2023-07-15",
+            date: "2024-01-05",
             time: "12:00 PM",
         },
         {
@@ -89,7 +89,7 @@ const ViewCustomers = () => {
             mobile: "567632479816",
             address: "Galle",
             email: "phall@gmail.com",
-            date: "2023-07-15",
+            date: "2024-01-05",
             time: "12:00 PM",
         },
     ];
