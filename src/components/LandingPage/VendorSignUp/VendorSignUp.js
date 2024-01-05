@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import { AppBar, Typography, Toolbar, Avatar, Button, Paper, Grid, Container, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppBar, Typography, Toolbar, Avatar, Button, Paper, Grid, Container, FormControl, InputLabel, MenuItem, Select, Snackbar} from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import EventPro from "../../../assets/images/BlackLogo.png";
 import useStyles from './styles';
 import Input from './Input';
 import AuthService from "../../../api/authService";
-
+import Alert from '@mui/material/Alert';
 const VendorSignUp = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [user, setUser] = useState(null);
     const [form, setForm] = useState({
         nic: '', name: '', address: '', contactNo: '', email: '', password: '', confirmPassword: '', serviceName: '', serviceType: '', portfolio: '', price: '', city: ''
     });
@@ -21,6 +20,12 @@ const VendorSignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const userRole = useSelector((state) => state.adminReducer.userRole);
     const [error, setError] = useState('');
+
+    // Snackbar state
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('info');
+
     const handleShowPassword = () => setShowPassword(!showPassword);
 
     const switchMode = () => {
@@ -37,10 +42,13 @@ const VendorSignUp = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(''); // Clear any existing errors
+        setError('');
 
         if (isSignup && form.password !== form.confirmPassword) {
             setError("Passwords don't match.");
+            setSnackbarMessage("Passwords don't match.");
+            setSnackbarSeverity('error');
+            setSnackbarOpen(true);
             return;
         }
 
@@ -54,23 +62,31 @@ const VendorSignUp = () => {
                 const response = await AuthService.register(userData);
                 setIsSignup(false);
                 setError('');
-                alert('Registration successful. Please log in.');
+                setSnackbarMessage('Registration successful. Please log in.');
+                setSnackbarSeverity('success');
+                setSnackbarOpen(true);
             } else {
                 const response = await AuthService.login(form.name, form.password);
                 if (response.token) {
                     localStorage.setItem('jwtToken', response.token);
                     history.push('/vendorDashboard');
                     setError('');
+                    setSnackbarMessage('Login successful');
+                    setSnackbarSeverity('success');
+                    setSnackbarOpen(true);
                 } else {
                     setError(response.message || 'Login failed');
-                    alert(response.message || 'Login failed');
-
+                    setSnackbarMessage(response.message || 'Login failed');
+                    setSnackbarSeverity('error');
+                    setSnackbarOpen(true);
                 }
             }
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'Authentication failed';
-            alert(error.response?.data?.message || 'Authentication failed')
             setError(errorMessage);
+            setSnackbarMessage(errorMessage);
+            setSnackbarSeverity('error');
+            setSnackbarOpen(true);
         }
     };
 
@@ -104,7 +120,7 @@ const VendorSignUp = () => {
                                 <>
                                     <Input name="nic" label="NIC" handleChange={handleChange} autoFocus half />
                                     <Input name="address" label="Address" handleChange={handleChange} half />
-                                    <Input name="contactNo" label="ContactNo" handleChange={handleChange}  />
+                                    <Input name="contactNo" label="Contact No" handleChange={handleChange} />
                                     <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
                                     <Input name="serviceName" label="Service Name" handleChange={handleChange} />
                                     <FormControl fullWidth className={classes.input}>
@@ -121,26 +137,24 @@ const VendorSignUp = () => {
                                     <Input name="city" label="City" handleChange={handleChange} />
                                 </>
                             )}
-                                    <Input
-                                        name="name"
-                                        label="Name"
-                                        handleChange={handleChange}
-                                        handleBlur={handleBlur} // Add this
-
-                                    />
-                                    <Input
-                                        name="password"
-                                        label="Password"
-                                        handleChange={handleChange}
-                                        type={showPassword ? 'text' : 'password'}
-                                        handleShowPassword={handleShowPassword}
-                                        handleBlur={handleBlur} // Add this
-
-                                    />
-                                    {isSignup && (
-                                        <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />
-                                    )}
-                                    {!isSignup && error && <Typography color="error">{error}</Typography>}
+                            <Input
+                                name="name"
+                                label="Name"
+                                handleChange={handleChange}
+                                handleBlur={handleBlur}
+                            />
+                            <Input
+                                name="password"
+                                label="Password"
+                                handleChange={handleChange}
+                                type={showPassword ? 'text' : 'password'}
+                                handleShowPassword={handleShowPassword}
+                                handleBlur={handleBlur}
+                            />
+                            {isSignup && (
+                                <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />
+                            )}
+                            {!isSignup && error && <Typography color="error">{error}</Typography>}
                         </Grid>
                         <Button
                             type="submit"
@@ -167,6 +181,13 @@ const VendorSignUp = () => {
                     </form>
                 </Paper>
             </Container>
+
+            {/* Snackbar for displaying alerts */}
+            <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={() => setSnackbarOpen(false)}>
+                <Alert onClose={() => setSnackbarOpen(false)} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </>
     );
 };
