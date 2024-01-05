@@ -330,7 +330,53 @@ const Service = () => {
                         </div>
                     </Grid>
                     <Grid container spacing={3} justify="center">
-
+                        {/*<form onSubmit={handleSubmit}>*/}
+                        {/*    <Grid container spacing={3}>*/}
+                        {/*        <Grid item xs={12} md={6}>*/}
+                        {/*            <FormControl fullWidth variant="outlined">*/}
+                        {/*                <InputLabel id="function-type-label">Function Type</InputLabel>*/}
+                        {/*                <Select*/}
+                        {/*                    labelId="function-type-label"*/}
+                        {/*                    id="function-type"*/}
+                        {/*                    value={functionType}*/}
+                        {/*                    onChange={handleFunctionTypeChange}*/}
+                        {/*                    label="Function Type"*/}
+                        {/*                >*/}
+                        {/*                    <MenuItem value="">*/}
+                        {/*                        <em>None</em>*/}
+                        {/*                    </MenuItem>*/}
+                        {/*                    <MenuItem value="Corporate Event">Corporate Event</MenuItem>*/}
+                        {/*                    <MenuItem value="Wedding">Wedding</MenuItem>*/}
+                        {/*                    <MenuItem value="Birthday Party">Birthday Party</MenuItem>*/}
+                        {/*                </Select>*/}
+                        {/*            </FormControl>*/}
+                        {/*        </Grid>*/}
+                        {/*        <Grid item xs={12} md={6}>*/}
+                        {/*            <FormControl fullWidth variant="outlined">*/}
+                        {/*                <InputLabel id="location-label">Location</InputLabel>*/}
+                        {/*                <Select*/}
+                        {/*                    labelId="location-label"*/}
+                        {/*                    id="location"*/}
+                        {/*                    value={location}*/}
+                        {/*                    onChange={handleLocationChange}*/}
+                        {/*                    label="Location"*/}
+                        {/*                >*/}
+                        {/*                    <MenuItem value="">*/}
+                        {/*                        <em>None</em>*/}
+                        {/*                    </MenuItem>*/}
+                        {/*                    <MenuItem value="Location 1">Galle</MenuItem>*/}
+                        {/*                    <MenuItem value="Location 2">Colombo</MenuItem>*/}
+                        {/*                    <MenuItem value="Location 3">Matara</MenuItem>*/}
+                        {/*                </Select>*/}
+                        {/*            </FormControl>*/}
+                        {/*        </Grid>*/}
+                        {/*        <Grid item xs={6} md={6}>*/}
+                        {/*            <Button variant="contained" color="primary" type="submit">*/}
+                        {/*                Submit*/}
+                        {/*            </Button>*/}
+                        {/*        </Grid>*/}
+                        {/*    </Grid>*/}
+                        {/*</form>*/}
                     </Grid>
                     {/*<Grid container spacing={3} justify="center">*/}
                     {/*    <Grid item xs={12} sm={6}>*/}
