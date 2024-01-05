@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {useSelector} from 'react-redux';
-import { AppBar, Typography, Toolbar, Avatar, Button, Paper, Grid, Container, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { AppBar, Typography, Toolbar, Avatar, Button, Paper, Grid, Container, Snackbar } from '@material-ui/core';
+import Alert from '@mui/material/Alert';
 import { Link, useHistory } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
 import EventPro from "../../../assets/images/BlackLogo.png";
 import useStyles from './styles';
 import Input from './Input';
@@ -19,6 +21,11 @@ const CustomerSignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const userRole = useSelector((state) => state.adminReducer.userRole);
     const [error, setError] = useState('');
+
+    // New state variables for Snackbar
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('info');
 
     const handleShowPassword = () => setShowPassword(!showPassword);
 
@@ -40,6 +47,9 @@ const CustomerSignUp = () => {
 
         if (isSignup && form.password !== form.confirmPassword) {
             setError("Passwords don't match.");
+            setSnackbarMessage("Passwords don't match.");
+            setSnackbarSeverity('error');
+            setSnackbarOpen(true);
             return;
         }
 
@@ -53,28 +63,37 @@ const CustomerSignUp = () => {
                 const response = await AuthService.register(userData);
                 setIsSignup(false);
                 setError('');
-                alert('Registration successful. Please log in.');
+                setSnackbarMessage('Registration successful. Please log in.');
+                setSnackbarSeverity('success');
+                setSnackbarOpen(true);
             } else {
                 const response = await AuthService.login(form.name, form.password);
                 if (response.token) {
                     localStorage.setItem('jwtToken', response.token);
                     history.push('/home');
                     setError('');
+                    setSnackbarMessage('Login successful');
+                    setSnackbarSeverity('success');
+                    setSnackbarOpen(true);
                 } else {
                     setError(response.message || 'Login failed');
-                    alert(response.message || 'Login failed');
-
+                    setSnackbarMessage(response.message || 'Login failed');
+                    setSnackbarSeverity('error');
+                    setSnackbarOpen(true);
                 }
             }
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'Authentication failed';
-            alert(error.response?.data?.message || 'Authentication failed')
             setError(errorMessage);
+            setSnackbarMessage(errorMessage);
+            setSnackbarSeverity('error');
+            setSnackbarOpen(true);
         }
     };
     const handleBlur = () => {
         setError(''); // Clear error message
     };
+
     const containerStyle = {
         overflowY: 'auto', // make it scrollable
         maxHeight: isSignup ? 'none' : '90vh', // adjust max height based on isSignup state
@@ -87,13 +106,12 @@ const CustomerSignUp = () => {
                     <Link to="/" className={classes.brandContainer}>
                         <img component={Link} to="/" src={EventPro} alt="icon" height="60px" />
                     </Link>
-                    <div style={{ flexGrow: 1 }}></div> {/* This div will take up any available space and push the button to the right */}
+                    <div style={{ flexGrow: 1 }}></div>
                     <Button component={Link} to="/" variant="contained" color="primary">Back</Button>
                 </Toolbar>
             </AppBar>
 
-            <Container component="main" maxWidth="xs" >
-                {/* ... The rest of the SignUp form contents ... */}
+            <Container component="main" maxWidth="xs">
                 <Paper className={classes.paper} elevation={6}>
                     <Avatar className={classes.avatar}>
                         <LockOutlinedIcon />
@@ -107,7 +125,7 @@ const CustomerSignUp = () => {
                                 <>
                                     <Input name="nic" label="NIC" handleChange={handleChange} autoFocus half />
                                     <Input name="address" label="Address" handleChange={handleChange} half />
-                                    <Input name="contactNo" label="ContactNo" handleChange={handleChange} />
+                                    <Input name="contactNo" label="Contact No" handleChange={handleChange} />
                                     <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
                                 </>
                             )}
@@ -115,25 +133,20 @@ const CustomerSignUp = () => {
                                 name="name"
                                 label="Name"
                                 handleChange={handleChange}
-                                handleBlur={handleBlur} // Add this
-
+                                handleBlur={handleBlur}
                             />
-                            {/* Repeat for other Input fields */}
                             <Input
                                 name="password"
                                 label="Password"
                                 handleChange={handleChange}
                                 type={showPassword ? 'text' : 'password'}
                                 handleShowPassword={handleShowPassword}
-                                handleBlur={handleBlur} // Add this
-
+                                handleBlur={handleBlur}
                             />
                             {isSignup && (
                                 <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />
                             )}
                             {!isSignup && error && <Typography color="error">{error}</Typography>}
-
-
                         </Grid>
                         <Button
                             type="submit"
@@ -160,6 +173,13 @@ const CustomerSignUp = () => {
                     </form>
                 </Paper>
             </Container>
+
+            {/* Snackbar for displaying alerts */}
+            <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={() => setSnackbarOpen(false)}>
+                <Alert onClose={() => setSnackbarOpen(false)} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </>
     );
 };
