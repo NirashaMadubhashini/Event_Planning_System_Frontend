@@ -13,7 +13,7 @@ import {
 import useStyles from "./style";
 import {Logout,} from "@mui/icons-material";
 import Box from "@mui/material/Box";
-import {Link} from "react-router-dom";
+import {Link,useHistory} from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
@@ -27,7 +27,7 @@ const Service = () => {
     const services = useSelector(state => state.adminReducer.services); // Adjust the path based on your state structure
     const vendors = useSelector((state) => state.adminReducer.vendorServicesTypeWise);
     const [selectedVendors, setSelectedVendors] = useState([]);
-
+    const history = useHistory(); // Initialize history
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -166,6 +166,17 @@ const Service = () => {
         console.log("Function Type:", functionType);
         console.log("Location:", location);
     };
+
+    const handlePurchase = () => {
+        // Simulate a delay to show the message and then navigate to "/checkout"
+        setTimeout(() => {
+            // Display the message
+            alert("Please Wait For Admin Approval");
+            // Navigate to "/home" after closing the message
+            history.push("/home");
+        }, 1000); // Adjust the delay time as needed
+    };
+
     return (
         <div>
             <AppBar
@@ -439,8 +450,7 @@ const Service = () => {
                                         className={classes.bookButton}
                                         variant="outlined"
                                         color="secondary"
-                                        component={Link}
-                                        to="/checkout"
+                                        onClick={handlePurchase} // Call handlePurchase when the button is clicked
                                     >
                                         Purchase
                                     </Button>
