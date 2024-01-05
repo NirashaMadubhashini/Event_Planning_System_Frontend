@@ -119,20 +119,20 @@ const ViewVendors = () => {
 
     const vendorsData = [
         {
-            name: "John Doe",
-            contactNumber: "1234567890",
-            businessName: "Vendor 1",
-            services: ["Service A", "Service B"],
+            name: "Sadali Haniska",
+            contactNumber: "0762816211",
+            businessName: "Sada Floral",
+            services: ["Decorations and floral arrangements"],
             rating: 4.5,
             numOfBookings: 10,
         },
         {
-            name: "Jane Smith",
-            contactNumber: "9876543210",
-            businessName: "Vendor 2",
-            services: ["Service C", "Service D", "Service E"],
+            name: "Hansi Hashani",
+            contactNumber: "0711757824",
+            businessName: "Hansi Bakes",
+            services: ["Cake and Desserts"],
             rating: 4.2,
-            numOfBookings: 5,
+            numOfBookings: 15,
         },
     ];
 
