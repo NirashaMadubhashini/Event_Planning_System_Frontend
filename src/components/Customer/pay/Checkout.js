@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useHistory } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+
 
 function Copyright() {
     return (
@@ -46,13 +48,17 @@ function getStepContent(step) {
 
 export default function Checkout() {
     const [activeStep, setActiveStep] = React.useState(0);
-
+    const history = useHistory();
     const handleNext = () => {
         setActiveStep(activeStep + 1);
     };
 
     const handleBack = () => {
         setActiveStep(activeStep - 1);
+    };
+
+    const handleClose = () => {
+        history.push('/service'); // Navigate to /service
     };
 
     return (
@@ -71,6 +77,13 @@ export default function Checkout() {
             </AppBar>
             <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+                    {activeStep === steps.length && (
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                            <Button onClick={handleClose} sx={{ mt: 1, mr: 1 }}>
+                                Close
+                            </Button>
+                        </Box>
+                    )}
                     <Typography component="h1" variant="h4" align="center">
                         Checkout
                     </Typography>
