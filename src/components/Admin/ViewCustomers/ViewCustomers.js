@@ -90,7 +90,16 @@ const ViewCustomers = () => {
             address: "Yakkalamulla",
             email: "reshan94@gmail.com",
             date: "2024-01-05",
-            time: "10:45 PM",
+            time: "10:45 AM",
+        },
+        {
+            customerName: "Anupama Sathsarani",
+            nic: "200086204149",
+            mobile: "0717214198",
+            address: "Labuduwa",
+            email: "anupama@gmail.com",
+            date: "2024-01-05",
+            time: "12:56 AM",
         },
     ];
 
