@@ -12,7 +12,7 @@ import {
     Grid,
     Container,
     InputAdornment,
-    TextField,
+    TextField, Snackbar,
 } from "@material-ui/core";
 import useStyles from "./style";
 import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
@@ -20,6 +20,7 @@ import {Link} from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import Alert from "@mui/material/Alert";
 
 
 const style = {
@@ -219,6 +220,18 @@ const [packages,setPackages] = useState([
         }));
     };
 
+    const [openSnackbar, setOpenSnackbar] = useState(false);
+
+    const handleBookClick = () => {
+        setOpenSnackbar(true);
+    };
+
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpenSnackbar(false);
+    };
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) => (prevCategory === category ? "" : category));
     };
@@ -294,17 +307,17 @@ const [packages,setPackages] = useState([
                             >
                                 Dashboard
                             </Typography>
-                            <Typography
-                                component={Link}
-                                to="/profile"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Profile")}
-                                style={{
-                                    color: clickedCategory === "Profile" ? "#F50057" : "",
-                                }}
-                            >
-                                Profile
-                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/profile"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Profile")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Profile" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Profile*/}
+                            {/*</Typography>*/}
                             <Typography
                                 component={Link}
                                 to="/booking"
@@ -385,33 +398,23 @@ const [packages,setPackages] = useState([
                                         </div>
                                     )}
                                     <div>
-                                    <Button
-                                        variant="contained"
-                                        color={clickedButtons[packages.id] ? "default" : "secondary"}
-                                        style={{
-                                            backgroundColor: clickedButtons[packages.id] ? "#0172EF" : "",
-                                        }}
-                                       // onClick={() => handleButtonClick(packages.id)}
-                                        className={classes.button}
-                                        onClick={handleOpen}
-                                    >
-                                        See More
-                                    </Button>
-                                        <Modal
-                                            open={open}
-                                            onClose={handleClose}
-                                            aria-labelledby="modal-modal-title"
-                                            aria-describedby="modal-modal-description"
+                                        <Button
+                                            variant="contained"
+                                            color="secondary"
+                                            className={classes.button}
+                                            onClick={handleBookClick}
                                         >
-                                            <Box sx={style}>
-                                                <Typography id="modal-modal-title" variant="h6" component="h2">
-                                                    Text in a modal
-                                                </Typography>
-                                                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                                    Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                                                </Typography>
-                                            </Box>
-                                        </Modal>
+                                            Book
+                                        </Button>
+                                        <Snackbar
+                                            open={openSnackbar}
+                                            autoHideDuration={6000}
+                                            onClose={handleCloseSnackbar}
+                                        >
+                                            <Alert onClose={handleCloseSnackbar} severity="warning" sx={{ width: '100%' }}>
+                                                Please contact Admin to book this package.
+                                            </Alert>
+                                        </Snackbar>
                                     </div>
                                 </CardContent>
                             </Card>

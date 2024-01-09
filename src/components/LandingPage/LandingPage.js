@@ -11,8 +11,9 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover', // This will make the image cover the entire element
         margin: 0,
         padding: 0,
-        width: '100vw', // 100% of the viewport width
-        height: '100vh', // 100% of the viewport height
+        width: '98vw', // 100% of the viewport width
+        height: '98vh', // 100% of the viewport height
+        marginLeft:'-12px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

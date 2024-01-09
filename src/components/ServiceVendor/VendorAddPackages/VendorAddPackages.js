@@ -290,6 +290,20 @@ const VendorAddPackages = () => {
             setGuestCountError(false);
         }
 
+        if (name === "image") {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setModalData(prevData => ({ ...prevData, image: reader.result }));
+                };
+                reader.readAsDataURL(file);
+            }
+        } else {
+            // Handle other inputs
+            setModalData(prevData => ({ ...prevData, [name]: value }));
+        }
+
         setModalData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -396,28 +410,28 @@ const VendorAddPackages = () => {
                             >
                                 Dashboard
                             </Typography>
-                            <Typography
-                                component={Link}
-                                to="/vendorProfile"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Profile")}
-                                style={{
-                                    color: clickedCategory === "Profile" ? "#F50057" : "",
-                                }}
-                            >
-                                Profile
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/vendorAddPackages"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Packages")}
-                                style={{
-                                    color: clickedCategory === "Packages" ? "#F50057" : "",
-                                }}
-                            >
-                                Packages
-                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/vendorProfile"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Profile")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Profile" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Profile*/}
+                            {/*</Typography>*/}
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/vendorAddPackages"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Packages")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Packages" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Packages*/}
+                            {/*</Typography>*/}
                             <Typography
                                 component={Link}
                                 to="/vendorViewBookings"
@@ -529,11 +543,10 @@ const VendorAddPackages = () => {
                         <TextField
                             variant="outlined"
                             type="file"
-                            onChange={handleImageUpload}
+                            name="image" // Added name attribute
+                            onChange={handleInputChange} // Updated to use handleInputChange
                             fullWidth
-
                         />
-
                     </Grid>
                     <Grid container item xs={12} sx={{justifyContent: 'center', alignItems: 'center'}}>
                         <Grid item >
@@ -597,7 +610,13 @@ const VendorAddPackages = () => {
                                     <TableCell>{pack.packageNoOfGuests}</TableCell>
                                     <TableCell>{pack.packageDescription}</TableCell>
                                     <TableCell>
-                                        {pack.image && <img src={pack.image} alt={pack.packageName} style={{ maxWidth: "100px" }} />}
+                                        {pack.image && (
+                                            <img
+                                                src={pack.image}
+                                                alt={pack.packageName}
+                                                style={{ maxWidth: "100px" }}
+                                            />
+                                        )}
                                     </TableCell>
 
                                     <TableCell>

@@ -31,6 +31,7 @@ import AdminSignUp from "./components/LandingPage/AdminSignUp/AdminSignUp";
 import CustomerSignUp from "./components/LandingPage/CustomerSignUp/CustomerSignUp";
 import VendorSignUp from "./components/LandingPage/VendorSignUp/VendorSignUp";
 import Checkout from "./components/Customer/pay/Checkout";
+import ServiceDetails from "./components/Customer/ServiceDetails/ServiceDetails";
 
 const App = () => {
     return (
@@ -58,6 +59,8 @@ const App = () => {
                     <Route path="/gallery" exact component={Gallery}/>
                     <Route path="/contact" exact component={Contact}/>
                     <Route path="/profile" exact component={Profile}/>
+                    {/*<Route path="/serviceDetails" exact component={ServiceDetails}/>*/}
+                    <Route path="/serviceDetails/:vendorId" component={ServiceDetails} />
                     ---------------------------------------------------
                     <Route path="/adminDashboard" exact component={AdminDashboard}/>
                     <Route path="/addServices" exact component={AddService}/>

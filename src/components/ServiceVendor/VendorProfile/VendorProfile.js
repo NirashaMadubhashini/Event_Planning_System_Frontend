@@ -114,28 +114,28 @@ const VendorProfile = () => {
                             >
                                 Dashboard
                             </Typography>
-                            <Typography
-                                component={Link}
-                                to="/vendorProfile"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Profile")}
-                                style={{
-                                    color: clickedCategory === "Profile" ? "#F50057" : "",
-                                }}
-                            >
-                                Profile
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/vendorAddPackages"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Packages")}
-                                style={{
-                                    color: clickedCategory === "Packages" ? "#F50057" : "",
-                                }}
-                            >
-                                Packages
-                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/vendorProfile"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Profile")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Profile" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Profile*/}
+                            {/*</Typography>*/}
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/vendorAddPackages"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Packages")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Packages" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Packages*/}
+                            {/*</Typography>*/}
                             <Typography
                                 component={Link}
                                 to="/vendorViewBookings"

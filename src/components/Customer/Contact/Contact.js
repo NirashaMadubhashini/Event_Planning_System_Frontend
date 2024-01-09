@@ -104,17 +104,17 @@ const Contact = () => {
                             >
                                 Dashboard
                             </Typography>
-                            <Typography
-                                component={Link}
-                                to="/profile"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Profile")}
-                                style={{
-                                    color: clickedCategory === "Profile" ? "#F50057" : "",
-                                }}
-                            >
-                                Profile
-                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/profile"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Profile")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Profile" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Profile*/}
+                            {/*</Typography>*/}
                             <Typography
                                 component={Link}
                                 to="/booking"
@@ -236,7 +236,7 @@ const Contact = () => {
                             </Typography>
                             <Typography variant="body2">Address:</Typography>
                             <Typography variant="body2">
-                                123 Main Street, City, State, Country
+                                No: 49/12- Circular Road, Galle
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6} md={4}>
@@ -244,10 +244,10 @@ const Contact = () => {
                                 Phone & Email
                             </Typography>
                             <Typography variant="body2">
-                                Phone: +1 234 567 8901
+                                Phone: +94 76 131 9259
                             </Typography>
                             <Typography variant="body2">
-                                Email: info@example.com
+                                Email: eventpro@gamil.com
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6} md={4}>
@@ -260,12 +260,12 @@ const Contact = () => {
                         </Grid>
                     </Grid>
                 </div>
-                <div className={classes.mapSection}>
-                    <Typography variant="h6" gutterBottom>
-                        Location
-                    </Typography>
-                    {/* Add your map component or embed the map code here */}
-                </div>
+                {/*<div className={classes.mapSection}>*/}
+                {/*    <Typography variant="h6" gutterBottom>*/}
+                {/*        Location*/}
+                {/*    </Typography>*/}
+                {/*    /!* Add your map component or embed the map code here *!/*/}
+                {/*</div>*/}
             </Container>
             <footer className={classes.footer}>
                 <div className={classes.footerIcons}>

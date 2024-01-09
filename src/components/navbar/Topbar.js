@@ -101,17 +101,17 @@ const AdminDashboard = () => {
                             >
                                 Dashboard
                             </Typography>
-                            <Typography
-                                component={Link}
-                                to="/vendorProfile"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Profile")}
-                                style={{
-                                    color: clickedCategory === "Profile" ? "#F50057" : "",
-                                }}
-                            >
-                                Profile
-                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/vendorProfile"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Profile")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Profile" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Profile*/}
+                            {/*</Typography>*/}
                             <Typography
                                 component={Link}
                                 to="/vendorAddBusiness"

@@ -47,7 +47,15 @@ const AuthService = {
     },
     logout: () => {
         localStorage.removeItem('jwtToken');
-    }
+    },
+    registerVendor: async (vendorData) => {
+        try {
+            const response = await axiosInstance.post('/register/vendor', vendorData);
+            return response.data;
+        } catch (error) {
+            throw new Error(error.response.data.message || "Vendor registration failed");
+        }
+    },
 };
 
 export default AuthService;

@@ -85,24 +85,32 @@ const Booking = () => {
     // Dummy data for the table
     const bookings = [
         {
-            date: "2023-06-24",
+            date: "2024-01-06",
             event: "Wedding",
             customerName: "John Doe",
-            vendorName: "EventPro",
-            service: "Decoration",
+            vendorName: "Sadali Haniska",
+            service: "Venue rental",
             contactNo: "0761319259",
             status: "Approve",
         },
         {
-            date: "2023-06-25",
+            date: "2024-01-06",
             event: "Birthday Party",
-            customerName: "Jane Smith",
-            vendorName: "EventPro",
-            service: "Catering",
-            contactNo: "0766430010",
+            customerName: "Hansi Hashani",
+            vendorName: "Hansi Hashani",
+            service: "Catering and Bar",
+            contactNo: "0774932380",
             status: "Pending",
         },
-        // Add more booking data if needed
+        {
+            date: "2024-01-06",
+            event: "Graduation",
+            customerName: "John Doe",
+            vendorName: "Geethika Sewwandi",
+            service: "Decorations and floral arrangements",
+            contactNo: "0766430010",
+            status: "Approve",
+        },
     ];
 
     const getStatusIcon = (status) => {
@@ -168,17 +176,17 @@ const Booking = () => {
                             >
                                 Dashboard
                             </Typography>
-                            <Typography
-                                component={Link}
-                                to="/profile"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Profile")}
-                                style={{
-                                    color: clickedCategory === "Profile" ? "#F50057" : "",
-                                }}
-                            >
-                                Profile
-                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/profile"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Profile")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Profile" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Profile*/}
+                            {/*</Typography>*/}
                             <Typography
                                 component={Link}
                                 to="/booking"
@@ -243,12 +251,12 @@ const Booking = () => {
                             <TableRow>
                                 <TableCell>Date</TableCell>
                                 <TableCell>Event</TableCell>
-                                <TableCell>Customer Name</TableCell>
+                                {/*<TableCell>Customer Name</TableCell>*/}
                                 <TableCell>Vendor Name</TableCell>
                                 <TableCell>Service</TableCell>
                                 <TableCell>Contact</TableCell>
                                 <TableCell>Status</TableCell>
-                                <TableCell>Action</TableCell>
+                                {/*<TableCell>Action</TableCell>*/}
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -260,7 +268,7 @@ const Booking = () => {
                                 >
                                     <TableCell>{booking.date}</TableCell>
                                     <TableCell>{booking.event}</TableCell>
-                                    <TableCell>{booking.customerName}</TableCell>
+                                    {/*<TableCell>{booking.customerName}</TableCell>*/}
                                     <TableCell>{booking.vendorName}</TableCell>
                                     <TableCell>{booking.service}</TableCell>
                                     <TableCell>{booking.contactNo}</TableCell>
@@ -278,11 +286,11 @@ const Booking = () => {
                                             {booking.status}
                                         </span>
                                     </TableCell>
-                                    <TableCell>
-                                        <IconButton color="secondary" onClick={handleMessageAction}>
-                                            <MailOutlineIcon />
-                                        </IconButton>
-                                    </TableCell>
+                                    {/*<TableCell>*/}
+                                    {/*    <IconButton color="secondary" onClick={handleMessageAction}>*/}
+                                    {/*        <MailOutlineIcon />*/}
+                                    {/*    </IconButton>*/}
+                                    {/*</TableCell>*/}
                                 </TableRow>
                             ))}
                         </TableBody>

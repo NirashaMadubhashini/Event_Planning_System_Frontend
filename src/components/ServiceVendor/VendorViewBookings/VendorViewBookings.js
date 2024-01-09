@@ -212,28 +212,28 @@ const VendorViewBookings = () => {
                             >
                                 Dashboard
                             </Typography>
-                            <Typography
-                                component={Link}
-                                to="/vendorProfile"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Profile")}
-                                style={{
-                                    color: clickedCategory === "Profile" ? "#F50057" : "",
-                                }}
-                            >
-                                Profile
-                            </Typography>
-                            <Typography
-                                component={Link}
-                                to="/vendorAddPackages"
-                                className={classes.appBarButton}
-                                onClick={() => handleCategoryClick("Packages")}
-                                style={{
-                                    color: clickedCategory === "Packages" ? "#F50057" : "",
-                                }}
-                            >
-                                Packages
-                            </Typography>
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/vendorProfile"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Profile")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Profile" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Profile*/}
+                            {/*</Typography>*/}
+                            {/*<Typography*/}
+                            {/*    component={Link}*/}
+                            {/*    to="/vendorAddPackages"*/}
+                            {/*    className={classes.appBarButton}*/}
+                            {/*    onClick={() => handleCategoryClick("Packages")}*/}
+                            {/*    style={{*/}
+                            {/*        color: clickedCategory === "Packages" ? "#F50057" : "",*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    Packages*/}
+                            {/*</Typography>*/}
                             <Typography
                                 component={Link}
                                 to="/vendorViewBookings"
@@ -306,7 +306,7 @@ const VendorViewBookings = () => {
                                 <TableCell>No. of Services</TableCell>
                                 <TableCell>Date</TableCell>
                                 <TableCell>Time</TableCell>
-                                <TableCell>Payment Status</TableCell>
+                                {/*<TableCell>Payment Status</TableCell>*/}
                                 {/*<TableCell>Actions</TableCell>*/}
                             </TableRow>
                         </TableHead>
@@ -320,20 +320,20 @@ const VendorViewBookings = () => {
                                     <TableCell>{customer.numOfServices}</TableCell>
                                     <TableCell>{customer.date}</TableCell>
                                     <TableCell>{customer.time}</TableCell>
-                                    <TableCell>
-                                        <Typography
-                                            style={{
-                                                color:
-                                                    customer.paymentStatus === "Paid"
-                                                        ? "green"
-                                                        : customer.paymentStatus === "Pending"
-                                                            ? "orange"
-                                                            : "red",
-                                            }}
-                                        >
-                                            {customer.paymentStatus}
-                                        </Typography>
-                                    </TableCell>
+                                    {/*<TableCell>*/}
+                                    {/*    <Typography*/}
+                                    {/*        style={{*/}
+                                    {/*            color:*/}
+                                    {/*                customer.paymentStatus === "Paid"*/}
+                                    {/*                    ? "green"*/}
+                                    {/*                    : customer.paymentStatus === "Pending"*/}
+                                    {/*                        ? "orange"*/}
+                                    {/*                        : "red",*/}
+                                    {/*        }}*/}
+                                    {/*    >*/}
+                                    {/*        {customer.paymentStatus}*/}
+                                    {/*    </Typography>*/}
+                                    {/*</TableCell>*/}
                                     {/*<TableCell>*/}
                                     {/*    <IconButton color="secondary" onClick={handleMessageAction}>*/}
                                     {/*        <MailOutlineIcon />*/}

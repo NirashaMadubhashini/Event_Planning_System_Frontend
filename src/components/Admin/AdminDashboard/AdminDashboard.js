@@ -18,7 +18,7 @@ import useStyles from "./style";
 import {Search, ArrowDropDown, ExitToApp, Logout} from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import EventPro from "../../../assets/images/CorrectLogo.png";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell} from "recharts";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import RoomServiceIcon from "@mui/icons-material/RoomService";
 import RateReviewIcon from "@mui/icons-material/RateReview";
@@ -90,6 +90,30 @@ const AdminDashboard = () => {
         { day: "Sun", income: 600, monthlyIncome: 1900, annualIncome: 14000 },
     ];
 
+    // Mock data for the new charts
+    const vendorRankingData = [
+        { name: "Sadali", ranking: 240 },
+        { name: "Hansi", ranking: 220 },
+        { name: "Milasha", ranking: 200 },
+        { name: "Anupama", ranking: 180 },
+        { name: "Chamodi", ranking: 100 },
+        // ... more vendors
+    ];
+
+    const pieChartData = [
+        { name: "Sadali", value: 240 },
+        { name: "Hansi", value: 220 },
+        { name: "Milasha", value: 200 },
+        { name: "Anupama", value: 180 },
+        { name: "Chamodi", value: 100 },
+        // ... more categories
+    ];
+
+    // Colors for the vendor ranking bar chart
+    const vendorColors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28CD5"];
+
+    // Colors for the pie chart
+    const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28CD5"];
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -250,16 +274,73 @@ const AdminDashboard = () => {
                     </Grid>
                 </Grid>
                 {/*<Divider style={{ margin: '20px 0' }} />  Or an empty div: <div style={{ height: '20px' }} /> */}
+                <Typography variant="h5" className={classes.barChartTopic}>
+                    MI Sales Predictions
+                </Typography>
                 <Button
                     variant="contained"
                     color="primary"
                     onClick={handlePredictionsClick}
-                    style={{ marginTop: '20px' }}
+                    style={{ marginTop: '25px' }}
                     disabled={loading} // Disable button when loading
                 >
                     {loading ? <CircularProgress size={24} /> : "View MI Predictions"}
                 </Button>
-                <Grid container spacing={5}>
+                <Grid container spacing={5} style={{ marginTop: '15px' }}>
+                    {/* Horizontal Vendor Ranking Bar Chart */}
+                    {/* Horizontal Vendor Ranking Bar Chart */}
+                    <Grid item xs={12} sm={6}>
+                        <Typography variant="h5" className={classes.barChartTopic}>
+                            Vendor Ranking
+                        </Typography>
+                        <BarChart
+                            layout="vertical"
+                            width={600} // Increased width
+                            height={300}
+                            data={vendorRankingData}
+                            className={classes.barChart}
+                            margin={{ top: 20, right: 30, left: 20, bottom: 5 }} // Adjusted margin
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis type="number" />
+                            <YAxis
+                                dataKey="name"
+                                type="category"
+                                width={80} // Adjust width to fit labels
+                                tick={{ fontSize: 15 }} // Adjust font size of ticks
+                            />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="ranking" fill="#82ca9d">
+                                {vendorRankingData.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={vendorColors[index % vendorColors.length]} />
+                                ))}
+                            </Bar>
+                        </BarChart>
+                    </Grid>
+
+
+                    {/* Pie Chart */}
+                    <Grid item xs={12} sm={6} md={4} lg={2}>
+                        <PieChart width={400} height={400}>
+                            <Pie
+                                data={pieChartData}
+                                cx={200}
+                                cy={200}
+                                labelLine={false}
+                                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                                outerRadius={80}
+                                fill="#8884d8"
+                                dataKey="value"
+                            >
+                                {pieChartData.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                ))}
+                            </Pie>
+                            <Tooltip />
+                        </PieChart>
+                    </Grid>
+                    <Grid container spacing={5} style={{ marginTop: '20px' }}>
                     <Grid item xs={12} sm={6} md={4} lg={3} className={classes.dailyGrid}>
                         <Typography variant="h5" className={classes.barChartTopic}>
                             Daily Income
@@ -299,9 +380,8 @@ const AdminDashboard = () => {
                             <Bar dataKey="annualIncome" fill="#8884d8" />
                         </BarChart>
                     </Grid>
+                    </Grid>
                 </Grid>
-
-
             </Container>
         </Container>
     );

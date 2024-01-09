@@ -54,15 +54,24 @@ const VendorSignUp = () => {
 
         try {
             if (isSignup) {
-                const userData = {
-                    username: form.name,
+                const vendorData = {
+                    // Assuming these are the fields expected in VendorDTO
+                    vendorNic: form.nic,
+                    vendorName: form.name,
+                    address: form.address,
+                    contactNo: form.contactNo,
+                    email: form.email,
                     password: form.password,
-                    roles: [userRole]
+                    serviceName: form.serviceName,
+                    serviceType: form.serviceType,
+                    portfolio: form.portfolio,
+                    price: form.price,
+                    city: form.city
                 };
-                const response = await AuthService.register(userData);
+                const response = await AuthService.registerVendor(vendorData);
                 setIsSignup(false);
                 setError('');
-                setSnackbarMessage('Registration successful. Please log in.');
+                setSnackbarMessage('Vendor registration successful. Please log in.');
                 setSnackbarSeverity('success');
                 setSnackbarOpen(true);
             } else {
@@ -89,6 +98,7 @@ const VendorSignUp = () => {
             setSnackbarOpen(true);
         }
     };
+
 
     const handleBlur = () => {
         setError(''); // Clear error message
@@ -126,10 +136,12 @@ const VendorSignUp = () => {
                                     <FormControl fullWidth className={classes.input}>
                                         <InputLabel>Service Type</InputLabel>
                                         <Select name="serviceType" value={form.serviceType} onChange={handleChange}>
-                                            <MenuItem value="serviceType1">Venue Rental</MenuItem>
-                                            <MenuItem value="serviceType2">Catering and Bar</MenuItem>
-                                            <MenuItem value="serviceType3">Decorations and Floral Arrangements</MenuItem>
-                                            <MenuItem value="serviceType4">Cake and Desserts</MenuItem>
+                                            <MenuItem value="Venue rental">Venue Rental</MenuItem>
+                                            <MenuItem value="Catering and Bar">Catering and Bar</MenuItem>
+                                            <MenuItem value="Decorations and floral arrangements">Decorations and Floral Arrangements</MenuItem>
+                                            <MenuItem value="Cake and desserts">Cake and Desserts</MenuItem>
+                                            <MenuItem value="Photography and Videography">Photography and Videography</MenuItem>
+                                            <MenuItem value="Entertainment">Entertainment</MenuItem>
                                         </Select>
                                     </FormControl>
                                     <Input name="portfolio" label="Portfolio" handleChange={handleChange} />
