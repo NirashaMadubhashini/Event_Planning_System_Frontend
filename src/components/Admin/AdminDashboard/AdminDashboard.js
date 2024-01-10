@@ -59,6 +59,19 @@ const AdminDashboard = () => {
                 setLoading(false); // Stop loading
             });
     }
+    const handleRankingsClick = () => {
+        setLoading(true); // Start loading
+        MLService.runPrediction()
+            .then(res => {
+                // Handle successful prediction
+            })
+            .catch(err => {
+                // Handle error
+            })
+            .finally(() => {
+                setLoading(false); // Stop loading
+            });
+    }
     const handleCategoryClick = (category) => {
         setClickedCategory((prevCategory) =>
             prevCategory === category ? "" : category
@@ -92,20 +105,30 @@ const AdminDashboard = () => {
 
     // Mock data for the new charts
     const vendorRankingData = [
-        { name: "Sadali", ranking: 240 },
-        { name: "Hansi", ranking: 220 },
-        { name: "Milasha", ranking: 200 },
-        { name: "Anupama", ranking: 180 },
-        { name: "Chamodi", ranking: 100 },
+        { name: "Ayesha Perera", ranking: 296},
+        { name: "Priyanka Silva", ranking: 286 },
+        { name: "Rashmi Silva", ranking: 278 },
+        { name: "Lakshan Kumara", ranking: 265 },
+        { name: "Chamari Bandara", ranking: 263 },
+        { name: "Priyanka Fernando", ranking: 256},
+        { name: "Thilini Perera", ranking: 248 },
+        { name: "Dinesh Fernando", ranking: 240 },
+        { name: "Kamal Jayasuriya", ranking: 234 },
+        { name: "Sunil Bandara", ranking: 231 },
         // ... more vendors
     ];
 
     const pieChartData = [
-        { name: "Sadali", value: 240 },
-        { name: "Hansi", value: 220 },
-        { name: "Milasha", value: 200 },
-        { name: "Anupama", value: 180 },
-        { name: "Chamodi", value: 100 },
+        { name: "Ayesha Perera", value: 12.8},
+        { name: "Priyanka Silva", value: 11.7},
+        { name: "Rashmi Silva", value: 10.9 },
+        { name: "Lakshan Kumara", value: 10.5},
+        { name: "Chamari Bandara", value: 10.4},
+        { name: "Priyanka Fernando", value: 9.6},
+        { name: "Thilini Perera", value: 9.2},
+        { name: "Dinesh Fernando", value: 8.5},
+        { name: "Kamal Jayasuriya", value: 8.3},
+        { name: "Sunil Bandara", value: 8.2},
         // ... more categories
     ];
 
@@ -114,6 +137,62 @@ const AdminDashboard = () => {
 
     // Colors for the pie chart
     const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28CD5"];
+
+    const renderCustomizedLabel = ({
+                                       cx, cy, midAngle, innerRadius, outerRadius, percent,
+                                   }) => {
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+        const x = cx + radius * Math.cos(-midAngle * Math.PI / 180);
+        const y = cy + radius * Math.sin(-midAngle * Math.PI / 180);
+
+        return (
+            <text
+                x={x}
+                y={y}
+                fill="white"
+                textAnchor={x > cx ? 'start' : 'end'}
+                dominantBaseline="central"
+                style={{ fontSize: '10px' }} // Reduced font size
+            >
+                {`${(percent * 100).toFixed(0)}%`}
+            </text>
+        );
+    };
+
+
+    const renderOutsideLabel = (props) => {
+        const { cx, cy, midAngle, outerRadius, fill, name } = props;
+        const RADIAN = Math.PI / 180;
+        const radius = outerRadius + 20; // Position the label outside the pie
+        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+        return (
+            <text
+                x={x}
+                y={y}
+                fill={fill}
+                textAnchor={x > cx ? 'start' : 'end'}
+                dominantBaseline="central"
+                style={{ fontSize: '12px' }} // Reduced font size
+            >
+                {name}
+            </text>
+        );
+    };
+
+    const calculateMidAngle = (entry, data) => {
+        let startAngle = 0;
+        for (let i = 0; i < data.length; i++) {
+            const { value } = data[i];
+            const degree = value / data.reduce((acc, item) => acc + item.value, 0) * 360;
+            if (entry.name === data[i].name) {
+                return startAngle + degree / 2;
+            }
+            startAngle += degree;
+        }
+    };
+
 
     return (
         <Container maxWidth="xl" className={classes.container}>
@@ -288,18 +367,26 @@ const AdminDashboard = () => {
                 </Button>
                 <Grid container spacing={5} style={{ marginTop: '15px' }}>
                     {/* Horizontal Vendor Ranking Bar Chart */}
-                    {/* Horizontal Vendor Ranking Bar Chart */}
                     <Grid item xs={12} sm={6}>
                         <Typography variant="h5" className={classes.barChartTopic}>
                             Vendor Ranking
                         </Typography>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleRankingsClick}
+                            style={{ marginTop: '25px' }}
+                            disabled={loading} // Disable button when loading
+                        >
+                            {loading ? <CircularProgress size={24} /> : "View Vendor Ranking"}
+                        </Button>
                         <BarChart
                             layout="vertical"
-                            width={600} // Increased width
-                            height={300}
+                            width={600}
+                            height={400}
                             data={vendorRankingData}
                             className={classes.barChart}
-                            margin={{ top: 20, right: 30, left: 20, bottom: 5 }} // Adjusted margin
+                            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                         >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis type="number" />
@@ -307,11 +394,11 @@ const AdminDashboard = () => {
                                 dataKey="name"
                                 type="category"
                                 width={80} // Adjust width to fit labels
-                                tick={{ fontSize: 15 }} // Adjust font size of ticks
+                                tick={{ fontSize: 12 }} // Adjust font size of ticks
                             />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="ranking" fill="#82ca9d">
+                            <Bar dataKey="ranking" fill="#82ca9d" barSize={30}>
                                 {vendorRankingData.map((entry, index) => (
                                     <Cell key={`cell-${index}`} fill={vendorColors[index % vendorColors.length]} />
                                 ))}
@@ -321,15 +408,15 @@ const AdminDashboard = () => {
 
 
                     {/* Pie Chart */}
-                    <Grid item xs={12} sm={6} md={4} lg={2}>
-                        <PieChart width={400} height={400}>
+                    <Grid item xs={12} sm={6} md={4} lg={2} style={{ marginTop: '70px',marginLeft:"25px" }}> {/* Added marginTop */}
+                        <PieChart width={500} height={500}>
                             <Pie
                                 data={pieChartData}
-                                cx={200}
-                                cy={200}
+                                cx={250}
+                                cy={250}
                                 labelLine={false}
-                                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                                outerRadius={80}
+                                label={renderCustomizedLabel}
+                                outerRadius={120}
                                 fill="#8884d8"
                                 dataKey="value"
                             >
@@ -338,6 +425,14 @@ const AdminDashboard = () => {
                                 ))}
                             </Pie>
                             <Tooltip />
+                            {pieChartData.map((entry, index) => renderOutsideLabel({
+                                ...entry,
+                                cx: 250,
+                                cy: 250,
+                                midAngle: calculateMidAngle(entry, pieChartData),
+                                outerRadius: 120,
+                                fill: COLORS[index % COLORS.length]
+                            }))}
                         </PieChart>
                     </Grid>
                     <Grid container spacing={5} style={{ marginTop: '20px' }}>
